@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/styled": "^11.3.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -60,11 +61,14 @@
     "prettier": "^2.3.2"
   },
   "lint-staged": {
-    "*.tsx" : ["eslint . --fix", "prettier --write"]
+    "*.tsx": [
+      "eslint . --fix",
+      "prettier --write"
+    ]
   },
   "husky": {
     "hooks": {
-      "pre-commit" : "lint-staged"
+      "pre-commit": "lint-staged"
     }
   }
 }
