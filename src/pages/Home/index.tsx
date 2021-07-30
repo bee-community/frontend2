@@ -1,30 +1,20 @@
-import React from 'react';
-import Button from 'components/Button';
-import Chat from 'components/Chat';
-import Feed from 'components/Feed';
-import Statistics from 'components/Statistics';
+import React from "react";
+import Button from "components/Button";
+import Feed from "components/Feed";
+import Container from "components/Layout/Container";
 
-import { Header, MenuBar, Title } from './styles';
+import { Header, MenuBar, Title } from "./styles";
 
 const Home = () => {
   return (
-    <>
-      <section>
-        <Header>
-          <MenuBar />
-          <Title />
-          <Button />
-        </Header>
-        <Feed />
-      </section>
-      <section>
-        <Header>
-          <Button />
-        </Header>
-        <Chat />
-        <Statistics />
-      </section>
-    </>
+    <Container>
+      <Header>
+        <MenuBar />
+        <Title />
+        <Button />
+      </Header>
+      <Feed />
+    </Container>
   );
 };
 
