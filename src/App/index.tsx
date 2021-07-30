@@ -1,9 +1,9 @@
-import React from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
-import Home from '../pages/Home';
-import MyPage from '../pages/MyPage';
-import PostAdd from '../pages/PostAdd';
-import PostDetail from '../pages/PostDetail';
+import React from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
+import Home from "../pages/Home";
+import MyPage from "../pages/MyPage";
+import PostAdd from "../pages/PostAdd";
+import PostDetail from "../pages/PostDetail";
 
 const App = () => (
   <Switch>

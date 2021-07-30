@@ -1,6 +1,6 @@
-import React from 'react';
-import Filter from 'components/Filter';
-import { FilterZone } from './styles';
+import React from "react";
+import Filter from "components/Filter";
+import { FilterZone } from "./styles";
 
 const FilterList = () => {
   return (

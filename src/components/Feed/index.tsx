@@ -1,6 +1,6 @@
-import React from 'react';
-import ContentList from 'components/ContentList';
-import FilterList from 'components/FilterList';
+import React from "react";
+import ContentList from "components/ContentList";
+import FilterList from "components/FilterList";
 
 const Feed = () => {
   return (
