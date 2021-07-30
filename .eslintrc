@@ -45,6 +45,7 @@
     "jsx-a11y/click-events-have-key-events": "off", // 마우스가 아닌 키보드로 컴퓨터를 이용하는 사람들을 위한 접근성 옵션 꺼둠. 추후 적용하고자 하면 제거할 것
     "jsx-a11y/no-static-element-interactions": "off", // semantic 의미를 갖고 있지 않은 태그 사용을 지양하도록 하는 옵션 꺼둠
     "react/jsx-props-no-spreading": "off", // jsx에 넘겨주는 props 에 spread 연산자를 사용할 수 있게끔 셋팅
-    "react/no-children-prop": "off" // children 으로 Prop 넘겨줄 수 있도록 설정
+    "react/no-children-prop": "off", // children 으로 Prop 넘겨줄 수 있도록 설정
+    "@typescript-eslint/explicit-function-return-type": "off"
   }
 }
