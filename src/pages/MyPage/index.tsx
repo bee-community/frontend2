@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const MyPage = () => {
   return <>MyPage 페이지 입니다.</>;
