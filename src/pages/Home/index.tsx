@@ -11,18 +11,18 @@ const Home = () => {
     <>
       <section>
         <Header>
-          <MenuBar/>
-          <Title/>
-          <Button/>
+          <MenuBar />
+          <Title />
+          <Button />
         </Header>
-        <Feed/>
+        <Feed />
       </section>
       <section>
         <Header>
-          <Button/>
+          <Button />
         </Header>
-        <Chat/>
-        <Statistics/>
+        <Chat />
+        <Statistics />
       </section>
     </>
   );
