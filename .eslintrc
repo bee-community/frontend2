@@ -30,6 +30,7 @@
   "rules": {
     "no-underscore-dangle": "off", // _언더스코어 식별자 사용 관련 룰 비활성화
     "no-alert": "off", // alert 자주 사용하므로 비활성화
+    "global-require": "off",
     "react-hooks/rules-of-hooks": "error", // chechs rules of hooks
     "react-hooks/exhaustive-deps": "warn", // dependency 관련 에러는 경고(노란줄)로 바꿈
     "react/jsx-filename-extension": [
