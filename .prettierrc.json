@@ -4,7 +4,7 @@
   "useTabs": false,
   "semi": true,
   "quoteProps": "as-needed",
-  "singleQuote": false,
+  "singleQuote": true,
   "trailingComma": "es5",
   "bracketSpacing": true,
   "arrowParents": "always",
@@ -12,5 +12,5 @@
   "htmlWhitespaceSensitivity": "css",
   "embeddedLanguageFormatting": "off",
   "jsxBracketSameLine": true,
-  "jsxSingleQuote": false,
+  "jsxSingleQuote": false
 }
