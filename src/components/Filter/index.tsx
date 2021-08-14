@@ -1,7 +1,17 @@
-import React from "react";
+import React from 'react';
+import { FilterWrap, ImageWrap, Text } from './styles';
 
-const Filter = () => {
-  return <>Filter 입니다</>;
+type Props = {
+  title: string;
 };
+
+const Filter: React.FC<Props> = ({ title }: Props) => (
+  <FilterWrap>
+    <ImageWrap>
+      <img alt="hel" />
+    </ImageWrap>
+    <Text>{title}</Text>
+  </FilterWrap>
+);
 
 export default Filter;

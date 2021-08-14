@@ -1,11 +1,11 @@
-import { ThemeProvider } from "@emotion/react";
-import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
-import GlobalStyle from "styles/global";
-import theme from "styles/theme";
+import { ThemeProvider } from '@emotion/react';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import GlobalStyle from 'styles/global';
+import theme from 'styles/theme';
 
-import App from "./App";
+import App from './App';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -14,5 +14,5 @@ ReactDOM.render(
       <App />
     </ThemeProvider>
   </BrowserRouter>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
