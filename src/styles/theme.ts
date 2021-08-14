@@ -4,16 +4,21 @@ export const size = {
   // medium: "37.5em", // 600px
   // small: "31.25em", // 500px
   // smallest: "25em", // 400px
-  largest: "1024px",
-  large: "768px",
-  small: "480px",
+  largest: '1024px',
+  large: '768px',
+  small: '480px',
 };
 
 const theme = {
   mainColor: {
-    yellow: "#F7CD5C",
-    orange: "#FC6D3A",
-    purple: "#503E9D",
+    yellow: '#F7CD5C',
+    orange: '#FC6D3A',
+    purple: '#503E9D',
+  },
+  color: {
+    white: '#ffffff',
+    gray: '#F8F8F8',
+    deepGray: '#4b4841',
   },
   mq: {
     laptop: `@media only screen and (min-width: ${size.largest})`,

@@ -7,6 +7,11 @@ declare module '@emotion/react' {
       orange: string;
       purple: string;
     };
+    color: {
+      white: string;
+      gray: string;
+      deepGray: string;
+    };
     mq: {
       laptop: string;
       tablet: string;
