@@ -1,4 +1,5 @@
 module.exports = {
+  root: true,
   env: {
     browser: true,
     es2021: true,
@@ -6,20 +7,19 @@ module.exports = {
   },
   extends: [
     'airbnb-typescript',
-    'eslint:recommended',
     'plugin:react/recommended',
-    'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
     'prettier',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
+    // tsconfigRootDir: __dirname,
     ecmaFeatures: {
       jsx: true,
     },
     ecmaVersion: 2021,
     sourceType: 'module',
-    project: './tsconfig.json',
+    project: ['./tsconfig.json'],
   },
   plugins: ['react', '@typescript-eslint', 'prettier', 'react-hooks', 'import'],
   rules: {
@@ -46,6 +46,7 @@ module.exports = {
     'react/require-default-props': 'off', // Since we do not use prop-types
     'react/no-array-index-key': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
+    'react/react-in-jsx-scope': 'off',
   },
   settings: {
     'import/extensions': ['.js', '.ts'],
