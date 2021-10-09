@@ -1,3 +1,4 @@
+import Http from 'api';
 import { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -18,7 +19,6 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const [passwordCheck, setPasswordCheck] = useState('');
 
-  const onSubmit = useCallback(() => {}, []);
   const onChangeEmail = useCallback(
     e => {
       setEmail(e.target.value);
@@ -39,6 +39,25 @@ const SignUp = () => {
       console.log('passwordCheck', passwordCheck);
     },
     [passwordCheck],
+  );
+
+  const onSubmit = useCallback(
+    e => {
+      e.preventDefault();
+      console.log('서버로 회원가입하기');
+      Http.post('/users', {
+        username: email,
+        password: password,
+      })
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        })
+        .finally(() => {});
+    },
+    [email, password],
   );
 
   return (
