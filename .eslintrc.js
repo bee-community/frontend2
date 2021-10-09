@@ -46,6 +46,7 @@ module.exports = {
     'react/require-default-props': 'off', // Since we do not use prop-types
     'react/no-array-index-key': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-unused-vars': 'warn',
     'react/react-in-jsx-scope': 'off',
   },
   settings: {
