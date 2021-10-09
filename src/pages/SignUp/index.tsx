@@ -17,16 +17,13 @@ import {
 
 const SignUp = () => {
   const [mismatchError, setMismatchError] = useState(false);
+  const [email, setEmail] = useState(undefined);
   const [password, setPassword] = useState(undefined);
   const [passwordCheck, setPasswordCheck] = useState(undefined);
 
-  const onChangeEmail = useCallback(
-    e => {
-      setEmail(e.target.value);
-      console.log('email', email);
-    },
-    [email],
-  );
+  const onChangeEmail = useCallback(e => {
+    setEmail(e.target.value);
+  }, []);
   const onChangePassword = useCallback(
     e => {
       setPassword(e.target.value);
@@ -98,6 +95,7 @@ const SignUp = () => {
           />
         </Label>
         {mismatchError && <Error>비밀번호가 일치하지 않습니다.</Error>}
+        {!email && <Error>이메일을 입력해주세요!</Error>}
         <Button type="submit">회원가입</Button>
       </Form>
       <LinkContainer>
