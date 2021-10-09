@@ -1,4 +1,4 @@
-import React from 'react';
+import { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import {
@@ -14,21 +14,66 @@ import {
 } from './styles';
 
 const SignUp = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordCheck, setPasswordCheck] = useState('');
+
+  const onSubmit = useCallback(() => {}, []);
+  const onChangeEmail = useCallback(
+    e => {
+      setEmail(e.target.value);
+      console.log('email', email);
+    },
+    [email],
+  );
+  const onChangePassword = useCallback(
+    e => {
+      setPassword(e.target.value);
+      console.log('password', password);
+    },
+    [password],
+  );
+  const onChangePasswordCheck = useCallback(
+    e => {
+      setPasswordCheck(e.target.value);
+      console.log('passwordCheck', passwordCheck);
+    },
+    [passwordCheck],
+  );
+
   return (
     <>
       <Header>HONEYBEES</Header>
-      <Form>
+      <Form onSubmit={onSubmit}>
         <Label>
           <span>이메일 주소</span>
-          <Input />
+          <Input
+            type="email"
+            id="email"
+            name="email"
+            value={email}
+            onChange={onChangeEmail}
+          />
         </Label>
         <Label>
           <span>비밀번호</span>
-          <Input />
+          <Input
+            type="password"
+            id="password"
+            name="password"
+            value={password}
+            onChange={onChangePassword}
+          />
         </Label>
         <Label>
           <span>비밀번호 확인</span>
-          <Input />
+          <Input
+            type="password"
+            id="passwordCheck"
+            name="passwordCheck"
+            value={passwordCheck}
+            onChange={onChangePasswordCheck}
+          />
         </Label>
         <Button type="submit">회원가입</Button>
       </Form>
