@@ -7,17 +7,18 @@ import {
   Form,
   Label,
   Input,
-  Button, // Error,
-  // Success,
+  Button,
+  Error,
+  Success,
   LinkContainer,
   Line,
   TermOfService,
 } from './styles';
 
 const SignUp = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordCheck, setPasswordCheck] = useState('');
+  const [mismatchError, setMismatchError] = useState(false);
+  const [password, setPassword] = useState(undefined);
+  const [passwordCheck, setPasswordCheck] = useState(undefined);
 
   const onChangeEmail = useCallback(
     e => {
@@ -29,35 +30,37 @@ const SignUp = () => {
   const onChangePassword = useCallback(
     e => {
       setPassword(e.target.value);
-      console.log('password', password);
+      setMismatchError(e.target.value !== passwordCheck);
     },
-    [password],
+    [passwordCheck],
   );
   const onChangePasswordCheck = useCallback(
     e => {
       setPasswordCheck(e.target.value);
-      console.log('passwordCheck', passwordCheck);
+      setMismatchError(e.target.value !== password);
     },
-    [passwordCheck],
+    [password],
   );
 
   const onSubmit = useCallback(
     e => {
       e.preventDefault();
-      console.log('서버로 회원가입하기');
-      Http.post('/users', {
-        username: email,
-        password: password,
-      })
-        .then(response => {
-          console.log(response);
+      if (!mismatchError && email && password) {
+        console.log('서버로 회원가입하기');
+        Http.post('/users', {
+          username: email,
+          password: password,
         })
-        .catch(error => {
-          console.log(error);
-        })
-        .finally(() => {});
+          .then(response => {
+            console.log(response);
+          })
+          .catch(error => {
+            console.log(error);
+          })
+          .finally(() => {});
+      }
     },
-    [email, password],
+    [email, password, mismatchError],
   );
 
   return (
@@ -94,6 +97,7 @@ const SignUp = () => {
             onChange={onChangePasswordCheck}
           />
         </Label>
+        {mismatchError && <Error>비밀번호가 일치하지 않습니다.</Error>}
         <Button type="submit">회원가입</Button>
       </Form>
       <LinkContainer>
