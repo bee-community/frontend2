@@ -1,3 +1,4 @@
+import Http from 'api';
 import {
   Header,
   Form,
@@ -25,6 +26,21 @@ const LogIn = () => {
       e.preventDefault();
       if (email && password) {
         console.log('서버로 로그인하기');
+        const form = new FormData();
+        form.append('username', email);
+        form.append('password', password);
+        Http.post('/auth/token', form, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+          .then(response => {
+            console.log(response);
+          })
+          .catch(error => {
+            console.log(error);
+          })
+          .finally(() => {});
       }
     },
     [email, password],
