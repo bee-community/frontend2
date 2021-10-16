@@ -14,6 +14,9 @@ import { Link } from 'react-router-dom';
 const LogIn = () => {
   const [email, setEmail] = useState(undefined);
   const [password, setPassword] = useState(undefined);
+  const [accessToken, setAccessToken] = useState('');
+  const [tokenType, setTokenType] = useState('');
+
   const onChangeEmail = useCallback(e => {
     setEmail(e.target.value);
   }, []);
@@ -36,6 +39,20 @@ const LogIn = () => {
         })
           .then(response => {
             console.log(response);
+
+            const jsonString = JSON.stringify(response.data, [
+              'access_token',
+              'token_type',
+            ]);
+            JSON.parse(jsonString, (key, value) => {
+              if (key === 'access_token') {
+                setAccessToken(value);
+                console.log(accessToken);
+              } else if (key === 'token_type') {
+                setTokenType(value);
+                console.log(tokenType);
+              }
+            });
           })
           .catch(error => {
             console.log(error);
@@ -43,7 +60,7 @@ const LogIn = () => {
           .finally(() => {});
       }
     },
-    [email, password],
+    [email, password, accessToken, tokenType],
   );
 
   return (
