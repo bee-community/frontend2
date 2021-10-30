@@ -1,4 +1,6 @@
 import Http from 'api';
+import { useAuthDispatch, useAuthState } from 'context/Auth';
+import { login } from 'context/Auth/actions';
 import {
   Header,
   Form,
@@ -14,6 +16,10 @@ import { Link } from 'react-router-dom';
 const LogIn = () => {
   const [email, setEmail] = useState(undefined);
   const [password, setPassword] = useState(undefined);
+
+  const authDispatch = useAuthDispatch();
+  const auth = useAuthState();
+
   const [accessToken, setAccessToken] = useState('');
   const [tokenType, setTokenType] = useState('');
 
@@ -47,12 +53,19 @@ const LogIn = () => {
             JSON.parse(jsonString, (key, value) => {
               if (key === 'access_token') {
                 setAccessToken(value);
-                console.log(accessToken);
-              } else if (key === 'token_type') {
+              }
+              if (key === 'token_type') {
                 setTokenType(value);
-                console.log(tokenType);
               }
             });
+
+            authDispatch(
+              login({
+                username: email,
+                access_token: accessToken,
+                token_type: tokenType,
+              }),
+            );
           })
           .catch(error => {
             console.log(error);
@@ -60,8 +73,10 @@ const LogIn = () => {
           .finally(() => {});
       }
     },
-    [email, password, accessToken, tokenType],
+    [email, password, accessToken, authDispatch, tokenType],
   );
+
+  console.log('auth', auth); // test code
 
   return (
     <>
