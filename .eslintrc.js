@@ -47,6 +47,13 @@ module.exports = {
     'react/no-array-index-key': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-unused-vars': 'warn',
+    '@typescript-eslint/naming-convention': [
+      'warn',
+      {
+        selector: 'variable',
+        format: ['camelCase', 'snake_case', 'PascalCase'],
+      },
+    ],
     'react/react-in-jsx-scope': 'off',
   },
   settings: {
