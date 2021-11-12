@@ -1,14 +1,15 @@
 import LogIn from 'pages/LogIn';
 import SignUp from 'pages/SignUp';
-import React from 'react';
-import { Redirect, Route, Switch } from 'react-router';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 const App = () => (
-  <Switch>
-    <Redirect exact path="/" to="/login" />
-    <Route path="/signup" component={SignUp} />
-    <Route path="/login" component={LogIn} />
-  </Switch>
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Navigate to="/login" />} />
+      <Route path="/signup" element={<SignUp />} />
+      <Route path="/login" element={<LogIn />} />
+    </Routes>
+  </BrowserRouter>
 );
 
 export default App;
