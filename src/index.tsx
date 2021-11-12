@@ -8,12 +8,14 @@ import theme from 'theme';
 import App from './App';
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <AuthProvider>
-      <Global styles={styles} />
-      <App />
-    </AuthProvider>
-  </ThemeProvider>,
+  <BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <AuthProvider>
+        <Global styles={styles} />
+        <App />
+      </AuthProvider>
+    </ThemeProvider>
+  </BrowserRouter>,
 
   document.getElementById('root'),
 );
