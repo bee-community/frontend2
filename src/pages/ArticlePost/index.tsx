@@ -1,3 +1,4 @@
+import Http from 'api';
 import { useCallback, useState } from 'react';
 
 import { Form, Label, Input, Button, BoardList } from './styles';
@@ -25,7 +26,28 @@ const ArticlePost = () => {
       console.log(title, content, board);
 
       if (title && content) {
-        console.log('onSubmit!!');
+        console.log('create article');
+        Http.post(
+          '/articles',
+          {
+            title: title,
+            content: content,
+            board_id: '7cdbf3a6-42b2-4c9f-9440-c3f34b6cbeeb',
+          },
+          {
+            headers: {
+              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MzY5ODcyNzQsInN1YiI6IjBjNTkyYTlkLTQwMDYtNGUzMC05OTcyLWUxY2I5MTc3NWJmZCJ9.3O19yU3hI6jm6mZ6NaWWYlGtPlhz6rNZkA4Kruubq34`,
+              // Authorization: `Bearer ${token}`,
+            },
+          },
+        )
+          .then(reponse => {
+            console.log(reponse);
+          })
+          .catch(error => {
+            console.log(error);
+          })
+          .finally(() => {});
       } else {
         console.log('타이틀과 컨텐츠를 모두 입력해주세요~');
       }
