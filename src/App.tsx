@@ -1,3 +1,4 @@
+import BoardLayout from 'layouts/BoardLayout';
 import ArticleDetail from 'pages/ArticleDetail';
 import ArticlePost from 'pages/ArticlePost';
 import Board from 'pages/Board';
@@ -12,9 +13,11 @@ const App = () => (
       <Route path="/" element={<Main />} />
       <Route path="signup" element={<SignUp />} />
       <Route path="login" element={<LogIn />} />
-      <Route path="board/:board_id" element={<Board />} />
+      <Route path="board" element={<BoardLayout />}>
+        <Route path=":boardId" element={<Board />} />
+      </Route>
       <Route path="article/post" element={<ArticlePost />} />
-      <Route path="article/:article_id" element={<ArticleDetail />} />
+      <Route path="article/:articleId" element={<ArticleDetail />} />
     </Routes>
   </BrowserRouter>
 );
