@@ -47,6 +47,7 @@ module.exports = {
     'react/no-array-index-key': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-unused-vars': 'warn',
+    '@typescript-eslint/dot-notation': 'off',
     '@typescript-eslint/naming-convention': [
       'warn',
       {
