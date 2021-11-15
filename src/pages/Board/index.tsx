@@ -25,6 +25,12 @@ const Board = () => {
     <>
       <div>어떤어떤 게시판</div>
       <ArticleListContainer>
+        {articles?.map((article, index) => (
+          <Article key={index}>
+            타이틀: {article['title']}
+            컨텐츠: {article['content']}
+          </Article>
+        ))}
       </ArticleListContainer>
     </>
   );
