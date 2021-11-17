@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {
+  MainWrap,
   Section,
   Title,
   Category,
@@ -14,7 +15,7 @@ import {
 
 const Main = () => {
   return (
-    <>
+    <MainWrap>
       <Section>
         <Title />
         <Category />
@@ -26,7 +27,7 @@ const Main = () => {
         <DailyList />
         <WeeklyList />
       </Aside>
-    </>
+    </MainWrap>
   );
 };
 
