@@ -2,7 +2,7 @@ import '@emotion/react';
 
 type ColorLevel = {
   100: string;
-  80: string;
+  80?: string;
   60?: string;
 };
 
@@ -20,26 +20,21 @@ declare module '@emotion/react' {
     palette: {
       yellow: ColorLevel;
       purple: ColorLevel;
-      coral: ColorLevel;
-      green: ColorLevel;
       black: ColorLevel;
       text: {
         primary: string;
-        secondary: string;
+        active: string;
         unactive: string;
-        placeHolder: string;
       };
-      divider: {
-        backgroundWhite: string;
-        backgroundGray: string;
-      };
-      shape: {
-        borderRadius: string;
-        boxStroke: string;
+      article: {
+        title: string;
+        label: string;
+        date: string;
       };
       background: {
         gray: string;
         white: string;
+        yellow: string;
       };
     };
     size: Size;
