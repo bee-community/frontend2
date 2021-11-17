@@ -1,21 +1,39 @@
 // import { useState } from 'react';
+import logo from 'assets/images/logo.png';
 import { Outlet } from 'react-router';
 
-import { Header, Logo, Notice, MBTI, Footer } from './styles';
+import {
+  Header,
+  Logo,
+  Notice,
+  Mbti,
+  Section,
+  Footer,
+  MyMbti,
+  DropdownButton,
+  MainLayoutWrap,
+  NoticeWrap,
+} from './styles';
 
 const MainLayout = () => {
   return (
-    <>
+    <MainLayoutWrap>
       <Header>
-        <Logo />
-        <Notice />
-        <MBTI />
+        <Logo src={logo} />
+        <NoticeWrap>
+          <Notice>공지가 여기에 들어갑니다</Notice>
+        </NoticeWrap>
+
+        <Mbti>
+          <MyMbti>ENFT</MyMbti>
+          <DropdownButton />
+        </Mbti>
       </Header>
-      <section>
+      <Section>
         <Outlet />
-      </section>
+      </Section>
       <Footer />
-    </>
+    </MainLayoutWrap>
   );
 };
 
