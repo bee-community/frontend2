@@ -21,7 +21,10 @@ const MainLayout = () => {
       <Header>
         <Logo src={logo} />
         <NoticeWrap>
-          <Notice>공지가 여기에 들어갑니다</Notice>
+          <Notice>
+            <span>공지</span>
+            13일 후 베타버전이 출시됩니다.
+          </Notice>
         </NoticeWrap>
 
         <Mbti>

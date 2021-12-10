@@ -1,7 +1,7 @@
 const size = {
-  sm: '320px',
-  md: '767px',
-  lg: '1024px',
+  sm: '360px',
+  md: '766px',
+  lg: '1023px',
   xl: '1920px',
 };
 
@@ -52,13 +52,13 @@ const text = {
   primary: '#111',
   active: '#000',
   unactive: '#111',
-  // placeHolder: '#999',
 };
 
 const background = {
   white: '#fff',
   gray: '#f4f4f4',
   yellow: '#ffe576',
+  black: '#111',
 };
 
 const theme = {

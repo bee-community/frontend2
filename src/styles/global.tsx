@@ -12,6 +12,10 @@ const globalStyle = (theme: Theme): SerializedStyles => css`
       sans-serif;
     background-color: ${theme.palette.background.yellow};
     color: ${theme.palette.text.primary};
+
+    @media (max-width: ${theme.size.lg}) {
+      background-color: ${theme.palette.background.white};
+    }
   }
 `;
 
