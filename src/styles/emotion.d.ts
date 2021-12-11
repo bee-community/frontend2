@@ -11,6 +11,7 @@ type Size = {
   md: string;
   lg: string;
   xl: string;
+  xxl: string;
 };
 
 type FontSize = {
@@ -59,6 +60,7 @@ declare module '@emotion/react' {
         gray: string;
         white: string;
         yellow: string;
+        black: string;
       };
     };
     size: Size;

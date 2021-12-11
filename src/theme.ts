@@ -2,7 +2,8 @@ const size = {
   sm: '360px',
   md: '766px',
   lg: '1023px',
-  xl: '1920px',
+  xl: '1440px',
+  xxl: '1920px',
 };
 
 const fontSize = {
