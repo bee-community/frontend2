@@ -15,6 +15,7 @@ const globalStyle = (theme: Theme): SerializedStyles => css`
 
     @media (max-width: ${theme.size.lg}) {
       background-color: ${theme.palette.background.white};
+      font-size: ${theme.fontSize[13]};
     }
   }
 `;
