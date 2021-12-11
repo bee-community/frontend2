@@ -7,8 +7,6 @@ import {
   Logo,
   Notice,
   Mbti,
-  Section,
-  Footer,
   MyMbti,
   DropdownButton,
   MainLayoutWrap,
@@ -28,14 +26,11 @@ const MainLayout = () => {
         </NoticeWrap>
 
         <Mbti>
-          <MyMbti>ENFT</MyMbti>
+          <MyMbti>ENFJ</MyMbti>
           <DropdownButton />
         </Mbti>
       </Header>
-      <Section>
-        <Outlet />
-      </Section>
-      <Footer />
+      <Outlet />
     </MainLayoutWrap>
   );
 };
