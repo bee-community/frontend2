@@ -1,17 +1,7 @@
 import styled from '@emotion/styled';
 
-export const MainLayoutWrap = styled.div`
-  margin: 34px 40px 0;
-  display: grid;
-  grid-template-rows: 64px 1fr;
-
-  @media (max-width: ${props => props.theme.size.lg}) {
-    margin: 20px 15px;
-  }
-`;
-
 // NOTE: Header
-export const Header = styled.header`
+export const HeaderWrap = styled.header`
   display: flex;
   flex-direction: row;
   align-items: center;
