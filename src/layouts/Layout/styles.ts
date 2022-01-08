@@ -21,3 +21,19 @@ export const Wrap = styled.div`
     grid-template-columns: 1fr;
   }
 `;
+
+// NOTE: PageWrap
+export const PageWrap = styled.div`
+  height: calc(100vh - 200px);
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+
+  @media (max-width: ${props => props.theme.size.lg}) {
+    height: auto;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`;

@@ -3,19 +3,10 @@ import banner from 'assets/images/main_banner.png';
 import bannerMobile from 'assets/images/main_banner_mobile.png';
 
 export const MainWrap = styled.section`
-  height: calc(100vh - 200px);
-  display: flex;
-  flex-direction: column;
   margin: 30px;
-  overflow-y: scroll;
 
   @media (max-width: ${props => props.theme.size.lg}) {
     margin: 0;
-    height: auto;
-  }
-
-  ::-webkit-scrollbar {
-    display: none;
   }
 `;
 
