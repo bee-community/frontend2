@@ -1,7 +1,8 @@
 import { ShadowBox } from 'components/ShadowBox';
+import { Table } from 'components/Table';
 import * as React from 'react';
 
-import { Title, QuestionTable, Form, Button } from './styles';
+import { Title, Form, Button } from './styles';
 
 function Question() {
   return (
@@ -9,12 +10,12 @@ function Question() {
       <Title>일반문의</Title>
       <ShadowBox>
         <Form>
-          <QuestionTable>
+          <Table>
             <tr>
-              <th scope="row" className="title">
+              <th scope="row" className="border-bottom">
                 제목
               </th>
-              <td className="title">
+              <td className="border-bottom">
                 <input type="text" placeholder="제목을 입력해주세요." />
               </td>
             </tr>
@@ -24,7 +25,7 @@ function Question() {
                 <textarea placeholder="문의할 내용을 입력해주세요." />
               </td>
             </tr>
-          </QuestionTable>
+          </Table>
           <Button>문의하기</Button>
         </Form>
       </ShadowBox>

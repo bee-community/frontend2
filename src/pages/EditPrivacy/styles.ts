@@ -12,21 +12,11 @@ export const Title = styled.article`
   }
 `;
 
-export const Form = styled.form`
-  font-family: NotoSansCJKKR;
-  width: 100%;
-  min-height: 50vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-export const Button = styled.button`
-  padding: 15px 68px;
-  border-radius: 32px;
-  border: none;
-  background: ${props => props.theme.palette.yellow[100]};
-  font-family: NotoSansCJKKR;
+export const TableTitle = styled.div`
+  color: ${props => props.theme.palette.purple[100]};
   font-size: ${props => props.theme.fontSize[18]};
   font-weight: bold;
+  margin-bottom: 15px;
+  text-align: left;
+  width: 100%;
 `;
