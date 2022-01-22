@@ -1,22 +1,5 @@
 import styled from '@emotion/styled';
 
-export const UserInfo = styled.section`
-  margin: 30px;
-  margin-bottom: 35px;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.16);
-
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
-  @media (max-width: ${props => props.theme.size.lg}) {
-    margin: 5px;
-    margin-bottom: 35px;
-  }
-`;
-
 export const NickName = styled.div`
   .updatedNickName {
     font-family: NotoSansCJKKR;
@@ -48,7 +31,7 @@ export const Edit = styled.div`
   justify-content: flex-end;
   cursor: pointer;
 
-  > img {
+  img {
     width: 17px;
     height: 17px;
     margin-right: 5px;
@@ -105,8 +88,6 @@ export const Box = styled.div`
     text-align: center;
   }
 `;
-
-export const Title = styled.div``;
 
 export const CustomerService = styled.section`
   margin: 0 30px;

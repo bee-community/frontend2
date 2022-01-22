@@ -32,8 +32,6 @@ export const Bio = styled.div`
   & > a {
     display: flex;
     flex-direction: row;
-    color: inherit;
-    text-decoration: none;
     font-weight: bold;
 
     & > img {
