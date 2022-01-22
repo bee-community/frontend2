@@ -1,12 +1,15 @@
 import Http from 'api';
+import { ShadowBox } from 'components/ShadowBox';
+import { Table } from 'components/Table';
+import { Button, Form, Title } from 'pages/Question/styles';
 import { useCallback, useState } from 'react';
 
-import { Form, Label, Input, Button, BoardList } from './styles';
+import { InputPhoto } from './styles';
 
 const ArticlePost = () => {
   const [title, setTitle] = useState(undefined);
   const [content, setContent] = useState(undefined);
-  const [board, setBoard] = useState('게시판1'); // 기본 게시판을 어떤걸로 할까나~
+  const [board, setBoard] = useState('');
 
   const onChangeTitle = useCallback(e => {
     setTitle(e.target.value);
@@ -54,42 +57,115 @@ const ArticlePost = () => {
     },
     [title, content, board],
   );
+
   return (
     <>
-      <Form onSubmit={onSubmit}>
-        <Label>
-          <span>타이틀</span>
-          <Input
-            id="title"
-            name="title"
-            type="text"
-            maxLength={20}
-            value={title}
-            onChange={onChangeTitle}
-            placeholder="Title"
-          />
-        </Label>
-        <Label>
-          <span>컨텐츠</span>
-          <Input
-            id="content"
-            name="content"
-            type="text"
-            value={content}
-            onChange={onChangeContent}
-            placeholder="contents"
-          />
-        </Label>
-        <Label>
-          <span>업로드 할 게시판 선택</span>
-          <BoardList id="board" onChange={onChangeBoard} value={board}>
-            <option value="게시판1">게시판1</option>
-            <option value="게사판2">게시판2</option>
-            <option value="게시판3">게시판3</option>
-          </BoardList>
-        </Label>
-        <Button type="submit">글 등록</Button>
-      </Form>
+      <Title>글쓰기</Title>
+      <ShadowBox>
+        <Form onSubmit={onSubmit}>
+          <Table>
+            <tr>
+              <th scope="row" className="border-bottom">
+                제목
+              </th>
+              <td className="border-bottom">
+                <input
+                  id="title"
+                  name="title"
+                  type="text"
+                  maxLength={20}
+                  value={title}
+                  onChange={onChangeTitle}
+                  placeholder="제목을 입력해주세요."
+                />
+              </td>
+            </tr>
+            <tr>
+              <th className="border-bottom" scope="row">
+                내용
+              </th>
+              <td className="border-bottom">
+                <textarea
+                  id="content"
+                  name="content"
+                  value={content}
+                  onChange={onChangeContent}
+                  placeholder="문의할 내용을 입력해주세요."
+                />
+              </td>
+            </tr>
+            <tr>
+              <th scope="row" className="border-bottom">
+                게시판
+              </th>
+              <td className="border-bottom">
+                <select
+                  id="board"
+                  onChange={onChangeBoard}
+                  value={board}
+                  name="category"
+                  required>
+                  <option value="" disabled selected>
+                    게시판 선택
+                  </option>
+                  <option value="게시판1">게시판1</option>
+                  <option value="게사판2">게시판2</option>
+                  <option value="게시판3">게시판3</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row" className="border-bottom">
+                태그
+              </th>
+              <td className="border-bottom">
+                <input
+                  type="text"
+                  placeholder="#ENTP  추가하실 태그를 적어주세요"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">사진</th>
+              <td>
+                <InputPhoto>
+                  <label
+                    className="input-file-button"
+                    htmlFor="post-input-file-1">
+                    <button className="button-in-table">가져오기</button>
+                  </label>
+                  <input
+                    type="file"
+                    id="post-input-file-1"
+                    style={{ display: 'none' }}
+                  />
+                  <label
+                    className="input-file-button"
+                    htmlFor="post-input-file-2">
+                    <button className="button-in-table">가져오기</button>
+                  </label>
+                  <input
+                    type="file"
+                    id="post-input-file-2"
+                    style={{ display: 'none' }}
+                  />
+                  <label
+                    className="input-file-button"
+                    htmlFor="post-input-file-3">
+                    <button className="button-in-table">가져오기</button>
+                  </label>
+                  <input
+                    type="file"
+                    id="post-input-file-3"
+                    style={{ display: 'none' }}
+                  />
+                </InputPhoto>
+              </td>
+            </tr>
+          </Table>
+          <Button type="submit">문의하기</Button>
+        </Form>
+      </ShadowBox>
     </>
   );
 };

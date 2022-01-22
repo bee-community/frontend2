@@ -1,19 +1,15 @@
 import styled from '@emotion/styled';
 
-export const Form = styled.form``;
+export const InputPhoto = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  min-width: 90px;
+  max-width: 200px;
+  justify-content: space-between;
+  height: 110px;
 
-export const Label = styled.label`
-  & > span {
+  label > button {
+    width: 100%;
   }
 `;
-
-export const Input = styled.input``;
-
-export const Button = styled.button`
-  &:hover {
-  }
-  &:focus {
-  }
-`;
-
-export const BoardList = styled.select``;
