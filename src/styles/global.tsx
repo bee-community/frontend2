@@ -17,6 +17,10 @@ const globalStyle = (theme: Theme): SerializedStyles => css`
       background-color: ${theme.palette.background.white};
       font-size: ${theme.fontSize[13]};
     }
+    a {
+      color: inherit;
+      text-decoration: inherit;
+    }
   }
 `;
 

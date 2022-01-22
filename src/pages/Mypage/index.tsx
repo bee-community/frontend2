@@ -8,23 +8,16 @@ import requestIcon from 'assets/images/request-icon.png';
 import schoolIcon from 'assets/images/school-icon.png';
 import smileIcon from 'assets/images/smile-icon.png';
 import timeIcon from 'assets/images/time-icon.png';
+import { ShadowBox } from 'components/ShadowBox';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import {
-  UserInfo,
-  NickName,
-  Title,
-  Box,
-  MyPageCategory,
-  CustomerService,
-  Edit,
-} from './styles';
+import { NickName, Box, MyPageCategory, CustomerService, Edit } from './styles';
 
 function Mypage() {
   return (
     <>
-      <UserInfo>
+      <ShadowBox>
         <NickName>
           <div className="updatedNickName">닉네임</div>
           <div className="remainTimeWrap">
@@ -36,10 +29,12 @@ function Mypage() {
           </div>
         </NickName>
         <Edit>
-          <img src={editIcon} />
-          <span> 개인정보 수정</span>
+          <Link to="edit-privacy">
+            <img src={editIcon} />
+            <span> 개인정보 수정</span>
+          </Link>
         </Edit>
-      </UserInfo>
+      </ShadowBox>
 
       <MyPageCategory>
         <Box>
@@ -78,14 +73,15 @@ function Mypage() {
             게시판
           </div>
         </Box>
-
-        <Box>
-          <img src={requestIcon} style={{ width: '35px', height: '35px' }} />
-          <div className="title">
-            게시판 <br />
-            추가요청
-          </div>
-        </Box>
+        <Link to="request-board">
+          <Box>
+            <img src={requestIcon} style={{ width: '35px', height: '35px' }} />
+            <div className="title">
+              게시판 <br />
+              추가요청
+            </div>
+          </Box>
+        </Link>
         <Box>
           <img src={smileIcon} />
           <div className="title">
@@ -100,24 +96,16 @@ function Mypage() {
         <div className="title">고객센터</div>
         <div className="customerServiceList">
           <div>
-            <Link to="" style={{ color: 'inherit', textDecoration: 'inherit' }}>
-              일반문의
-            </Link>
+            <Link to="question">일반문의</Link>
           </div>
           <div>
-            <Link to="" style={{ color: 'inherit', textDecoration: 'inherit' }}>
-              권리침해 신고/소명
-            </Link>
+            <Link to="report">권리침해 신고/소명</Link>
           </div>
           <div>
-            <Link to="" style={{ color: 'inherit', textDecoration: 'inherit' }}>
-              FAQ
-            </Link>
+            <Link to="FAQ">FAQ</Link>
           </div>
           <div>
-            <Link to="" style={{ color: 'inherit', textDecoration: 'inherit' }}>
-              이용약관
-            </Link>
+            <Link to="">이용약관</Link>
           </div>
         </div>
       </CustomerService>
