@@ -61,6 +61,8 @@ export const Table = styled.table`
       display: none;
     }
     select:invalid {
+      font-family: NotoSansCJKKR;
+      font-weight: 300;
       color: #777;
     }
 
