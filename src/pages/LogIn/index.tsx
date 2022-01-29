@@ -1,19 +1,12 @@
 import Http from 'api';
 import { useAuthDispatch, useAuthState } from 'context/Auth';
 import { login } from 'context/Auth/actions';
-import {
-  Header,
-  Form,
-  Label,
-  Input,
-  Button,
-  Error,
-  TermOfService,
-} from 'pages/SignUp/styles';
 import { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const LogIn = () => {
+import { LogInWrap, LoginForm, Title } from './styles';
+
+function LogIn() {
   const [email, setEmail] = useState(undefined);
   const [password, setPassword] = useState(undefined);
 
@@ -76,41 +69,46 @@ const LogIn = () => {
     [email, password, accessToken, authDispatch, tokenType],
   );
 
-  console.log('auth', auth); // test code
-
   return (
-    <>
-      <Header>HONEYBEES</Header>
-      <Form onSubmit={onSubmit}>
-        <Label>
-          <span>이메일 주소</span>
-          <Input
-            type="email"
-            id="email"
-            name="email"
-            value={email}
-            onChange={onChangeEmail}
-          />
-        </Label>
-        <Label>
-          <span>비밀번호</span>
-          <Input
-            type="password"
-            id="password"
-            name="password"
-            value={password}
-            onChange={onChangePassword}
-          />
-        </Label>
-        {!email && <Error>이메일을 입력해주세요!</Error>}
-        <Button type="submit">로그인</Button>
-      </Form>
-      <TermOfService>
-        <Link to="">비밀번호 재설정</Link>
-        <Link to="/signup">회원가입</Link>
-      </TermOfService>
-    </>
+    <LogInWrap>
+      <Title>
+        <img />
+        <span id="honey">HONEY</span>
+        <span id="bee">BEE</span>
+      </Title>
+      <LoginForm onSubmit={onSubmit}>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="아이디"
+          value={email}
+          onChange={onChangeEmail}
+        />
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="비밀번호"
+          value={password}
+          onChange={onChangePassword}
+        />
+        <button type="submit">로그인</button>
+      </LoginForm>
+      <div className="search">
+        <Link to="">
+          <span>아이디 찾기</span>
+        </Link>
+        <span>•</span>
+        <Link to="">
+          <span>비밀번호 찾기</span>
+        </Link>
+      </div>
+      <div className="signup">
+        <Link to="/signup">회원가입하기</Link>
+      </div>
+    </LogInWrap>
   );
-};
+}
 
 export default LogIn;
