@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Category, Circle, CategoryListWrap } from './styles';
 
 function CategoryList() {
-  const [categories, setCategories] = useState([
+  const [categories] = useState([
     { name: '재잘재잘', imgPath: 'categoryImg1' },
     { name: '재잘재잘', imgPath: 'categoryImg1' },
     { name: '재잘재잘', imgPath: 'categoryImg1' },

@@ -14,7 +14,7 @@ import {
 
 function Aside() {
   // dummy popular Article
-  const [popularArticle, setPopularArticle] = useState([
+  const [popularArticle] = useState([
     {
       id: '',
       title: '',
