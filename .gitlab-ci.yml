@@ -13,6 +13,5 @@ pages:
     - yarn
     - yarn build
     - rm -rf public
-    - cp build/index.html build/404.html
     - mv build public
   stage: deploy
