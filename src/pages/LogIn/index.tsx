@@ -1,5 +1,5 @@
 import Http from 'api';
-import { useAuthDispatch, useAuthState } from 'context/Auth';
+import { useAuthDispatch } from 'context/Auth';
 import { login } from 'context/Auth/actions';
 import { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -11,7 +11,7 @@ function LogIn() {
   const [password, setPassword] = useState(undefined);
 
   const authDispatch = useAuthDispatch();
-  const auth = useAuthState();
+  // const auth = useAuthState();
 
   const [accessToken, setAccessToken] = useState('');
   const [tokenType, setTokenType] = useState('');

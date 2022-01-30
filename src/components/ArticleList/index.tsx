@@ -12,7 +12,7 @@ import {
 
 function ArticleList() {
   // dummy articles
-  const [articles, setArticles] = useState([
+  const [articles] = useState([
     {
       title: '',
       tags: '',
@@ -46,6 +46,7 @@ function ArticleList() {
       created_at: '',
     },
   ]);
+
   return (
     <ArticleWrap>
       {articles.map((article, index) => {
