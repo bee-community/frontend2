@@ -3,7 +3,7 @@ image: node:14.15.4
 pages:
   artifacts:
     paths:
-      - build
+      - public
   cache:
     paths:
       - node_modules/.cache
