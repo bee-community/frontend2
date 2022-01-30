@@ -1,18 +1,18 @@
-image: node
+image: node:14.15.4
 
 pages:
-  stage: deploy
+  artifacts:
+    paths:
+      - build
   cache:
     paths:
-      - node_modules
+      - node_modules/.cache
+  only:
+    - main
   script:
     - yarn
     - yarn build
     - rm -rf public
     - cp build/index.html build/404.html
     - mv build public
-  artifacts:
-    paths:
-      - public
-  only:
-    - main
+  stage: deploy
