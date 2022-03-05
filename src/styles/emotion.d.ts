@@ -6,7 +6,7 @@ type ColorLevel = {
   60?: string;
 };
 
-type Size = {
+type ScreenSize = {
   sm: string;
   md: string;
   lg: string;
@@ -40,30 +40,22 @@ type FontSize = {
 
 declare module '@emotion/react' {
   export interface Theme {
-    primary: string;
-    secondary: string;
     palette: {
       yellow: ColorLevel;
       purple: ColorLevel;
-      black: ColorLevel;
-      text: {
-        primary: string;
-        active: string;
-        unactive: string;
-      };
-      article: {
-        title: string;
-        label: string;
-        date: string;
-      };
-      background: {
-        gray: string;
-        white: string;
-        yellow: string;
-        black: string;
-      };
     };
-    size: Size;
+    article: {
+      title: string;
+      label: string;
+      date: string;
+    };
+    background: {
+      gray: string;
+      white: string;
+      yellow: string;
+      black: string;
+    };
+    screenSize: ScreenSize;
     fontSize: FontSize;
   }
 }

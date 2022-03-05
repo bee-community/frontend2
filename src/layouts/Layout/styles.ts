@@ -5,19 +5,19 @@ export const LayoutWrap = styled.div`
   display: grid;
   grid-template-rows: 64px 1fr;
 
-  @media (max-width: ${props => props.theme.size.lg}) {
+  @media (max-width: ${props => props.theme.screenSize.lg}) {
     margin: 20px 15px;
   }
 `;
 
 // NOTE: Layout
 export const Wrap = styled.div`
-  background-color: ${props => props.theme.palette.background.white};
+  background-color: ${props => props.theme.background.white};
   border-radius: 40px;
   display: grid;
   grid-template-columns: 1fr 370px;
 
-  @media (max-width: ${props => props.theme.size.lg}) {
+  @media (max-width: ${props => props.theme.screenSize.lg}) {
     grid-template-columns: 1fr;
   }
 `;
@@ -29,7 +29,7 @@ export const PageWrap = styled.div`
   flex-direction: column;
   overflow-y: scroll;
 
-  @media (max-width: ${props => props.theme.size.lg}) {
+  @media (max-width: ${props => props.theme.screenSize.lg}) {
     height: auto;
   }
 

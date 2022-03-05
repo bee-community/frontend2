@@ -10,11 +10,11 @@ const globalStyle = (theme: Theme): SerializedStyles => css`
     font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo',
       Pretendard, Roboto, 'Noto Sans KR', 'Segoe UI', 'Malgun Gothic',
       sans-serif;
-    background-color: ${theme.palette.background.yellow};
-    color: ${theme.palette.text.primary};
+    background-color: ${theme.background.yellow};
+    color: #111;
 
-    @media (max-width: ${theme.size.lg}) {
-      background-color: ${theme.palette.background.white};
+    @media (max-width: ${theme.screenSize.lg}) {
+      background-color: ${theme.background.white};
       font-size: ${theme.fontSize[13]};
     }
     a {
