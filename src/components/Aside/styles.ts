@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 // NOTE: Main side contents-Aside
 export const AsideWrap = styled.aside`
   height: calc(100vh - 200px);
-  background-color: ${props => props.theme.palette.background.gray};
+  background-color: ${props => props.theme.background.gray};
   border-radius: 0 40px 40px 0;
   overflow-y: scroll;
   padding: 35px;
@@ -14,7 +14,7 @@ export const AsideWrap = styled.aside`
   ::-webkit-scrollbar {
     display: none;
   }
-  @media (max-width: ${props => props.theme.size.lg}) {
+  @media (max-width: ${props => props.theme.screenSize.lg}) {
     display: none;
     height: auto;
   }
@@ -109,7 +109,7 @@ export const ButtonPurple = styled.button`
   padding: 7px 20px 7px 22px;
   border-radius: 19px;
 
-  @media (max-width: ${props => props.theme.size.xl}) {
+  @media (max-width: ${props => props.theme.screenSize.xl}) {
     padding: 4px 17px 3px 17px;
     font-size: ${props => props.theme.fontSize[13]};
   }

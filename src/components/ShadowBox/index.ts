@@ -11,7 +11,7 @@ export const ShadowBox = styled.article`
   flex-direction: row;
   justify-content: space-between;
 
-  @media (max-width: ${props => props.theme.size.lg}) {
+  @media (max-width: ${props => props.theme.screenSize.lg}) {
     margin: 5px;
     margin-bottom: 35px;
   }

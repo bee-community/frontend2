@@ -6,7 +6,7 @@ export const Title = styled.article`
   margin: 30px;
   margin-bottom: 0;
 
-  @media (max-width: ${props => props.theme.size.lg}) {
+  @media (max-width: ${props => props.theme.screenSize.lg}) {
     margin: 5px;
     margin-bottom: 30px;
   }
@@ -25,7 +25,7 @@ export const Button = styled.button`
   padding: 15px 68px;
   border-radius: 32px;
   border: none;
-  background: ${props => props.theme.palette.yellow[100]};
+  background: ${props => props.theme.background.yellow};
   font-family: NotoSansCJKKR;
   font-size: ${props => props.theme.fontSize[18]};
   font-weight: bold;

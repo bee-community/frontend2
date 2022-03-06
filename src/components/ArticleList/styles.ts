@@ -7,7 +7,7 @@ export const ArticleWrap = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(20%, auto));
   margin-bottom: 40px;
 
-  @media (max-width: ${props => props.theme.size.md}) {
+  @media (max-width: ${props => props.theme.screenSize.md}) {
     grid-template-columns: repeat(2, minmax(20%, auto));
   }
 `;
@@ -17,7 +17,7 @@ export const ArticleImage = styled.div`
   background: gray;
   margin-bottom: 12px;
   border-radius: 20px;
-  @media (max-width: ${props => props.theme.size.md}) {
+  @media (max-width: ${props => props.theme.screenSize.md}) {
     height: 20vw;
   }
 `;
