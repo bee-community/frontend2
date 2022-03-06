@@ -1,4 +1,4 @@
-const size = {
+const screenSize = {
   sm: '360px',
   md: '766px',
   lg: '1023px',
@@ -39,20 +39,10 @@ const purple = {
   100: '#5206b9',
 };
 
-const black = {
-  100: '#000',
-};
-
 const article = {
   title: '#000',
   label: '#777',
   date: '#aaa',
-};
-
-const text = {
-  primary: '#111',
-  active: '#000',
-  unactive: '#111',
 };
 
 const background = {
@@ -63,17 +53,13 @@ const background = {
 };
 
 const theme = {
-  primary: yellow['100'],
-  secondary: purple['100'],
   palette: {
     yellow,
     purple,
-    black,
-    text,
-    article,
-    background,
   },
-  size,
+  article,
+  background,
+  screenSize,
   fontSize,
 };
 

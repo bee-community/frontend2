@@ -8,7 +8,7 @@ export const HeaderWrap = styled.header`
   justify-content: space-between;
   margin-bottom: 24px;
 
-  @media (max-width: ${props => props.theme.size.lg}) {
+  @media (max-width: ${props => props.theme.screenSize.lg}) {
     height: 30px;
     font-size: ${props => props.theme.fontSize[13]};
   }
@@ -18,7 +18,7 @@ export const Logo = styled.img`
   height: 47px;
   width: 239px;
 
-  @media (max-width: ${props => props.theme.size.lg}) {
+  @media (max-width: ${props => props.theme.screenSize.lg}) {
     display: none;
   }
 `;
@@ -28,7 +28,7 @@ export const NoticeWrap = styled.div`
   flex: 1;
   height: 100%;
 
-  @media (max-width: ${props => props.theme.size.lg}) {
+  @media (max-width: ${props => props.theme.screenSize.lg}) {
     justify-content: flex-start;
   }
 `;
@@ -46,7 +46,7 @@ export const Notice = styled.div`
     margin-right: 10px;
   }
 
-  @media (max-width: ${props => props.theme.size.lg}) {
+  @media (max-width: ${props => props.theme.screenSize.lg}) {
     background-color: rgb(255, 242, 187);
     width: 100%;
     padding: 7px 15px;
@@ -59,25 +59,25 @@ export const Mbti = styled.div`
   width: 370px;
   justify-content: flex-end;
 
-  @media (max-width: ${props => props.theme.size.lg}) {
+  @media (max-width: ${props => props.theme.screenSize.lg}) {
     width: 180px;
   }
 
-  @media (max-width: ${props => props.theme.size.md}) {
+  @media (max-width: ${props => props.theme.screenSize.md}) {
     width: 100px;
   }
 `;
 export const MyMbti = styled.div`
   padding: 8px 20px 8px;
   border-radius: 24px;
-  background-color: ${props => props.theme.palette.black[100]};
+  background-color: ${props => props.theme.background.black};
   color: ${props => props.theme.palette.yellow[100]};
   font-size: 20px;
   font-weight: bold;
   font-family: NotoSansCJKKR;
   text-align: center;
 
-  @media (max-width: ${props => props.theme.size.lg}) {
+  @media (max-width: ${props => props.theme.screenSize.lg}) {
     padding: 6px 16px 7px;
     font-size: ${props => props.theme.fontSize[14]};
   }
@@ -88,9 +88,9 @@ export const DropdownButton = styled.button`
   border: none;
   border-radius: 50%;
   margin-left: 10px;
-  background-color: ${props => props.theme.palette.background.gray};
+  background-color: ${props => props.theme.background.gray};
 
-  @media (max-width: ${props => props.theme.size.lg}) {
+  @media (max-width: ${props => props.theme.screenSize.lg}) {
     display: none;
   }
 `;

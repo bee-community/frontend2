@@ -45,12 +45,12 @@ export const MyPageCategory = styled.section`
   grid-template-columns: repeat(8, 1fr);
   column-gap: 22px;
 
-  @media (max-width: ${props => props.theme.size.xl}) {
+  @media (max-width: ${props => props.theme.screenSize.xl}) {
     grid-template-columns: repeat(4, 1fr);
     row-gap: 22px;
   }
 
-  @media (max-width: ${props => props.theme.size.lg}) {
+  @media (max-width: ${props => props.theme.screenSize.lg}) {
     margin: 0 5px;
     margin-bottom: 50px;
   }
@@ -93,7 +93,7 @@ export const CustomerService = styled.section`
   margin: 0 30px;
   margin-bottom: 50px;
 
-  @media (max-width: ${props => props.theme.size.lg}) {
+  @media (max-width: ${props => props.theme.screenSize.lg}) {
     margin: 0 5px;
   }
 

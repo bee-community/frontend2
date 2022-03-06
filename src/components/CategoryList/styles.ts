@@ -9,7 +9,7 @@ export const CategoryListWrap = styled.div`
   margin-top: 20px;
   margin-bottom: 35px;
 
-  @media (max-width: ${props => props.theme.size.xxl}) {
+  @media (max-width: ${props => props.theme.screenSize.xxl}) {
     grid-template-columns: repeat(10, 1fr);
     margin-top: 12px;
 
@@ -17,7 +17,7 @@ export const CategoryListWrap = styled.div`
       display: none;
     }
   }
-  @media (max-width: ${props => props.theme.size.xl}) {
+  @media (max-width: ${props => props.theme.screenSize.xl}) {
     grid-template-columns: repeat(7, 1fr);
     margin-bottom: 27px;
 
@@ -25,7 +25,7 @@ export const CategoryListWrap = styled.div`
       display: none;
     }
   }
-  @media (max-width: ${props => props.theme.size.md}) {
+  @media (max-width: ${props => props.theme.screenSize.md}) {
     grid-template-columns: repeat(5, 1fr);
 
     & > div:nth-child(n + 6) {
@@ -46,7 +46,7 @@ export const Category = styled.div`
 `;
 
 export const Circle = styled.div`
-  background-color: ${props => props.theme.primary};
+  background-color: ${props => props.theme.background.yellow};
   padding: 30%;
   border-radius: 50%;
   display: flex;
@@ -60,7 +60,7 @@ export const Circle = styled.div`
     height: 100%;
   }
 
-  @media (max-width: ${props => props.theme.size.md}) {
+  @media (max-width: ${props => props.theme.screenSize.md}) {
     max-width: 35px;
     max-height: 35px;
     padding: 23%;

@@ -6,7 +6,7 @@ export const SignUpWrap = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  background: ${props => props.theme.palette.yellow[100]};
+  background: ${props => props.theme.background.yellow};
 
   .signupTitle {
     font-size: ${props => props.theme.fontSize[22]};

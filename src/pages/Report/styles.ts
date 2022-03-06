@@ -6,7 +6,7 @@ export const Title = styled.article`
   margin: 30px;
   margin-bottom: 0;
 
-  @media (max-width: ${props => props.theme.size.lg}) {
+  @media (max-width: ${props => props.theme.screenSize.lg}) {
     margin: 5px;
     margin-bottom: 30px;
   }
@@ -40,10 +40,6 @@ export const CheckBoxLabel = styled.label`
     margin: 0 15px 0 0;
     cursor: pointer;
   }
-
-  /* input:checked {
-    background: ${props => props.theme.palette.purple[100]};
-  } */
 
   a {
     margin-top: 4px;

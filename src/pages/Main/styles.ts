@@ -5,7 +5,7 @@ import bannerMobile from 'assets/images/main_banner_mobile.png';
 export const MainWrap = styled.section`
   margin: 30px;
 
-  @media (max-width: ${props => props.theme.size.lg}) {
+  @media (max-width: ${props => props.theme.screenSize.lg}) {
     margin: 0;
   }
 `;
@@ -42,7 +42,7 @@ export const TopBanner = styled.div`
     width: 264px;
   }
 
-  @media (max-width: ${props => props.theme.size.xl}) {
+  @media (max-width: ${props => props.theme.screenSize.xl}) {
     background-color: #f7f3e9;
     background-image: url(${bannerMobile});
     background-size: contain;
@@ -63,7 +63,7 @@ export const TopBanner = styled.div`
     }
   }
 
-  @media (max-width: ${props => props.theme.size.md}) {
+  @media (max-width: ${props => props.theme.screenSize.md}) {
     & > button {
       width: 160px;
       font-size: ${props => props.theme.fontSize[10]};
@@ -73,7 +73,7 @@ export const TopBanner = styled.div`
 export const SubTitle = styled.div`
   font-family: NotoSansCJKKR;
   font-weight: bold;
-  color: ${props => props.theme.secondary};
+  color: ${props => props.theme.palette.purple[100]};
   margin-bottom: 10px;
 `;
 export const Title = styled.div`
@@ -81,16 +81,16 @@ export const Title = styled.div`
   font-weight: bold;
   font-size: ${props => props.theme.fontSize[26]};
 
-  @media (max-width: ${props => props.theme.size.xl}) {
+  @media (max-width: ${props => props.theme.screenSize.xl}) {
     font-size: ${props => props.theme.fontSize[19]};
   }
 `;
 
 export const ButtonBlack = styled.button`
-  background-color: ${props => props.theme.palette.background.black};
+  background-color: ${props => props.theme.background.black};
   border: none;
   border-radius: 33px;
-  color: ${props => props.theme.primary};
+  color: ${props => props.theme.palette.yellow[100]};
   font-weight: 500;
   padding: 12px 43px;
 `;
@@ -102,7 +102,7 @@ export const ButtonPurple = styled.button`
   padding: 7px 20px 7px 22px;
   border-radius: 19px;
 
-  @media (max-width: ${props => props.theme.size.xl}) {
+  @media (max-width: ${props => props.theme.screenSize.xl}) {
     padding: 4px 17px 3px 17px;
     font-size: ${props => props.theme.fontSize[13]};
   }
@@ -115,7 +115,7 @@ export const TitleWrap = styled.div`
   justify-content: space-between;
   margin-bottom: 20px;
 
-  @media (max-width: ${props => props.theme.size.xl}) {
+  @media (max-width: ${props => props.theme.screenSize.xl}) {
     margin-bottom: 10px;
   }
 `;

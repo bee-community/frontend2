@@ -6,7 +6,7 @@ export const Title = styled.article`
   margin: 30px;
   margin-bottom: 0;
 
-  @media (max-width: ${props => props.theme.size.lg}) {
+  @media (max-width: ${props => props.theme.screenSize.lg}) {
     margin: 5px;
     margin-bottom: 30px;
   }
