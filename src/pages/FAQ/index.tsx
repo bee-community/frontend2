@@ -1,13 +1,39 @@
+import arrowDownIcon from 'assets/images/icon/arrow_down.png';
+import arrowUpIcon from 'assets/images/icon/arrow_up.png';
 import { ShadowBox } from 'components/ShadowBox';
 import * as React from 'react';
 
-import { Title } from './styles';
+import { Title, FAQBoxWrap, FAQBox, Question, Answer } from './styles';
 
 function FAQ() {
+  const [isDetailsOpen, setIsDetailsOpen] = React.useState(false);
+
   return (
     <>
       <Title>FAQ</Title>
-      <ShadowBox>제목 내용 blah blah</ShadowBox>
+      <ShadowBox>
+        <FAQBoxWrap>
+          <FAQBox
+            isDetailsOpen={isDetailsOpen}
+            onClick={() => setIsDetailsOpen(!isDetailsOpen)}>
+            <Question>
+              <span>자주묻는질문 01입니다.</span>
+              <span className="arrow-down-button">
+                {isDetailsOpen ? (
+                  <img src={arrowUpIcon} />
+                ) : (
+                  <img src={arrowDownIcon} />
+                )}
+              </span>
+            </Question>
+            <Answer>
+              자주묻는질문 01의 답변입니다. 자주묻는질문 01의 답변입니다.
+              자주묻는질문 01의 답변입니다. 자주묻는질문 01의 답변입니다.
+              자주묻는질문 01의 답변입니다.
+            </Answer>
+          </FAQBox>
+        </FAQBoxWrap>
+      </ShadowBox>
     </>
   );
 }
