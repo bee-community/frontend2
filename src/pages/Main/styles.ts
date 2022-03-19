@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import banner from 'assets/images/main_banner.png';
-import bannerMobile from 'assets/images/main_banner_mobile.png';
+import banner from 'assets/images/banner/main_banner.png';
+import bannerMobile from 'assets/images/banner/main_banner_mobile.png';
 
 export const MainWrap = styled.section`
   margin: 30px;
@@ -24,7 +24,7 @@ export const TopBanner = styled.div`
   margin-bottom: 46px;
   border-radius: 33px;
 
-  & > span:first-child {
+  & > span:first-of-type {
     font-family: GmarketSansTTF;
     font-size: ${props => props.theme.fontSize[20]};
     font-weight: 300;

@@ -1,5 +1,5 @@
-import arrowDownIcon from 'assets/images/icon/arrow_down.png';
-import arrowUpIcon from 'assets/images/icon/arrow_up.png';
+import arrowDown from 'assets/images/icon/arrow_down.png';
+import arrowUp from 'assets/images/icon/arrow_up.png';
 import { ShadowBox } from 'components/ShadowBox';
 import * as React from 'react';
 
@@ -20,9 +20,9 @@ function FAQ() {
               <span>자주묻는질문 01입니다.</span>
               <span className="arrow-down-button">
                 {isDetailsOpen ? (
-                  <img src={arrowUpIcon} />
+                  <img src={arrowUp} />
                 ) : (
-                  <img src={arrowDownIcon} />
+                  <img src={arrowDown} />
                 )}
               </span>
             </Question>

@@ -1,6 +1,7 @@
-import mypageButton from 'assets/images/mypage_button.png';
+import profile from 'assets/images/icon/profile.png';
 import React from 'react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import {
   AsideWrap,
@@ -111,10 +112,10 @@ function Aside() {
     <AsideWrap>
       <Bio>
         <span>닉네임</span>
-        <a href="/mypage">
-          <img src={mypageButton} />
+        <Link to="./mypage">
+          <img src={profile} />
           <div>마이페이지</div>
-        </a>
+        </Link>
       </Bio>
       <SideListWrap>
         <div>
@@ -125,7 +126,7 @@ function Aside() {
           {popularArticle.map((article, index) => {
             return (
               <li key={index}>
-                <a href={`article/${index}`}>
+                <Link to={`/article/${index}`}>
                   <Order>{index + 1}</Order>
                   <ListTitle>
                     <div>
@@ -133,7 +134,7 @@ function Aside() {
                     </div>
                     <div>1일 23시간 24분 후 종료</div>
                   </ListTitle>
-                </a>
+                </Link>
               </li>
             );
           })}
