@@ -1,4 +1,4 @@
-import categoryImg from 'assets/images/categoryImg1.png';
+import categoryIcon from 'assets/images/icon/category.png';
 import React from 'react';
 import { useState } from 'react';
 
@@ -6,14 +6,14 @@ import { Category, Circle, CategoryListWrap } from './styles';
 
 function CategoryList() {
   const [categories] = useState([
-    { name: '재잘재잘', imgPath: 'categoryImg1' },
-    { name: '재잘재잘', imgPath: 'categoryImg1' },
-    { name: '재잘재잘', imgPath: 'categoryImg1' },
-    { name: '재잘재잘', imgPath: 'categoryImg1' },
-    { name: '재잘재잘', imgPath: 'categoryImg1' },
-    { name: '재잘재잘', imgPath: 'categoryImg1' },
-    { name: '재잘재잘', imgPath: 'categoryImg1' },
-    { name: '재잘재잘', imgPath: 'categoryImg1' },
+    { name: '재잘재잘', imgPath: 'category' },
+    { name: '재잘재잘', imgPath: 'category' },
+    { name: '재잘재잘', imgPath: 'category' },
+    { name: '재잘재잘', imgPath: 'category' },
+    { name: '재잘재잘', imgPath: 'category' },
+    { name: '재잘재잘', imgPath: 'category' },
+    { name: '재잘재잘', imgPath: 'category' },
+    { name: '재잘재잘', imgPath: 'category' },
     { name: '재잘재잘', imgPath: '' },
     { name: '재잘재잘', imgPath: '' },
     { name: '재잘재잘', imgPath: '' },
@@ -27,7 +27,7 @@ function CategoryList() {
         return (
           <Category key={index}>
             <Circle>
-              <img src={categoryImg} />
+              <img src={categoryIcon} />
             </Circle>
             <span>{category.name}</span>
           </Category>

@@ -95,7 +95,7 @@ export const Order = styled.div`
 export const ListTitle = styled.div`
   margin-top: 3px;
 
-  & > div:nth-child(2) {
+  & > div:nth-of-type(2) {
     font-size: ${props => props.theme.fontSize[14]};
     color: #777;
   }
