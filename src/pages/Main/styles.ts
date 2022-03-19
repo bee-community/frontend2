@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import banner from 'assets/images/main_banner.png';
-import bannerMobile from 'assets/images/main_banner_mobile.png';
+import banner from 'assets/images/banner/main_banner.png';
+import bannerMobile from 'assets/images/banner/main_banner_mobile.png';
 
 export const MainWrap = styled.section`
   margin: 30px;

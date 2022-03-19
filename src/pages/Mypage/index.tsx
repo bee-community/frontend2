@@ -1,13 +1,13 @@
-import alertIcon from 'assets/images/alert-icon.png';
-import editIcon from 'assets/images/edit-icon.png';
-import heartIcon from 'assets/images/heart-icon.png';
-import noticeIcon from 'assets/images/notice-icon.png';
-import officeIcon from 'assets/images/office-icon.png';
-import pointIcon from 'assets/images/point-icon.png';
-import requestIcon from 'assets/images/request-icon.png';
-import schoolIcon from 'assets/images/school-icon.png';
-import smileIcon from 'assets/images/smile-icon.png';
-import timeIcon from 'assets/images/time-icon.png';
+import alert from 'assets/images/icon/alert.png';
+import edit from 'assets/images/icon/edit.png';
+import heart from 'assets/images/icon/heart.png';
+import notice from 'assets/images/icon/notice.png';
+import office from 'assets/images/icon/office.png';
+import point from 'assets/images/icon/point.png';
+import request from 'assets/images/icon/request.png';
+import school from 'assets/images/icon/school.png';
+import smile from 'assets/images/icon/smile.png';
+import time from 'assets/images/icon/time.png';
 import { ShadowBox } from 'components/ShadowBox';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -21,7 +21,7 @@ function Mypage() {
         <NickName>
           <div className="updatedNickName">닉네임</div>
           <div className="remainTimeWrap">
-            <img src={timeIcon} />
+            <img src={time} />
             <span>
               닉네임 갱신까지 -<span className="remainTime">12:22:23:00</span>{' '}
               남았습니다
@@ -30,7 +30,7 @@ function Mypage() {
         </NickName>
         <Edit>
           <Link to="edit-privacy">
-            <img src={editIcon} />
+            <img src={edit} />
             <span> 개인정보 수정</span>
           </Link>
         </Edit>
@@ -38,27 +38,27 @@ function Mypage() {
 
       <MyPageCategory>
         <Box>
-          <img src={pointIcon} />
+          <img src={point} />
           <div className="number">500</div>
           <div className="caption">포인트</div>
         </Box>
         <Box>
-          <img src={heartIcon} style={{ width: '35px', height: '35px' }} />
+          <img src={heart} style={{ width: '35px', height: '35px' }} />
           <div className="number">100</div>
           <div className="caption">좋아요</div>
         </Box>
         <Box>
-          <img src={alertIcon} style={{ width: '37px', height: '37px' }} />
+          <img src={alert} style={{ width: '37px', height: '37px' }} />
           <div className="number">30</div>
           <div className="caption">알림</div>
         </Box>
         <Box>
-          <img src={noticeIcon} />
+          <img src={notice} />
           <div className="title">공지사항</div>
         </Box>
 
         <Box>
-          <img src={schoolIcon} />
+          <img src={school} />
           <div className="title">
             학교
             <br />
@@ -66,7 +66,7 @@ function Mypage() {
           </div>
         </Box>
         <Box>
-          <img src={officeIcon} />
+          <img src={office} />
           <div className="title">
             회사
             <br />
@@ -75,7 +75,7 @@ function Mypage() {
         </Box>
         <Link to="request-board">
           <Box>
-            <img src={requestIcon} style={{ width: '35px', height: '35px' }} />
+            <img src={request} style={{ width: '35px', height: '35px' }} />
             <div className="title">
               게시판 <br />
               추가요청
@@ -83,7 +83,7 @@ function Mypage() {
           </Box>
         </Link>
         <Box>
-          <img src={smileIcon} />
+          <img src={smile} />
           <div className="title">
             친구
             <br />

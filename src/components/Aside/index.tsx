@@ -1,4 +1,4 @@
-import mypageButton from 'assets/images/mypage_button.png';
+import profile from 'assets/images/icon/profile.png';
 import React from 'react';
 import { useState } from 'react';
 
@@ -111,8 +111,7 @@ function Aside() {
     <AsideWrap>
       <Bio>
         <span>닉네임</span>
-        <a href="/mypage">
-          <img src={mypageButton} />
+          <img src={profile} />
           <div>마이페이지</div>
         </a>
       </Bio>
