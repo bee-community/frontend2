@@ -24,7 +24,7 @@ export const TopBanner = styled.div`
   margin-bottom: 46px;
   border-radius: 33px;
 
-  & > span:first-child {
+  & > span:first-of-type {
     font-family: GmarketSansTTF;
     font-size: ${props => props.theme.fontSize[20]};
     font-weight: 300;

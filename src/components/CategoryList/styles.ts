@@ -13,7 +13,7 @@ export const CategoryListWrap = styled.div`
     grid-template-columns: repeat(10, 1fr);
     margin-top: 12px;
 
-    & > div:nth-child(n + 11) {
+    & > div:nth-of-type(n + 11) {
       display: none;
     }
   }
@@ -21,14 +21,14 @@ export const CategoryListWrap = styled.div`
     grid-template-columns: repeat(7, 1fr);
     margin-bottom: 27px;
 
-    & > div:nth-child(n + 8) {
+    & > div:nth-of-type(n + 8) {
       display: none;
     }
   }
   @media (max-width: ${props => props.theme.screenSize.md}) {
     grid-template-columns: repeat(5, 1fr);
 
-    & > div:nth-child(n + 6) {
+    & > div:nth-of-type(n + 6) {
       display: none;
     }
   }
