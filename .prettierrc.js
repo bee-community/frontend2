@@ -17,6 +17,4 @@ module.exports = {
     '^[./]',
   ],
   importOrderSeparation: true,
-
-  formatOnSave: true,
 };
