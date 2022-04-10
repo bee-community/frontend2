@@ -1,4 +1,5 @@
 import categoryIcon from 'assets/images/icons/category.png';
+import React, { useState } from 'react';
 
 import { Category, Circle, CategoryListWrap } from './styles';
 
@@ -25,7 +26,7 @@ function CategoryList() {
         return (
           <Category key={index}>
             <Circle>
-              <img src={categoryIcon} />
+              <img src={categoryIcon} alt="categoryIcon" />
             </Circle>
             <span>{category.name}</span>
           </Category>

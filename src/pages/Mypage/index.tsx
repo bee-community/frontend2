@@ -21,7 +21,7 @@ function Mypage() {
         <NickName>
           <div className="updatedNickName">닉네임</div>
           <div className="remainTimeWrap">
-            <img src={time} />
+            <img src={time} alt="time" />
             <span>
               닉네임 갱신까지 -<span className="remainTime">12:22:23:00</span>{' '}
               남았습니다
@@ -30,7 +30,7 @@ function Mypage() {
         </NickName>
         <Edit>
           <Link to="edit-privacy">
-            <img src={edit} />
+            <img src={edit} alt="edit" />
             <span> 개인정보 수정</span>
           </Link>
         </Edit>
@@ -38,27 +38,35 @@ function Mypage() {
 
       <MyPageCategory>
         <Box>
-          <img src={point} />
+          <img src={point} alt="point" />
           <div className="number">500</div>
           <div className="caption">포인트</div>
         </Box>
         <Box>
-          <img src={heart} style={{ width: '35px', height: '35px' }} />
+          <img
+            src={heart}
+            alt="heart"
+            style={{ width: '35px', height: '35px' }}
+          />
           <div className="number">100</div>
           <div className="caption">좋아요</div>
         </Box>
         <Box>
-          <img src={alert} style={{ width: '37px', height: '37px' }} />
+          <img
+            src={alert}
+            alt="alert"
+            style={{ width: '37px', height: '37px' }}
+          />
           <div className="number">30</div>
           <div className="caption">알림</div>
         </Box>
         <Box>
-          <img src={notice} />
+          <img src={notice} alt="notice" />
           <div className="title">공지사항</div>
         </Box>
 
         <Box>
-          <img src={school} />
+          <img src={school} alt="school" />
           <div className="title">
             학교
             <br />
@@ -66,7 +74,7 @@ function Mypage() {
           </div>
         </Box>
         <Box>
-          <img src={office} />
+          <img src={office} alt="office" />
           <div className="title">
             회사
             <br />
@@ -75,7 +83,11 @@ function Mypage() {
         </Box>
         <Link to="request-board">
           <Box>
-            <img src={request} style={{ width: '35px', height: '35px' }} />
+            <img
+              src={request}
+              alt="request"
+              style={{ width: '35px', height: '35px' }}
+            />
             <div className="title">
               게시판 <br />
               추가요청
@@ -83,7 +95,7 @@ function Mypage() {
           </Box>
         </Link>
         <Box>
-          <img src={smile} />
+          <img src={smile} alt="smile" />
           <div className="title">
             친구
             <br />

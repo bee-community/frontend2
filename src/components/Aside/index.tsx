@@ -1,4 +1,5 @@
 import profile from 'assets/images/icons/profile.png';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import {
@@ -111,7 +112,7 @@ function Aside() {
       <Bio>
         <span>닉네임</span>
         <Link to="./mypage">
-          <img src={profile} />
+          <img src={profile} alt="profile" />
           <div>마이페이지</div>
         </Link>
       </Bio>

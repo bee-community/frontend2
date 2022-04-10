@@ -1,4 +1,5 @@
-import { css, SerializedStyles, Theme } from '@emotion/react';
+import { css } from '@emotion/react';
+import type { SerializedStyles, Theme } from '@emotion/react';
 
 const globalStyle = (theme: Theme): SerializedStyles => css`
   html {

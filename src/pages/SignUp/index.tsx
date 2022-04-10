@@ -4,8 +4,7 @@ import { TableTitle } from 'pages/EditPrivacy/styles';
 import { Title } from 'pages/LogIn/styles';
 import { Button, Form } from 'pages/Question/styles';
 import { useCallback, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { SignUpWrap, WhiteBox, Error } from './styles';
 
@@ -60,7 +59,7 @@ function SignUp() {
   return (
     <SignUpWrap>
       <Title>
-        <img />
+        <img src="" alt="logo" />
         <span id="honey">HONEY</span>
         <span id="bee">BEE</span>
       </Title>

@@ -20,9 +20,9 @@ function FAQ() {
               <span>자주묻는질문 01입니다.</span>
               <span className="arrow-down-button">
                 {isDetailsOpen ? (
-                  <img src={arrowUp} />
+                  <img src={arrowUp} alt="up" />
                 ) : (
-                  <img src={arrowDown} />
+                  <img src={arrowDown} alt="down" />
                 )}
               </span>
             </Question>

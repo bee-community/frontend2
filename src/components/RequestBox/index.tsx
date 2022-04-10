@@ -45,7 +45,11 @@ function RequestBox(props: { isDetailsOpen: boolean }) {
         <CommentsOpenButton>
           <span>댓글</span>
           <span className="arrow-down-button">
-            {isDetailsOpen ? <img src={arrowUp} /> : <img src={arrowDown} />}
+            {isDetailsOpen ? (
+              <img src={arrowUp} alt="up" />
+            ) : (
+              <img src={arrowDown} alt="down" />
+            )}
           </span>
         </CommentsOpenButton>
         <Comments>
@@ -56,14 +60,14 @@ function RequestBox(props: { isDetailsOpen: boolean }) {
             </div>
             <div className="comment">이 중요한 게시판이 없네요!</div>
             <div className="comment-response">
-              <img src={heart} />
+              <img src={heart} alt="comment" />
               <span>23</span>
               <button>답글</button>
             </div>
           </Comment>
           <Reply>
             <div className="nickname-wrap">
-              <img src="" />
+              <img src="" alt="profile" />
               <span className="nickname">닉네임</span>
             </div>
             <div className="reply-wrap">
@@ -72,14 +76,14 @@ function RequestBox(props: { isDetailsOpen: boolean }) {
                 게시판이 없네요!이 중요한 게시판이 없네
               </div>
               <div className="reply-response">
-                <img src={heart} />
+                <img src={heart} alt="heart" />
                 <span className="like-count">23</span>
               </div>
             </div>
           </Reply>
           <Reply>
             <div className="nickname-wrap">
-              <img src="" />
+              <img src="" alt="profile" />
               <span className="nickname">닉네임</span>
             </div>
             <div className="reply-wrap">
@@ -88,13 +92,13 @@ function RequestBox(props: { isDetailsOpen: boolean }) {
                 게시판이 없네요!이 중요한 게시판이 없네
               </div>
               <div className="reply-response">
-                <img src={heart} />
+                <img src={heart} alt="reply" />
                 <span className="like-count">23</span>
               </div>
             </div>
           </Reply>
           <ReplyPostInput>
-            <img src="" />
+            <img src="" alt="enroll" />
             <div className="input-wrap">
               <input type="text" placeholder="내용이 있습니다." />
               <button>등록</button>
@@ -107,7 +111,7 @@ function RequestBox(props: { isDetailsOpen: boolean }) {
             </div>
             <div className="comment">이 중요한 게시판이 없네요!</div>
             <div className="comment-response">
-              <img src={heart} />
+              <img src={heart} alt="heart" />
               <span>23</span>
               <button>답글</button>
             </div>

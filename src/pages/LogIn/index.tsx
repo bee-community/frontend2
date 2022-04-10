@@ -76,7 +76,7 @@ function LogIn() {
   return (
     <LogInWrap>
       <Title>
-        <img />
+        <img src="" alt="logo" />
         <span id="honey">HONEY</span>
         <span id="bee">BEE</span>
       </Title>
