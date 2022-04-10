@@ -1,6 +1,6 @@
-import arrowDown from 'assets/images/icon/arrow-down.png';
-import arrowUp from 'assets/images/icon/arrow-up.png';
-import heart from 'assets/images/icon/heart-unfilled.png';
+import arrowDown from 'assets/images/icons/arrow-down.png';
+import arrowUp from 'assets/images/icons/arrow-up.png';
+import heart from 'assets/images/icons/heart-unfilled.png';
 import * as React from 'react';
 
 import {

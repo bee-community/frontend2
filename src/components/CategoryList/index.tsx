@@ -1,6 +1,4 @@
-import categoryIcon from 'assets/images/icon/category.png';
-import React from 'react';
-import { useState } from 'react';
+import categoryIcon from 'assets/images/icons/category.png';
 
 import { Category, Circle, CategoryListWrap } from './styles';
 

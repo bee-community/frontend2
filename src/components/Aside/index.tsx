@@ -1,6 +1,4 @@
-import profile from 'assets/images/icon/profile.png';
-import React from 'react';
-import { useState } from 'react';
+import profile from 'assets/images/icons/profile.png';
 import { Link } from 'react-router-dom';
 
 import {
