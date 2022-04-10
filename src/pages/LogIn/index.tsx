@@ -1,4 +1,4 @@
-import Http from 'api';
+import API from 'api';
 import { useAuthDispatch } from 'context/Auth';
 import { login } from 'context/Auth/actions';
 import { useCallback, useState } from 'react';
@@ -31,11 +31,15 @@ function LogIn() {
         const form = new FormData();
         form.append('username', email);
         form.append('password', password);
-        Http.post('/auth/token', form, {
+
+        const params = {
+          form,
           headers: {
             'Content-Type': 'multipart/form-data',
           },
-        })
+        };
+
+        API('post', '/auth/token', params)
           .then(response => {
             console.log(response);
 
