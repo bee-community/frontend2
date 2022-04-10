@@ -1,6 +1,6 @@
 import alert from 'assets/images/icon/alert.png';
 import edit from 'assets/images/icon/edit.png';
-import heart from 'assets/images/icon/heart.png';
+import heart from 'assets/images/icon/heart-unfilled.png';
 import notice from 'assets/images/icon/notice.png';
 import office from 'assets/images/icon/office.png';
 import point from 'assets/images/icon/point.png';

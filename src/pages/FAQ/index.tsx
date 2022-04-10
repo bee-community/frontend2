@@ -1,5 +1,5 @@
-import arrowDown from 'assets/images/icon/arrow_down.png';
-import arrowUp from 'assets/images/icon/arrow_up.png';
+import arrowDown from 'assets/images/icon/arrow-down.png';
+import arrowUp from 'assets/images/icon/arrow-up.png';
 import { ShadowBox } from 'components/ShadowBox';
 import * as React from 'react';
 
