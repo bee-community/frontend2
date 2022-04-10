@@ -1,8 +1,8 @@
 import { Global, ThemeProvider } from '@emotion/react';
+import theme from 'assets/theme';
 import { AuthProvider } from 'context/Auth';
 import ReactDOM from 'react-dom';
 import styles from 'styles';
-import theme from 'theme';
 
 import App from './App';
 

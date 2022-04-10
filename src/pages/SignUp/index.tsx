@@ -1,11 +1,10 @@
-import Http from 'api';
+import API from 'api';
 import { Table } from 'components/Table';
 import { TableTitle } from 'pages/EditPrivacy/styles';
 import { Title } from 'pages/LogIn/styles';
 import { Button, Form } from 'pages/Question/styles';
 import { useCallback, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { SignUpWrap, WhiteBox, Error } from './styles';
 
@@ -40,7 +39,7 @@ function SignUp() {
       e.preventDefault();
       if (!mismatchError && email && password) {
         console.log('서버로 회원가입하기');
-        Http.post('/users', {
+        API('post', '/users', {
           username: email,
           password: password,
         })
@@ -60,7 +59,7 @@ function SignUp() {
   return (
     <SignUpWrap>
       <Title>
-        <img />
+        <img src="" alt="logo" />
         <span id="honey">HONEY</span>
         <span id="bee">BEE</span>
       </Title>

@@ -1,4 +1,4 @@
-import Http from 'api';
+import API from 'api';
 import { ShadowBox } from 'components/ShadowBox';
 import { Table } from 'components/Table';
 import { Button, Form, Title } from 'pages/Question/styles';
@@ -30,20 +30,16 @@ const ArticlePost = () => {
 
       if (title && content) {
         console.log('create article');
-        Http.post(
-          '/articles',
-          {
-            title: title,
-            content: content,
-            board_id: '7cdbf3a6-42b2-4c9f-9440-c3f34b6cbeeb',
+        const params = {
+          title: title,
+          content: content,
+          board_id: '7cdbf3a6-42b2-4c9f-9440-c3f34b6cbeeb',
+          headers: {
+            Authorization: `Bearer token`,
           },
-          {
-            headers: {
-              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MzY5ODcyNzQsInN1YiI6IjBjNTkyYTlkLTQwMDYtNGUzMC05OTcyLWUxY2I5MTc3NWJmZCJ9.3O19yU3hI6jm6mZ6NaWWYlGtPlhz6rNZkA4Kruubq34`,
-              // Authorization: `Bearer ${token}`,
-            },
-          },
-        )
+        };
+
+        API('post', '/articles', params)
           .then(reponse => {
             console.log(reponse);
           })
