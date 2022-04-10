@@ -1,4 +1,4 @@
-import Layout from 'layouts/Layout';
+import Layout from 'components/Layout';
 import ArticleDetail from 'pages/ArticleDetail';
 import ArticlePost from 'pages/ArticlePost';
 import Board from 'pages/Board';
