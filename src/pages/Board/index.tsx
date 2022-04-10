@@ -1,4 +1,4 @@
-import Http from 'api';
+import API from 'api';
 import { useCallback, useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 
@@ -9,9 +9,9 @@ const Board = () => {
   const [articles, setArticles] = useState([]);
 
   const getArticles = useCallback(() => {
-    Http.get(`/boards/${boardId}`)
+    API('get', `/boards/${boardId}`)
       .then(response => {
-        setArticles(response.data['articles']);
+        console.log(response);
       })
       .catch(error => console.log(error))
       .finally(() => {});

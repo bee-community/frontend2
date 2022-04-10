@@ -1,4 +1,4 @@
-import Http from 'api';
+import API from 'api';
 import { Table } from 'components/Table';
 import { TableTitle } from 'pages/EditPrivacy/styles';
 import { Title } from 'pages/LogIn/styles';
@@ -39,7 +39,7 @@ function SignUp() {
       e.preventDefault();
       if (!mismatchError && email && password) {
         console.log('서버로 회원가입하기');
-        Http.post('/users', {
+        API('post', '/users', {
           username: email,
           password: password,
         })
