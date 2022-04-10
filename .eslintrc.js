@@ -5,23 +5,24 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: [
+  plugins: [
     'airbnb-typescript',
-    'plugin:react/recommended',
-    'plugin:prettier/recommended',
+    'import',
+    'jsx-a11y',
     'prettier',
+    'react',
+    'react-hooks',
   ],
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    tsconfigRootDir: __dirname,
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 2021,
-    sourceType: 'module',
-    project: ['./tsconfig.json'],
-  },
-  plugins: ['react', '@typescript-eslint', 'prettier', 'react-hooks', 'import'],
+  extends: [
+    'react-app',
+    'react-app/jest',
+    'airbnb-typescript:recommended',
+    'plugin:import/recommended',
+    'plugin:jsx-a11y/recommended',
+    'plugin:prettier/recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+  ],
   rules: {
     'no-underscore-dangle': 'off', // _언더스코어 식별자 사용 관련 룰 비활성화
     'no-alert': 'off', // alert 자주 사용하므로 비활성화
@@ -56,6 +57,17 @@ module.exports = {
       },
     ],
     'react/react-in-jsx-scope': 'off',
+  },
+
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    tsconfigRootDir: __dirname,
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 2021,
+    sourceType: 'module',
+    project: ['./tsconfig.json'],
   },
   settings: {
     'import/extensions': ['.js', '.ts'],
