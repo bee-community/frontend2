@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 import {
   AsideWrap,
-  Bio,
   SideListWrap,
   SideList,
   ButtonPurple,
@@ -109,13 +108,6 @@ function Aside() {
 
   return (
     <AsideWrap>
-      <Bio>
-        <span>닉네임</span>
-        <Link to="./mypage">
-          <img src={profile} alt="profile" />
-          <div>마이페이지</div>
-        </Link>
-      </Bio>
       <SideListWrap>
         <div>
           <span>인기게시글</span>

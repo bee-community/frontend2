@@ -19,31 +19,7 @@ export const AsideWrap = styled.aside`
     height: auto;
   }
 `;
-export const Bio = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
 
-  & > span {
-    font-size: ${props => props.theme.fontSize[24]};
-    font-weight: bold;
-  }
-  & > a {
-    display: flex;
-    flex-direction: row;
-    font-weight: bold;
-
-    & > img {
-      width: 22px;
-      height: 22px;
-      margin-right: 6px;
-    }
-    & > div {
-      margin-top: 4px;
-    }
-  }
-`;
 export const SideListWrap = styled.div`
   display: flex;
   flex-direction: column;
