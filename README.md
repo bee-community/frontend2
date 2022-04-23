@@ -3,7 +3,7 @@
 Assignees
 
 - 최정혜 (@jeonghye-choi)
-- 김동영 (@ehddud1006)
+- 김영동 (@ehddud1006)
 
 ## Prerequisites
 
