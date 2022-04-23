@@ -1,17 +1,19 @@
 import styled from '@emotion/styled';
 
-export const LayoutWrap = styled.div`
-  margin: 34px 40px 0;
+export const TemplateWrap = styled.div`
+  margin: 20px 40px 0;
   display: grid;
-  grid-template-rows: 64px 1fr;
+  grid-template-rows: auto 1fr;
+  gap: 20px;
 
   @media (max-width: ${props => props.theme.screenSize.lg}) {
-    margin: 20px 15px;
+    margin: 15px;
+    gap: 15px;
   }
 `;
 
 // NOTE: Layout
-export const Wrap = styled.div`
+export const MainWrap = styled.div`
   background-color: ${props => props.theme.background.white};
   border-radius: 40px;
   display: grid;
@@ -23,14 +25,16 @@ export const Wrap = styled.div`
 `;
 
 // NOTE: PageWrap
-export const PageWrap = styled.div`
+export const Main = styled.main`
   height: calc(100vh - 200px);
   display: flex;
   flex-direction: column;
+  margin: 30px;
   overflow-y: scroll;
 
   @media (max-width: ${props => props.theme.screenSize.lg}) {
     height: auto;
+    margin: 0;
   }
 
   ::-webkit-scrollbar {

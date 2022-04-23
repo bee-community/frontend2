@@ -2,7 +2,6 @@ import ArticleList from 'components/ArticleList';
 import CategoryList from 'components/CategoryList';
 
 import {
-  MainWrap,
   TopBanner,
   SubTitle,
   Title,
@@ -13,7 +12,7 @@ import {
 
 function Main() {
   return (
-    <MainWrap>
+    <>
       <TopBanner>
         <span>다양한 사람들 속에서 닮은 꼴 찾기</span>
         <span>꿀벌커뮤니티</span>
@@ -39,7 +38,7 @@ function Main() {
         <ButtonPurple>더보기</ButtonPurple>
       </TitleWrap>
       <ArticleList />
-    </MainWrap>
+    </>
   );
 }
 

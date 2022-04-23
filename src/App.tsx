@@ -1,4 +1,4 @@
-import Layout from 'components/Layout';
+import Template from 'components/Templates';
 import ArticleDetail from 'pages/ArticleDetail';
 import ArticlePost from 'pages/ArticlePost';
 import Board from 'pages/Board';
@@ -17,7 +17,7 @@ function App() {
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Template />}>
           <Route index element={<Main />} />
           <Route path="board/:boardId" element={<Board />} />
           <Route path="article/post" element={<ArticlePost />} />

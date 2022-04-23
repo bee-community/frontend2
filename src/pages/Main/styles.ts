@@ -2,14 +2,6 @@ import styled from '@emotion/styled';
 import bannerMobile from 'assets/images/banners/main-banner-mobile.png';
 import banner from 'assets/images/banners/main-banner.png';
 
-export const MainWrap = styled.section`
-  margin: 30px;
-
-  @media (max-width: ${props => props.theme.screenSize.lg}) {
-    margin: 0;
-  }
-`;
-
 // NOTE: main-title
 export const TopBanner = styled.div`
   width: cal(100% - 40px);
