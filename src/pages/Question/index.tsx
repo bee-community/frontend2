@@ -1,8 +1,9 @@
 import { ShadowBox } from 'components/ShadowBox';
 import { Table } from 'components/Table';
+import Button from 'components/atoms/Button';
 import * as React from 'react';
 
-import { Title, Form, Button } from './styles';
+import { Title, Form } from './styles';
 
 function Question() {
   return (
@@ -26,7 +27,15 @@ function Question() {
               </td>
             </tr>
           </Table>
-          <Button>문의하기</Button>
+          <Button
+            buttonType="contained"
+            color="yellow"
+            radius="round"
+            css={{
+              padding: '15px 68px',
+            }}>
+            문의하기
+          </Button>
         </Form>
       </ShadowBox>
     </>

@@ -20,13 +20,3 @@ export const Form = styled.form`
   flex-direction: column;
   align-items: center;
 `;
-
-export const Button = styled.button`
-  padding: 15px 68px;
-  border-radius: 32px;
-  border: none;
-  background: ${props => props.theme.background.yellow};
-  font-family: NotoSansCJKKR;
-  font-size: ${props => props.theme.fontSize[18]};
-  font-weight: bold;
-`;
