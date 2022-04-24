@@ -1,8 +1,9 @@
 import API from 'api';
 import { Table } from 'components/Table';
+import Button from 'components/atoms/Button';
 import { TableTitle } from 'pages/EditPrivacy/styles';
 import { Title } from 'pages/LogIn/styles';
-import { Button, Form } from 'pages/Question/styles';
+import { Form } from 'pages/Question/styles';
 import { useCallback, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -151,7 +152,15 @@ function SignUp() {
           </Table>
           {mismatchError && <Error>비밀번호가 일치하지 않습니다.</Error>}
           {!email && <Error>이메일을 입력해주세요!</Error>}
-          <Button type="submit">완료</Button>
+          <Button
+            buttonType="contained"
+            color="yellow"
+            radius="round"
+            css={{
+              padding: '15px 68px',
+            }}>
+            완료
+          </Button>
         </Form>
         <div className="linkToLogin">
           <Link to="/login">로그인하러가기</Link>
