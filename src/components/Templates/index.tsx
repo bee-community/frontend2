@@ -2,19 +2,21 @@ import Aside from 'components/Aside';
 import Header from 'components/organisms/Header';
 import { Outlet } from 'react-router';
 
-import { TemplateWrap, MainWrap, Main } from './styles';
+import { StyledTemplate, StyledMain, Main, StyledAside } from './styles';
 
 function Template() {
   return (
-    <TemplateWrap>
+    <StyledTemplate>
       <Header />
-      <MainWrap>
+      <StyledMain>
         <Main>
           <Outlet />
         </Main>
-        <Aside />
-      </MainWrap>
-    </TemplateWrap>
+        <StyledAside>
+          <Aside />
+        </StyledAside>
+      </StyledMain>
+    </StyledTemplate>
   );
 }
 
