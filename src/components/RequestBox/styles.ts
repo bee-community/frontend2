@@ -13,20 +13,6 @@ export const VoteBox = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
-  .requestBotton {
-    width: 170px;
-    padding: 13px 0 11px;
-    border-radius: 40px;
-    border: solid 2px #ffe576;
-    background: white;
-    margin: 18px 0 10px 62px;
-
-    font-family: NotoSansCJKKR;
-    font-size: ${props => props.theme.fontSize[18]};
-    color: #111;
-    cursor: pointer;
-  }
 `;
 
 export const BarGraphWrap = styled.div`
@@ -139,20 +125,6 @@ export const Comment = styled.div`
       font-size: ${props => props.theme.fontSize[14]};
       color: #777;
     }
-    button {
-      padding: 3px 15px 2px;
-      background: none;
-      border-radius: 23px;
-      border: solid 1px #707070;
-
-      font-family: NotoSansCJKKR;
-      font-size: ${props => props.theme.fontSize[12]};
-      letter-spacing: -0.48px;
-      color: #777;
-
-      margin-left: 5px;
-      cursor: pointer;
-    }
   }
 `;
 
@@ -241,16 +213,6 @@ export const ReplyPostInput = styled.div`
     input:focus {
       outline: none;
     }
-    button {
-      width: 67px;
-      padding: 10px 0 9px;
-      margin-left: 14px;
-      font-weight: bold;
-      border: none;
-      border-radius: 10px;
-      background-color: ${props => props.theme.palette.yellow[100]};
-      cursor: pointer;
-    }
   }
 `;
 export const CommentPostInput = styled.div`
@@ -278,16 +240,6 @@ export const CommentPostInput = styled.div`
     }
     input:focus {
       outline: none;
-    }
-    button {
-      width: 67px;
-      padding: 10px 0 9px;
-      margin-left: 14px;
-      font-weight: bold;
-      border: none;
-      border-radius: 10px;
-      background-color: ${props => props.theme.palette.yellow[100]};
-      cursor: pointer;
     }
   }
 `;
