@@ -30,9 +30,6 @@ export const TopBanner = styled.div`
     font-weight: bold;
     margin-bottom: 20px;
   }
-  & > button {
-    width: 264px;
-  }
 
   @media (max-width: ${props => props.theme.screenSize.xl}) {
     background-color: #f7f3e9;
@@ -46,21 +43,6 @@ export const TopBanner = styled.div`
     & > span {
       display: none;
     }
-    & > button {
-      font-size: ${props => props.theme.fontSize[13]};
-      align-self: center;
-      margin-top: 13.5vw;
-      padding: 0.8vw 1vw;
-      width: 220px;
-    }
-  }
-
-  @media (max-width: ${props => props.theme.screenSize.md}) {
-    & > button {
-      width: 160px;
-      font-size: ${props => props.theme.fontSize[10]};
-    }
-  }
 `;
 export const SubTitle = styled.div`
   font-family: NotoSansCJKKR;
@@ -75,28 +57,6 @@ export const Title = styled.div`
 
   @media (max-width: ${props => props.theme.screenSize.xl}) {
     font-size: ${props => props.theme.fontSize[19]};
-  }
-`;
-
-export const ButtonBlack = styled.button`
-  background-color: ${props => props.theme.background.black};
-  border: none;
-  border-radius: 33px;
-  color: ${props => props.theme.palette.yellow[100]};
-  font-weight: 500;
-  padding: 12px 43px;
-`;
-export const ButtonPurple = styled.button`
-  background-color: ${props => props.theme.palette.purple[100]};
-  border: none;
-  font-weight: bold;
-  color: #fff;
-  padding: 7px 20px 7px 22px;
-  border-radius: 19px;
-
-  @media (max-width: ${props => props.theme.screenSize.xl}) {
-    padding: 4px 17px 3px 17px;
-    font-size: ${props => props.theme.fontSize[13]};
   }
 `;
 
