@@ -1,4 +1,5 @@
 import API from 'api';
+import Button from 'components/atoms/Button';
 import { useAuthDispatch } from 'context/Auth';
 import { login } from 'context/Auth/actions';
 import { useCallback, useState } from 'react';
@@ -97,7 +98,19 @@ function LogIn() {
           value={password}
           onChange={onChangePassword}
         />
-        <button type="submit">로그인</button>
+        <Button
+          buttonType="contained"
+          color="black"
+          radius="square"
+          css={{
+            width: '100%',
+            padding: '16px 10px 15px',
+            marginBottom: '15px',
+            color: '#fff',
+            borderRadius: '5px',
+          }}>
+          로그인
+        </Button>
       </LoginForm>
       <div className="search">
         <Link to="">

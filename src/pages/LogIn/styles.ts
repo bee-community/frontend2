@@ -55,16 +55,4 @@ export const LoginForm = styled.section`
   input:focus {
     outline: none;
   }
-
-  button {
-    font-size: 1rem;
-    width: 100%;
-    padding: 16px 10px 15px;
-    margin-bottom: 15px;
-    border: none;
-    border-radius: 5px;
-    background: black;
-    color: white;
-    cursor: pointer;
-  }
 `;
