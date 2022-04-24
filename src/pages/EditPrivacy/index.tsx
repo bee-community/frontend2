@@ -1,6 +1,7 @@
 import { ShadowBox } from 'components/ShadowBox';
 import { Table } from 'components/Table';
-import { Button, Form } from 'pages/Question/styles';
+import Button from 'components/atoms/Button';
+import { Form } from 'pages/Question/styles';
 import * as React from 'react';
 
 import { Title, TableTitle } from './styles';
@@ -76,7 +77,15 @@ function EditPrivacy() {
               </td>
             </tr>
           </Table>
-          <Button>저장</Button>
+          <Button
+            buttonType="contained"
+            color="yellow"
+            radius="round"
+            css={{
+              padding: '15px 68px',
+            }}>
+            저장
+          </Button>
         </Form>
       </ShadowBox>
     </>
