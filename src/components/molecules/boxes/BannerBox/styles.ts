@@ -31,4 +31,23 @@ export const StyledBannerBox = styled.article`
 
   & > button {
     width: 264px;
+    font-weight: 500;
   }
+
+  @media (max-width: ${props => props.theme.screenSize.xl}) {
+    background-color: #f7f3e9;
+    background-image: url(${bannerMobile});
+    background-size: contain;
+    background-position: center;
+    padding: 152px 0 11px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & > span {
+      display: none;
+    } 
+    & > button {
+    width: 200px;
+  }
+`;
