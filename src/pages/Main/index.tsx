@@ -1,25 +1,14 @@
 import ArticleList from 'components/ArticleList';
 import CategoryList from 'components/CategoryList';
 import Button from 'components/atoms/Button';
+import BannerBox from 'components/molecules/boxes/BannerBox';
 
 import { TopBanner, SubTitle, Title, TitleWrap } from './styles';
 
 function Main() {
   return (
     <>
-      <TopBanner>
-        <span>다양한 사람들 속에서 닮은 꼴 찾기</span>
-        <span>꿀벌커뮤니티</span>
-        <Button
-          buttonType="contained"
-          color="black"
-          radius="round"
-          css={{
-            fontWeight: '500',
-          }}>
-          회원가입하고 포인트 받기
-        </Button>
-      </TopBanner>
+      <BannerBox />
 
       <TitleWrap>
         <Title>카테고리</Title>
