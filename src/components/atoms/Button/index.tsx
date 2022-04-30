@@ -5,7 +5,7 @@ import * as React from 'react';
 
 interface buttonProps {
   buttonType: 'contained' | 'outlined' | 'buttonWithIcon' | 'iconButton';
-  radius: 'round' | 'square';
+  radius: 'round' | 'square' | 'circle';
   color: 'yellow' | 'purple' | 'black';
   onClick?: MouseEventHandler<HTMLButtonElement>;
   selected?: boolean;
@@ -21,6 +21,10 @@ const StyledButton = styled.button`
   font-family: NotoSansCJKKR;
   font-size: 1rem;
   color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 
   &:hover {
     background: ${theme.palette.yellow[100]};
@@ -78,7 +82,11 @@ function Button(props: buttonProps) {
       break;
 
     case 'iconButton':
-      style = { ...style, padding: '30px', borderRadius: '50%' };
+      style = {
+        ...style,
+        padding: '20%',
+        boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.11)',
+      };
       break;
 
     default:
@@ -88,7 +96,11 @@ function Button(props: buttonProps) {
   style = { ...style, borderRadius: theme.button.radius[radius] };
   style = { ...style, ...css };
 
-  return <StyledButton style={style}>{props.children}</StyledButton>;
+  return (
+    <StyledButton style={style} onClick={props.onClick}>
+      {props.children}
+    </StyledButton>
+  );
 }
 
 export default Button;

@@ -56,6 +56,7 @@ const button = {
   radius: {
     round: '23px',
     square: '13px',
+    circle: '50%',
   },
   backgroundColor: {
     yellow: '#ffe576',

@@ -42,6 +42,7 @@ type Button = {
   radius: {
     round: string;
     square: string;
+    circle: string;
   };
   backgroundColor: {
     yellow: string;
