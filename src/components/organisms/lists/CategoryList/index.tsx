@@ -8,7 +8,6 @@ import { StyledCategoryList } from './styles';
 function CategoryList(props: { categories: string[] }) {
   const categories = props.categories;
   const [isOpened, setIsOpened] = useState(false);
-  console.log('isOpened', isOpened);
 
   return (
     <StyledCategoryList isOpened={isOpened}>
