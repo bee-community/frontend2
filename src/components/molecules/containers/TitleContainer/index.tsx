@@ -3,12 +3,12 @@ import * as React from 'react';
 
 import { StyledTitle } from './styles';
 
-export interface TitleProps {
+export interface TitleContainerProps {
   title: string;
   subTitle: string;
 }
 
-function Title(props: TitleProps) {
+function TitleContainer(props: TitleContainerProps) {
   const title = props.title;
 
   return (
@@ -24,4 +24,4 @@ function Title(props: TitleProps) {
   );
 }
 
-export default Title;
+export default TitleContainer;
