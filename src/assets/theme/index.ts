@@ -52,6 +52,24 @@ const background = {
   black: '#111',
 };
 
+const button = {
+  radius: {
+    round: '23px',
+    square: '13px',
+    circle: '50%',
+  },
+  backgroundColor: {
+    yellow: '#ffe576',
+    purple: '#5206b9',
+    black: '#000000',
+  },
+  fontColor: {
+    yellow: '#000000',
+    purple: '#ffffff',
+    black: '#ffe576',
+  },
+};
+
 const theme = {
   palette: {
     yellow,
@@ -61,6 +79,7 @@ const theme = {
   background,
   screenSize,
   fontSize,
+  button,
 };
 
 export default theme;

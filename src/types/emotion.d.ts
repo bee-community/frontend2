@@ -38,6 +38,19 @@ type FontSize = {
   40: string;
 };
 
+type Button = {
+  radius: {
+    round: string;
+    square: string;
+    circle: string;
+  };
+  backgroundColor: {
+    yellow: string;
+    purple: string;
+    black: string;
+  };
+};
+
 declare module '@emotion/react' {
   export interface Theme {
     palette: {
@@ -57,5 +70,6 @@ declare module '@emotion/react' {
     };
     screenSize: ScreenSize;
     fontSize: FontSize;
+    button: Button;
   }
 }

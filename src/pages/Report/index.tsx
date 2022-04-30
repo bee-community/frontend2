@@ -1,6 +1,7 @@
 import { ShadowBox } from 'components/ShadowBox';
 import { Table } from 'components/Table';
-import { Button, Form } from 'pages/Question/styles';
+import Button from 'components/atoms/Button';
+import { Form } from 'pages/Question/styles';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -94,7 +95,15 @@ function Report() {
             <input type="checkbox" name="agree" value="true" />
             <Link to="">개인정보 수집·이용에 대한 안내</Link>
           </CheckBoxLabel>
-          <Button>문의하기</Button>
+          <Button
+            buttonType="contained"
+            color="yellow"
+            radius="round"
+            css={{
+              padding: '15px 68px',
+            }}>
+            문의하기
+          </Button>
         </Form>
       </ShadowBox>
     </>

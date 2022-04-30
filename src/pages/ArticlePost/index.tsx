@@ -1,7 +1,8 @@
 import API from 'api';
 import { ShadowBox } from 'components/ShadowBox';
 import { Table } from 'components/Table';
-import { Button, Form, Title } from 'pages/Question/styles';
+import Button from 'components/atoms/Button';
+import { Form, Title } from 'pages/Question/styles';
 import { useCallback, useState } from 'react';
 
 import { InputPhoto } from './styles';
@@ -159,7 +160,15 @@ const ArticlePost = () => {
               </td>
             </tr>
           </Table>
-          <Button type="submit">문의하기</Button>
+          <Button
+            buttonType="contained"
+            color="yellow"
+            radius="round"
+            css={{
+              padding: '15px 68px',
+            }}>
+            문의하기
+          </Button>
         </Form>
       </ShadowBox>
     </>

@@ -1,6 +1,8 @@
 import arrowDown from 'assets/images/icons/arrow-down.png';
 import arrowUp from 'assets/images/icons/arrow-up.png';
 import heart from 'assets/images/icons/heart-unfilled.png';
+import theme from 'assets/theme';
+import Button from 'components/atoms/Button';
 import * as React from 'react';
 
 import {
@@ -38,7 +40,18 @@ function RequestBox(props: { isDetailsOpen: boolean }) {
             </div>
           </BarGraph>
         </BarGraphWrap>
-        <button className="requestBotton">저도 요청할래요</button>
+        <Button
+          buttonType="outlined"
+          color="yellow"
+          radius="round"
+          css={{
+            width: '170px',
+            borderRadius: '40px',
+            cursor: 'pointer',
+            margin: '18px 0 10px 62px',
+          }}>
+          저도 요청할래요
+        </Button>
       </VoteBox>
 
       <CommentsWrap open isDetailsOpen={true}>
@@ -62,7 +75,20 @@ function RequestBox(props: { isDetailsOpen: boolean }) {
             <div className="comment-response">
               <img src={heart} alt="comment" />
               <span>23</span>
-              <button>답글</button>
+              <Button
+                buttonType="outlined"
+                radius="round"
+                color="black"
+                css={{
+                  padding: '3px 15px 2px',
+                  border: 'solid 1px #707070',
+                  color: '#777',
+                  fontSize: theme.fontSize[12],
+                  marginLeft: '5px',
+                  cursor: 'pointer',
+                }}>
+                답글
+              </Button>
             </div>
           </Comment>
           <Reply>
@@ -101,7 +127,15 @@ function RequestBox(props: { isDetailsOpen: boolean }) {
             <img src="" alt="enroll" />
             <div className="input-wrap">
               <input type="text" placeholder="내용이 있습니다." />
-              <button>등록</button>
+              <Button
+                buttonType="contained"
+                color="yellow"
+                radius="square"
+                css={{
+                  marginLeft: '14px',
+                }}>
+                등록
+              </Button>
             </div>
           </ReplyPostInput>
           <Comment>
@@ -113,13 +147,34 @@ function RequestBox(props: { isDetailsOpen: boolean }) {
             <div className="comment-response">
               <img src={heart} alt="heart" />
               <span>23</span>
-              <button>답글</button>
+              <Button
+                buttonType="outlined"
+                radius="round"
+                color="black"
+                css={{
+                  padding: '3px 15px 2px',
+                  border: 'solid 1px #707070',
+                  color: '#777',
+                  fontSize: theme.fontSize[12],
+                  marginLeft: '5px',
+                  cursor: 'pointer',
+                }}>
+                답글
+              </Button>
             </div>
           </Comment>
           <CommentPostInput>
             <div className="input-wrap">
               <input type="text" placeholder="내용이 있습니다." />
-              <button>등록</button>
+              <Button
+                buttonType="contained"
+                color="yellow"
+                radius="square"
+                css={{
+                  marginLeft: '14px',
+                }}>
+                등록
+              </Button>
             </div>
           </CommentPostInput>
         </Comments>
