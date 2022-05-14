@@ -1,11 +1,12 @@
 import Button from 'components/atoms/Button';
 import IconWithLinkContainer from 'components/molecules/containers/IconWithLinkContainer';
+import { BoardInfo } from 'context/Board/types';
 import * as React from 'react';
 import { useState } from 'react';
 
 import { StyledCategoryList } from './styles';
 
-function CategoryList(props: { categories: string[] }) {
+function CategoryList(props: { categories: BoardInfo[] }) {
   const categories = props.categories;
   const [isOpened, setIsOpened] = useState(false);
 
@@ -25,7 +26,13 @@ function CategoryList(props: { categories: string[] }) {
       </div>
       <div className="category-list">
         {categories.map((category, index) => {
-          return <IconWithLinkContainer key={index} name={category} />;
+          return (
+            <IconWithLinkContainer
+              key={index}
+              name={category.name}
+              link={category.path}
+            />
+          );
         })}
       </div>
     </StyledCategoryList>

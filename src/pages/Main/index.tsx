@@ -1,24 +1,18 @@
 import BannerBox from 'components/molecules/boxes/BannerBox';
 import BestArticleList from 'components/organisms/lists/BestArticleList';
 import CategoryList from 'components/organisms/lists/CategoryList';
-import { useState } from 'react';
+import { useBoardState } from 'context/Board';
+import useBoardActions from 'hooks/useBoardActions';
+import { useState, useEffect } from 'react';
 
 function Main() {
-  const [dummyCategories] = useState([
-    '재잘재잘',
-    '재잘재잘',
-    '재잘재잘',
-    '재잘재잘',
-    '재잘재잘',
-    '재잘재잘',
-    '재잘재잘',
-    '재잘재잘',
-    '재잘재잘',
-    '재잘재잘',
-    '재잘재잘',
-    '재잘재잘',
-    '재잘재잘',
-  ]);
+  const boardActions = useBoardActions();
+  const boards = useBoardState();
+
+  useEffect(() => {
+    boardActions.getBoards();
+  }, []);
+
   const [dummyArticles] = useState([
     {
       title: '지금 메가마트에서 메가 세일해',
@@ -57,7 +51,7 @@ function Main() {
   return (
     <>
       <BannerBox />
-      <CategoryList categories={dummyCategories} />
+      <CategoryList categories={boards} />
       <BestArticleList
         title="오늘의 게시글"
         subTitle="Today New!"

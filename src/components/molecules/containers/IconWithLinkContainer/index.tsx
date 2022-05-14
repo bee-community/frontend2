@@ -4,7 +4,13 @@ import * as React from 'react';
 
 import { StyledIconWithLinkContainer } from './styles';
 
-function IconWithLinkContainer(props: { name: string }) {
+
+interface IconWithLinkContainerProps {
+  name: string;
+  link: string;
+}
+
+function IconWithLinkContainer(props: IconWithLinkContainerProps) {
   return (
     <StyledIconWithLinkContainer>
       <Button buttonType="iconButton" color="yellow" radius="circle">
