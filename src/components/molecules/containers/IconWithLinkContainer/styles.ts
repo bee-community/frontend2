@@ -1,13 +1,15 @@
 import styled from '@emotion/styled';
 
 export const StyledIconWithLinkContainer = styled.div`
-  display: grid;
-  grid-template-rows: repaet(2, 1fr);
-  justify-items: center;
-  gap: 10px;
-  font-family: NotoSansCJKKR;
+  > a {
+    display: grid;
+    grid-template-rows: repaet(2, 1fr);
+    justify-items: center;
+    gap: 10px;
+    font-family: NotoSansCJKKR;
 
-  img {
-    width: 30px;
+    img {
+      width: 30px;
+    }
   }
 `;
