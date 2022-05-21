@@ -30,7 +30,8 @@ function CategoryList(props: { categories: BoardInfo[] }) {
             <IconWithLinkContainer
               key={index}
               name={category.name}
-              link={category.path}
+              icon={category.path}
+              link={`board/${category.path}`}
             />
           );
         })}
