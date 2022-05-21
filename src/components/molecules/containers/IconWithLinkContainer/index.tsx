@@ -31,6 +31,7 @@ const categoryIcons = {
 interface IconWithLinkContainerProps {
   name: string;
   link: string;
+  icon: string;
 }
 
 function IconWithLinkContainer(props: IconWithLinkContainerProps) {
@@ -38,7 +39,7 @@ function IconWithLinkContainer(props: IconWithLinkContainerProps) {
     <StyledIconWithLinkContainer>
       <Link to={props.link}>
         <Button buttonType="iconButton" color="yellow" radius="circle">
-          <img src={categoryIcons[props.link]} alt="categoryIcon" />
+          <img src={categoryIcons[props.icon]} alt="categoryIcon" />
         </Button>
         <span>{props.name}</span>
       </Link>
