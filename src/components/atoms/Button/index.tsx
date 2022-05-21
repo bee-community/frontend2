@@ -9,7 +9,7 @@ interface buttonProps {
   color: 'yellow' | 'purple' | 'black';
   onClick?: MouseEventHandler<HTMLButtonElement>;
   selected?: boolean;
-  children?: React.ReactChild;
+  children?: React.ReactNode;
   css?: CSSProperties;
 }
 
@@ -75,16 +75,20 @@ function Button(props: buttonProps) {
     case 'buttonWithIcon':
       style = {
         ...style,
+        background: theme.button.backgroundColor[color],
+        color: theme.button.fontColor[color],
         display: 'grid',
-        gridTemplateColumns: 'repeat(2, 1fr)',
-        gap: '20px',
+        gridTemplateColumns: '1fr 11px',
+        gap: '7.7px',
+        alignItems: 'center',
       };
       break;
 
     case 'iconButton':
       style = {
         ...style,
-        padding: '20%',
+        background: theme.button.backgroundColor[color],
+        padding: '22px',
         boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.11)',
       };
       break;
@@ -94,7 +98,7 @@ function Button(props: buttonProps) {
   }
 
   style = { ...style, borderRadius: theme.button.radius[radius] };
-  style = { ...style, ...css };
+  style = { ...css, ...style };
 
   return (
     <StyledButton style={style} onClick={props.onClick}>
