@@ -1,11 +1,16 @@
 import BoardTitleContainer from 'components/molecules/containers/BoardTitleContainer';
 import BoardArticleList from 'components/organisms/lists/BoardArticleList';
-import { useState } from 'react';
+import useArticleActions from 'hooks/useArticleActions';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 
-const Board = () => {
-  let { boardId } = useParams();
-  console.log('boardId: ', boardId);
+function Board() {
+  let { boardName } = useParams();
+  const articleActions = useArticleActions();
+
+  useEffect(() => {
+    articleActions.getArticlesOfBoard(boardName);
+  }, []);
 
   const [dummyArticles] = useState([
     {
@@ -116,10 +121,10 @@ const Board = () => {
 
   return (
     <>
-      <BoardTitleContainer />
+      <BoardTitleContainer title={boardName} />
       <BoardArticleList articles={dummyArticles} />
     </>
   );
-};
+}
 
 export default Board;

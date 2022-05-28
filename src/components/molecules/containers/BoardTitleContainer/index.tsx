@@ -5,13 +5,17 @@ import * as React from 'react';
 
 import { StyledBoardTitleContainer } from './styles';
 
-function BoardTitleContainer() {
+interface BoardTitleContainerProps {
+  title?: string;
+}
+
+function BoardTitleContainer(props: BoardTitleContainerProps) {
   return (
     <StyledBoardTitleContainer>
       <Button buttonType="iconButton" color="yellow" radius="circle">
         <img className="board-icon" src={officeIcon} alt="회사 게시판" />
       </Button>
-      <div className="board-name">회사</div>
+      <div className="board-name">{props.title}</div>
       <Button buttonType="buttonWithIcon" color="black" radius="round">
         <span>카테고리</span>
         <img

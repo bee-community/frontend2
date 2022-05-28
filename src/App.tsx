@@ -19,7 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Template />}>
           <Route index element={<Main />} />
-          <Route path="board/:boardId" element={<Board />} />
+          <Route path="board/:boardName" element={<Board />} />
           <Route path="article/post" element={<ArticlePost />} />
           <Route path="article/:articleId" element={<ArticleDetail />} />
 
