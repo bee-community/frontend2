@@ -15,6 +15,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
   ],
   rules: {
+    'import/no-extraneous-dependencies': 'error', //young-dong history module 때문에 설정하였습니다.
     'no-underscore-dangle': 'off', // _언더스코어 식별자 사용 관련 룰 비활성화
     'no-alert': 'off', // alert 자주 사용하므로 비활성화
     'global-require': 'off',
