@@ -78,26 +78,14 @@ const Chat = () => {
     setHappy,
   } = useContext<any>(ChatContext);
   const { scrollBarRef } = useContext<any>(ScrollContext);
-  const {
-    data: chatLogData,
-    mutate: mutateChat,
-    revalidate,
-    setSize,
-  } = useSWRInfinite(
-    index => `/api/v1/webrtc/channel/${channelInfo.id}/${index}`,
-    fetcher2,
-  );
 
-  // useEffect(() => {
-  //   if (typeof Data?.channels[indexChat]?.timeToLive == 'undefined') {
-  //     // console.log('***********');ㄴ
-  //     // alert('hi');
-  //     setEndTTL(true);
-  //   } else {
-  //     setChatTime(Data?.channels[indexChat]?.timeToLive);
-  //   }
-  //   // console.log(typeof Data?.channels[indexChat]?.timeToLive);
-  // }, [Data]);
+  useEffect(() => {
+    // if (typeof Data?.channels[indexChat]?.timeToLive == 'undefined') {
+    // } else {
+    setChatTime(Data?.channels[indexChat]?.timeToLive);
+    // }
+    // console.log(typeof Data?.channels[indexChat]?.timeToLive);
+  }, [Data]);
   const secondsToTime = (seconds: number | undefined) => {
     if (typeof seconds === 'undefined') {
       return;
