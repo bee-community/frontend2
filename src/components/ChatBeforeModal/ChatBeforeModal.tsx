@@ -124,6 +124,12 @@ const ChatBeforeModal: VFC<Props> = ({
         //   }
         // });
         // console.log(sameNameCheck);
+
+        // 뒤로가기를 하고 재입장을 하는 경우 이전 챗로그를 불러오지 못하여
+        // 추가하였습니다.
+        if (userData.username === payloadData.senderName) {
+          avoid = false;
+        }
         if (!avoid) {
           console.log('이거이거 고쳐야해');
           setLogId(payloadData.logId);
@@ -180,7 +186,7 @@ const ChatBeforeModal: VFC<Props> = ({
     console.log(happy);
     userJoin();
   };
-
+  // test
   const connect = async () => {
     // dispatch({ value: 'dada', type: 'CHANGE' });
 

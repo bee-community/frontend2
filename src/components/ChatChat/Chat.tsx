@@ -39,7 +39,6 @@ import { ChatBox, Container } from './styles';
 //   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 //   toggleDrawer: (e: any) => void;
 // }
-
 const Chat = () => {
   const { data: Data } = useSWR('/api/v1/webrtc/channels/0', fetcher, {
     dedupingInterval: 50000,
