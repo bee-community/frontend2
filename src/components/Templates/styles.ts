@@ -41,7 +41,7 @@ export const Main = styled.main`
 `;
 
 export const StyledAside = styled.aside`
-  height: calc(100vh - 200px);
+  height: calc(100vh - 140px);
   background-color: ${props => props.theme.background.gray};
   border-radius: 0 40px 40px 0;
   overflow-y: scroll;

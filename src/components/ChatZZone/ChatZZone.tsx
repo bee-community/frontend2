@@ -84,13 +84,13 @@ const ChatZZone = () => {
         headers: {
           Authorization:
             'jwt ' +
-            'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjUzOTM4NjM5LCJpYXQiOjE2NTM5MjA2Mzl9.hl_OM_LNoluRouvEDLQEGBSVtHOCSAMjtcmwRu-edJ6Oo58JJWV3N9T51T_k69pklQo7YQ_bj1FjRtP3jq6nMA',
+            'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjU0MDc3MjA2LCJpYXQiOjE2NTQwNTkyMDZ9.ejc2kvE9whUj9EezXZXfNxGYXh3ZuxgLMg8FTbpLBkIM8eHXf7YIGJeZKV8AdHXxRGDs0d_aKLigJ6dxUX9wRw',
         },
       })
       .then((res: any) => {
         // let arr: any = [];
         // arr.push(res.data);
-        console.log('요청가는');
+        // console.log('요청가는');
         setOnce(c => c + 1);
         // console.log(logId);
         let chatL = res.data.logs.length;
@@ -99,17 +99,18 @@ const ChatZZone = () => {
           setIsReachingEnd(true);
         }
         let arr = chatList;
-        console.log(arr);
-        console.log(res.data);
+        // console.log(arr);
+        // console.log(res.data);
         setChatList([...arr, res.data]);
         if (logId == 0) {
           return;
         } else scrollBarRef.current.scrollTo(0, chatL * 51);
       });
     return () => {
-      console.log('클린업');
+      // console.log('클린업');
     };
   }, [logId]);
+
   useEffect(() => {
     console.log(chatList);
   }, [chatList]);
@@ -123,21 +124,19 @@ const ChatZZone = () => {
         console.log('가장위');
         if (logId < 20) {
           let a = logId + 1;
-          console.log('fxx');
           setLogId(a);
         } else {
           let b = logId - 20;
-          console.log('fxx');
           setLogId(b);
         }
       }
     },
     [isReachingEnd, logId],
   );
-  console.log(chatList);
+  // console.log(chatList);
   const chatSections = makeSection(chatList ? chatList.flat().reverse() : []);
-  console.log(publicChats);
-  console.log(chatSections);
+  // console.log(publicChats);
+  // console.log(chatSections);
   return (
     <div className="chatZZone">
       <Scrollbar maximalThumbYSize={95} ref={scrollBarRef} onScroll={onScroll}>

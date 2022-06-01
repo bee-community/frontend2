@@ -25,7 +25,7 @@ interface Props {
 
 var stompClient: any = null;
 let trick = '';
-
+let avoid = false;
 const ChatBeforeModal: VFC<Props> = ({
   sendChannelInfo,
   show,
@@ -33,6 +33,7 @@ const ChatBeforeModal: VFC<Props> = ({
 }) => {
   const [hash1, setHash] = useState('');
   const [testName, setTestName] = useState('');
+
   // const [test, setTest] = useState('');
   const {
     userData,
@@ -114,6 +115,7 @@ const ChatBeforeModal: VFC<Props> = ({
       case 'RENEWAL':
         payloadData['sendTime'] = Date();
         console.log(payloadData);
+
         // payloadData.users.forEach((user: any) => {
         //   if (user.nickname === testName) {
         //     // console.log(user.nickname);
@@ -122,9 +124,12 @@ const ChatBeforeModal: VFC<Props> = ({
         //   }
         // });
         // console.log(sameNameCheck);
-        console.log('fxx');
+        if (!avoid) {
+          console.log('이거이거 고쳐야해');
+          setLogId(payloadData.logId);
+          avoid = true;
+        }
         publicChats.push(payloadData);
-        setLogId(payloadData.logId);
         setPublicChats([...publicChats]);
         // publicChats.push(payloadData);
         // setLogId(payloadData.logId);

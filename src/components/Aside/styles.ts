@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 // NOTE: Main side contents-Aside
 export const AsideWrap = styled.aside`
-  height: calc(100vh - 200px);
+  height: calc(100vh - 140px);
   background-color: ${props => props.theme.background.gray};
   border-radius: 0 40px 40px 0;
   overflow-y: scroll;
