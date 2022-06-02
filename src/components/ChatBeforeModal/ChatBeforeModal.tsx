@@ -7,8 +7,8 @@ import { NavLink } from 'react-router-dom';
 import SockJS from 'sockjs-client';
 import { over } from 'stompjs';
 import useSWR, { useSWRInfinite } from 'swr';
-import fetcher2 from 'utils/fetcher2';
 
+// import fetcher2 from 'utils/fetcher2';
 import ChatContext from '../../context/ChatContext';
 import { JwtStateContext, DispatchContext } from '../../context/JwtContext';
 import ScrollContext from '../../context/ScrollContext';
@@ -165,14 +165,31 @@ const ChatBeforeModal: VFC<Props> = ({
   };
 
   const onError = (err: any) => {
-    if (stompClient !== null) {
-      const headers = {
-        // disconnect에 쓰이는 headers
-      };
-      stompClient.disconnect(function () {
-        // disconnect 후 실행하는 곳
-      }, headers);
+    console.log('on Error');
+    let error = JSON.parse(err.body);
+    console.log(error);
+    switch (error.type) {
+      case 'ALREADY_USER_IN_CHANNEL':
+        console.log('beHappy');
+        if (stompClient !== null) {
+          const headers = {
+            // disconnect에 쓰이는 headers
+          };
+          stompClient.disconnect(function () {
+            // disconnect 후 실행하는 곳
+          }, headers);
+        }
+        break;
     }
+    // 에러가 나면 soket 연결을 끊음
+    // if (stompClient !== null) {
+    //   const headers = {
+    //     // disconnect에 쓰이는 headers
+    //   };
+    //   stompClient.disconnect(function () {
+    //     // disconnect 후 실행하는 곳
+    //   }, headers);
+    // }
   };
 
   const onConnected = () => {

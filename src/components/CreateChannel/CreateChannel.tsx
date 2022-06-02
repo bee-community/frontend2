@@ -13,6 +13,7 @@ import React, {
 } from 'react';
 import { NavLink } from 'react-router-dom';
 
+import ChatContext from '../../context/ChatContext';
 import useInput from '../../hooks/useInput';
 import { IChannel, Channel, ChannelResponse, HashTag } from '../../typings/db';
 import { Label, Input, Button } from '../Aside/styles';
@@ -24,6 +25,7 @@ interface Props {
 }
 
 const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
+  const { token } = useContext<any>(ChatContext);
   const [newWorkspace, onChangeNewWorkspace, setNewWorkspace] = useInput('');
   const [newHash, onChangeNewHash, setNewHash] = useInput('');
   const [tags, setTags] = useState<any>([]);
@@ -66,9 +68,7 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
           },
           {
             headers: {
-              Authorization:
-                'jwt ' +
-                'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjU0MDg0NTcyLCJpYXQiOjE2NTQwNjY1NzJ9.ZqlQiJtLzJii4GSzyKFJbkKo8dJfThgEf9XeglsxFrBQh830rUkqNTBQuUyceL3iqD0gS_a28rfY5paf7jihpQ',
+              Authorization: 'jwt ' + token,
             },
           },
         )

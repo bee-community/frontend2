@@ -21,7 +21,7 @@ export const ChatProvider: FC = ({ children }) => {
   const [logId, setLogId] = useState(0);
   const [channelInfo, setChannelInfo] = useState({});
   const [token, setToken] = useState(
-    'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjUzNzQ0NzE2LCJpYXQiOjE2NTM3MjY3MTZ9.8WrLO9PUhQJo8dwDq6tTbrMzoIc8J21MixHd3HwOt2VvwKaougz4Q2U2Y9ttzqhFkjhhTL5S6amYBmhEpebSKg',
+    'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjU0MTk2NDk1LCJpYXQiOjE2NTQxNzg0OTV9.3AjwbxgeH3NJuTdii4IuAIQsJGIzkVOBR6q6PEp2W9dgzCKNaehaii09d9FwPuB5sGEpNZgEBs-2rsN5396rCA',
   );
   // const [jwt, setJwt] = useState<string>('');
   return (

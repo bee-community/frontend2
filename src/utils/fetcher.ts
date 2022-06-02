@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { IChannel, Channel, ChannelResponse, HashTag } from '../typings/db';
 
-const fetcher = (url: string) =>
+const fetcher = (url: string, token: string) =>
   // axios
   //   .get(url, {
   //     // 쿠키를 백에서 프론트에 전송
@@ -13,9 +13,7 @@ const fetcher = (url: string) =>
   axios
     .get<ChannelResponse>(url, {
       headers: {
-        Authorization:
-          'jwt ' +
-          'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjU0MDg0NTcyLCJpYXQiOjE2NTQwNjY1NzJ9.ZqlQiJtLzJii4GSzyKFJbkKo8dJfThgEf9XeglsxFrBQh830rUkqNTBQuUyceL3iqD0gS_a28rfY5paf7jihpQ',
+        Authorization: 'jwt ' + token,
       },
     })
     .then(res => res.data);

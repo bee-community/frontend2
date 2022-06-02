@@ -15,7 +15,7 @@ const fetcher2 = (url: string) =>
       headers: {
         Authorization:
           'jwt ' +
-          'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjU0MDg0NTcyLCJpYXQiOjE2NTQwNjY1NzJ9.ZqlQiJtLzJii4GSzyKFJbkKo8dJfThgEf9XeglsxFrBQh830rUkqNTBQuUyceL3iqD0gS_a28rfY5paf7jihpQ',
+          'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjU0MTk2NDk1LCJpYXQiOjE2NTQxNzg0OTV9.3AjwbxgeH3NJuTdii4IuAIQsJGIzkVOBR6q6PEp2W9dgzCKNaehaii09d9FwPuB5sGEpNZgEBs-2rsN5396rCA',
       },
     })
     .then(res => res.data);

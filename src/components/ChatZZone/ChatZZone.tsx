@@ -43,6 +43,7 @@ const ChatZZone = () => {
     setChannelInfo,
     happy,
     setHappy,
+    token,
   } = useContext<any>(ChatContext);
   const jwt = useContext(JwtStateContext);
   const { scrollBarRef } = useContext<any>(ScrollContext);
@@ -82,9 +83,7 @@ const ChatZZone = () => {
     axios
       .get(`/api/v1/webrtc/channel/${channelInfo.id}/${logId}`, {
         headers: {
-          Authorization:
-            'jwt ' +
-            'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjU0MDg0NTcyLCJpYXQiOjE2NTQwNjY1NzJ9.ZqlQiJtLzJii4GSzyKFJbkKo8dJfThgEf9XeglsxFrBQh830rUkqNTBQuUyceL3iqD0gS_a28rfY5paf7jihpQ',
+          Authorization: 'jwt ' + token,
         },
       })
       .then((res: any) => {

@@ -23,9 +23,6 @@ interface Props {
 
 const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
   // const [Data, setData] = useState<ChannelResponse>();
-  const { data: Data } = useSWR('/api/v1/webrtc/channels/0', fetcher, {
-    dedupingInterval: 5000,
-  });
   const {
     userData,
     setUserData,
@@ -33,7 +30,15 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
     setPublicChats,
     client,
     setClient,
+    token,
   } = useContext<any>(ChatContext);
+  const { data: Data }: any = useSWR(
+    '/api/v1/webrtc/channels/0',
+    url => fetcher(url, token),
+    {
+      dedupingInterval: 5000,
+    },
+  );
   // const {
   //   data: userData,
   //   error,
@@ -165,7 +170,7 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
     <>
       {/* <NavLink to={'/chat/chatList/1'}> */}
       <div className="con">
-        {Data?.channels.map((channela, index) => {
+        {Data?.channels.map((channela: any, index: number) => {
           // console.log(channel)
           // console.log(channel.channelHashTags)
           let h = renderHash(channela.channelHashTags);

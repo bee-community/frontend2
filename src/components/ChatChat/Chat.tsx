@@ -40,20 +40,6 @@ import { ChatBox, Container } from './styles';
 //   toggleDrawer: (e: any) => void;
 // }
 const Chat = () => {
-  const { data: Data } = useSWR('/api/v1/webrtc/channels/0', fetcher, {
-    dedupingInterval: 50000,
-  });
-
-  let navigate = useNavigate();
-
-  const [chat, onChangeChat, setChat] = useInput('');
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [chatTime, setChatTime] = useState<number | undefined>(0);
-  const toggleDrawer = () => {
-    console.log('Heelp');
-    setIsOpen(prevState => !prevState);
-  };
-
   const {
     userData,
     setUserData,
@@ -75,8 +61,26 @@ const Chat = () => {
     setChannelInfo,
     happy,
     setHappy,
+    token,
   } = useContext<any>(ChatContext);
   const { scrollBarRef } = useContext<any>(ScrollContext);
+  const { data: Data }: any = useSWR(
+    '/api/v1/webrtc/channels/0',
+    url => fetcher(url, token),
+    {
+      dedupingInterval: 50000,
+    },
+  );
+
+  let navigate = useNavigate();
+
+  const [chat, onChangeChat, setChat] = useInput('');
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [chatTime, setChatTime] = useState<number | undefined>(0);
+  const toggleDrawer = () => {
+    console.log('Heelp');
+    setIsOpen(prevState => !prevState);
+  };
 
   useEffect(() => {
     // if (typeof Data?.channels[indexChat]?.timeToLive == 'undefined') {
