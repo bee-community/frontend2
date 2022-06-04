@@ -12,6 +12,7 @@ function Board() {
 
   useEffect(() => {
     articleActions.getArticles(boardName);
+  }, [boardName]);
 
   const [dummyArticles] = useState([
     {

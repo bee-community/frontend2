@@ -1,29 +1,65 @@
 import arrowDownYellowIcon from 'assets/images/icons/arrow-down-yellow.png';
 import officeIcon from 'assets/images/icons/office.png';
 import Button from 'components/atoms/Button';
+import { useBoardState } from 'context/Board';
+import useBoardActions from 'hooks/useBoardActions';
 import * as React from 'react';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-import { StyledBoardTitleContainer } from './styles';
+import { StyledBoardTitleContainer, DropDownMenu } from './styles';
 
 interface BoardTitleContainerProps {
   title: string;
 }
 
 function BoardTitleContainer(props: BoardTitleContainerProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const boardActions = useBoardActions();
+  const boards = useBoardState();
+
+  useEffect(() => {
+    if (boards.length === 0) {
+      boardActions.getBoards();
+    }
+  }, []);
+
   return (
     <StyledBoardTitleContainer>
       <Button buttonType="iconButton" color="yellow" radius="circle">
         <img className="board-icon" src={officeIcon} alt="회사 게시판" />
       </Button>
       <div className="board-name">{props.title}</div>
-      <Button buttonType="buttonWithIcon" color="black" radius="round">
+      <Button
+        buttonType="buttonWithIcon"
+        color="black"
+        radius="round"
+        onClick={() => {
+          setIsOpen(!isOpen);
+        }}>
         <span>카테고리</span>
         <img
           className="button-with-icon-image"
           src={arrowDownYellowIcon}
-          alt="﹀"
+          style={isOpen ? { transform: 'rotate(180deg)' } : {}}
+          alt={isOpen ? '︿' : '﹀'}
         />
       </Button>
+      <DropDownMenu isOpen={isOpen}>
+        {boards.map(board => (
+          <li key={board.id}>
+            <Link to={board.path}>
+              <Button
+                buttonType="contained"
+                radius="round"
+                color="black"
+                css={{ fontWeight: 'normal' }}>
+                {board.name}
+              </Button>
+            </Link>
+          </li>
+        ))}
+      </DropDownMenu>
     </StyledBoardTitleContainer>
   );
 }

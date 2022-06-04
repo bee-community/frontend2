@@ -4,6 +4,7 @@ import type { SerializedStyles, Theme } from '@emotion/react';
 const globalStyle = (theme: Theme): SerializedStyles => css`
   html {
     font-size: 16px;
+    height: 100vh;
   }
   body {
     margin: 0;
