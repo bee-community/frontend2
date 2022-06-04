@@ -8,11 +8,11 @@ import { Link } from 'react-router-dom';
 import { StyledArticleContainer } from './styles';
 
 function ArticleContainer(props: { article: ArticleType }) {
-  const { title, tags, likes, created_at, comments } = props.article;
+  const { id, title, tags, likes, created_at, comments } = props.article;
 
   return (
     <StyledArticleContainer>
-      <Link to={'/'}>
+      <Link to={`/article/${id}`}>
         <img src={testImg} alt="testImg" />
         <div className="title">{title}</div>
         <div className="tags">{tags}</div>

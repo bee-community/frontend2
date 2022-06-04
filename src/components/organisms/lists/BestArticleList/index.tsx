@@ -7,6 +7,7 @@ import * as React from 'react';
 import { StyledBestArticleList } from './styles';
 
 export interface ArticleType {
+  id: string;
   title: string;
   tags: string;
   board_id: string;

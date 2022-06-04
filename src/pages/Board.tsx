@@ -1,17 +1,24 @@
 import BoardTitleContainer from 'components/molecules/containers/BoardTitleContainer';
 import BoardArticleList from 'components/organisms/lists/BoardArticleList';
-import { useState } from 'react';
+import { useArticlesState } from 'context/Article';
+import useArticleActions from 'hooks/useArticleActions';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 
-const Board = () => {
-  let { boardId } = useParams();
-  console.log('boardId: ', boardId);
+function Board() {
+  const { boardName } = useParams();
+  const articleActions = useArticleActions();
+  const articlesData = useArticlesState();
+
+  useEffect(() => {
+    articleActions.getArticles(boardName);
+  }, [boardName]);
 
   const [dummyArticles] = useState([
     {
       title: '지금 메가마트에서 메가 세일해',
       tags: '#꿀팁 #꿀팁 #꿀팁',
-      board_id: '',
+      board_id: '1234354657687989012343546576879890',
       likes: 11,
       comments: 23,
       created_at: '2021.10.01 4:00',
@@ -19,7 +26,7 @@ const Board = () => {
     {
       title: '지금 메가마트에서 메가 세일해',
       tags: '#꿀팁 #꿀팁 #꿀팁',
-      board_id: '',
+      board_id: '12343546576879890',
       likes: 11,
       comments: 23,
       created_at: '2021.10.01 4:00',
@@ -27,7 +34,7 @@ const Board = () => {
     {
       title: '지금 메가마트에서 메가 세일해',
       tags: '#꿀팁 #꿀팁 #꿀팁',
-      board_id: '',
+      board_id: '12343546576879890',
       likes: 11,
       comments: 23,
       created_at: '2021.10.01 4:00',
@@ -35,7 +42,7 @@ const Board = () => {
     {
       title: '지금 메가마트에서 메가 세일해',
       tags: '#꿀팁 #꿀팁 #꿀팁',
-      board_id: '',
+      board_id: '12343546576879890',
       likes: 11,
       comments: 23,
       created_at: '2021.10.01 4:00',
@@ -43,7 +50,7 @@ const Board = () => {
     {
       title: '지금 메가마트에서 메가 세일해',
       tags: '#꿀팁 #꿀팁 #꿀팁',
-      board_id: '',
+      board_id: '12343546576879890',
       likes: 11,
       comments: 23,
       created_at: '2021.10.01 4:00',
@@ -51,7 +58,7 @@ const Board = () => {
     {
       title: '지금 메가마트에서 메가 세일해',
       tags: '#꿀팁 #꿀팁 #꿀팁',
-      board_id: '',
+      board_id: '12343546576879890',
       likes: 11,
       comments: 23,
       created_at: '2021.10.01 4:00',
@@ -59,7 +66,7 @@ const Board = () => {
     {
       title: '지금 메가마트에서 메가 세일해',
       tags: '#꿀팁 #꿀팁 #꿀팁',
-      board_id: '',
+      board_id: '12343546576879890',
       likes: 11,
       comments: 23,
       created_at: '2021.10.01 4:00',
@@ -67,7 +74,7 @@ const Board = () => {
     {
       title: '지금 메가마트에서 메가 세일해',
       tags: '#꿀팁 #꿀팁 #꿀팁',
-      board_id: '',
+      board_id: '12343546576879890',
       likes: 11,
       comments: 23,
       created_at: '2021.10.01 4:00',
@@ -75,7 +82,7 @@ const Board = () => {
     {
       title: '지금 메가마트에서 메가 세일해',
       tags: '#꿀팁 #꿀팁 #꿀팁',
-      board_id: '',
+      board_id: '12343546576879890',
       likes: 11,
       comments: 23,
       created_at: '2021.10.01 4:00',
@@ -83,7 +90,7 @@ const Board = () => {
     {
       title: '지금 메가마트에서 메가 세일해',
       tags: '#꿀팁 #꿀팁 #꿀팁',
-      board_id: '',
+      board_id: '12343546576879890',
       likes: 11,
       comments: 23,
       created_at: '2021.10.01 4:00',
@@ -91,7 +98,7 @@ const Board = () => {
     {
       title: '지금 메가마트에서 메가 세일해',
       tags: '#꿀팁 #꿀팁 #꿀팁',
-      board_id: '',
+      board_id: '12343546576879890',
       likes: 11,
       comments: 23,
       created_at: '2021.10.01 4:00',
@@ -99,7 +106,7 @@ const Board = () => {
     {
       title: '지금 메가마트에서 메가 세일해',
       tags: '#꿀팁 #꿀팁 #꿀팁',
-      board_id: '',
+      board_id: '12343546576879890',
       likes: 11,
       comments: 23,
       created_at: '2021.10.01 4:00',
@@ -107,7 +114,7 @@ const Board = () => {
     {
       title: '지금 메가마트에서 메가 세일해',
       tags: '#꿀팁 #꿀팁 #꿀팁',
-      board_id: '',
+      board_id: '12343546576879890',
       likes: 11,
       comments: 23,
       created_at: '2021.10.01 4:00',
@@ -116,10 +123,10 @@ const Board = () => {
 
   return (
     <>
-      <BoardTitleContainer />
+      <BoardTitleContainer title={articlesData.name} />
       <BoardArticleList articles={dummyArticles} />
     </>
   );
-};
+}
 
 export default Board;

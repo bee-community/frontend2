@@ -43,6 +43,7 @@ const StyledButton = styled.button`
 function Button(props: buttonProps) {
   const { buttonType, radius, color } = props;
   const css = props.css && props.css;
+  const onClickEvent = props.onClick && props.onClick;
 
   let style: CSSProperties = {};
 
@@ -98,10 +99,10 @@ function Button(props: buttonProps) {
   }
 
   style = { ...style, borderRadius: theme.button.radius[radius] };
-  style = { ...css, ...style };
+  style = { ...style, ...css };
 
   return (
-    <StyledButton style={style} onClick={props.onClick}>
+    <StyledButton style={style} onClick={onClickEvent}>
       {props.children}
     </StyledButton>
   );

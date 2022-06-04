@@ -1,5 +1,5 @@
 import Template from 'components/Templates';
-import ArticleDetail from 'pages/ArticleDetail';
+import Article from 'pages/Article';
 import ArticlePost from 'pages/ArticlePost';
 import Board from 'pages/Board';
 import EditPrivacy from 'pages/EditPrivacy';
@@ -19,9 +19,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Template />}>
           <Route index element={<Main />} />
-          <Route path="board/:boardId" element={<Board />} />
+          <Route path="board" element={<Board />}>
+            <Route path=":boardName" element={<Board />} />
+          </Route>
+
           <Route path="article/post" element={<ArticlePost />} />
-          <Route path="article/:articleId" element={<ArticleDetail />} />
+          <Route path="article/:articleId" element={<Article />} />
 
           <Route path="mypage" element={<Mypage />} />
           <Route path="mypage/edit-privacy" element={<EditPrivacy />} />

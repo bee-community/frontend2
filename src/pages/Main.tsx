@@ -15,6 +15,7 @@ function Main() {
 
   const [dummyArticles] = useState([
     {
+      id: '',
       title: '지금 메가마트에서 메가 세일해',
       tags: '#꿀팁 #꿀팁 #꿀팁',
       board_id: '',
@@ -23,6 +24,7 @@ function Main() {
       created_at: '2021.10.01 4:00',
     },
     {
+      id: '',
       title: '지금 메가마트에서 메가 세일해',
       tags: '#꿀팁 #꿀팁 #꿀팁',
       board_id: '',
@@ -31,6 +33,7 @@ function Main() {
       created_at: '2021.10.01 4:00',
     },
     {
+      id: '',
       title: '지금 메가마트에서 메가 세일해',
       tags: '#꿀팁 #꿀팁 #꿀팁',
       board_id: '',
@@ -39,6 +42,7 @@ function Main() {
       created_at: '2021.10.01 4:00',
     },
     {
+      id: '',
       title: '지금 메가마트에서 메가 세일해',
       tags: '#꿀팁 #꿀팁 #꿀팁',
       board_id: '',
