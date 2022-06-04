@@ -5,7 +5,7 @@ import { useBoardState } from 'context/Board';
 import useBoardActions from 'hooks/useBoardActions';
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import { StyledBoardTitleContainer, DropDownMenu } from './styles';
 
@@ -14,6 +14,7 @@ interface BoardTitleContainerProps {
 }
 
 function BoardTitleContainer(props: BoardTitleContainerProps) {
+  const { boardName } = useParams();
   const [isOpen, setIsOpen] = useState(false);
   const boardActions = useBoardActions();
   const boards = useBoardState();
@@ -22,7 +23,8 @@ function BoardTitleContainer(props: BoardTitleContainerProps) {
     if (boards.length === 0) {
       boardActions.getBoards();
     }
-  }, []);
+    setIsOpen(false);
+  }, [boardName]);
 
   return (
     <StyledBoardTitleContainer>
