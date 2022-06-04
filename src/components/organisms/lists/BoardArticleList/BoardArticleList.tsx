@@ -5,8 +5,6 @@ import * as React from 'react';
 import { StyledBoardArticleList } from './styles';
 
 function BoardArticleList(props: any) {
-  console.log('props', props);
-
   return (
     <StyledBoardArticleList>
       <div className="board-article-order-select-wrap">
