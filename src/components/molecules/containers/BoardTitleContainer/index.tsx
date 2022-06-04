@@ -6,7 +6,7 @@ import * as React from 'react';
 import { StyledBoardTitleContainer } from './styles';
 
 interface BoardTitleContainerProps {
-  title?: string;
+  title: string;
 }
 
 function BoardTitleContainer(props: BoardTitleContainerProps) {
