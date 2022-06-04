@@ -1,17 +1,29 @@
 import request from 'api';
-import { ArticleGetType } from 'context/Article/types';
+import { ArticlesAction, ArticleType } from 'context/Article/types';
 
 function useArticleActions() {
-  function getArticlesOfBoard(board_name?: string) {
-    request<ArticleGetType>('GET', `/boards/${board_name}`, {
-      board_id: board_name,
-    }).then(response => {
-      console.log('response = ', response.data);
-    });
+
+  function getArticles(board_name?: string) {
+    if (board_name) {
+      request<ArticlesAction['payload']>('GET', `/boards/${board_name}`, {
+        board_id_or_path: board_name,
+      })
+        .then(response => {
+        })
+        .catch(error => console.error(error));
+    } else {
+      request<ArticleType[]>('GET', `/articles`, {
+        offset: 0,
+        limit: 100,
+      })
+        .then(response => {
+        })
+        .catch(error => console.error(error));
+    }
   }
 
   return {
-    getArticlesOfBoard,
+    getArticles,
   };
 }
 
