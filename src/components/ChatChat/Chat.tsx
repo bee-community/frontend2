@@ -272,7 +272,7 @@ const Chat = () => {
                   />
                 </div>
                 <div className="tag">
-                  {channelInfo.channelHashTags.map((tag: any, index: any) => {
+                  {channelInfo.channelHashTags?.map((tag: any, index: any) => {
                     return '#' + tag.hashTag.tagName + ' ';
                   })}
                 </div>
@@ -331,7 +331,7 @@ const Chat = () => {
               <div className="middle">
                 <div className="chatTitle">{channelInfo.channelName}</div>
                 <div className="chatTag">
-                  {channelInfo.channelHashTags.map((tag: any, index: any) => {
+                  {channelInfo.channelHashTags?.map((tag: any, index: any) => {
                     return '#' + tag.hashTag.tagName + ' ';
                   })}
                 </div>

@@ -359,7 +359,9 @@ const ChatBeforeModal: VFC<Props> = ({
           <div className="modalTag">{hash1}</div>
           <div className="modalTitle">{sendChannelInfo.channelName}</div>
           <div className="modalTimeLimit">
-            <img alt="timeIcon" role="presentation" src={timeIcon} />
+            <div className="imgWrapper">
+              <img alt="timeIcon" role="presentation" src={timeIcon} />
+            </div>
             <span>&nbsp; {liveTime}</span>
           </div>
           <div className="modalDate">

@@ -80,6 +80,12 @@
   margin-bottom: 1px;
 }
 
+.ChatBeforeModal .imgWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .ChatBeforeModal .modalTimeLimit > span:nth-child(1) {
   margin-left: 15px;
   color: #eeeeee;
