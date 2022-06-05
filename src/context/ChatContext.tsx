@@ -23,6 +23,7 @@ export const ChatProvider: FC = ({ children }) => {
   const [token, setToken] = useState(
     'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjU0NDI4NDk4LCJpYXQiOjE2NTQ0MTA0OTh9.maQgjqDXwa7NPEwP6z4BfjyqsgMXYOtGhiCO6jSWDs5-eDZZBNBQQse36m1tmVgjvyGAT-v2aJMBT623DolwVA',
   );
+  const [chatState, setChatState] = useState('chatList');
   // const [jwt, setJwt] = useState<string>('');
   return (
     <ChatContext.Provider
@@ -52,6 +53,8 @@ export const ChatProvider: FC = ({ children }) => {
         setHappy,
         token,
         setToken,
+        chatState,
+        setChatState,
       }}>
       {children}
     </ChatContext.Provider>

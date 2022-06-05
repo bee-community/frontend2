@@ -63,6 +63,7 @@ const Chat = () => {
     happy,
     setHappy,
     token,
+    setChatState,
   } = useContext<any>(ChatContext);
   const { scrollBarRef } = useContext<any>(ScrollContext);
   const { data: Data }: any = useSWR(
@@ -212,7 +213,8 @@ const Chat = () => {
         JSON.stringify(exitMessage),
       );
 
-      navigate('/chat/chatList');
+      // navigate('/chat/chatList');
+      setChatState('chatList');
     }
   };
   const socketDisconnect = () => {
@@ -224,26 +226,26 @@ const Chat = () => {
     setLogId(0);
   };
 
-  useEffect(() => {
-    const listenBackEvent = () => {
-      // 뒤로가기 할 때 수행할 동작을 적는다
-      console.log('백스페이스');
-      // console.log(happy);
-      // happy.unsubscribe();
-      // console.log(happy);
-      // client.disconnect();
-      setPublicChats([]);
-      setLogId(0);
-    };
+  // useEffect(() => {
+  //   const listenBackEvent = () => {
+  //     // 뒤로가기 할 때 수행할 동작을 적는다
+  //     console.log('백스페이스');
+  //     // console.log(happy);
+  //     // happy.unsubscribe();
+  //     // console.log(happy);
+  //     // client.disconnect();
+  //     setPublicChats([]);
+  //     setLogId(0);
+  //   };
 
-    const unlistenHistoryEvent = history.listen(({ action }) => {
-      if (action === 'POP') {
-        listenBackEvent();
-      }
-    });
+  //   const unlistenHistoryEvent = history.listen(({ action }) => {
+  //     if (action === 'POP') {
+  //       listenBackEvent();
+  //     }
+  //   });
 
-    return unlistenHistoryEvent;
-  }, []);
+  //   return unlistenHistoryEvent;
+  // }, []);
 
   return (
     <div className="chat">
@@ -322,14 +324,19 @@ const Chat = () => {
 
           <div className="chatBBox">
             <div className="chatHeader">
-              <NavLink to="/chat/chatList" onClick={() => socketDisconnect()}>
+              <div
+                style={{ cursor: 'pointer' }}
+                onClick={() => {
+                  socketDisconnect();
+                  setChatState('chatList');
+                }}>
                 <img
                   alt="backSpaceIcon"
                   role="presentation"
                   className="backSpace"
                   src={backSpace}
                 />
-              </NavLink>
+              </div>
               <div className="middle">
                 <div className="chatTitle">{channelInfo.channelName}</div>
                 <div className="chatTag">

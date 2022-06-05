@@ -8,6 +8,7 @@ import SockJS from 'sockjs-client';
 import { over } from 'stompjs';
 import useSWR, { useSWRInfinite } from 'swr';
 
+// import { history } from 'utils/history';
 // import fetcher2 from 'utils/fetcher2';
 import ChatContext from '../../context/ChatContext';
 import { JwtStateContext, DispatchContext } from '../../context/JwtContext';
@@ -56,6 +57,8 @@ const ChatBeforeModal: VFC<Props> = ({
     setHappy,
     endTTL,
     setEndTTL,
+    chatState,
+    setChatState,
   } = useContext<any>(ChatContext);
   const { scrollBarRef } = useContext<any>(ScrollContext);
 
@@ -63,6 +66,7 @@ const ChatBeforeModal: VFC<Props> = ({
   const dispatch = useContext(DispatchContext);
 
   // const { jwt, setJwt } = useContext<any>(JwtContext);
+
   const secondsToTime = (seconds: number) => {
     let day = 0;
     var hour = Math.floor(seconds / 3600);
@@ -343,6 +347,8 @@ const ChatBeforeModal: VFC<Props> = ({
       );
     } catch (err) {
       console.log(err);
+    } finally {
+      setChatState('chat');
     }
   };
 
@@ -459,12 +465,9 @@ const ChatBeforeModal: VFC<Props> = ({
             <span>{`/${sendChannelInfo.limitParticipants}`}</span>
           </div>
         </div>
-        <NavLink
-          to={'/chat/chatList/1'}
-          className="yellowButton"
-          onClick={connect}>
+        <div className="yellowButton" onClick={connect}>
           채팅방 참여하기
-        </NavLink>
+        </div>
       </div>
       <img
         alt="BeeImage"

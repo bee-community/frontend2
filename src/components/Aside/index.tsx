@@ -1,14 +1,15 @@
+import styled from '@emotion/styled';
 import addButton from 'assets/chatImages/addbutton2.png';
 import mypageButton from 'assets/chatImages/mypage_button.png';
 import Chat from 'components/ChatChat/Chat';
 import ChatList from 'components/ChatList/ChatList';
 import CreateChannel from 'components/CreateChannel/CreateChannel';
 import MyChatList from 'components/MyChatList/MyChatList';
-import React, { useEffect } from 'react';
-import { useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useContext } from 'react';
 import { Outlet, Route, Routes, useLocation } from 'react-router';
 import { NavLink } from 'react-router-dom';
 
+import ChatContext from '../../context/ChatContext';
 import {
   AsideWrap,
   Bio,
@@ -19,11 +20,18 @@ import {
   ListTitle,
   Box,
   ChatBox,
+  ChatButton,
 } from './styles';
 import './test.css';
 
+const CHAT_STATE_COLORS = {
+  chatList: '#ffe576',
+  myList: '#ffe576',
+} as any;
+
 function Aside() {
   // dummy popular Article
+  const { chatState, setChatState } = useContext<any>(ChatContext);
   const [isOpen, setIsOpen] = React.useState(false);
   const toggleDrawer = () => {
     console.log('Heelp');
@@ -94,9 +102,8 @@ function Aside() {
       created_at: '',
     },
   ]);
-  const [homeCheck, setHomeCheck] = useState(false);
-  const location = useLocation();
 
+  const [chatColor, setChatColor] = useState('chatList');
   const [showCreateChannel, setShowCreateChannel] = useState(false);
 
   const onClickCreateChannel = useCallback(() => {
@@ -107,15 +114,6 @@ function Aside() {
     setShowCreateChannel(false);
   }, []);
 
-  useEffect(() => {
-    // console.log(location.pathname);
-    if (location.pathname == '/') {
-      setHomeCheck(true);
-    } else {
-      setHomeCheck(false);
-    }
-    // console.log(homeCheck)
-  }, [location]);
   return (
     <AsideWrap>
       <Bio>
@@ -135,99 +133,51 @@ function Aside() {
         show={showCreateChannel}
         onCloseModal={onCloseModal}></CreateChannel>
       <Box>
-        {homeCheck ? (
-          <NavLink to={'chat/chatList'} className="a">
-            채팅방 리스트
-          </NavLink>
-        ) : (
-          <NavLink
-            to={'chat/chatList'}
-            className="a"
-            style={({ isActive }) => ({
-              backgroundColor: isActive ? '#ffe576' : 'white',
-            })}>
-            채팅방 리스트
-          </NavLink>
-        )}
-        <NavLink
-          to={'chat/myList'}
-          className="b"
-          style={({ isActive }) => ({
-            backgroundColor: isActive ? '#ffe576' : 'white',
-          })}>
-          내 채팅방
-        </NavLink>
-      </Box>
-      {/* <Drawer
-        open={isOpen}
-        onClose={toggleDrawer}
-        direction="right"
-        className="bla bla bla">
-        <Scrollbars
-          thumbSize={85}
-          renderTrackHorizontal={props => (
-            <div {...props} className="track-horizontal" />
-          )}
-          renderTrackVertical={({ style, ...props }) => {
-            return (
-              <div
-                {...props}
-                className="track-vertical"
-                style={{ ...style, width: 3 }}
-              />
-            );
+        <ChatButton
+          onClick={() => {
+            setChatColor('chatList');
+            setChatState('chatList');
           }}
-          renderThumbHorizontal={props => (
-            <div {...props} className="thumb-horizontal" />
-          )}
-          renderThumbVertical={props => (
-            <div {...props} className="thumb-vertical" />
-          )}
-          renderView={props => <div {...props} className="view" />}>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-          <div>Hello World</div>
-        </Scrollbars>
-      </Drawer> */}
-      <Routes>
-        <Route path="/chat/chatList" element={<ChatList />} />
-        <Route path="/chat/myList" element={<MyChatList />} />
-        <Route path="/chat/myList" element={<ChatList />} />
-        <Route path="/chat/chatList/:id" element={<Chat />} />
-        <Route path="/chat/myList/:id" element={<MyChatList />} />
-      </Routes>
-      {homeCheck ? <ChatList></ChatList> : <></>}
+          backgroundColor={chatColor == 'chatList' ? '#ffe576' : 'white'}
+          fontWeight={chatColor == 'chatList' ? '700' : '400'}>
+          채팅방 리스트
+        </ChatButton>
+        <ChatButton
+          onClick={() => {
+            setChatColor('myList');
+            setChatState('myList');
+          }}
+          backgroundColor={chatColor == 'myList' ? '#ffe576' : 'white'}
+          fontWeight={chatColor == 'myList' ? '700' : '400'}>
+          내 채팅방
+        </ChatButton>
+        {/* <button
+          onClick={() => setChatState('chatList')}
+          className={teststyle.a}
+          // style={{
+          //   backgroundColor: CHAT_STATE_COLORS[chatState],
+          // }}
+        >
+          채팅방 리스트
+        </button> */}
+        {/* <button className="b" onClick={() => setChatState('myList')}>
+          내 채팅방
+        </button> */}
+      </Box>
+
+      {(function () {
+        switch (chatState) {
+          case 'chatList':
+            return <ChatList />;
+          case 'myList':
+            return <MyChatList />;
+          case 'chat':
+            return <Chat></Chat>;
+          default:
+            return null;
+        }
+      })()}
+
       <SideListWrap>
         <div>
           <span>인기게시글</span>

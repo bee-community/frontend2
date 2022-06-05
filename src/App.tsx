@@ -19,9 +19,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Template />}>
           <Route index element={<Main />} />
-          <Route path="chat/*" element={<Main />} />
+          {/* <Route path="chat/*" element={<Main />} />
           <Route path="chat/chatList/:id" element={<Main />} />
-          <Route path="chat/myList/:id" element={<Main />} />
+          <Route path="chat/myList/:id" element={<Main />} /> */}
           <Route path="board/:boardId" element={<Board />} />
           <Route path="article/post" element={<ArticlePost />} />
           <Route path="article/:articleId" element={<ArticleDetail />} />

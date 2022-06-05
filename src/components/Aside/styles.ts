@@ -234,3 +234,22 @@ export const Button = styled.button`
     box-shadow: 0 0 0 1px var(--saf-0), 0 0 0 5px rgba(29, 155, 209, 0.3);
   }
 `;
+
+export const ChatButton = styled.button<{
+  backgroundColor: string;
+  fontWeight: string;
+}>`
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  flex: 6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 44px;
+  height: 40px;
+  font-size: 14px;
+  font-weight: ${(props: any) => props.fontWeight};
+  background-color: ${(props: any) => props.backgroundColor};
+`;

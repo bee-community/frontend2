@@ -4,7 +4,7 @@ import { Outlet } from 'react-router';
 const ChatZone = () => {
   return (
     <>
-      <Outlet></Outlet>
+      {/* <Outlet></Outlet> */}
       <div>ddddd</div>
     </>
   );
