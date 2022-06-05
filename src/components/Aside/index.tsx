@@ -222,7 +222,7 @@ function Aside() {
       </Drawer> */}
       <Routes>
         <Route path="/chat/chatList" element={<ChatList />} />
-        {/* <Route path="/chat/myList" element={<MyChatList />} /> */}
+        <Route path="/chat/myList" element={<MyChatList />} />
         <Route path="/chat/myList" element={<ChatList />} />
         <Route path="/chat/chatList/:id" element={<Chat />} />
         <Route path="/chat/myList/:id" element={<MyChatList />} />

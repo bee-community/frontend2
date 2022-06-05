@@ -26,6 +26,7 @@ interface Props {
 var stompClient: any = null;
 let trick = '';
 let avoid = false;
+let reEnter = 0;
 const ChatBeforeModal: VFC<Props> = ({
   sendChannelInfo,
   show,
@@ -60,6 +61,7 @@ const ChatBeforeModal: VFC<Props> = ({
 
   const jwt = useContext(JwtStateContext);
   const dispatch = useContext(DispatchContext);
+
   // const { jwt, setJwt } = useContext<any>(JwtContext);
   const secondsToTime = (seconds: number) => {
     let day = 0;
@@ -100,12 +102,34 @@ const ChatBeforeModal: VFC<Props> = ({
         // jwt: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjUxNTE0NjY3LCJpYXQiOjE2NTE0OTY2Njd9.I3Wlq_f7elhOsJ9wP07-YCRba9ITlyI7BbQyqXWjmB5ClkQ5iqOsNdNUqpX2BG2BgCrHwvsujA6O15ojMmAI2Q',
         // username: userData.username,
         channelId: sendChannelInfo.id,
+        type: 'ENTER',
       },
       JSON.stringify(chatMessage),
     );
   };
 
-  const onMessageReceived = (payload: any) => {
+  const userJoin_except = () => {
+    console.log('재입장');
+    var chatMessage = {
+      type: 'REENTER',
+      channelId: sendChannelInfo.id,
+      // senderName: userData.username,
+      // message: 'message',
+    };
+    stompClient.send(
+      '/pub/chat/room',
+      {
+        jwt: trick,
+        // jwt: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjUxNTE0NjY3LCJpYXQiOjE2NTE0OTY2Njd9.I3Wlq_f7elhOsJ9wP07-YCRba9ITlyI7BbQyqXWjmB5ClkQ5iqOsNdNUqpX2BG2BgCrHwvsujA6O15ojMmAI2Q',
+        // username: userData.username,
+        channelId: sendChannelInfo.id,
+        type: 'REENTER',
+      },
+      JSON.stringify(chatMessage),
+    );
+  };
+
+  const onMessageReceived_except = (payload: any) => {
     var payloadData = JSON.parse(payload.body);
     // console.log(payloadData.users);
     setUsersChatName(payloadData.users);
@@ -113,18 +137,8 @@ const ChatBeforeModal: VFC<Props> = ({
     // console.log(payload);
     switch (payloadData.type) {
       case 'RENEWAL':
-        payloadData['sendTime'] = Date();
+        // payloadData['sendTime'] = Date();
         console.log(payloadData);
-
-        // payloadData.users.forEach((user: any) => {
-        //   if (user.nickname === testName) {
-        //     // console.log(user.nickname);
-        //     console.log(testName);
-        //     sameNameCheck += 1;
-        //   }
-        // });
-        // console.log(sameNameCheck);
-
         // 뒤로가기를 하고 재입장을 하는 경우 이전 챗로그를 불러오지 못하여
         // 추가하였습니다.
         if (userData.username === payloadData.senderName) {
@@ -132,18 +146,11 @@ const ChatBeforeModal: VFC<Props> = ({
         }
         if (!avoid) {
           console.log('이거이거 고쳐야해');
-          setLogId(payloadData.logId);
+          setLogId(reEnter);
           avoid = true;
         }
-        publicChats.push(payloadData);
-        setPublicChats([...publicChats]);
         // publicChats.push(payloadData);
-        // setLogId(payloadData.logId);
-        // // revalidate();
         // setPublicChats([...publicChats]);
-        // console.log('스크롤아래');
-        // scrollBarRef.current.scrollToBottom();
-
         break;
       case 'CHAT':
         // console.log('2222222222222');'
@@ -164,32 +171,118 @@ const ChatBeforeModal: VFC<Props> = ({
     }
   };
 
-  const onError = (err: any) => {
+  const onMessageReceived = (payload: any) => {
+    var payloadData = JSON.parse(payload.body);
+    // console.log(payloadData.users);
+    setUsersChatName(payloadData.users);
+
+    // console.log(payload);
+    switch (payloadData.type) {
+      case 'RENEWAL':
+        payloadData['sendTime'] = Date();
+        console.log(payloadData);
+        // 뒤로가기를 하고 재입장을 하는 경우 이전 챗로그를 불러오지 못하여
+        // 추가하였습니다.
+        if (userData.username === payloadData.senderName) {
+          avoid = false;
+        }
+        if (!avoid) {
+          console.log('이거이거 고쳐야해');
+          setLogId(payloadData.logId);
+          avoid = true;
+        }
+        publicChats.push(payloadData);
+        setPublicChats([...publicChats]);
+        break;
+      case 'CHAT':
+        // console.log('2222222222222');'
+        console.log(payloadData);
+        payloadData['sendTime'] = Date();
+        // console.log(payloadData);
+        publicChats.push(payloadData);
+
+        setPublicChats([...publicChats]);
+        // console.log('스크롤아래');
+        // scrollBarRef.current.scrollToBottom();
+        break;
+      case 'CLOSE':
+        // console.log('2222222222222');
+        console.log('testCLose');
+        setEndTTL(true);
+        break;
+    }
+  };
+  const onConnected_except = () => {
+    setUserData({ ...userData, connected: true });
+    setHappy(
+      stompClient.subscribe(
+        '/sub/chat/room/' + sendChannelInfo.id,
+        onMessageReceived_except,
+      ),
+    );
+    console.log(happy);
+    userJoin_except();
+  };
+  const onError_except = (err: any) => {
     console.log('on Error');
     let error = JSON.parse(err.body);
     console.log(error);
     switch (error.type) {
       case 'ALREADY_USER_IN_CHANNEL':
         console.log('beHappy');
-        if (stompClient !== null) {
-          const headers = {
-            // disconnect에 쓰이는 headers
-          };
-          stompClient.disconnect(function () {
-            // disconnect 후 실행하는 곳
-          }, headers);
-        }
+        // if (stompClient !== null) {
+        //   const headers = {
+        //     // disconnect에 쓰이는 headers
+        //   };
+        //   stompClient.disconnect(function () {
+        //     // disconnect 후 실행하는 곳
+        //   }, headers);
+        // }
         break;
     }
-    // 에러가 나면 soket 연결을 끊음
-    // if (stompClient !== null) {
-    //   const headers = {
-    //     // disconnect에 쓰이는 headers
-    //   };
-    //   stompClient.disconnect(function () {
-    //     // disconnect 후 실행하는 곳
-    //   }, headers);
-    // }
+  };
+
+  const connect_except = async () => {
+    let Sock = new SockJS('http://localhost:8080/ws-stomp');
+    stompClient = over(Sock);
+    setClient(stompClient);
+    stompClient.connect(
+      {
+        channelId: sendChannelInfo.id,
+        jwt: trick,
+        // jwt: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjUxNTE0NjY3LCJpYXQiOjE2NTE0OTY2Njd9.I3Wlq_f7elhOsJ9wP07-YCRba9ITlyI7BbQyqXWjmB5ClkQ5iqOsNdNUqpX2BG2BgCrHwvsujA6O15ojMmAI2Q',
+        // username: 'user',
+      },
+      onConnected_except,
+      onError_except,
+    );
+  };
+
+  const onError = (err: any) => {
+    console.log('on Error');
+    if (err.body === undefined) {
+      return;
+    }
+    console.log(err.body);
+    let error = JSON.parse(err.body);
+
+    console.log(error);
+    switch (error.type) {
+      case 'ALREADY_USER_IN_CHANNEL':
+        console.log('beHappy');
+        connect_except();
+        reEnter = error.idx + 1;
+        console.log(reEnter);
+        // if (stompClient !== null) {
+        //   const headers = {
+        //     // disconnect에 쓰이는 headers
+        //   };
+        //   stompClient.disconnect(function () {
+        //     // disconnect 후 실행하는 곳
+        //   }, headers);
+        // }
+        break;
+    }
   };
 
   const onConnected = () => {
@@ -203,7 +296,7 @@ const ChatBeforeModal: VFC<Props> = ({
     console.log(happy);
     userJoin();
   };
-  // test
+
   const connect = async () => {
     // dispatch({ value: 'dada', type: 'CHANGE' });
 
@@ -214,7 +307,7 @@ const ChatBeforeModal: VFC<Props> = ({
     // setTest('hello');
     // console.log(testName);
     try {
-      await axios.post('http://localhost:8080/api/v1/webrtc/register', {
+      await axios.post('/api/v1/webrtc/register', {
         // nickname: 'user',
         nickname: testName,
         password: 'user',
@@ -223,14 +316,11 @@ const ChatBeforeModal: VFC<Props> = ({
       console.log(err);
     }
     try {
-      var ress: any = await axios.post(
-        'http://localhost:8080/api/v1/webrtc/authenticate',
-        {
-          // nickname: 'user',
-          nickname: testName,
-          password: 'user',
-        },
-      );
+      var ress: any = await axios.post('/api/v1/webrtc/authenticate', {
+        // nickname: 'user',
+        nickname: testName,
+        password: 'user',
+      });
       dispatch({ value: ress.data.jwttoken, type: 'CHANGE' });
       // setJwt(ress.data.twttoken);
       trick = ress.data.jwttoken;

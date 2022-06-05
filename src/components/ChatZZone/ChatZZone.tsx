@@ -83,7 +83,9 @@ const ChatZZone = () => {
     axios
       .get(`/api/v1/webrtc/channel/${channelInfo.id}/${logId}`, {
         headers: {
-          Authorization: 'jwt ' + token,
+          Authorization:
+            'jwt ' +
+            'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjU0MzQyNzkzLCJpYXQiOjE2NTQzMjQ3OTN9.Xu7E66_8MOUjl6x4AmwgTcYx-JlVqLkljJzJ2NtHyzueP-XLWHtsuTf2t8v_tsw83uQ7N1jA110s9vWQDwpKUQ',
         },
       })
       .then((res: any) => {

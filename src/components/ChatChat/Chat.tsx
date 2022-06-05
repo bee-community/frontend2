@@ -33,6 +33,7 @@ import ScrollContext from '../../context/ScrollContext';
 import useInput from '../../hooks/useInput';
 import fetcher from '../../utils/fetcher';
 import './ChatChat.css';
+import './drawer.css';
 import { ChatBox, Container } from './styles';
 
 // interface Props {
@@ -68,7 +69,7 @@ const Chat = () => {
     '/api/v1/webrtc/channels/0',
     url => fetcher(url, token),
     {
-      dedupingInterval: 50000,
+      dedupingInterval: 60000,
     },
   );
 
@@ -250,6 +251,7 @@ const Chat = () => {
         <ChatBox>
           <Drawer
             open={isOpen}
+            overlayOpacity={0.7}
             onClose={toggleDrawer}
             direction="right"
             className="bla bla bla"

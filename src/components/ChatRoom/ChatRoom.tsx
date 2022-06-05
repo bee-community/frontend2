@@ -36,7 +36,7 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
     '/api/v1/webrtc/channels/0',
     url => fetcher(url, token),
     {
-      dedupingInterval: 5000,
+      dedupingInterval: 60000,
     },
   );
   // const {
@@ -147,6 +147,7 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
   //     users: {},
   //   },
   // ]);
+  console.log(Data);
   const secondsToTime = (seconds: number) => {
     let day = 0;
     var hour = Math.floor(seconds / 3600);

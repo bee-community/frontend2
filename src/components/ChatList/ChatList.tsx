@@ -47,29 +47,7 @@ const ChatList = () => {
             <ChatRoom
               onClickChatBeforeModal={onClickChatBeforeModal}></ChatRoom>
           </Scrollbar>
-          {/* <Scrollbars
-          thumbSize={30}
-          renderTrackHorizontal={props => (
-            <div {...props} className="ChatList track-horizontal" />
-          )}
-          renderTrackVertical={({ style, ...props }) => {
-            return (
-              <div
-                {...props}
-                className="track-vertical"
-                style={{ ...style, width: 3 }}
-              />
-            );
-          }}
-          renderThumbHorizontal={props => (
-            <div {...props} className="thumb-horizontal" />
-          )}
-          renderThumbVertical={props => (
-            <div {...props} className="thumb-vertical" />
-          )}
-          renderView={props => <div {...props} className="view" />}>
-          <ChatRoom onClickChatBeforeModal={onClickChatBeforeModal}></ChatRoom>
-        </Scrollbars> */}
+
           <ChatBeforeModal
             sendChannelInfo={sendChannelInfo}
             show={showChatBeforeModal}

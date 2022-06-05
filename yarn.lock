@@ -9603,6 +9603,11 @@
     "clsx" "^1.1.1"
     "prop-types" "^15.8.1"
 
+"react-drawer-honeybee@^0.0.1":
+  "integrity" "sha512-AOJezaubOt++rGpXGeSdDxDG/SQNpOT5bA7BOwkc2mkBZWXLWWLXapnqdV7VPBOnBA4fEosTxUhtv5NWQ+JajQ=="
+  "resolved" "https://registry.npmjs.org/react-drawer-honeybee/-/react-drawer-honeybee-0.0.1.tgz"
+  "version" "0.0.1"
+
 "react-error-overlay@^6.0.9":
   "integrity" "sha512-mKR90fX7Pm5seCOfz8q9F+66VCc1PGsWSBxKbITjfKVQHMNF2zudxHnMdJiB1fRCb+XsbQV9sO9DCkgsMQgBIA=="
   "resolved" "https://registry.npmjs.org/react-error-overlay/-/react-error-overlay-6.0.10.tgz"
