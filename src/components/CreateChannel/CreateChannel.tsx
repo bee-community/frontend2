@@ -63,7 +63,7 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
           `/api/v1/webrtc/channel`,
           {
             channelName: newWorkspace,
-            limitParticipants: 15,
+            // limitParticipants: 15,
             hashTags: tags,
           },
           {

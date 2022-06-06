@@ -59,6 +59,7 @@ const ChatBeforeModal: VFC<Props> = ({
     setEndTTL,
     chatState,
     setChatState,
+    token,
   } = useContext<any>(ChatContext);
   const { scrollBarRef } = useContext<any>(ScrollContext);
 
@@ -145,7 +146,7 @@ const ChatBeforeModal: VFC<Props> = ({
         console.log(payloadData);
         // 뒤로가기를 하고 재입장을 하는 경우 이전 챗로그를 불러오지 못하여
         // 추가하였습니다.
-        if (userData.username === payloadData.senderName) {
+        if (userData.userEmail === payloadData.senderEmail) {
           avoid = false;
         }
         if (!avoid) {
@@ -153,8 +154,8 @@ const ChatBeforeModal: VFC<Props> = ({
           setLogId(reEnter);
           avoid = true;
         }
-        // publicChats.push(payloadData);
-        // setPublicChats([...publicChats]);
+        publicChats.push(payloadData);
+        setPublicChats([...publicChats]);
         break;
       case 'CHAT':
         // console.log('2222222222222');'
@@ -187,7 +188,7 @@ const ChatBeforeModal: VFC<Props> = ({
         console.log(payloadData);
         // 뒤로가기를 하고 재입장을 하는 경우 이전 챗로그를 불러오지 못하여
         // 추가하였습니다.
-        if (userData.username === payloadData.senderName) {
+        if (userData.userEmail === payloadData.senderEmail) {
           avoid = false;
         }
         if (!avoid) {
@@ -310,24 +311,25 @@ const ChatBeforeModal: VFC<Props> = ({
     // );
     // setTest('hello');
     // console.log(testName);
-    try {
-      await axios.post('/api/v1/webrtc/register', {
-        // nickname: 'user',
-        nickname: testName,
-        password: 'user',
-      });
-    } catch (err) {
-      console.log(err);
-    }
+    // try {
+    //   await axios.post('/api/v1/webrtc/register', {
+    //     // nickname: 'user',
+    //     email: testName,
+    //     password: 'user',
+    //   });
+    // } catch (err) {
+    //   console.log(err);
+    // }
     try {
       var ress: any = await axios.post('/api/v1/webrtc/authenticate', {
         // nickname: 'user',
-        nickname: testName,
+        email: testName,
         password: 'user',
       });
       dispatch({ value: ress.data.jwttoken, type: 'CHANGE' });
       // setJwt(ress.data.twttoken);
       trick = ress.data.jwttoken;
+      // trick = token;
       // console.log(trick);
       // setTestName(ress.data.jwttoken);
       //1 setJwt('test');
@@ -435,7 +437,7 @@ const ChatBeforeModal: VFC<Props> = ({
 
     const { value } = e.target;
     setTestName(value);
-    setUserData({ ...userData, username: value });
+    setUserData({ ...userData, userEmail: value });
   };
 
   if (!show) {
@@ -444,12 +446,14 @@ const ChatBeforeModal: VFC<Props> = ({
   return (
     <div className="ChatBeforeModal">
       <div className="modal">
-        <img
-          alt="closeButton"
-          role="presentation"
-          className="closeButton"
-          src={xButton}
-          onClick={onCloseModal}></img>
+        <div className="closeButtonWrapper">
+          <img
+            alt="closeButton"
+            role="presentation"
+            className="closeButton"
+            src={xButton}
+            onClick={onCloseModal}></img>
+        </div>
         <div className="textArea">
           <input value={testName} onChange={onChangeTestName}></input>
           <div className="modalTag">{hash1}</div>

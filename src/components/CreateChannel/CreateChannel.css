@@ -8,8 +8,13 @@
   position: absolute;
   /* justify-content: flex-end; */
   /* align-items: flex-end; */
-  top: 35%;
-  left: 30%;
+  /* top: 35%;
+  left: 30%; */
+  position: absolute;
+  top: 50%;
+  margin-top: -120px;
+  left: 50%;
+  margin-left: -200px;
   z-index: 100;
   /* color: wheat; */
 }

@@ -6,6 +6,7 @@ export const ChatProvider: FC = ({ children }) => {
   const [publicChats, setPublicChats] = useState([]);
   const [userData, setUserData] = useState({
     username: '',
+    userEmail: '',
     receivername: '',
     connected: false,
     message: '',
@@ -21,7 +22,7 @@ export const ChatProvider: FC = ({ children }) => {
   const [logId, setLogId] = useState(0);
   const [channelInfo, setChannelInfo] = useState({});
   const [token, setToken] = useState(
-    'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjU0NDI4NDk4LCJpYXQiOjE2NTQ0MTA0OTh9.maQgjqDXwa7NPEwP6z4BfjyqsgMXYOtGhiCO6jSWDs5-eDZZBNBQQse36m1tmVgjvyGAT-v2aJMBT623DolwVA',
+    'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrZHkiLCJleHAiOjE2NTQ1MTE0NDAsImlhdCI6MTY1NDQ5MzQ0MH0.pt0MsoYNmLQ7JC0UxuQPvTWUHwVzajxDmuWftnhK1KPxLdoSSwieZj-L0tQ7sg0RbabU7DWiPnVgMv-Eoiga6A',
   );
   const [chatState, setChatState] = useState('chatList');
   // const [jwt, setJwt] = useState<string>('');

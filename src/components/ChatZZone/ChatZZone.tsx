@@ -136,8 +136,16 @@ const ChatZZone = () => {
   const chatSections = makeSection(chatList ? chatList.flat().reverse() : []);
   // console.log(publicChats);
   // console.log(chatSections);
+  // console.log(Object.entries(chatSections).length);
   return (
     <div className="chatZZone">
+      {Object.entries(chatSections).length === 0 ? (
+        <div className="DateWrapper">
+          <div className="DateButton">{dayjs(Date()).format('YYYY-MM-DD')}</div>
+        </div>
+      ) : (
+        <></>
+      )}
       <Scrollbar maximalThumbYSize={95} ref={scrollBarRef} onScroll={onScroll}>
         {Object.entries(chatSections).map(([date, chats]: any) => {
           return (
@@ -146,24 +154,44 @@ const ChatZZone = () => {
                 <div className="DateButton">{date}</div>
               </div>
               {chats.reverse().map((chat: any) => {
+                console.log(chat);
+                console.log(userData);
                 // console.log(dayjs(chat.sendTime).format('A HH:mm'));
-                return chat.name === userData.username ? (
-                  <div className="mySendChat" key={chat.id}>
-                    <div className="chatSendTime">
-                      {dayjs(chat.sendTime).format('A HH:mm')}
+                if (chat.type === 'CHAT') {
+                  return chat.senderEmail === userData.userEmail ? (
+                    <div className="mySendChat" key={chat.id}>
+                      <div className="chatSendTime">
+                        {dayjs(chat.sendTime).format('A HH:mm')}
+                      </div>
+                      <div className="details">
+                        <div className="chatContent">{chat.message}</div>
+                      </div>
+                      {/* <div className="chatImgIconMy"></div> */}
                     </div>
-                    <div className="chatContent">{chat.message}</div>
-                    <div className="chatImgIconMy"></div>
-                  </div>
-                ) : (
-                  <div className="counterpartChat" key={chat.id}>
-                    <div className="chatImgIcon"></div>
-                    <div className="chatContent">{chat.message}</div>
-                    <div className="chatArriveTime">
-                      {dayjs(chat.sendTime).format('A HH:mm')}
+                  ) : (
+                    <div className="counterpartChat" key={chat.id}>
+                      <div className="chatImgIcon"></div>
+                      <div className="details">
+                        <div className="counterpartName">
+                          {chat.senderNickname}
+                        </div>
+                        <div className="chatContent">{chat.message}</div>
+                      </div>
+                      <div className="chatArriveTime">
+                        {dayjs(chat.sendTime).format('A HH:mm')}
+                      </div>
                     </div>
-                  </div>
-                );
+                  );
+                } else {
+                  if (chat.message === null) {
+                    return;
+                  }
+                  return (
+                    <div className="DateWrapper">
+                      <div className="NoticeButton">{chat.message}</div>
+                    </div>
+                  );
+                }
               })}
             </div>
           );
@@ -215,25 +243,42 @@ const ChatZZone = () => {
           <div className="chatArriveTime">AM 10:00</div>
         </div> */}
         {publicChats.map((chat: any, index: any) => {
+          console.log(chat);
           // console.log(chat);
-          // console.log(userData);
-          return chat.senderName === userData.username ? (
-            <div className="mySendChat" key={index}>
-              <div className="chatSendTime">
-                {dayjs(chat.sendTime).format('A HH:mm')}
+          console.log(userData);
+          if (chat.type === 'CHAT') {
+            return chat.senderEmail === userData.userEmail ? (
+              <div className="mySendChat" key={chat.id}>
+                <div className="chatSendTime">
+                  {dayjs(chat.sendTime).format('A HH:mm')}
+                </div>
+                <div className="details">
+                  <div className="chatContent">{chat.chatMessage}</div>
+                </div>
+                {/* <div className="chatImgIconMy"></div> */}
               </div>
-              <div className="chatContent">{chat.chatMessage}</div>
-              <div className="chatImgIconMy"></div>
-            </div>
-          ) : (
-            <div className="counterpartChat" key={index}>
-              <div className="chatImgIcon"></div>
-              <div className="chatContent">{chat.chatMessage}</div>
-              <div className="chatArriveTime">
-                {dayjs(chat.sendTime).format('A HH:mm')}
+            ) : (
+              <div className="counterpartChat" key={chat.id}>
+                <div className="chatImgIcon"></div>
+                <div className="details">
+                  <div className="counterpartName">{chat.senderName}</div>
+                  <div className="chatContent">{chat.chatMessage}</div>
+                </div>
+                <div className="chatArriveTime">
+                  {dayjs(chat.sendTime).format('A HH:mm')}
+                </div>
               </div>
-            </div>
-          );
+            );
+          } else {
+            if (chat.chatMessage === null) {
+              return;
+            }
+            return (
+              <div className="DateWrapper">
+                <div className="NoticeButton">{chat.chatMessage}</div>
+              </div>
+            );
+          }
         })}
       </Scrollbar>
       {/* <div style={{ visibility: 'hidden' }}>{chatcount}</div> */}

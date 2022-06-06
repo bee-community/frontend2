@@ -14,6 +14,12 @@
   left: -5px;
   /* color: wheat; */
 }
+.ChatBeforeModal .closeButtonWrapper {
+  top: 15px;
+  left: 280px;
+  width: 30px;
+  height: 30px;
+}
 
 .ChatBeforeModal .closeButton {
   cursor: pointer;
@@ -27,13 +33,13 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 245px;
+  width: 255px;
   height: 22px;
   /* margin: 36px 20px 19px 0; */
   margin-bottom: 19px;
   padding: 9px;
   /* padding: 8px 80px 10px 1px; */
-  margin-left: 25px;
+  margin-left: 22px;
   border-radius: 20px;
   background-color: #ffe576;
   font-size: 14px;
@@ -44,28 +50,35 @@
 }
 
 .ChatBeforeModal .modalTag {
-  margin-left: 15px;
+  margin-left: 24px;
   color: #ffe576;
   font-size: 14px;
   font-family: 'Noto Sans KR', sans-serif;
   font-weight: 500;
-  max-width: 190px;
+  max-width: 180px;
   margin-bottom: 5px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .ChatBeforeModal .modalTitle {
-  margin-left: 15px;
+  margin-left: 24px;
   color: #ffffff;
   font-size: 18px;
   font-family: 'Noto Sans KR', sans-serif;
   font-weight: 500;
   margin-bottom: 7px;
+  max-width: 180px;
   z-index: 100;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .ChatBeforeModal .modalTimeLimit {
   display: flex;
-  margin-left: 15px;
+  margin-left: 24px;
   color: #eeeeee;
   font-size: 10px;
   font-family: 'Noto Sans KR', sans-serif;
@@ -87,7 +100,7 @@
 }
 
 .ChatBeforeModal .modalTimeLimit > span:nth-child(1) {
-  margin-left: 15px;
+  margin-left: 24px;
   color: #eeeeee;
   font-size: 10px;
   font-family: 'Noto Sans KR', sans-serif;
@@ -95,7 +108,7 @@
 }
 
 .ChatBeforeModal .modalDate {
-  margin-left: 15px;
+  margin-left: 24px;
   color: #ffffff;
   font-size: 12px;
   font-family: 'Noto Sans KR', sans-serif;

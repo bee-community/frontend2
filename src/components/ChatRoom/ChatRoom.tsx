@@ -147,7 +147,6 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
   //     users: {},
   //   },
   // ]);
-  console.log(Data);
   const secondsToTime = (seconds: number) => {
     let day = 0;
     var hour = Math.floor(seconds / 3600);
