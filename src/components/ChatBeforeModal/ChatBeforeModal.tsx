@@ -23,7 +23,7 @@ interface Props {
   show: boolean;
   onCloseModal: () => void;
 }
-
+const socketURL = 'http://192.168.35.177:8080/ws-stomp';
 var stompClient: any = null;
 let trick = '';
 let avoid = false;
@@ -248,7 +248,7 @@ const ChatBeforeModal: VFC<Props> = ({
   };
 
   const connect_except = async () => {
-    let Sock = new SockJS('http://localhost:8080/ws-stomp');
+    let Sock = new SockJS(socketURL);
     stompClient = over(Sock);
     setClient(stompClient);
     stompClient.connect(
@@ -328,13 +328,14 @@ const ChatBeforeModal: VFC<Props> = ({
       });
       dispatch({ value: ress.data.jwttoken, type: 'CHANGE' });
       // setJwt(ress.data.twttoken);
-      trick = ress.data.jwttoken;
-      // trick = token;
+      // trick = ress.data.jwttoken;
+
+      trick = token;
       // console.log(trick);
       // setTestName(ress.data.jwttoken);
       //1 setJwt('test');
       // console.log('type', typeof res.data.jwttoken);
-      let Sock = new SockJS('http://localhost:8080/ws-stomp');
+      let Sock = new SockJS(socketURL);
       stompClient = over(Sock);
       setClient(stompClient);
       stompClient.connect(

@@ -31,9 +31,14 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
     client,
     setClient,
     token,
+    chatState,
+    chatColor,
+    setChatColor,
   } = useContext<any>(ChatContext);
+  const chatUrl = '/api/v1/webrtc/channels/0';
+  const myChatUrl = '/api/v1/webrtc/mychannel/0';
   const { data: Data }: any = useSWR(
-    '/api/v1/webrtc/channels/0',
+    chatColor == 'chatList' ? chatUrl : myChatUrl,
     url => fetcher(url, token),
     {
       dedupingInterval: 60000,

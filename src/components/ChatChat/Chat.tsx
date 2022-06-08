@@ -64,16 +64,18 @@ const Chat = () => {
     setHappy,
     token,
     setChatState,
+    chatColor,
   } = useContext<any>(ChatContext);
   const { scrollBarRef } = useContext<any>(ScrollContext);
-  const { data: Data }: any = useSWR(
-    '/api/v1/webrtc/channels/0',
+  const chatUrl = '/api/v1/webrtc/channels/0';
+  const myChatUrl = '/api/v1/webrtc/mychannel/0';
+  const { data: Data, revalidate }: any = useSWR(
+    chatColor == 'chatList' ? chatUrl : myChatUrl,
     url => fetcher(url, token),
     {
       dedupingInterval: 60000,
     },
   );
-
   let navigate = useNavigate();
 
   const [chat, onChangeChat, setChat] = useInput('');
@@ -216,6 +218,7 @@ const Chat = () => {
       // navigate('/chat/chatList');
       setChatState('chatList');
     }
+    revalidate();
   };
   const socketDisconnect = () => {
     console.log('종료');
@@ -230,12 +233,13 @@ const Chat = () => {
   //   const listenBackEvent = () => {
   //     // 뒤로가기 할 때 수행할 동작을 적는다
   //     console.log('백스페이스');
+  //     revalidate();
   //     // console.log(happy);
   //     // happy.unsubscribe();
   //     // console.log(happy);
   //     // client.disconnect();
-  //     setPublicChats([]);
-  //     setLogId(0);
+  //     // setPublicChats([]);
+  //     // setLogId(0);
   //   };
 
   //   const unlistenHistoryEvent = history.listen(({ action }) => {
@@ -328,7 +332,12 @@ const Chat = () => {
                 style={{ cursor: 'pointer' }}
                 onClick={() => {
                   socketDisconnect();
-                  setChatState('chatList');
+                  if (chatColor == 'chatList') {
+                    setChatState('chatList');
+                  } else {
+                    setChatState('myList');
+                  }
+                  revalidate();
                 }}>
                 <img
                   alt="backSpaceIcon"

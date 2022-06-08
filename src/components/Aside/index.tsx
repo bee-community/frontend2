@@ -8,8 +8,10 @@ import MyChatList from 'components/MyChatList/MyChatList';
 import React, { useEffect, useState, useCallback, useContext } from 'react';
 import { Outlet, Route, Routes, useLocation } from 'react-router';
 import { NavLink } from 'react-router-dom';
+import useSWR from 'swr';
 
 import ChatContext from '../../context/ChatContext';
+import fetcher from '../../utils/fetcher';
 import {
   AsideWrap,
   Bio,
@@ -29,14 +31,26 @@ const CHAT_STATE_COLORS = {
   myList: '#ffe576',
 } as any;
 
+let chatGetType = 'chatList';
+
 function Aside() {
   // dummy popular Article
-  const { chatState, setChatState } = useContext<any>(ChatContext);
+  const { chatState, setChatState, chatColor, setChatColor, token } =
+    useContext<any>(ChatContext);
   const [isOpen, setIsOpen] = React.useState(false);
   const toggleDrawer = () => {
     console.log('Heelp');
     setIsOpen(prevState => !prevState);
   };
+  const chatUrl = '/api/v1/webrtc/channels/0';
+  const myChatUrl = '/api/v1/webrtc/mychannel/0';
+  const { data: Data, revalidate }: any = useSWR(
+    chatColor == 'chatList' ? chatUrl : myChatUrl,
+    url => fetcher(url, token),
+    {
+      dedupingInterval: 60000,
+    },
+  );
   const [popularArticle] = useState([
     {
       id: '',
@@ -103,7 +117,6 @@ function Aside() {
     },
   ]);
 
-  const [chatColor, setChatColor] = useState('chatList');
   const [showCreateChannel, setShowCreateChannel] = useState(false);
 
   const onClickCreateChannel = useCallback(() => {
@@ -137,6 +150,9 @@ function Aside() {
           onClick={() => {
             setChatColor('chatList');
             setChatState('chatList');
+            // chatGetType = 'chatList';
+            console.log('dad');
+            revalidate();
           }}
           backgroundColor={chatColor == 'chatList' ? '#ffe576' : 'white'}
           fontWeight={chatColor == 'chatList' ? '700' : '400'}>
@@ -146,6 +162,8 @@ function Aside() {
           onClick={() => {
             setChatColor('myList');
             setChatState('myList');
+            console.log('dad2');
+            revalidate();
           }}
           backgroundColor={chatColor == 'myList' ? '#ffe576' : 'white'}
           fontWeight={chatColor == 'myList' ? '700' : '400'}>
@@ -165,7 +183,7 @@ function Aside() {
         </button> */}
       </Box>
 
-      {(function () {
+      {(() => {
         switch (chatState) {
           case 'chatList':
             return <ChatList />;

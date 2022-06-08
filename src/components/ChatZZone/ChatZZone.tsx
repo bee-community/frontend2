@@ -44,6 +44,7 @@ const ChatZZone = () => {
     happy,
     setHappy,
     token,
+    chatColor,
   } = useContext<any>(ChatContext);
   const jwt = useContext(JwtStateContext);
   const { scrollBarRef } = useContext<any>(ScrollContext);
@@ -68,17 +69,26 @@ const ChatZZone = () => {
   //   console.log(chatLogData);
   // }, [chatLogData]);
   useEffect(() => {
+    setChatList([]);
+    console.log('색깔바뀜');
+    setPublicChats([]);
+    setLogId(0);
+  }, [chatColor]);
+  useEffect(() => {
     if (publicChats?.length > 0) {
       scrollBarRef.current.scrollToBottom();
     }
   }, [publicChats]);
-  useEffect(() => console.log('test'), []);
+  // useEffect(() => console.log('test'), []);
 
   useEffect(() => {
     // console.log(jwt);
     // console.log(
     //   'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjUzNzIzMDIxLCJpYXQiOjE2NTM3MDUwMjF9.fEssRx2dJCKR9QMZAh9e_tI_nztllLmnCiaRk0ziHswW2q_LFo8qUnXfpOy3XGKOUEuIru8chhFQPSy58gKSlA',
     // );
+    if (logId == null) {
+      return;
+    }
     console.log(logId);
     axios
       .get(`/api/v1/webrtc/channel/${channelInfo.id}/${logId}`, {
@@ -98,21 +108,21 @@ const ChatZZone = () => {
           setIsReachingEnd(true);
         }
         let arr = chatList;
-        // console.log(arr);
+        // let arr: any = [];
+        console.log(arr);
         // console.log(res.data);
         setChatList([...arr, res.data]);
         if (logId == 0) {
           return;
         } else scrollBarRef.current.scrollTo(0, chatL * 51);
       });
-    return () => {
-      // console.log('클린업');
-    };
+    return () => {};
   }, [logId]);
 
   useEffect(() => {
     console.log(chatList);
   }, [chatList]);
+
   useEffect(() => {
     scrollBarRef.current.scrollToBottom();
   }, []);
@@ -132,7 +142,7 @@ const ChatZZone = () => {
     },
     [isReachingEnd, logId],
   );
-  // console.log(chatList);
+  console.log(chatList);
   const chatSections = makeSection(chatList ? chatList.flat().reverse() : []);
   // console.log(publicChats);
   // console.log(chatSections);
@@ -154,8 +164,8 @@ const ChatZZone = () => {
                 <div className="DateButton">{date}</div>
               </div>
               {chats.reverse().map((chat: any) => {
-                console.log(chat);
-                console.log(userData);
+                // console.log(chat);
+                // console.log(userData);
                 // console.log(dayjs(chat.sendTime).format('A HH:mm'));
                 if (chat.type === 'CHAT') {
                   return chat.senderEmail === userData.userEmail ? (
@@ -243,9 +253,9 @@ const ChatZZone = () => {
           <div className="chatArriveTime">AM 10:00</div>
         </div> */}
         {publicChats.map((chat: any, index: any) => {
-          console.log(chat);
           // console.log(chat);
-          console.log(userData);
+          // // console.log(chat);
+          // console.log(userData);
           if (chat.type === 'CHAT') {
             return chat.senderEmail === userData.userEmail ? (
               <div className="mySendChat" key={chat.id}>
