@@ -35,8 +35,18 @@ let chatGetType = 'chatList';
 
 function Aside() {
   // dummy popular Article
-  const { chatState, setChatState, chatColor, setChatColor, token } =
-    useContext<any>(ChatContext);
+  const {
+    chatState,
+    setChatState,
+    chatColor,
+    setChatColor,
+    token,
+    setPublicChats,
+    setLogId,
+    happy,
+    client,
+    setChatList,
+  } = useContext<any>(ChatContext);
   const [isOpen, setIsOpen] = React.useState(false);
   const toggleDrawer = () => {
     console.log('Heelp');
@@ -51,6 +61,20 @@ function Aside() {
       dedupingInterval: 60000,
     },
   );
+
+  useEffect(() => {
+    if (Object.keys(happy).length > 0) {
+      happy.unsubscribe();
+    }
+    if (Object.keys(client).length > 0) {
+      client.disconnect();
+    }
+
+    setChatList([]);
+    console.log('색깔바뀜');
+    setPublicChats([]);
+    setLogId(0);
+  }, [chatColor]);
   const [popularArticle] = useState([
     {
       id: '',

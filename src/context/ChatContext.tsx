@@ -22,11 +22,13 @@ export const ChatProvider: FC = ({ children }) => {
   const [logId, setLogId] = useState(0);
   const [channelInfo, setChannelInfo] = useState({});
   const [token, setToken] = useState(
-    'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrZHkiLCJleHAiOjE2NTQ3MDQ3MjksImlhdCI6MTY1NDY4NjcyOX0.uAOlF_jbV_XEwR4oO6tD6ciM5PMD0Z4voMzfsHk1ftjMLSmpLUoy_W8oiKD0nc67JlHP94va2P4bD8cSvN1x4A',
+    'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrZHkiLCJleHAiOjE2NTQ5MzM5NDUsImlhdCI6MTY1NDkxNTk0NX0.mAjma7CAkBG3HkV1RUb3sJlMtNH9HidmBy7rYEvkyJAD21lUQ4mWuyIAJkJIt8asyfIUgDtObX5dmA7UgNgTtQ',
   );
   const [chatState, setChatState] = useState('chatList');
   const [chatColor, setChatColor] = useState('chatList');
   // const [jwt, setJwt] = useState<string>('');
+  const [chatList, setChatList] = useState<any>([]);
+
   return (
     <ChatContext.Provider
       value={{
@@ -59,6 +61,8 @@ export const ChatProvider: FC = ({ children }) => {
         setChatState,
         chatColor,
         setChatColor,
+        chatList,
+        setChatList,
       }}>
       {children}
     </ChatContext.Provider>

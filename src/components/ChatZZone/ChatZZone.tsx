@@ -45,10 +45,11 @@ const ChatZZone = () => {
     setHappy,
     token,
     chatColor,
+    chatList,
+    setChatList,
   } = useContext<any>(ChatContext);
   const jwt = useContext(JwtStateContext);
   const { scrollBarRef } = useContext<any>(ScrollContext);
-  const [chatList, setChatList] = useState<any>([]);
   const [isEmpty, setIsEmpty] = useState(false);
   const [isReachingEnd, setIsReachingEnd] = useState(false);
   const [once, setOnce] = useState(0);
@@ -68,12 +69,7 @@ const ChatZZone = () => {
   // useEffect(() => {
   //   console.log(chatLogData);
   // }, [chatLogData]);
-  useEffect(() => {
-    setChatList([]);
-    console.log('색깔바뀜');
-    setPublicChats([]);
-    setLogId(0);
-  }, [chatColor]);
+
   useEffect(() => {
     if (publicChats?.length > 0) {
       scrollBarRef.current.scrollToBottom();

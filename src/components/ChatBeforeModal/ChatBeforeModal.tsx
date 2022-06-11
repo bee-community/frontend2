@@ -23,7 +23,7 @@ interface Props {
   show: boolean;
   onCloseModal: () => void;
 }
-const socketURL = 'http://192.168.35.177:8080/ws-stomp';
+const socketURL = 'http://192.168.0.44:8080/ws-stomp';
 var stompClient: any = null;
 let trick = '';
 let avoid = false;
@@ -154,6 +154,7 @@ const ChatBeforeModal: VFC<Props> = ({
           setLogId(reEnter);
           avoid = true;
         }
+        console.log(publicChats);
         publicChats.push(payloadData);
         setPublicChats([...publicChats]);
         break;

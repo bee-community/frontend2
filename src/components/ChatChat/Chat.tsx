@@ -65,6 +65,7 @@ const Chat = () => {
     token,
     setChatState,
     chatColor,
+    setChatList,
   } = useContext<any>(ChatContext);
   const { scrollBarRef } = useContext<any>(ScrollContext);
   const chatUrl = '/api/v1/webrtc/channels/0';
@@ -227,6 +228,7 @@ const Chat = () => {
     client.disconnect();
     setPublicChats([]);
     setLogId(0);
+    setChatList([]);
   };
 
   // useEffect(() => {
