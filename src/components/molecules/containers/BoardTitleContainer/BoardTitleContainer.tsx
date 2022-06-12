@@ -24,7 +24,7 @@ function BoardTitleContainer(props: BoardTitleContainerProps) {
       boardActions.getBoards();
     }
     setIsOpen(false);
-  }, [boardName]);
+  }, [boardActions, boards, boardName]);
 
   return (
     <StyledBoardTitleContainer>

@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { Title, RequestBoxsWrap } from './styles';
 
 function RequestBoard() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isDetailsOpen, setIsDetailsOpen] = useState(true);
 
   return (

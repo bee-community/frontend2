@@ -1,5 +1,6 @@
 {
   "name": "ant_frontend",
+  "homepage": "ant_community_frontend_dev3",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -31,7 +32,6 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://ant_community.gitlab.io/ant_community_frontend_dev3/",
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.3",

@@ -1,17 +1,28 @@
-image: node:14.15.4
+stages:
+  - build
+  - deploy
+
+build:
+  image: node:16.13.2
+  stage: build
+  variables:
+    PUBLIC_URL: /ant_community_frontend_dev3
+  script:
+    - yarn install --frozen-lockfile
+    - yarn build
+  only:
+    - test
+  artifacts:
+    paths:
+      - build/
 
 pages:
+  image: alpine:latest
+  stage: deploy
+  variables:
+    GIT_STRATEGY: none
+  script:
+    - mv build public
   artifacts:
     paths:
       - public
-  cache:
-    paths:
-      - node_modules/.cache
-  only:
-    - main
-  script:
-    - yarn
-    - yarn build
-    - rm -rf public
-    - mv build public
-  stage: deploy
