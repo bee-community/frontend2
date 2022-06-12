@@ -21,6 +21,8 @@ pages:
   stage: deploy
   variables:
     GIT_STRATEGY: none
+  only:
+    - main
   script:
     - mv build public
   artifacts:
