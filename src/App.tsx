@@ -11,33 +11,31 @@ import Question from 'pages/Question';
 import Report from 'pages/Report';
 import RequestBoard from 'pages/RequestBoard';
 import SignUp from 'pages/SignUp';
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter as Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <HashRouter basename={process.env.PUBLIC_URL}>
-      <Routes>
-        <Route path="/" element={<Template />}>
-          <Route index element={<Main />} />
-          <Route path="board" element={<Board />}>
-            <Route path=":boardName" element={<Board />} />
-          </Route>
-
-          <Route path="article/post" element={<ArticlePost />} />
-          <Route path="article/:articleId" element={<Article />} />
-
-          <Route path="mypage" element={<Mypage />} />
-          <Route path="mypage/edit-privacy" element={<EditPrivacy />} />
-          <Route path="mypage/FAQ" element={<FAQ />} />
-          <Route path="mypage/question" element={<Question />} />
-          <Route path="mypage/report" element={<Report />} />
-          <Route path="mypage/request-board" element={<RequestBoard />} />
+    <Routes basename={process.env.PUBLIC_URL}>
+      <Route path="/" element={<Template />}>
+        <Route index element={<Main />} />
+        <Route path="board" element={<Board />}>
+          <Route path=":boardName" element={<Board />} />
         </Route>
 
-        <Route path="signup" element={<SignUp />} />
-        <Route path="login" element={<LogIn />} />
-      </Routes>
-    </HashRouter>
+        <Route path="article/post" element={<ArticlePost />} />
+        <Route path="article/:articleId" element={<Article />} />
+
+        <Route path="mypage" element={<Mypage />} />
+        <Route path="mypage/edit-privacy" element={<EditPrivacy />} />
+        <Route path="mypage/FAQ" element={<FAQ />} />
+        <Route path="mypage/question" element={<Question />} />
+        <Route path="mypage/report" element={<Report />} />
+        <Route path="mypage/request-board" element={<RequestBoard />} />
+      </Route>
+
+      <Route path="signup" element={<SignUp />} />
+      <Route path="login" element={<LogIn />} />
+    </Routes>
   );
 }
 
