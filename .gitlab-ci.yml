@@ -6,6 +6,8 @@ stages:
 
 build:
   stage: build
+  variables:
+    PUBLIC_URL: https://ant_community.gitlab.io/ant_community_frontend_dev3/
   script:
     - yarn install --frozen-lockfile
     - yarn build
@@ -18,6 +20,8 @@ build:
 pages:
   image: alpine:latest
   stage: deploy
+  variables:
+    GIT_STRATEGY: none
   script:
     - mv build public
   artifacts:
