@@ -11,12 +11,14 @@ build:
     - yarn build
   only:
     - test
+  artifacts:
+    paths:
+      - build/
 
 pages:
   image: alpine:latest
   stage: deploy
   script:
-    - rm -rf public
     - mv build public
   artifacts:
     paths:
