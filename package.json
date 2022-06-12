@@ -1,6 +1,6 @@
 {
   "name": "ant_frontend",
-  "homepage": "https://ant_community.gitlab.io/ant_community_frontend_dev3",
+  "homepage": ".",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
