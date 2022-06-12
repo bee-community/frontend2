@@ -11,11 +11,11 @@ import Question from 'pages/Question';
 import Report from 'pages/Report';
 import RequestBoard from 'pages/RequestBoard';
 import SignUp from 'pages/SignUp';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <HashRouter basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path="/" element={<Template />}>
           <Route index element={<Main />} />
@@ -37,7 +37,7 @@ function App() {
         <Route path="signup" element={<SignUp />} />
         <Route path="login" element={<LogIn />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
