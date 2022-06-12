@@ -1,10 +1,9 @@
-image: node:14.15.4
-
 stages:
   - build
   - deploy
 
 build:
+image: node:16.13.2
   stage: build
   variables:
     PUBLIC_URL: https://ant_community.gitlab.io/ant_community_frontend_dev3/
