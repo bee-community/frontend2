@@ -11,7 +11,7 @@ build:
     - yarn install --frozen-lockfile
     - yarn build
   only:
-    - test
+    - main
   artifacts:
     paths:
       - build/
