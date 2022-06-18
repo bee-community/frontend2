@@ -1,0 +1,121 @@
+.ChatEndModal .modal {
+  display: flex;
+  width: 315px;
+  height: 256px;
+  margin: 46px 8px 0 9px;
+  padding: 9px 0 0;
+  border-radius: 25px;
+  background-color: rgba(17, 17, 17, 0.9);
+  position: absolute;
+  justify-content: flex-end;
+  /* align-items: flex-end; */
+  flex-direction: column;
+  top: 50px;
+  left: -5px;
+  /* color: wheat; */
+}
+
+.ChatEndModal .closeButton {
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  left: 280px;
+}
+
+.ChatEndModal .yellowButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 245px;
+  height: 22px;
+  /* margin: 36px 20px 19px 0; */
+  margin-bottom: 19px;
+  padding: 9px;
+  /* padding: 8px 80px 10px 1px; */
+  margin-left: 25px;
+  border-radius: 20px;
+  background-color: #ffe576;
+  font-size: 14px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 600;
+  z-index: 100;
+  cursor: pointer;
+}
+
+.ChatEndModal .modalTag {
+  margin-left: 15px;
+  color: #ffe576;
+  font-size: 14px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 500;
+  max-width: 190px;
+  margin-bottom: 5px;
+}
+
+.ChatEndModal .modalTitle {
+  margin-left: 15px;
+  color: #ffffff;
+  font-size: 18px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 500;
+  margin-bottom: 20px;
+  z-index: 100;
+}
+
+.ChatEndModal .modalTimeLimit {
+  display: flex;
+  margin-left: 15px;
+  color: #eeeeee;
+  font-size: 10px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 100;
+  margin-bottom: 7px;
+  z-index: 100;
+}
+
+.ChatEndModal .modalTimeLimit > img {
+  width: 10.6px;
+  height: 10.6px;
+  margin-bottom: 1px;
+}
+
+.ChatEndModal .modalTimeLimit > span:nth-child(1) {
+  margin-left: 15px;
+  color: #eeeeee;
+  font-size: 10px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 100;
+}
+
+.ChatEndModal .modalDate {
+  margin-left: 15px;
+  color: #ffffff;
+  font-size: 12px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 100;
+  z-index: 100;
+}
+
+.ChatEndModal .modalDate > span:nth-child(1) {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 600;
+}
+
+.ChatEndModal .modalDate > span:nth-child(2) {
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #eeeeee;
+  font-weight: 100;
+}
+.ChatEndModal .textArea {
+  margin-bottom: 40px;
+  z-index: 100;
+}
+
+.ChatEndModal .modalBee {
+  position: absolute;
+  top: 130px;
+  left: 176px;
+  width: 143px;
+  height: 205px;
+}
