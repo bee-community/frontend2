@@ -16,16 +16,18 @@ ReactDOM.render(
   <ThemeProvider theme={theme}>
     <AuthProvider>
       <BoardProvider>
-        <Global styles={styles} />
-        <ChatProvider>
-          <JwtProvider>
-            <ScrollProvider>
-              <Provider store={store}>
-                <App />
-              </Provider>
-            </ScrollProvider>
-          </JwtProvider>
-        </ChatProvider>
+        <ArticlesProvider>
+          <Global styles={styles} />
+          <ChatProvider>
+            <JwtProvider>
+              <ScrollProvider>
+                <Provider store={store}>
+                  <App />
+                </Provider>
+              </ScrollProvider>
+            </JwtProvider>
+          </ChatProvider>
+        </ArticlesProvider>
       </BoardProvider>
     </AuthProvider>
   </ThemeProvider>,
