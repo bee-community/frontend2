@@ -1,5 +1,6 @@
 import { Global, ThemeProvider } from '@emotion/react';
 import theme from 'assets/theme';
+import { ArticlesProvider } from 'context/Article';
 import { AuthProvider } from 'context/Auth';
 import { BoardProvider } from 'context/Board';
 import { ChatProvider } from 'context/ChatContext';

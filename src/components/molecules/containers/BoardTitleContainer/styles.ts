@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 export const StyledBoardTitleContainer = styled.article`
   display: grid;
+  position: relative;
   grid-template-columns: 74px 1fr 120px;
   align-items: center;
   grid-gap: 12px;
@@ -24,5 +25,33 @@ export const StyledBoardTitleContainer = styled.article`
   .button-with-icon-image {
     width: 11px;
     height: 11px;
+  }
+`;
+
+export const DropDownMenu = styled.ul<{ isOpen: boolean }>`
+  display: ${props => (props.isOpen ? 'block' : 'none')};
+  position: absolute;
+  right: 0;
+  top: 63px;
+  margin: 0;
+  padding: 0;
+  z-index: 10;
+  width: 120px;
+
+  @media (max-width: ${props => props.theme.screenSize.xl}) {
+    top: 53px;
+    width: 100px;
+  }
+
+  li {
+    list-style-type: none;
+    margin-bottom: 10px;
+
+    @media (max-width: ${props => props.theme.screenSize.xl}) {
+      margin-bottom: 5px;
+    }
+    button {
+      width: 100%;
+    }
   }
 `;
