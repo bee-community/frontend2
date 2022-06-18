@@ -1,31 +1,41 @@
 import testImg from 'assets/images/banners/main-banner.png';
 import comment from 'assets/images/icons/comment.png';
 import heartUnfilled from 'assets/images/icons/heart-unfilled.png';
-import { ArticleType } from 'components/organisms/lists/BestArticleList/BestArticleList';
+import { ArticleType } from 'context/Articles';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
-import { StyledArticleContainer } from './styles';
+import { StyledArticleBox } from './styles';
 
-function ArticleContainer(props: { article: ArticleType }) {
-  const { id, title, tags, likes, created_at, comments } = props.article;
+function ArticleBox(props: { article: ArticleType }) {
+  const {
+    id,
+    title,
+    content,
+    summary,
+    board_id,
+    view_count,
+    is_announcement,
+    like_count,
+    tags,
+  } = props.article;
 
   return (
-    <StyledArticleContainer>
+    <StyledArticleBox>
       <Link to={`/article/${id}`}>
         <img src={testImg} alt="testImg" />
         <div className="title">{title}</div>
         <div className="tags">{tags}</div>
         <div className="reaction">
           <img src={heartUnfilled} alt="하트" />
-          <span>{likes}</span>
+          <span>{like_count}</span>
           <img src={comment} alt="코멘트" />
-          <span>{comments}</span>
+          <span>{view_count}</span>
         </div>
-        <div className="date">{created_at}</div>
+        <div className="date">2022.10.10</div>
       </Link>
-    </StyledArticleContainer>
+    </StyledArticleBox>
   );
 }
 
-export default ArticleContainer;
+export default ArticleBox;
