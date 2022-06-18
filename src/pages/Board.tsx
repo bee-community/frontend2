@@ -1,6 +1,6 @@
 import BoardTitleContainer from 'components/molecules/containers/BoardTitleContainer';
 import BoardArticleList from 'components/organisms/lists/BoardArticleList';
-import { useArticlesState } from 'context/Article';
+import { useArticlesState } from 'context/Articles';
 import useArticleActions from 'hooks/useArticleActions';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';

@@ -1,6 +1,6 @@
 import request from 'api';
-import { useArticlesDispatch } from 'context/Article';
-import { ArticlesAction, ArticleType } from 'context/Article/types';
+import { useArticlesDispatch } from 'context/Articles';
+import { ArticlesAction, ArticleType } from 'context/Articles/types';
 
 function useArticleActions() {
   const articlesDispatch = useArticlesDispatch();
