@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const StyledArticleContainer = styled.div`
+export const StyledArticleBox = styled.div`
   font-family: NotoSansCJKKR;
   font-size: ${props => props.theme.fontSize[14]};
 

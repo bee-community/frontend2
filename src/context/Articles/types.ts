@@ -16,14 +16,5 @@ export type ArticleType = {
   view_count: number;
   is_announcement: boolean;
   like_count: number;
-  tags: [];
-  poll: {
-    id: string;
-    title: string;
-    is_multiple: boolean;
-    contents: {
-      id: string;
-      content: string;
-    };
-  };
+  tags: string[];
 };
