@@ -6,11 +6,16 @@ import ChatList from 'components/ChatList/ChatList';
 import CreateChannel from 'components/CreateChannel/CreateChannel';
 import MyChatList from 'components/MyChatList/MyChatList';
 import React, { useEffect, useState, useCallback, useContext } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, Route, Routes, useLocation } from 'react-router';
 import { NavLink } from 'react-router-dom';
+import { setChatColor } from 'slice/chatColorSlice';
+import { setChatState } from 'slice/chatStateSlice';
+import { setLogId } from 'slice/logIdSlice';
 import useSWR from 'swr';
 
 import ChatContext from '../../context/ChatContext';
+import { setPublicChats, resetPublicChats } from '../../slice/publicChats';
 import fetcher from '../../utils/fetcher';
 import {
   AsideWrap,
@@ -35,18 +40,13 @@ let chatGetType = 'chatList';
 
 function Aside() {
   // dummy popular Article
-  const {
-    chatState,
-    setChatState,
-    chatColor,
-    setChatColor,
-    token,
-    setPublicChats,
-    setLogId,
-    happy,
-    client,
-    setChatList,
-  } = useContext<any>(ChatContext);
+  const { client, setClient, happy, setChatList } =
+    useContext<any>(ChatContext);
+  // const { JWTtoken, publicChats } = useSelector((store: any) => store);
+  const JWTtoken = useSelector((store: any) => store.JWTtoken);
+  const chatColor = useSelector((store: any) => store.chatColor);
+  const chatState = useSelector((store: any) => store.chatState);
+  const dispatcher = useDispatch();
   const [isOpen, setIsOpen] = React.useState(false);
   const toggleDrawer = () => {
     console.log('Heelp');
@@ -54,13 +54,13 @@ function Aside() {
   };
   const chatUrl = '/api/v1/webrtc/channels/0';
   const myChatUrl = '/api/v1/webrtc/mychannel/0';
-  const { data: Data, revalidate }: any = useSWR(
-    chatColor == 'chatList' ? chatUrl : myChatUrl,
-    url => fetcher(url, token),
-    {
-      dedupingInterval: 60000,
-    },
-  );
+  // const { data: Data, revalidate }: any = useSWR(
+  //   chatColor.chatColor == 'chatList' ? chatUrl : myChatUrl,
+  //   url => fetcher(url, JWTtoken.JWTtoken),
+  //   {
+  //     dedupingInterval: 60000,
+  //   },
+  // );
 
   useEffect(() => {
     if (Object.keys(happy).length > 0) {
@@ -72,8 +72,8 @@ function Aside() {
 
     setChatList([]);
     console.log('색깔바뀜');
-    setPublicChats([]);
-    setLogId(0);
+    dispatcher(resetPublicChats());
+    dispatcher(setLogId({ value: 0 }));
   }, [chatColor]);
   const [popularArticle] = useState([
     {
@@ -172,25 +172,29 @@ function Aside() {
       <Box>
         <ChatButton
           onClick={() => {
-            setChatColor('chatList');
-            setChatState('chatList');
+            dispatcher(setChatColor({ value: 'chatList' }));
+            dispatcher(setChatState({ value: 'chatList' }));
             // chatGetType = 'chatList';
             console.log('dad');
-            revalidate();
+            // revalidate();
           }}
-          backgroundColor={chatColor == 'chatList' ? '#ffe576' : 'white'}
-          fontWeight={chatColor == 'chatList' ? '700' : '400'}>
+          backgroundColor={
+            chatColor.chatColor == 'chatList' ? '#ffe576' : 'white'
+          }
+          fontWeight={chatColor.chatColor == 'chatList' ? '700' : '400'}>
           채팅방 리스트
         </ChatButton>
         <ChatButton
           onClick={() => {
-            setChatColor('myList');
-            setChatState('myList');
+            dispatcher(setChatColor({ value: 'myList' }));
+            dispatcher(setChatState({ value: 'myList' }));
             console.log('dad2');
-            revalidate();
+            // revalidate();
           }}
-          backgroundColor={chatColor == 'myList' ? '#ffe576' : 'white'}
-          fontWeight={chatColor == 'myList' ? '700' : '400'}>
+          backgroundColor={
+            chatColor.chatColor == 'myList' ? '#ffe576' : 'white'
+          }
+          fontWeight={chatColor.chatColor == 'myList' ? '700' : '400'}>
           내 채팅방
         </ChatButton>
         {/* <button
@@ -208,7 +212,7 @@ function Aside() {
       </Box>
 
       {(() => {
-        switch (chatState) {
+        switch (chatState.chatState) {
           case 'chatList':
             return <ChatList />;
           case 'myList':

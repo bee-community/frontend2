@@ -8,8 +8,10 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 // import Scrollbars from 'react-custom-scrollbars';
 import { Scrollbar } from 'react-scrollbars-custom';
+import { setLogId } from 'slice/logIdSlice';
 import useSWR, { useSWRInfinite } from 'swr';
 import fetcher2 from 'utils/fetcher2';
 import makeSection from 'utils/makeSection';
@@ -28,26 +30,23 @@ const ChatZZone = () => {
   // }, []);
 
   const {
-    userData,
-    setUserData,
-    publicChats,
-    setPublicChats,
-    client,
-    setClient,
-
-    chatcount,
-    setChatcount,
-    logId,
-    setLogId,
     channelInfo,
     setChannelInfo,
     happy,
     setHappy,
-    token,
     chatColor,
     chatList,
     setChatList,
   } = useContext<any>(ChatContext);
+  const userData = useSelector((store: any) => store.userData);
+  const JWTtoken = useSelector((store: any) => store.JWTtoken);
+  const publicChats = useSelector((store: any) => store.publicChats);
+  const logId = useSelector((store: any) => store.logId);
+  const dispatcher = useDispatch();
+  // const userData = useSelector((store: any) => store.userData);
+  // const JWTtoken = useSelector((store: any) => store.JWTtoken);
+  // const publicChats = useSelector((store: any) => store.publicChats);
+
   const jwt = useContext(JwtStateContext);
   const { scrollBarRef } = useContext<any>(ScrollContext);
   const [isEmpty, setIsEmpty] = useState(false);
@@ -71,7 +70,7 @@ const ChatZZone = () => {
   // }, [chatLogData]);
 
   useEffect(() => {
-    if (publicChats?.length > 0) {
+    if (publicChats.chat?.length > 0) {
       scrollBarRef.current.scrollToBottom();
     }
   }, [publicChats]);
@@ -82,14 +81,13 @@ const ChatZZone = () => {
     // console.log(
     //   'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjUzNzIzMDIxLCJpYXQiOjE2NTM3MDUwMjF9.fEssRx2dJCKR9QMZAh9e_tI_nztllLmnCiaRk0ziHswW2q_LFo8qUnXfpOy3XGKOUEuIru8chhFQPSy58gKSlA',
     // );
-    if (logId == null) {
+    if (logId.logId == null) {
       return;
     }
-    console.log(logId);
     axios
-      .get(`/api/v1/webrtc/channel/${channelInfo.id}/${logId}`, {
+      .get(`/api/v1/webrtc/channel/${channelInfo.id}/${logId.logId}`, {
         headers: {
-          Authorization: 'jwt ' + token,
+          Authorization: 'jwt ' + JWTtoken.JWTtoken,
         },
       })
       .then((res: any) => {
@@ -108,16 +106,12 @@ const ChatZZone = () => {
         console.log(arr);
         // console.log(res.data);
         setChatList([...arr, res.data]);
-        if (logId == 0) {
+        if (logId.logId == 0) {
           return;
         } else scrollBarRef.current.scrollTo(0, chatL * 51);
       });
     return () => {};
   }, [logId]);
-
-  useEffect(() => {
-    console.log(chatList);
-  }, [chatList]);
 
   useEffect(() => {
     scrollBarRef.current.scrollToBottom();
@@ -127,18 +121,17 @@ const ChatZZone = () => {
       // console.log(value.scrollTop);
       if (value.scrollTop === 0 && !isReachingEnd) {
         console.log('가장위');
-        if (logId < 20) {
-          let a = logId + 1;
-          setLogId(a);
+        if (logId.logId < 20) {
+          let a = logId.logId + 1;
+          dispatcher(setLogId({ value: a }));
         } else {
-          let b = logId - 20;
-          setLogId(b);
+          let b = logId.logId - 20;
+          dispatcher(setLogId({ value: b }));
         }
       }
     },
     [isReachingEnd, logId],
   );
-  console.log(chatList);
   const chatSections = makeSection(chatList ? chatList.flat().reverse() : []);
   // console.log(publicChats);
   // console.log(chatSections);
@@ -248,7 +241,7 @@ const ChatZZone = () => {
           <div className="chatContent">대화 글 입니다.</div>
           <div className="chatArriveTime">AM 10:00</div>
         </div> */}
-        {publicChats.map((chat: any, index: any) => {
+        {publicChats.chat.map((chat: any, index: any) => {
           // console.log(chat);
           // // console.log(chat);
           // console.log(userData);
@@ -287,7 +280,6 @@ const ChatZZone = () => {
           }
         })}
       </Scrollbar>
-      {/* <div style={{ visibility: 'hidden' }}>{chatcount}</div> */}
     </div>
   );
 };

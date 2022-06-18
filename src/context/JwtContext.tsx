@@ -30,7 +30,6 @@ const ChatJwtContext = createContext({});
 export const JwtProvider: FC = ({ children }) => {
   //   const [jwt, setJwt] = useState<any>('');
   const [jwt, dispatch] = useReducer(reducer, '');
-  const [token, setToken] = useState('');
   return (
     <DispatchContext.Provider value={dispatch}>
       <JwtStateContext.Provider value={jwt}>

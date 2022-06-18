@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useSelector } from 'react-redux';
 
 import ChatContext from '../../context/ChatContext';
 import './chatMiddle.css';
@@ -9,15 +10,18 @@ interface chatUserProfile {
 }
 
 const ChatMiddle = () => {
-  const { userChatName, setUsersChatName } = useContext<any>(ChatContext);
-  userChatName.map(({ user, index }: chatUserProfile) => {});
+  const userChatName = useSelector((store: any) => store.userEnterNumber);
+
+  userChatName.userEnterNumber.map(({ user, index }: chatUserProfile) => {});
   return (
     <div className="chatMiddle">
       <div className="wrapper">
         <div className="profileWrapper">
-          {userChatName.map(({ user: any, index }: chatUserProfile) => {
-            return <div key={index} className="userProfile"></div>;
-          })}
+          {userChatName.userEnterNumber.map(
+            ({ user: any, index }: chatUserProfile) => {
+              return <div key={index} className="userProfile"></div>;
+            },
+          )}
         </div>
       </div>
       {/* <div className="wrapper">

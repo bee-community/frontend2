@@ -20,9 +20,13 @@ import React, {
 // import { Scrollbars } from 'react-custom-scrollbars';
 import Drawer from 'react-modern-drawer';
 import 'react-modern-drawer/dist/index.css';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { Scrollbar } from 'react-scrollbars-custom';
+import { setChatColor } from 'slice/chatColorSlice';
+import { setChatState } from 'slice/chatStateSlice';
+import { setLogId } from 'slice/logIdSlice';
 import useSWR, { useSWRInfinite } from 'swr';
 import fetcher2 from 'utils/fetcher2';
 import { history } from 'utils/history';
@@ -31,6 +35,8 @@ import ChatContext from '../../context/ChatContext';
 import ScrollContext from '../../context/ScrollContext';
 // import JwtContext from '../../context/JwtContext';
 import useInput from '../../hooks/useInput';
+import { resetPublicChats } from '../../slice/publicChats';
+import { changeUserDataMessage } from '../../slice/userDataSlice';
 import fetcher from '../../utils/fetcher';
 import './ChatChat.css';
 import './drawer.css';
@@ -42,37 +48,28 @@ import { ChatBox, Container } from './styles';
 // }
 const Chat = () => {
   const {
-    userData,
-    setUserData,
-    publicChats,
-    setPublicChats,
     client,
     setClient,
-    userChatName,
-    setUsersChatName,
-    liveTime,
-    setLivetime,
-    indexChat,
-    setIndexChat,
-    endTTL,
-    setEndTTL,
-    logId,
-    setLogId,
+
     channelInfo,
     setChannelInfo,
     happy,
     setHappy,
-    token,
-    setChatState,
-    chatColor,
     setChatList,
   } = useContext<any>(ChatContext);
+
+  const userData = useSelector((store: any) => store.userData);
+  const JWTtoken = useSelector((store: any) => store.JWTtoken);
+  const userChatName = useSelector((store: any) => store.userEnterNumber);
+  const indexChat = useSelector((store: any) => store.indexChat);
+  const chatColor = useSelector((store: any) => store.chatColor);
+  const dispatcher = useDispatch();
   const { scrollBarRef } = useContext<any>(ScrollContext);
   const chatUrl = '/api/v1/webrtc/channels/0';
   const myChatUrl = '/api/v1/webrtc/mychannel/0';
   const { data: Data, revalidate }: any = useSWR(
-    chatColor == 'chatList' ? chatUrl : myChatUrl,
-    url => fetcher(url, token),
+    chatColor.chatColor == 'chatList' ? chatUrl : myChatUrl,
+    url => fetcher(url, JWTtoken.JWTtoken),
     {
       dedupingInterval: 60000,
     },
@@ -90,7 +87,7 @@ const Chat = () => {
   useEffect(() => {
     // if (typeof Data?.channels[indexChat]?.timeToLive == 'undefined') {
     // } else {
-    setChatTime(Data?.channels[indexChat]?.timeToLive);
+    setChatTime(Data?.channels[indexChat.indexChat]?.timeToLive);
     // }
     // console.log(typeof Data?.channels[indexChat]?.timeToLive);
   }, [Data]);
@@ -160,7 +157,8 @@ const Chat = () => {
           JSON.stringify(chatMessage),
         );
 
-        setUserData({ ...userData, message: '' });
+        // setUserData({ ...userData, message: '' });
+        dispatcher(changeUserDataMessage({ message: '' }));
       }
       // mutateChat(prevChatData => {
       //   prevChatData?.[0].logs.unshift({
@@ -217,7 +215,7 @@ const Chat = () => {
       );
 
       // navigate('/chat/chatList');
-      setChatState('chatList');
+      dispatcher(setChatState({ value: 'chatList' }));
     }
     revalidate();
   };
@@ -225,9 +223,10 @@ const Chat = () => {
     console.log('종료');
     happy.unsubscribe();
     console.log(happy);
+    console.log(client);
     client.disconnect();
-    setPublicChats([]);
-    setLogId(0);
+    dispatcher(resetPublicChats());
+    dispatcher(setLogId({ value: 0 }));
     setChatList([]);
   };
 
@@ -302,15 +301,17 @@ const Chat = () => {
                   <div className="cuteCircle">나</div>
                 </div>
                 <div className="line"></div>
-                <div className="friend">{`대화상대 ${userChatName.length}/30`}</div>
-                {userChatName.map((user: any, index: number) => {
-                  return (
-                    <div key={index} className="friendIcon">
-                      <div className="chatImgIcon"></div>
-                      <div className="chatContent">{user.nickname}</div>
-                    </div>
-                  );
-                })}
+                <div className="friend">{`대화상대 ${userChatName.userEnterNumber.length}/30`}</div>
+                {userChatName.userEnterNumber.map(
+                  (user: any, index: number) => {
+                    return (
+                      <div key={index} className="friendIcon">
+                        <div className="chatImgIcon"></div>
+                        <div className="chatContent">{user.nickname}</div>
+                      </div>
+                    );
+                  },
+                )}
 
                 <div className="friendIcon" style={{ height: '53px' }}>
                   {/* <div className="chatImgIcon"></div>
@@ -334,10 +335,10 @@ const Chat = () => {
                 style={{ cursor: 'pointer' }}
                 onClick={() => {
                   socketDisconnect();
-                  if (chatColor == 'chatList') {
-                    setChatState('chatList');
+                  if (chatColor.chatColor == 'chatList') {
+                    dispatcher(setChatState({ value: 'chatList' }));
                   } else {
-                    setChatState('myList');
+                    dispatcher(setChatState({ value: 'myList' }));
                   }
                   revalidate();
                 }}>

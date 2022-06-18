@@ -6,9 +6,11 @@ import { ChatProvider } from 'context/ChatContext';
 import { JwtProvider } from 'context/JwtContext';
 import { ScrollProvider } from 'context/ScrollContext';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import styles from 'styles';
 
 import App from './App';
+import { store } from './store';
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
@@ -18,7 +20,9 @@ ReactDOM.render(
         <ChatProvider>
           <JwtProvider>
             <ScrollProvider>
-              <App />
+              <Provider store={store}>
+                <App />
+              </Provider>
             </ScrollProvider>
           </JwtProvider>
         </ChatProvider>

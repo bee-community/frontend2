@@ -23,7 +23,7 @@ interface Props {
   onClickChatBeforeModal: (name: Channel, index: number) => void;
 }
 
-const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
+const ChatRoomMy: VFC<Props> = ({ onClickChatBeforeModal }) => {
   const [Data, setData] = useState<ChannelResponse>();
   const [DataList, setDataList] = useState<any>([]);
   const JWTtoken = useSelector((store: any) => store.JWTtoken);
@@ -66,15 +66,11 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
       ) {
         console.log('Bottom');
         axios
-          .get(
-            chatUrl + String(channelIndex + 1),
-
-            {
-              headers: {
-                Authorization: 'jwt ' + JWTtoken.JWTtoken,
-              },
+          .get(myChatUrl + String(channelIndex + 1), {
+            headers: {
+              Authorization: 'jwt ' + JWTtoken.JWTtoken,
             },
-          )
+          })
           .then((res: any) => {
             console.log(res.data);
             setDataList([...DataList, ...res.data.channels]);
@@ -87,11 +83,10 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
   );
   useEffect(() => {
     let timer = setInterval(async () => {
-      console.log(channelIndex);
       let test: any = [];
       for (let i = 0; i < channelIndex + 1; i++) {
         await axios
-          .get(chatUrl + String(i), {
+          .get(myChatUrl + String(i), {
             headers: {
               Authorization: 'jwt ' + JWTtoken.JWTtoken,
             },
@@ -106,20 +101,17 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
           });
       }
       setDataList(test);
-    }, 5000);
+    }, 50000);
 
-    return () => {
-      clearInterval(timer);
-      console.log('fffdadadadad');
-    };
-  }, [channelIndex]);
+    return () => clearInterval(timer);
+  }, []);
   useEffect(() => {
     console.log(DataList.length);
   }, [DataList]);
   useEffect(() => {
     console.log('sssss');
     axios
-      .get('/api/v1/webrtc/channels/0', {
+      .get('/api/v1/webrtc/mychannel/0', {
         headers: {
           Authorization: 'jwt ' + JWTtoken.JWTtoken,
         },
@@ -312,4 +304,4 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
   );
 };
 
-export default ChatRoom;
+export default ChatRoomMy;

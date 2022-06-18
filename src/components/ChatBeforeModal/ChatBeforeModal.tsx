@@ -3,7 +3,12 @@ import cuteBee from 'assets/chatImages/removebee.png';
 import xButton from 'assets/chatImages/xbutton.png';
 import axios from 'axios';
 import React, { useEffect, VFC, useState, useContext } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { setChatState } from 'slice/chatStateSlice';
+import { setEndTTL } from 'slice/endTTLSlice';
+import { setLiveTime } from 'slice/liveTimeSlice';
+import { setLogId } from 'slice/logIdSlice';
 import SockJS from 'sockjs-client';
 import { over } from 'stompjs';
 import useSWR, { useSWRInfinite } from 'swr';
@@ -15,6 +20,12 @@ import { JwtStateContext, DispatchContext } from '../../context/JwtContext';
 import ScrollContext from '../../context/ScrollContext';
 // import JwtContext from '../../context/JwtContext';
 import useInput from '../../hooks/useInput';
+import { setPublicChats, pushPublicChats } from '../../slice/publicChats';
+import {
+  changeUserDataEmail,
+  changeUserDataConnected,
+} from '../../slice/userDataSlice';
+import { setUserEnterNumber } from '../../slice/userEnterNumberSlice';
 import { IChannel, Channel, ChannelResponse, HashTag } from '../../typings/db';
 import './ChatBeforeModal.css';
 
@@ -23,7 +34,7 @@ interface Props {
   show: boolean;
   onCloseModal: () => void;
 }
-const socketURL = 'http://192.168.0.44:8080/ws-stomp';
+const socketURL = 'http://192.168.35.133:8080/ws-stomp';
 var stompClient: any = null;
 let trick = '';
 let avoid = false;
@@ -37,36 +48,17 @@ const ChatBeforeModal: VFC<Props> = ({
   const [testName, setTestName] = useState('');
 
   // const [test, setTest] = useState('');
-  const {
-    userData,
-    setUserData,
-    publicChats,
-    setPublicChats,
-    client,
-    setClient,
-
-    userChatName,
-    setUsersChatName,
-    liveTime,
-    setLivetime,
-    logId,
-    setLogId,
-    channelInfo,
-    setChannelInfo,
-    happy,
-    setHappy,
-    endTTL,
-    setEndTTL,
-    chatState,
-    setChatState,
-    token,
-  } = useContext<any>(ChatContext);
+  const { client, setClient, channelInfo, setChannelInfo, happy, setHappy } =
+    useContext<any>(ChatContext);
   const { scrollBarRef } = useContext<any>(ScrollContext);
 
   const jwt = useContext(JwtStateContext);
   const dispatch = useContext(DispatchContext);
-
-  // const { jwt, setJwt } = useContext<any>(JwtContext);
+  const userData = useSelector((store: any) => store.userData);
+  const JWTtoken = useSelector((store: any) => store.JWTtoken);
+  const publicChats = useSelector((store: any) => store.publicChats);
+  const liveTime = useSelector((store: any) => store.liveTime);
+  const dispatcher = useDispatch();
 
   const secondsToTime = (seconds: number) => {
     let day = 0;
@@ -79,7 +71,8 @@ const ChatBeforeModal: VFC<Props> = ({
     }
     // return `${day}일 ${hour}시간 ${min}분 후 종료`;
     let str = `${day}일 ${hour}시간 ${min}분 후 종료`;
-    setLivetime(str);
+    // setLivetime(str);
+    dispatcher(setLiveTime({ value: str }));
   };
 
   const renderHash = (ob: HashTag[]) => {
@@ -97,7 +90,6 @@ const ChatBeforeModal: VFC<Props> = ({
     var chatMessage = {
       type: 'ENTER',
       channelId: sendChannelInfo.id,
-      // senderName: userData.username,
       message: 'message',
     };
     stompClient.send(
@@ -105,7 +97,6 @@ const ChatBeforeModal: VFC<Props> = ({
       {
         jwt: trick,
         // jwt: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjUxNTE0NjY3LCJpYXQiOjE2NTE0OTY2Njd9.I3Wlq_f7elhOsJ9wP07-YCRba9ITlyI7BbQyqXWjmB5ClkQ5iqOsNdNUqpX2BG2BgCrHwvsujA6O15ojMmAI2Q',
-        // username: userData.username,
         channelId: sendChannelInfo.id,
         type: 'ENTER',
       },
@@ -118,15 +109,11 @@ const ChatBeforeModal: VFC<Props> = ({
     var chatMessage = {
       type: 'REENTER',
       channelId: sendChannelInfo.id,
-      // senderName: userData.username,
-      // message: 'message',
     };
     stompClient.send(
       '/pub/chat/room',
       {
         jwt: trick,
-        // jwt: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjUxNTE0NjY3LCJpYXQiOjE2NTE0OTY2Njd9.I3Wlq_f7elhOsJ9wP07-YCRba9ITlyI7BbQyqXWjmB5ClkQ5iqOsNdNUqpX2BG2BgCrHwvsujA6O15ojMmAI2Q',
-        // username: userData.username,
         channelId: sendChannelInfo.id,
         type: 'REENTER',
       },
@@ -137,8 +124,7 @@ const ChatBeforeModal: VFC<Props> = ({
   const onMessageReceived_except = (payload: any) => {
     var payloadData = JSON.parse(payload.body);
     // console.log(payloadData.users);
-    setUsersChatName(payloadData.users);
-
+    dispatcher(setUserEnterNumber({ value: payloadData.users }));
     // console.log(payload);
     switch (payloadData.type) {
       case 'RENEWAL':
@@ -151,28 +137,29 @@ const ChatBeforeModal: VFC<Props> = ({
         }
         if (!avoid) {
           console.log('이거이거 고쳐야해');
-          setLogId(reEnter);
+          dispatcher(setLogId({ value: reEnter }));
           avoid = true;
         }
-        console.log(publicChats);
-        publicChats.push(payloadData);
-        setPublicChats([...publicChats]);
+        // console.log(publicChats);
+        // publicChats.push(payloadData);
+        dispatcher(pushPublicChats({ value: payloadData }));
+        // dispatcher(setPublicChats({ value: publicChats.chat }));
         break;
       case 'CHAT':
         // console.log('2222222222222');'
         console.log(payloadData);
         payloadData['sendTime'] = Date();
         // console.log(payloadData);
-        publicChats.push(payloadData);
+        dispatcher(pushPublicChats({ value: payloadData }));
 
-        setPublicChats([...publicChats]);
+        // dispatcher(setPublicChats({ value: publicChats.chat }));
         // console.log('스크롤아래');
         // scrollBarRef.current.scrollToBottom();
         break;
       case 'CLOSE':
         // console.log('2222222222222');
         console.log('testCLose');
-        setEndTTL(true);
+        dispatcher(setEndTTL({ value: true }));
         break;
     }
   };
@@ -180,7 +167,7 @@ const ChatBeforeModal: VFC<Props> = ({
   const onMessageReceived = (payload: any) => {
     var payloadData = JSON.parse(payload.body);
     // console.log(payloadData.users);
-    setUsersChatName(payloadData.users);
+    dispatcher(setUserEnterNumber({ value: payloadData.users }));
 
     // console.log(payload);
     switch (payloadData.type) {
@@ -194,32 +181,34 @@ const ChatBeforeModal: VFC<Props> = ({
         }
         if (!avoid) {
           console.log('이거이거 고쳐야해');
-          setLogId(payloadData.logId);
+          dispatcher(setLogId({ value: payloadData.logId }));
+
           avoid = true;
         }
-        publicChats.push(payloadData);
-        setPublicChats([...publicChats]);
+        dispatcher(pushPublicChats({ value: payloadData }));
+        // dispatcher(setPublicChats({ value: publicChats.chat }));
         break;
       case 'CHAT':
         // console.log('2222222222222');'
         console.log(payloadData);
         payloadData['sendTime'] = Date();
         // console.log(payloadData);
-        publicChats.push(payloadData);
+        dispatcher(pushPublicChats({ value: payloadData }));
 
-        setPublicChats([...publicChats]);
+        // dispatcher(setPublicChats({ value: publicChats.chat }));
         // console.log('스크롤아래');
         // scrollBarRef.current.scrollToBottom();
         break;
       case 'CLOSE':
         // console.log('2222222222222');
         console.log('testCLose');
-        setEndTTL(true);
+        dispatcher(setEndTTL({ value: true }));
         break;
     }
   };
   const onConnected_except = () => {
-    setUserData({ ...userData, connected: true });
+    // setUserData({ ...userData, connected: true });
+    dispatcher(changeUserDataConnected({ connected: true }));
     setHappy(
       stompClient.subscribe(
         '/sub/chat/room/' + sendChannelInfo.id,
@@ -292,14 +281,13 @@ const ChatBeforeModal: VFC<Props> = ({
   };
 
   const onConnected = () => {
-    setUserData({ ...userData, connected: true });
+    dispatcher(changeUserDataConnected({ connected: true }));
     setHappy(
       stompClient.subscribe(
         '/sub/chat/room/' + sendChannelInfo.id,
         onMessageReceived,
       ),
     );
-    console.log(happy);
     userJoin();
   };
 
@@ -331,7 +319,7 @@ const ChatBeforeModal: VFC<Props> = ({
       // setJwt(ress.data.twttoken);
       // trick = ress.data.jwttoken;
 
-      trick = token;
+      trick = JWTtoken.JWTtoken;
       // console.log(trick);
       // setTestName(ress.data.jwttoken);
       //1 setJwt('test');
@@ -352,7 +340,7 @@ const ChatBeforeModal: VFC<Props> = ({
     } catch (err) {
       console.log(err);
     } finally {
-      setChatState('chat');
+      dispatcher(setChatState({ value: 'chat' }));
     }
   };
 
@@ -439,7 +427,8 @@ const ChatBeforeModal: VFC<Props> = ({
 
     const { value } = e.target;
     setTestName(value);
-    setUserData({ ...userData, userEmail: value });
+    // setUserData({ ...userData, userEmail: value });
+    dispatcher(changeUserDataEmail({ userEmail: value }));
   };
 
   if (!show) {
@@ -464,7 +453,7 @@ const ChatBeforeModal: VFC<Props> = ({
             <div className="imgWrapper">
               <img alt="timeIcon" role="presentation" src={timeIcon} />
             </div>
-            <span>&nbsp; {liveTime}</span>
+            <span>&nbsp; {liveTime.liveTime}</span>
           </div>
           <div className="modalDate">
             <span>{sendChannelInfo.currentParticipants}</span>

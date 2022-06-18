@@ -11,6 +11,7 @@ import React, {
   useState,
   useRef,
 } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import ChatContext from '../../context/ChatContext';
@@ -25,7 +26,7 @@ interface Props {
 }
 
 const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
-  const { token } = useContext<any>(ChatContext);
+  const { JWTtoken } = useSelector((store: any) => store);
   const [newWorkspace, onChangeNewWorkspace, setNewWorkspace] = useInput('');
   const [newHash, onChangeNewHash, setNewHash] = useInput('');
   const [tags, setTags] = useState<any>([]);
@@ -68,7 +69,7 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
           },
           {
             headers: {
-              Authorization: 'jwt ' + token,
+              Authorization: 'jwt ' + JWTtoken.JWTtoken,
             },
           },
         )

@@ -1,10 +1,12 @@
 import ChatBeforeModal from 'components/ChatBeforeModal/ChatBeforeModal';
 import ChatEndModal from 'components/ChatEndModal/ChatEndModal';
 import ChatRoom from 'components/ChatRoom/ChatRoom';
-import React, { useCallback, useState, useContext } from 'react';
+import React, { useCallback, useState, useContext, useReducer } from 'react';
+import { useDispatch } from 'react-redux';
 // import CustomScroll from 'react-custom-scroll';
 // import { Scrollbars } from 'react-custom-scrollbars';
 import { Scrollbar } from 'react-scrollbars-custom';
+import { setIndexChat } from 'slice/indexChatSlice';
 
 import ChatContext from '../../context/ChatContext';
 import { Channel, HashTag, User } from '../../typings/db';
@@ -12,8 +14,7 @@ import './ChatList.css';
 import { ChatBox, Container } from './styles';
 
 const ChatList = () => {
-  const { indexChat, setIndexChat } = useContext<any>(ChatContext);
-
+  const dispatcher = useDispatch();
   const ab: Channel = {
     channelHashTags: [{ id: 4, hashTag: { id: 1, tagName: 'hello' } }],
     channelName: '정현님짱',
@@ -30,7 +31,7 @@ const ChatList = () => {
     (channel: Channel, i: number) => {
       setShowChatBeforeModal(true);
       setSendChannelInfo(channel);
-      setIndexChat(i);
+      dispatcher(setIndexChat({ value: i }));
     },
     [sendChannelInfo],
   );
@@ -43,10 +44,7 @@ const ChatList = () => {
     <div className="ChatList">
       <Container>
         <ChatBox>
-          <Scrollbar maximalThumbYSize={95}>
-            <ChatRoom
-              onClickChatBeforeModal={onClickChatBeforeModal}></ChatRoom>
-          </Scrollbar>
+          <ChatRoom onClickChatBeforeModal={onClickChatBeforeModal}></ChatRoom>
 
           <ChatBeforeModal
             sendChannelInfo={sendChannelInfo}
