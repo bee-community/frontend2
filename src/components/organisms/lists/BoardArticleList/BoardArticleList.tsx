@@ -1,5 +1,6 @@
 import arrowDown from 'assets/images/icons/arrow-down.png';
 import ArticleBox from 'components/molecules/boxes/ArticleBox';
+import { ArticleType } from 'context/Articles';
 import * as React from 'react';
 
 import { StyledBoardArticleList } from './styles';
@@ -12,7 +13,7 @@ function BoardArticleList(props: any) {
         <img src={arrowDown} alt="﹀" />
       </div>
       <div className="board-article-list-wrap">
-        {props.articles.map((article: any, index: number) => {
+        {props.articles.map((article: ArticleType, index: number) => {
           return <ArticleBox key={index} article={article} />;
         })}
       </div>
