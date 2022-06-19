@@ -1,5 +1,5 @@
 import plusButton from 'assets/chatImages/plusButton.png';
-import React, { useCallback, useEffect, useRef, VFC } from 'react';
+import React, { VFC } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 
 import './ChatChat.css';
@@ -23,7 +23,7 @@ const chatBox: VFC<Props> = ({ chat, onSubmitForm, onChangeChat }) => {
     // console.log(chat)
     // console.log(e);
     if (e.key === 'Enter' && e.keyCode === 13) {
-      console.log(chat.trim());
+      // console.log(chat.trim());
       if (!e.shiftKey) {
         e.preventDefault();
         if (chat?.trim() !== '') {

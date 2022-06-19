@@ -1,4 +1,4 @@
-import { createContext, FC, useRef, useState } from 'react';
+import { createContext, FC, useRef } from 'react';
 
 const ScrollContext = createContext({});
 

@@ -3,36 +3,22 @@ import hamBurger from 'assets/chatImages/hamburger.png';
 import setting from 'assets/chatImages/setting.png';
 import timeIcon from 'assets/chatImages/timeIcon.png';
 import xbutton from 'assets/chatImages/xbutton_gray.png';
-import axios from 'axios';
 import ChatWraper from 'components/ChatBox/ChatWraper';
 import ChatEndModal from 'components/ChatEndModal/ChatEndModal';
 import ChatMiddle from 'components/ChatMiddle/ChatMiddle';
-import ChatRoom from 'components/ChatRoom/ChatRoom';
 import ChatZZone from 'components/ChatZZone/ChatZZone';
-import { JwtStateContext, DispatchContext } from 'context/JwtContext';
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  VFC,
-  useState,
-} from 'react';
+import { JwtStateContext } from 'context/JwtContext';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 // import { Scrollbars } from 'react-custom-scrollbars';
 import Drawer from 'react-modern-drawer';
 import 'react-modern-drawer/dist/index.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import { Scrollbar } from 'react-scrollbars-custom';
-import { setChatColor } from 'slice/chatColorSlice';
 import { setChatState } from 'slice/chatStateSlice';
 import { setLogId } from 'slice/logIdSlice';
-import useSWR, { useSWRInfinite } from 'swr';
-import fetcher2 from 'utils/fetcher2';
-import { history } from 'utils/history';
+import useSWR from 'swr';
 
 import ChatContext from '../../context/ChatContext';
-import ScrollContext from '../../context/ScrollContext';
 // import JwtContext from '../../context/JwtContext';
 import useInput from '../../hooks/useInput';
 import { resetPublicChats } from '../../slice/publicChats';
@@ -47,16 +33,8 @@ import { ChatBox, Container } from './styles';
 //   toggleDrawer: (e: any) => void;
 // }
 const Chat = () => {
-  const {
-    client,
-    setClient,
-
-    channelInfo,
-    setChannelInfo,
-    happy,
-    setHappy,
-    setChatList,
-  } = useContext<any>(ChatContext);
+  const { client, channelInfo, happy, setChatList } =
+    useContext<any>(ChatContext);
 
   const userData = useSelector((store: any) => store.userData);
   const JWTtoken = useSelector((store: any) => store.JWTtoken);
@@ -64,7 +42,6 @@ const Chat = () => {
   const indexChat = useSelector((store: any) => store.indexChat);
   const chatColor = useSelector((store: any) => store.chatColor);
   const dispatcher = useDispatch();
-  const { scrollBarRef } = useContext<any>(ScrollContext);
   const chatUrl = '/api/v1/webrtc/channels/0';
   const myChatUrl = '/api/v1/webrtc/mychannel/0';
   const { data: Data, revalidate }: any = useSWR(
@@ -74,13 +51,11 @@ const Chat = () => {
       dedupingInterval: 60000,
     },
   );
-  let navigate = useNavigate();
 
   const [chat, onChangeChat, setChat] = useInput('');
   const [isOpen, setIsOpen] = React.useState(false);
   const [chatTime, setChatTime] = useState<number | undefined>(0);
   const toggleDrawer = () => {
-    console.log('Heelp');
     setIsOpen(prevState => !prevState);
   };
 
@@ -90,6 +65,7 @@ const Chat = () => {
     setChatTime(Data?.channels[indexChat.indexChat]?.timeToLive);
     // }
     // console.log(typeof Data?.channels[indexChat]?.timeToLive);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [Data]);
   const secondsToTime = (seconds: number | undefined) => {
     if (typeof seconds === 'undefined') {
@@ -109,7 +85,6 @@ const Chat = () => {
   // userChatName.map((user: any, index: number) => console.log(user));
   // const { jwt, setJwt } = useContext<any>(ChatContext);
   const jwt = useContext(JwtStateContext);
-  const dispatch = useContext(DispatchContext);
   // 챗 데이터를 가져다옴
   // const { data: chatData, mutate: mutateChat, revalidate } = useSWR<IDM[]>(
   //   (index) => `/api/workspaces/${workspace}/dms/${id}/chats?perPage=20&page=${index + 1}`,
@@ -119,7 +94,7 @@ const Chat = () => {
 
   const onSubmitForm = useCallback(
     e => {
-      console.log(chat);
+      // console.log(chat);
       if (chat === '') {
         return;
       }
@@ -179,6 +154,7 @@ const Chat = () => {
       setChat('');
       // console.log(publicChats);
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [chat],
   );
   const ExitClick = () => {
@@ -222,8 +198,8 @@ const Chat = () => {
   const socketDisconnect = () => {
     console.log('종료');
     happy.unsubscribe();
-    console.log(happy);
-    console.log(client);
+    // console.log(happy);
+    // console.log(client);
     client.disconnect();
     dispatcher(resetPublicChats());
     dispatcher(setLogId({ value: 0 }));
@@ -281,7 +257,7 @@ const Chat = () => {
                   />
                 </div>
                 <div className="tag">
-                  {channelInfo.channelHashTags?.map((tag: any, index: any) => {
+                  {channelInfo.channelHashTags?.map((tag: any) => {
                     return '#' + tag.hashTag.tagName + ' ';
                   })}
                 </div>
@@ -352,7 +328,7 @@ const Chat = () => {
               <div className="middle">
                 <div className="chatTitle">{channelInfo.channelName}</div>
                 <div className="chatTag">
-                  {channelInfo.channelHashTags?.map((tag: any, index: any) => {
+                  {channelInfo.channelHashTags?.map((tag: any) => {
                     return '#' + tag.hashTag.tagName + ' ';
                   })}
                 </div>

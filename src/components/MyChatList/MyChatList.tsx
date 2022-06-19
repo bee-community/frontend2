@@ -1,15 +1,12 @@
 import ChatBeforeModal from 'components/ChatBeforeModal/ChatBeforeModal';
-import ChatEndModal from 'components/ChatEndModal/ChatEndModal';
 import ChatRoomMy from 'components/ChatRoomMy/ChatRoomMy';
-import React, { useCallback, useState, useContext } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 // import CustomScroll from 'react-custom-scroll';
 // import { Scrollbars } from 'react-custom-scrollbars';
-import { Scrollbar } from 'react-scrollbars-custom';
 import { setIndexChat } from 'slice/indexChatSlice';
 
-import ChatContext from '../../context/ChatContext';
-import { Channel, HashTag, User } from '../../typings/db';
+import { Channel } from '../../typings/db';
 import './ChatList.css';
 import { ChatBox, Container } from './styles';
 
@@ -33,6 +30,7 @@ const MyList = () => {
       setSendChannelInfo(channel);
       dispatcher(setIndexChat({ value: i }));
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [sendChannelInfo],
   );
 

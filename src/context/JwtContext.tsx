@@ -13,7 +13,7 @@
 //   );
 // };
 // export default JwtContext;
-import { createContext, FC, useReducer, useState } from 'react';
+import { createContext, FC, useReducer } from 'react';
 
 const reducer = (jwt: any, action: any) => {
   switch (action.type) {
@@ -26,7 +26,7 @@ const reducer = (jwt: any, action: any) => {
 
 export const JwtStateContext = createContext('');
 export const DispatchContext = createContext<any>(null);
-const ChatJwtContext = createContext({});
+// const ChatJwtContext = createContext({});
 export const JwtProvider: FC = ({ children }) => {
   //   const [jwt, setJwt] = useState<any>('');
   const [jwt, dispatch] = useReducer(reducer, '');

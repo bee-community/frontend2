@@ -1,23 +1,14 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
-import { createHistogram } from 'perf_hooks';
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import Scrollbars from 'react-custom-scrollbars';
 import { Scrollbar } from 'react-scrollbars-custom';
 import { setLogId } from 'slice/logIdSlice';
-import useSWR, { useSWRInfinite } from 'swr';
-import fetcher2 from 'utils/fetcher2';
 import makeSection from 'utils/makeSection';
 
 import ChatContext from '../../context/ChatContext';
-import { JwtStateContext, DispatchContext } from '../../context/JwtContext';
+// import { JwtStateContext, DispatchContext } from '../../context/JwtContext';
 import ScrollContext from '../../context/ScrollContext';
 import './ChatChat.css';
 
@@ -29,15 +20,7 @@ const ChatZZone = () => {
   //   }
   // }, []);
 
-  const {
-    channelInfo,
-    setChannelInfo,
-    happy,
-    setHappy,
-    chatColor,
-    chatList,
-    setChatList,
-  } = useContext<any>(ChatContext);
+  const { channelInfo, chatList, setChatList } = useContext<any>(ChatContext);
   const userData = useSelector((store: any) => store.userData);
   const JWTtoken = useSelector((store: any) => store.JWTtoken);
   const publicChats = useSelector((store: any) => store.publicChats);
@@ -47,9 +30,9 @@ const ChatZZone = () => {
   // const JWTtoken = useSelector((store: any) => store.JWTtoken);
   // const publicChats = useSelector((store: any) => store.publicChats);
 
-  const jwt = useContext(JwtStateContext);
+  // const jwt = useContext(JwtStateContext);
   const { scrollBarRef } = useContext<any>(ScrollContext);
-  const [isEmpty, setIsEmpty] = useState(false);
+  // const [isEmpty, setIsEmpty] = useState(false);
   const [isReachingEnd, setIsReachingEnd] = useState(false);
   const [once, setOnce] = useState(0);
   // const {
@@ -73,6 +56,7 @@ const ChatZZone = () => {
     if (publicChats.chat?.length > 0) {
       scrollBarRef.current.scrollToBottom();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [publicChats]);
   // useEffect(() => console.log('test'), []);
 
@@ -103,7 +87,7 @@ const ChatZZone = () => {
         }
         let arr = chatList;
         // let arr: any = [];
-        console.log(arr);
+        // console.log(arr);
         // console.log(res.data);
         setChatList([...arr, res.data]);
         if (logId.logId == 0) {
@@ -111,10 +95,12 @@ const ChatZZone = () => {
         } else scrollBarRef.current.scrollTo(0, chatL * 51);
       });
     return () => {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [logId]);
 
   useEffect(() => {
     scrollBarRef.current.scrollToBottom();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const onScroll = useCallback(
     value => {
@@ -130,6 +116,7 @@ const ChatZZone = () => {
         }
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [isReachingEnd, logId],
   );
   const chatSections = makeSection(chatList ? chatList.flat().reverse() : []);
@@ -241,7 +228,7 @@ const ChatZZone = () => {
           <div className="chatContent">대화 글 입니다.</div>
           <div className="chatArriveTime">AM 10:00</div>
         </div> */}
-        {publicChats.chat.map((chat: any, index: any) => {
+        {publicChats.chat.map((chat: any) => {
           // console.log(chat);
           // // console.log(chat);
           // console.log(userData);

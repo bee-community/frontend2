@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { IChannel, Channel, ChannelResponse, HashTag } from '../typings/db';
+import { ChannelResponse } from '../typings/db';
 
 const fetcher = (url: string, token: string) =>
   // axios
@@ -10,6 +10,7 @@ const fetcher = (url: string, token: string) =>
   //   })
   //   .then(response => response.data);
   // .get<ChannelResponse>(url, {
+
   axios
     .get<ChannelResponse>(url, {
       headers: {
