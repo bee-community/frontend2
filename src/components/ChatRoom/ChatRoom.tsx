@@ -1,22 +1,10 @@
 import timeIcon from 'assets/chatImages/chat_time.png';
 import axios from 'axios';
-import ChatBeforeModal from 'components/ChatBeforeModal/ChatBeforeModal';
-import { channel } from 'diagnostics_channel';
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-  VFC,
-} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import React, { useCallback, useEffect, useState, VFC } from 'react';
+import { useSelector } from 'react-redux';
 import { Scrollbar } from 'react-scrollbars-custom';
-import useSWR from 'swr';
 
-import ChatContext from '../../context/ChatContext';
-import { IChannel, Channel, ChannelResponse, HashTag } from '../../typings/db';
-import fetcher from '../../utils/fetcher2';
+import { Channel, HashTag } from '../../typings/db';
 import './ChatRoom.css';
 
 interface Props {
@@ -24,13 +12,13 @@ interface Props {
 }
 
 const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
-  const [Data, setData] = useState<ChannelResponse>();
+  // const [Data, setData] = useState<ChannelResponse>();
   const [DataList, setDataList] = useState<any>([]);
   const JWTtoken = useSelector((store: any) => store.JWTtoken);
-  const chatColor = useSelector((store: any) => store.chatColor);
+  // const chatColor = useSelector((store: any) => store.chatColor);
   const [channelIndex, setChannelIndex] = useState(0);
   const chatUrl = '/api/v1/webrtc/channels/';
-  const myChatUrl = '/api/v1/webrtc/mychannel/';
+  // const myChatUrl = '/api/v1/webrtc/mychannel/';
   // const { data: Data }: any = useSWR(
   //   chatColor.chatColor == 'chatList' ? chatUrl : myChatUrl,
   //   url => fetcher(url, JWTtoken.JWTtoken),
@@ -76,18 +64,19 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
             },
           )
           .then((res: any) => {
-            console.log(res.data);
+            // console.log(res.data);
             setDataList([...DataList, ...res.data.channels]);
           });
         setChannelIndex(prev => prev + 1);
       }
       // console.log(value);
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [DataList],
   );
   useEffect(() => {
     let timer = setInterval(async () => {
-      console.log(channelIndex);
+      // console.log(channelIndex);
       let test: any = [];
       for (let i = 0; i < channelIndex + 1; i++) {
         await axios
@@ -106,18 +95,17 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
           });
       }
       setDataList(test);
-    }, 5000);
+    }, 50000);
 
     return () => {
       clearInterval(timer);
-      console.log('fffdadadadad');
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [channelIndex]);
   useEffect(() => {
-    console.log(DataList.length);
+    // console.log(DataList.length);
   }, [DataList]);
   useEffect(() => {
-    console.log('sssss');
     axios
       .get('/api/v1/webrtc/channels/0', {
         headers: {
@@ -125,9 +113,10 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
         },
       })
       .then((res: any) => {
-        console.log(res.data);
+        // console.log(res.data);
         setDataList(res.data.channels);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>

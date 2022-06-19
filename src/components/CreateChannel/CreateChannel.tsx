@@ -1,22 +1,10 @@
-import timeIcon from 'assets/chatImages/chat_time_white.png';
-import cuteBee from 'assets/chatImages/removebee.png';
 import xButton from 'assets/chatImages/xbutton.png';
 import xx from 'assets/chatImages/xx.png';
 import axios from 'axios';
-import React, {
-  useEffect,
-  VFC,
-  useCallback,
-  useContext,
-  useState,
-  useRef,
-} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect, VFC, useCallback, useState, useRef } from 'react';
+import { useSelector } from 'react-redux';
 
-import ChatContext from '../../context/ChatContext';
 import useInput from '../../hooks/useInput';
-import { IChannel, Channel, ChannelResponse, HashTag } from '../../typings/db';
 import { Label, Input, Button } from '../Aside/styles';
 import './CreateChannel.css';
 
@@ -27,14 +15,14 @@ interface Props {
 
 const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
   const { JWTtoken } = useSelector((store: any) => store);
-  const [newWorkspace, onChangeNewWorkspace, setNewWorkspace] = useInput('');
+  const [newWorkspace, onChangeNewWorkspace] = useInput('');
   const [newHash, onChangeNewHash, setNewHash] = useInput('');
   const [tags, setTags] = useState<any>([]);
   const hashref = useRef<HTMLInputElement>(null);
   const [active, setActive] = useState(false);
   const onKeyKey = (e: any) => {
-    console.log(e.key);
-    console.log(e.keyCode);
+    // console.log(e.key);
+    // console.log(e.keyCode);
     if (e.key === 'Enter' && e.keyCode === 13) {
       // setName(e.target.value);
       setNewHash('');
@@ -46,12 +34,13 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
   };
 
   const deleteClick = (index: number) => {
-    console.log(index);
-    console.log('click delete');
+    // console.log(index);
+    // console.log('click delete');
     setTags([...tags.slice(0, index), ...tags.slice(index + 1)]);
   };
 
   const onCreateWorkspace = useCallback(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     e => {
       // e.preventDefault();
       {
@@ -73,8 +62,9 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
             },
           },
         )
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         .then(res => {
-          console.log(res);
+          // console.log(res);
           onCloseModal();
           location.reload();
         })
@@ -109,6 +99,7 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
       //         toast.error(error.response?.data, { position: 'bottom-center' });
       //     });
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [newWorkspace, newHash],
   );
 

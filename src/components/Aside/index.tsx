@@ -1,22 +1,16 @@
-import styled from '@emotion/styled';
 import addButton from 'assets/chatImages/addbutton2.png';
-import mypageButton from 'assets/chatImages/mypage_button.png';
 import Chat from 'components/ChatChat/Chat';
 import ChatList from 'components/ChatList/ChatList';
 import CreateChannel from 'components/CreateChannel/CreateChannel';
 import MyChatList from 'components/MyChatList/MyChatList';
 import React, { useEffect, useState, useCallback, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Outlet, Route, Routes, useLocation } from 'react-router';
-import { NavLink } from 'react-router-dom';
 import { setChatColor } from 'slice/chatColorSlice';
 import { setChatState } from 'slice/chatStateSlice';
 import { setLogId } from 'slice/logIdSlice';
-import useSWR from 'swr';
 
 import ChatContext from '../../context/ChatContext';
-import { setPublicChats, resetPublicChats } from '../../slice/publicChats';
-import fetcher from '../../utils/fetcher';
+import { resetPublicChats } from '../../slice/publicChats';
 import {
   AsideWrap,
   Bio,
@@ -26,34 +20,25 @@ import {
   Order,
   ListTitle,
   Box,
-  ChatBox,
   ChatButton,
 } from './styles';
 import './test.css';
 
-const CHAT_STATE_COLORS = {
-  chatList: '#ffe576',
-  myList: '#ffe576',
-} as any;
-
-let chatGetType = 'chatList';
+// const CHAT_STATE_COLORS = {
+//   chatList: '#ffe576',
+//   myList: '#ffe576',
+// } as any;
 
 function Aside() {
   // dummy popular Article
-  const { client, setClient, happy, setChatList } =
-    useContext<any>(ChatContext);
+  const { client, happy, setChatList } = useContext<any>(ChatContext);
   // const { JWTtoken, publicChats } = useSelector((store: any) => store);
-  const JWTtoken = useSelector((store: any) => store.JWTtoken);
   const chatColor = useSelector((store: any) => store.chatColor);
   const chatState = useSelector((store: any) => store.chatState);
   const dispatcher = useDispatch();
-  const [isOpen, setIsOpen] = React.useState(false);
-  const toggleDrawer = () => {
-    console.log('Heelp');
-    setIsOpen(prevState => !prevState);
-  };
-  const chatUrl = '/api/v1/webrtc/channels/0';
-  const myChatUrl = '/api/v1/webrtc/mychannel/0';
+
+  // const chatUrl = '/api/v1/webrtc/channels/0';
+  // const myChatUrl = '/api/v1/webrtc/mychannel/0';
   // const { data: Data, revalidate }: any = useSWR(
   //   chatColor.chatColor == 'chatList' ? chatUrl : myChatUrl,
   //   url => fetcher(url, JWTtoken.JWTtoken),
@@ -71,9 +56,10 @@ function Aside() {
     }
 
     setChatList([]);
-    console.log('색깔바뀜');
+    console.log('색깔변경');
     dispatcher(resetPublicChats());
     dispatcher(setLogId({ value: 0 }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chatColor]);
   const [popularArticle] = useState([
     {
@@ -154,7 +140,7 @@ function Aside() {
   return (
     <AsideWrap>
       <Bio>
-        <span>닉네임</span>
+        <span>채팅</span>
         {/* <a href="/mypage">
           <img src={mypageButton} />
           <div>마이페이지</div>

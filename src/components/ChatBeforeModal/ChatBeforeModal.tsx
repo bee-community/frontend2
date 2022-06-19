@@ -4,29 +4,25 @@ import xButton from 'assets/chatImages/xbutton.png';
 import axios from 'axios';
 import React, { useEffect, VFC, useState, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import { setChatState } from 'slice/chatStateSlice';
 import { setEndTTL } from 'slice/endTTLSlice';
 import { setLiveTime } from 'slice/liveTimeSlice';
 import { setLogId } from 'slice/logIdSlice';
 import SockJS from 'sockjs-client';
 import { over } from 'stompjs';
-import useSWR, { useSWRInfinite } from 'swr';
 
 // import { history } from 'utils/history';
 // import fetcher2 from 'utils/fetcher2';
 import ChatContext from '../../context/ChatContext';
-import { JwtStateContext, DispatchContext } from '../../context/JwtContext';
-import ScrollContext from '../../context/ScrollContext';
+import { DispatchContext } from '../../context/JwtContext';
 // import JwtContext from '../../context/JwtContext';
-import useInput from '../../hooks/useInput';
-import { setPublicChats, pushPublicChats } from '../../slice/publicChats';
+import { pushPublicChats } from '../../slice/publicChats';
 import {
   changeUserDataEmail,
   changeUserDataConnected,
 } from '../../slice/userDataSlice';
 import { setUserEnterNumber } from '../../slice/userEnterNumberSlice';
-import { IChannel, Channel, ChannelResponse, HashTag } from '../../typings/db';
+import { Channel, HashTag } from '../../typings/db';
 import './ChatBeforeModal.css';
 
 interface Props {
@@ -34,7 +30,7 @@ interface Props {
   show: boolean;
   onCloseModal: () => void;
 }
-const socketURL = 'http://192.168.35.133:8080/ws-stomp';
+const socketURL = 'http://3.38.230.215:8080/ws-stomp';
 var stompClient: any = null;
 let trick = '';
 let avoid = false;
@@ -48,15 +44,14 @@ const ChatBeforeModal: VFC<Props> = ({
   const [testName, setTestName] = useState('');
 
   // const [test, setTest] = useState('');
-  const { client, setClient, channelInfo, setChannelInfo, happy, setHappy } =
-    useContext<any>(ChatContext);
-  const { scrollBarRef } = useContext<any>(ScrollContext);
+  const { setClient, setChannelInfo, setHappy } = useContext<any>(ChatContext);
+  // const { scrollBarRef } = useContext<any>(ScrollContext);
 
-  const jwt = useContext(JwtStateContext);
+  // const jwt = useContext(JwtStateContext);
   const dispatch = useContext(DispatchContext);
   const userData = useSelector((store: any) => store.userData);
   const JWTtoken = useSelector((store: any) => store.JWTtoken);
-  const publicChats = useSelector((store: any) => store.publicChats);
+  // const publicChats = useSelector((store: any) => store.publicChats);
   const liveTime = useSelector((store: any) => store.liveTime);
   const dispatcher = useDispatch();
 
@@ -104,7 +99,7 @@ const ChatBeforeModal: VFC<Props> = ({
     );
   };
 
-  const userJoin_except = () => {
+  const userJoinExcept = () => {
     console.log('재입장');
     var chatMessage = {
       type: 'REENTER',
@@ -121,7 +116,7 @@ const ChatBeforeModal: VFC<Props> = ({
     );
   };
 
-  const onMessageReceived_except = (payload: any) => {
+  const onMessageReceivedExcept = (payload: any) => {
     var payloadData = JSON.parse(payload.body);
     // console.log(payloadData.users);
     dispatcher(setUserEnterNumber({ value: payloadData.users }));
@@ -129,14 +124,14 @@ const ChatBeforeModal: VFC<Props> = ({
     switch (payloadData.type) {
       case 'RENEWAL':
         // payloadData['sendTime'] = Date();
-        console.log(payloadData);
+        // console.log(payloadData);
         // 뒤로가기를 하고 재입장을 하는 경우 이전 챗로그를 불러오지 못하여
         // 추가하였습니다.
         if (userData.userEmail === payloadData.senderEmail) {
           avoid = false;
         }
         if (!avoid) {
-          console.log('이거이거 고쳐야해');
+          // console.log('이거이거 고쳐야해');
           dispatcher(setLogId({ value: reEnter }));
           avoid = true;
         }
@@ -147,7 +142,7 @@ const ChatBeforeModal: VFC<Props> = ({
         break;
       case 'CHAT':
         // console.log('2222222222222');'
-        console.log(payloadData);
+        // console.log(payloadData);
         payloadData['sendTime'] = Date();
         // console.log(payloadData);
         dispatcher(pushPublicChats({ value: payloadData }));
@@ -173,14 +168,14 @@ const ChatBeforeModal: VFC<Props> = ({
     switch (payloadData.type) {
       case 'RENEWAL':
         payloadData['sendTime'] = Date();
-        console.log(payloadData);
+        // console.log(payloadData);
         // 뒤로가기를 하고 재입장을 하는 경우 이전 챗로그를 불러오지 못하여
         // 추가하였습니다.
         if (userData.userEmail === payloadData.senderEmail) {
           avoid = false;
         }
         if (!avoid) {
-          console.log('이거이거 고쳐야해');
+          // console.log('이거이거 고쳐야해');
           dispatcher(setLogId({ value: payloadData.logId }));
 
           avoid = true;
@@ -190,7 +185,7 @@ const ChatBeforeModal: VFC<Props> = ({
         break;
       case 'CHAT':
         // console.log('2222222222222');'
-        console.log(payloadData);
+        // console.log(payloadData);
         payloadData['sendTime'] = Date();
         // console.log(payloadData);
         dispatcher(pushPublicChats({ value: payloadData }));
@@ -206,25 +201,25 @@ const ChatBeforeModal: VFC<Props> = ({
         break;
     }
   };
-  const onConnected_except = () => {
+  const onConnectedExcept = () => {
     // setUserData({ ...userData, connected: true });
     dispatcher(changeUserDataConnected({ connected: true }));
     setHappy(
       stompClient.subscribe(
         '/sub/chat/room/' + sendChannelInfo.id,
-        onMessageReceived_except,
+        onMessageReceivedExcept,
       ),
     );
-    console.log(happy);
-    userJoin_except();
+    // console.log(happy);
+    userJoinExcept();
   };
-  const onError_except = (err: any) => {
-    console.log('on Error');
+  const onErrorExcept = (err: any) => {
+    // console.log('on Error');
     let error = JSON.parse(err.body);
-    console.log(error);
+    // console.log(error);
     switch (error.type) {
       case 'ALREADY_USER_IN_CHANNEL':
-        console.log('beHappy');
+        // console.log('beHappy');
         // if (stompClient !== null) {
         //   const headers = {
         //     // disconnect에 쓰이는 headers
@@ -248,26 +243,26 @@ const ChatBeforeModal: VFC<Props> = ({
         // jwt: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjUxNTE0NjY3LCJpYXQiOjE2NTE0OTY2Njd9.I3Wlq_f7elhOsJ9wP07-YCRba9ITlyI7BbQyqXWjmB5ClkQ5iqOsNdNUqpX2BG2BgCrHwvsujA6O15ojMmAI2Q',
         // username: 'user',
       },
-      onConnected_except,
-      onError_except,
+      onConnectedExcept,
+      onErrorExcept,
     );
   };
 
   const onError = (err: any) => {
-    console.log('on Error');
+    // console.log('on Error');
     if (err.body === undefined) {
       return;
     }
-    console.log(err.body);
+    // console.log(err.body);
     let error = JSON.parse(err.body);
 
-    console.log(error);
+    // console.log(error);
     switch (error.type) {
       case 'ALREADY_USER_IN_CHANNEL':
-        console.log('beHappy');
+        // console.log('beHappy');
         connect_except();
         reEnter = error.idx + 1;
-        console.log(reEnter);
+        // console.log(reEnter);
         // if (stompClient !== null) {
         //   const headers = {
         //     // disconnect에 쓰이는 headers
@@ -419,6 +414,7 @@ const ChatBeforeModal: VFC<Props> = ({
     //     console.log(error);
     //   });
     // return () => disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sendChannelInfo, userData]);
   // console.log(sendChannelInfo);
 
