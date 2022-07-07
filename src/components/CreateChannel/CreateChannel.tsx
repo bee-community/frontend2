@@ -50,7 +50,7 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
 
       axios
         .post(
-          `/api/v1/webrtc/channel`,
+          `/api/v1/webrtc/chat/channel`,
           {
             channelName: newWorkspace,
             // limitParticipants: 15,

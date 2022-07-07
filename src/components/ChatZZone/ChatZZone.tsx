@@ -68,8 +68,9 @@ const ChatZZone = () => {
     if (logId.logId == null) {
       return;
     }
+    // console.log('채널아디', channelInfo.id);
     axios
-      .get(`/api/v1/webrtc/channel/${channelInfo.id}/${logId.logId}`, {
+      .get(`/api/v1/webrtc/chat/channel/${channelInfo.id}/${logId.logId}`, {
         headers: {
           Authorization: 'jwt ' + JWTtoken.JWTtoken,
         },

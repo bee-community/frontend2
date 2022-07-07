@@ -18,7 +18,7 @@ const ChatRoomMy: VFC<Props> = ({ onClickChatBeforeModal }) => {
   // const chatColor = useSelector((store: any) => store.chatColor);
   const [channelIndex, setChannelIndex] = useState(0);
   // const chatUrl = '/api/v1/webrtc/channels/';
-  const myChatUrl = '/api/v1/webrtc/mychannel/';
+  const myChatUrl = '/api/v1/webrtc/chat/mychannel/';
   // const { data: Data }: any = useSWR(
   //   chatColor.chatColor == 'chatList' ? chatUrl : myChatUrl,
   //   url => fetcher(url, JWTtoken.JWTtoken),
@@ -100,13 +100,14 @@ const ChatRoomMy: VFC<Props> = ({ onClickChatBeforeModal }) => {
   }, [DataList]);
   useEffect(() => {
     axios
-      .get('/api/v1/webrtc/mychannel/0', {
+      .get('/api/v1/webrtc/chat/mychannel/0', {
         headers: {
           Authorization: 'jwt ' + JWTtoken.JWTtoken,
         },
       })
       .then((res: any) => {
         // console.log(res.data);
+        console.log('hhh');
         setDataList(res.data.channels);
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps

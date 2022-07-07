@@ -42,8 +42,8 @@ const Chat = () => {
   const indexChat = useSelector((store: any) => store.indexChat);
   const chatColor = useSelector((store: any) => store.chatColor);
   const dispatcher = useDispatch();
-  const chatUrl = '/api/v1/webrtc/channels/0';
-  const myChatUrl = '/api/v1/webrtc/mychannel/0';
+  const chatUrl = '/api/v1/webrtc/chat/channels/0';
+  const myChatUrl = '/api/v1/webrtc/chat/mychannel/0';
   const { data: Data, revalidate }: any = useSWR(
     chatColor.chatColor == 'chatList' ? chatUrl : myChatUrl,
     url => fetcher(url, JWTtoken.JWTtoken),
