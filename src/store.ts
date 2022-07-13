@@ -1,6 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import clientSlice from 'slice/clientSlice';
 import indexChatSlice from 'slice/indexChatSlice';
+import openViduSessionCheckReducer from 'slice/openViduSessionCheckSlice';
+import pointModalReducer from 'slice/pointModal';
 
 import chatColor from './slice/chatColorSlice';
 import chatCountReducer from './slice/chatCountSlice';
@@ -27,5 +29,7 @@ export const store = configureStore({
     logId: logIdReducer,
     chatColor: chatColor,
     chatState: chatStateReducer,
+    pointOpen: pointModalReducer,
+    openViduSessionCheck: openViduSessionCheckReducer,
   },
 });

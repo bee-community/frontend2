@@ -12,11 +12,16 @@ import axios from 'axios';
 import { OpenVidu } from 'openvidu-browser';
 import { useCallback, useEffect, useState, useContext, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Scrollbar } from 'react-scrollbars-custom';
+import {
+  setSessionCheck,
+  setViduVoiceToken,
+} from 'slice/openViduSessionCheckSlice';
 import { setPointOpen } from 'slice/pointModal';
 
 import ChatContext from '../../context/ChatContext';
 import UserAudioComponent from './AudioComponent';
-import './chatMiddle.css';
+import './voiceChatMiddle.css';
 
 interface chatUserProfile {
   user: any;
@@ -213,6 +218,7 @@ const ChatMiddle = () => {
           console.log('TOKEN', response);
           resolve(response.data.token);
           setVoiceToken(response.data.token);
+          dispatcher(setViduVoiceToken({ value: response.data.token }));
         })
         .catch(error => reject(error));
     });
@@ -229,6 +235,7 @@ const ChatMiddle = () => {
       var mySession = OV.initSession();
       console.log('오픈비두두두', mySession);
       setSession(mySession);
+      dispatcher(setSessionCheck({ value: mySession }));
 
       mySession.on('streamCreated', event => {
         var subscriberOV = mySession.subscribe(event.stream, 'subscriber');
@@ -287,7 +294,7 @@ const ChatMiddle = () => {
   // console.log(subscribers);
 
   return (
-    <div className="chatMiddle">
+    <div className="voiceChatMiddle">
       <div className="wrapper">
         <div className="profileWrapper">
           <nav className="menu">
@@ -302,19 +309,20 @@ const ChatMiddle = () => {
                 src={gotIdea}
                 style={{ width: '28px;', height: '28px' }}
                 alt=""
-                // onClick={() => console.log('dad')}
+                onClick={() => console.log('dad')}
                 ref={menuModal}
               />
             </label>
+
             {session === undefined ? (
               <a className="menu-item">
                 <img
                   style={{ width: '40px;', height: '40px' }}
-                  // src={green}
+                  src={green}
                   alt=""
                   onClick={() => {
-                    // window.alert('음성채팅이 시작됩니다.');
-                    // joinSession();
+                    window.alert('음성채팅이 시작됩니다.');
+                    joinSession();
                   }}
                 />
               </a>
@@ -322,9 +330,9 @@ const ChatMiddle = () => {
               <a className="menu-item">
                 <img
                   style={{ width: '40px;', height: '40px' }}
-                  // src={red}
+                  src={red}
                   alt=""
-                  // onClick={leaveSession}
+                  onClick={leaveSession}
                 />
               </a>
             )}
@@ -332,26 +340,26 @@ const ChatMiddle = () => {
             <a className="menu-item">
               <img
                 style={{ width: '25px;', height: '25px' }}
-                // src={volume}
+                src={volume}
                 alt=""
               />
             </a>
             <a className="menu-item">
               <img
                 style={{ width: '40px;', height: '40px' }}
-                // src={mute ? unvoice : voice}
+                src={mute ? unvoice : voice}
                 alt=""
-                // onClick={() => {
-                //   console.log('mute');
-                //   console.log(typeof publisher);
-                //   if (typeof publisher == 'undefined') {
-                //     window.alert('음성채팅중이 아닙니다.');
-                //   } else {
-                //     publisher.publishAudio(mute);
-                //     setMute(!mute);
-                //   }
-                //   // target.subscribeToAudio(mute);
-                // }}
+                onClick={() => {
+                  console.log('mute');
+                  console.log(typeof publisher);
+                  if (typeof publisher == 'undefined') {
+                    window.alert('음성채팅중이 아닙니다.');
+                  } else {
+                    publisher.publishAudio(mute);
+                    setMute(!mute);
+                  }
+                  // target.subscribeToAudio(mute);
+                }}
               />
             </a>
             <a className="menu-item">
@@ -394,58 +402,64 @@ const ChatMiddle = () => {
               src={red}
               onClick={leaveSession}></img>
           )} */}
-          {session !== undefined ? (
-            <div id="session">
-              <div id="session-header">
-                {/* <h1 id="session-title">{mySessionId}</h1> */}
-                {/* <div>session</div> */}
-                {/* <input
+          <Scrollbar
+            style={{ width: '330px', height: '330px' }}
+            noScrollX={true}
+            maximalThumbYSize={95}>
+            {session !== undefined ? (
+              <div id="session">
+                <div id="session-header">
+                  {/* <h1 id="session-title">{mySessionId}</h1> */}
+                  {/* <div>session</div> */}
+                  {/* <input
                 className="btn btn-large btn-danger"
                 type="button"
                 id="buttonLeaveSession"
                 onClick={this.leaveSession}
                 value="Leave sessionsss"
               /> */}
-              </div>
+                </div>
 
-              {mainStreamManager !== undefined ? (
-                <div id="main-video" className="col-md-6">
-                  {/* <div>mainStreamManager</div> */}
-                  {/* <UserVideoComponent
+                {mainStreamManager !== undefined ? (
+                  <div id="main-video" className="col-md-6">
+                    {/* <div>mainStreamManager</div> */}
+                    {/* <UserVideoComponent
                   streamManager={this.state.mainStreamManager}
                 /> */}
-                  {/* <input
+                    {/* <input
                   className="btn btn-large btn-success"
                   type="button"
                   id="buttonSwitchCamera"
                   onClick={this.switchCamera}
                   value="Switch Camera"
                 /> */}
-                </div>
-              ) : null}
-              <div id="video-container" className="hi">
-                {publisher !== undefined ? (
-                  <div
-                    className="stream-container"
-                    onClick={() => handleMainVideoStream(publisher)}>
-                    <UserAudioComponent streamManager={publisher} />
                   </div>
                 ) : null}
-                {subscribers.map((sub: any, i: any) => {
-                  if (i < 9) {
-                    return (
-                      <div key={i} onClick={() => handleMainVideoStream(sub)}>
-                        {/* <div>ssss</div> */}
-                        <UserAudioComponent streamManager={sub} />
-                      </div>
-                    );
-                  } else {
-                    return null;
-                  }
-                })}
+                <div id="video-container" className="hi">
+                  {publisher !== undefined ? (
+                    <div
+                      className="stream-container"
+                      onClick={() => handleMainVideoStream(publisher)}>
+                      <UserAudioComponent streamManager={publisher} />
+                    </div>
+                  ) : null}
+                  {subscribers.map((sub: any, i: any) => {
+                    if (i < 9) {
+                      return (
+                        <div key={i} onClick={() => handleMainVideoStream(sub)}>
+                          {/* <div>ssss</div> */}
+                          <UserAudioComponent streamManager={sub} />
+                        </div>
+                      );
+                    } else {
+                      return null;
+                    }
+                  })}
+                </div>
               </div>
-            </div>
-          ) : null}
+            ) : null}
+          </Scrollbar>
+
           {/* <img
             className="mute"
             alt=""

@@ -3,12 +3,13 @@ import hamBurger from 'assets/chatImages/hamburger.png';
 import setting from 'assets/chatImages/setting.png';
 import timeIcon from 'assets/chatImages/timeIcon.png';
 import xbutton from 'assets/chatImages/xbutton_gray.png';
+import axios from 'axios';
 import ChatWraper from 'components/ChatBox/ChatWraper';
 import ChatEndModal from 'components/ChatEndModal/ChatEndModal';
 import PointModal from 'components/ChatList/PointModal';
 import RemainPoint from 'components/ChatList/RemainPoint';
-import ChatMiddle from 'components/ChatMiddle/ChatMiddle';
-import ChatZZone from 'components/ChatZZone/ChatZZone';
+import ChatMiddle from 'components/VoiceChatMiddle/ChatMiddle';
+import VoiceChatZZone from 'components/VoiceChatZZone/ChatZZone';
 import { JwtStateContext } from 'context/JwtContext';
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 // import { Scrollbars } from 'react-custom-scrollbars';
@@ -28,7 +29,7 @@ import { changeUserDataMessage } from '../../slice/userDataSlice';
 import fetcher from '../../utils/fetcher';
 import './ChatChat.css';
 import './drawer.css';
-import { ChatBox, Container } from './styles';
+import { ChatBoxVoice, Container } from './styles';
 
 // interface Props {
 //   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -44,6 +45,9 @@ const Chat = () => {
   const indexChat = useSelector((store: any) => store.indexChat);
   const chatColor = useSelector((store: any) => store.chatColor);
   const pointOpen = useSelector((store: any) => store.pointOpen);
+  const openViduSession = useSelector(
+    (store: any) => store.openViduSessionCheck,
+  );
   const dispatcher = useDispatch();
   const chatUrl = '/api/v1/webrtc/chat/channels/0';
   const myChatUrl = '/api/v1/webrtc/chat/mychannel/0';
@@ -162,6 +166,25 @@ const Chat = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [chat],
   );
+
+  const leaveSession = () => {
+    if (openViduSession.sessionCheck) {
+      openViduSession.sessionCheck.disconnect();
+      console.log('보내나');
+      axios
+        .post('/api/v1/webrtc/voice/remove-user', {
+          sessionName: channelInfo.id,
+          email: 'ksw',
+          token: openViduSession.voiceToken,
+        })
+        .then((response: any) => {
+          console.log('TOKEN', response);
+        })
+        .catch((err: any) => {
+          console.log(err);
+        });
+    }
+  };
   const socketDisconnect = () => {
     console.log('종료');
     happy.unsubscribe();
@@ -174,18 +197,6 @@ const Chat = () => {
   };
 
   const ExitClick = () => {
-    // if (chat?.trim()) {
-    //   axios
-    //     .post(`api`, {
-    //       content: chat,
-    //     })
-    //     .then(() => {
-    //       // revalidate()
-    //       setChat('');
-    //     })
-    //     .catch(console.error);
-    // }
-    // setChat('');
     if (client) {
       var exitMessage = {
         type: 'EXIT',
@@ -205,8 +216,7 @@ const Chat = () => {
         },
         JSON.stringify(exitMessage),
       );
-
-      // navigate('/chat/chatList');
+      leaveSession();
       socketDisconnect();
       if (chatColor.chatColor == 'chatList') {
         dispatcher(setChatState({ value: 'chatList' }));
@@ -242,7 +252,7 @@ const Chat = () => {
   return (
     <div className="chat">
       <Container>
-        <ChatBox>
+        <ChatBoxVoice>
           <Drawer
             open={isOpen}
             overlayOpacity={0.7}
@@ -321,6 +331,7 @@ const Chat = () => {
               <div
                 style={{ cursor: 'pointer' }}
                 onClick={() => {
+                  leaveSession();
                   socketDisconnect();
                   if (chatColor.chatColor == 'chatList') {
                     dispatcher(setChatState({ value: 'chatList' }));
@@ -354,17 +365,17 @@ const Chat = () => {
             </div>
             <ChatMiddle></ChatMiddle>
 
-            <ChatZZone></ChatZZone>
+            <VoiceChatZZone></VoiceChatZZone>
 
-            <ChatWraper
+            {/* <ChatWraper
               chat={chat}
               onChangeChat={onChangeChat}
-              onSubmitForm={onSubmitForm}></ChatWraper>
+              onSubmitForm={onSubmitForm}></ChatWraper> */}
           </div>
           <ChatEndModal></ChatEndModal>
           {pointOpen.pointOpen && <PointModal></PointModal>}
           {pointOpen.remainOpen && <RemainPoint></RemainPoint>}
-        </ChatBox>
+        </ChatBoxVoice>
       </Container>
     </div>
   );

@@ -1,17 +1,17 @@
-.chatMiddle {
+.voiceChatMiddle {
   width: 330px !important;
-  height: 112px;
+  height: 340px;
   background-color: #f4f4f4;
   position: relative;
   display: flex;
 }
 
-.chatMiddle .wrapper {
+.voiceChatMiddle .wrapper {
   margin: 0px 0px 10px 0px;
   height: 40px;
   width: 320px;
 }
-.chatMiddle .userProfile {
+.voiceChatMiddle .userProfile {
   width: 40px;
   height: 40px;
   margin: 10px 5px 0px 5px;
@@ -19,14 +19,14 @@
   border-radius: 100%;
 }
 
-.chatMiddle .profileWrapper {
+.voiceChatMiddle .profileWrapper {
   display: flex;
   width: 320px;
   margin-left: 10px;
   flex-wrap: wrap;
 }
 
-.chatMiddle .greenbutton {
+.voiceChatMiddle .greenbutton {
   position: absolute;
   top: 0px;
   left: 10px;
@@ -35,7 +35,7 @@
   margin: 10px 5px 0px 5px;
 }
 
-.chatMiddle .mute {
+.voiceChatMiddle .mute {
   position: absolute;
   top: 50px;
   left: 10px;
@@ -44,21 +44,21 @@
   margin: 10px 5px 0px 5px;
 }
 
-.chatMiddle .hi {
+.voiceChatMiddle .hi {
   position: absolute;
-  width: 270px;
-  top: 0px;
-  left: 60px;
+  width: 320px;
+  top: 55px;
+  left: 5px;
   display: flex;
   flex-wrap: wrap;
 }
-.chatMiddle .menu-item,
-.chatMiddle .menu-open-button {
+.voiceChatMiddle .menu-item,
+.voiceChatMiddle .menu-open-button {
   position: absolute;
   cursor: pointer;
   z-index: 1;
-  top: -1px;
-  left: -135px;
+  top: -140px;
+  left: -138px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -77,10 +77,12 @@
   transition: transform ease-out 200ms;
   transition: transform ease-out 200ms, -webkit-transform ease-out 200ms;
 }
-.chatMiddle .menu-open {
+
+.voiceChatMiddle .menu-open {
   display: none;
 }
-.chatMiddle .lines {
+
+.voiceChatMiddle .lines {
   width: 25px;
   height: 3px;
   background: #596778;
@@ -95,31 +97,31 @@
   transition: transform 200ms;
   transition: transform 200ms, -webkit-transform 200ms;
 }
-.chatMiddle .line-1 {
+.voiceChatMiddle .line-1 {
   -webkit-transform: translate3d(0, -8px, 0);
   transform: translate3d(0, -8px, 0);
 }
-.chatMiddle .line-2 {
+.voiceChatMiddle .line-2 {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-.chatMiddle .line-3 {
+.voiceChatMiddle .line-3 {
   -webkit-transform: translate3d(0, 8px, 0);
   transform: translate3d(0, 8px, 0);
 }
-.chatMiddle .menu-open:checked + .menu-open-button .line-1 {
+.voiceChatMiddle .menu-open:checked + .menu-open-button .line-1 {
   -webkit-transform: translate3d(0, 0, 0) rotate(45deg);
   transform: translate3d(0, 0, 0) rotate(45deg);
 }
-.chatMiddle .menu-open:checked + .menu-open-button .line-2 {
+.voiceChatMiddle .menu-open:checked + .menu-open-button .line-2 {
   -webkit-transform: translate3d(0, 0, 0) scale(0.1, 1);
   transform: translate3d(0, 0, 0) scale(0.1, 1);
 }
-.chatMiddle .menu-open:checked + .menu-open-button .line-3 {
+.voiceChatMiddle .menu-open:checked + .menu-open-button .line-3 {
   -webkit-transform: translate3d(0, 0, 0) rotate(-45deg);
   transform: translate3d(0, 0, 0) rotate(-45deg);
 }
-.chatMiddle .menu {
+.voiceChatMiddle .menu {
   margin: auto;
   position: absolute;
   top: 0;
@@ -136,39 +138,42 @@
 /* .menu-item {
     transition: all 0.1s ease 0s;
  } */
-.chatMiddle .menu-item:hover {
+.voiceChatMiddle .menu-item:hover {
   background: #eeeeee;
   color: #3290b1;
 }
-.chatMiddle .menu-item:nth-child(3) {
+.voiceChatMiddle .menu-item:nth-child(3) {
   -webkit-transition-duration: 180ms;
   transition-duration: 180ms;
 }
-.chatMiddle .menu-item:nth-child(4) {
+.voiceChatMiddle .menu-item:nth-child(4) {
   -webkit-transition-duration: 180ms;
   transition-duration: 180ms;
 }
-.chatMiddle .menu-item:nth-child(5) {
+.voiceChatMiddle .menu-item:nth-child(5) {
   -webkit-transition-duration: 180ms;
   transition-duration: 180ms;
 }
-.chatMiddle .menu-item:nth-child(6) {
+.voiceChatMiddle .menu-item:nth-child(6) {
   -webkit-transition-duration: 180ms;
   transition-duration: 180ms;
 }
-.chatMiddle .menu-item:nth-child(7) {
+.voiceChatMiddle .menu-item:nth-child(7) {
   -webkit-transition-duration: 180ms;
   transition-duration: 180ms;
 }
-.chatMiddle .menu-item:nth-child(8) {
+.voiceChatMiddle .menu-item:nth-child(8) {
   -webkit-transition-duration: 180ms;
   transition-duration: 180ms;
 }
-.chatMiddle .menu-item:nth-child(9) {
+.voiceChatMiddle .menu-item:nth-child(9) {
   -webkit-transition-duration: 180ms;
   transition-duration: 180ms;
 }
-.chatMiddle .menu-open-button {
+.voiceChatMiddle .menu-open-button {
+  top: -140px;
+  left: -138px;
+  position: absolute;
   z-index: 2;
   -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -179,11 +184,11 @@
   cursor: pointer;
   box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
 }
-.chatMiddle .menu-open-button:hover {
+.voiceChatMiddle .menu-open-button:hover {
   -webkit-transform: scale(1.2, 1.2) translate3d(0, 0, 0);
   transform: scale(1.2, 1.2) translate3d(0, 0, 0);
 }
-.chatMiddle .menu-open:checked + .menu-open-button {
+.voiceChatMiddle .menu-open:checked + .menu-open-button {
   -webkit-transition-timing-function: linear;
   transition-timing-function: linear;
   -webkit-transition-duration: 200ms;
@@ -191,121 +196,121 @@
   -webkit-transform: scale(0.8, 0.8) translate3d(0, 0, 0);
   transform: scale(0.8, 0.8) translate3d(0, 0, 0);
 }
-.chatMiddle .menu-open:checked ~ .menu-item {
+.voiceChatMiddle .menu-open:checked ~ .menu-item {
   -webkit-transition-timing-function: cubic-bezier(0.935, 0, 0.34, 1.33);
   transition-timing-function: cubic-bezier(0.935, 0, 0.34, 1.33);
 }
-.chatMiddle .menu-open:checked ~ .menu-item:nth-child(3) {
+.voiceChatMiddle .menu-open:checked ~ .menu-item:nth-child(3) {
   transition-duration: 180ms;
   -webkit-transition-duration: 180ms;
   -webkit-transform: translate3d(0.08361px, -104.99997px, 0);
   transform: translate3d(0.08361px, -53.99997px, 0);
   box-shadow: 3px 3px 0 0 rgb(0 0 0 / 10%);
 }
-.chatMiddle .menu-open:checked ~ .menu-item:nth-child(4) {
+.voiceChatMiddle .menu-open:checked ~ .menu-item:nth-child(4) {
   transition-duration: 280ms;
   -webkit-transition-duration: 280ms;
   -webkit-transform: translate3d(90.9466px, -52.47586px, 0);
   transform: translate3d(43.9466px, -26.47586px, 0);
   box-shadow: 3px 3px 0 0 rgb(0 0 0 / 10%);
 }
-.chatMiddle .menu-open:checked ~ .menu-item:nth-child(5) {
+.voiceChatMiddle .menu-open:checked ~ .menu-item:nth-child(5) {
   transition-duration: 380ms;
   -webkit-transition-duration: 380ms;
   -webkit-transform: translate3d(90.9466px, 52.47586px, 0);
   transform: translate3d(43.9466px, 22.47586px, 0);
   box-shadow: 3px 3px 0 0 rgb(0 0 0 / 10%);
 }
-.chatMiddle .menu-open:checked ~ .menu-item:nth-child(6) {
+.voiceChatMiddle .menu-open:checked ~ .menu-item:nth-child(6) {
   transition-duration: 480ms;
   -webkit-transition-duration: 480ms;
   -webkit-transform: translate3d(0.08361px, 104.99997px, 0);
   transform: translate3d(0.08361px, 48.99997px, 0);
   box-shadow: 3px 3px 0 0 rgb(0 0 0 / 10%);
 }
-.chatMiddle .menu-open:checked ~ .menu-item:nth-child(7) {
+.voiceChatMiddle .menu-open:checked ~ .menu-item:nth-child(7) {
   transition-duration: 580ms;
   -webkit-transition-duration: 580ms;
   -webkit-transform: translate3d(-90.86291px, 52.62064px, 0);
   transform: translate3d(-90.86291px, 52.62064px, 0);
 }
-.chatMiddle .menu-open:checked ~ .menu-item:nth-child(8) {
+.voiceChatMiddle .menu-open:checked ~ .menu-item:nth-child(8) {
   transition-duration: 680ms;
   -webkit-transition-duration: 680ms;
   -webkit-transform: translate3d(-91.03006px, -52.33095px, 0);
   transform: translate3d(-91.03006px, -52.33095px, 0);
 }
-.chatMiddle .menu-open:checked ~ .menu-item:nth-child(9) {
+.voiceChatMiddle .menu-open:checked ~ .menu-item:nth-child(9) {
   transition-duration: 780ms;
   -webkit-transition-duration: 780ms;
   -webkit-transform: translate3d(-0.25084px, -104.9997px, 0);
   transform: translate3d(-0.25084px, -104.9997px, 0);
 }
-.chatMiddle .blue {
+.voiceChatMiddle .blue {
   background-color: #669ae1;
   box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.12);
 }
-.chatMiddle .blue:hover {
+.voiceChatMiddle .blue:hover {
   color: #669ae1;
   text-shadow: none;
 }
-.chatMiddle .green {
+.voiceChatMiddle .green {
   background-color: #70cc72;
   box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.12);
 }
-.chatMiddle .green:hover {
+.voiceChatMiddle .green:hover {
   color: #70cc72;
   text-shadow: none;
 }
-.chatMiddle .red {
+.voiceChatMiddle .red {
   background-color: #fe4365;
   box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.12);
 }
-.chatMiddle .red:hover {
+.voiceChatMiddle .red:hover {
   color: #fe4365;
   text-shadow: none;
 }
-.chatMiddle .purple {
+.voiceChatMiddle .purple {
   background-color: #c49cde;
   box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.12);
 }
-.chatMiddle .purple:hover {
+.voiceChatMiddle .purple:hover {
   color: #c49cde;
   text-shadow: none;
 }
-.chatMiddle .orange {
+.voiceChatMiddle .orange {
   background-color: #fc913a;
   box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.12);
 }
-.chatMiddle .orange:hover {
+.voiceChatMiddle .orange:hover {
   color: #fc913a;
   text-shadow: none;
 }
-.chatMiddle .lightblue {
+.voiceChatMiddle .lightblue {
   background-color: #62c2e4;
   box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.12);
 }
-.chatMiddle .lightblue:hover {
+.voiceChatMiddle .lightblue:hover {
   color: #62c2e4;
   text-shadow: none;
 }
-.chatMiddle .credit {
+.voiceChatMiddle .credit {
   margin: 24px 20px 120px 0;
   text-align: right;
   color: #eeeeee;
 }
-.chatMiddle .credit a {
+.voiceChatMiddle .credit a {
   padding: 8px 0;
   color: #c49cde;
   text-decoration: none;
   transition: all 0.3s ease 0s;
 }
-.chatMiddle .credit a:hover {
+.voiceChatMiddle .credit a:hover {
   text-decoration: underline;
 }

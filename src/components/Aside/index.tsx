@@ -3,6 +3,7 @@ import Chat from 'components/ChatChat/Chat';
 import ChatList from 'components/ChatList/ChatList';
 import CreateChannel from 'components/CreateChannel/CreateChannel';
 import MyChatList from 'components/MyChatList/MyChatList';
+import VoiceChat from 'components/VoiceChat/Chat';
 import React, { useEffect, useState, useCallback, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setChatColor } from 'slice/chatColorSlice';
@@ -205,6 +206,8 @@ function Aside() {
             return <MyChatList />;
           case 'chat':
             return <Chat></Chat>;
+          case 'voicechat':
+            return <VoiceChat></VoiceChat>;
           default:
             return null;
         }

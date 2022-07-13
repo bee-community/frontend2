@@ -20,6 +20,7 @@ const MyList = () => {
     id: '624a43d9-7ffc-46dc-a040-b29db7dc5c41',
     limitParticipants: 15,
     timeToLive: 86400,
+    channelType: 'chat',
   };
   const [showChatBeforeModal, setShowChatBeforeModal] =
     useState<boolean>(false);
