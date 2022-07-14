@@ -50,7 +50,7 @@
 .second {
   display: flex;
   margin-top: 5px;
-  margin-left: 10px;
+  margin-left: 12px;
   font-size: 14px;
   font-family: NotoSansCJKKR;
   font-weight: bold;
@@ -69,7 +69,17 @@
 }
 
 .imggg {
+  margin-left: 2px;
   margin-top: 0px;
   width: 15px;
   height: 15px;
+}
+
+.chatTypeTag {
+  background-color: white;
+  color: #5206b9;
+  border-radius: 5px;
+  padding: 1px 5px 1px 5px;
+  --saf-0: rgba(var(--sk_foreground_low, 29, 28, 29), 0.13);
+  box-shadow: 0 0 0 1px var(--saf-0), 0 1px 3px 0 rgba(0, 0, 0, 0.08);
 }

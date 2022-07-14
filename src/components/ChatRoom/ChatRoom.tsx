@@ -142,7 +142,7 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
                 onClick={() => onClickChatBeforeModal(channela, index)}>
                 <div className="first">
                   <span className="tag">
-                    {chatType} {h}
+                    <span className="chatTypeTag">{chatType}</span> {h}
                   </span>
                   <span className="limit">
                     <span>{channela.currentParticipants}</span>

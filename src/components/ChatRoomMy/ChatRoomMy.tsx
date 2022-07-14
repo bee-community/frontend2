@@ -122,13 +122,21 @@ const ChatRoomMy: VFC<Props> = ({ onClickChatBeforeModal }) => {
             // console.log(channel.channelHashTags)
             let h = renderHash(channela.channelHashTags);
             let ttime = secondsToTime(channela.timeToLive);
+            let chatType;
+            if (channela.channelType === 'chat') {
+              chatType = '문자';
+            } else {
+              chatType = '음성';
+            }
             return (
               <div
                 key={index}
                 className="a1"
                 onClick={() => onClickChatBeforeModal(channela, index)}>
                 <div className="first">
-                  <span className="tag">{h}</span>
+                  <span className="tag">
+                    <span className="chatTypeTag">{chatType}</span> {h}
+                  </span>
                   <span className="limit">
                     <span>{channela.currentParticipants}</span>
                     <span>{`/${channela.limitParticipants}`}</span>
