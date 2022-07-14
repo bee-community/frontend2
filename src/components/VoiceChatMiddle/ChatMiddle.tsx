@@ -4,6 +4,7 @@ import gotIdea from 'assets/chatImages/got_idea.png';
 import muteIcon from 'assets/chatImages/mute.png';
 import point from 'assets/chatImages/point.png';
 import red from 'assets/chatImages/red.png';
+import unvolume from 'assets/chatImages/unVolume.png';
 import unmuteIcon from 'assets/chatImages/unmute.png';
 import unvoice from 'assets/chatImages/unvoice.png';
 import voice from 'assets/chatImages/voice.png';
@@ -46,6 +47,7 @@ const ChatMiddle = () => {
   const [publisher, setPublisher] = useState<any>(undefined);
   const [subscribers, setSubscribers] = useState<any>([]);
   const [mute, setMute] = useState(false);
+  const [sound, setSound] = useState(false);
   const [target, setTarget] = useState<any>(true);
   const [voiceToken, setVoiceToken] = useState('');
   const menuModal = useRef<any>();
@@ -292,7 +294,11 @@ const ChatMiddle = () => {
     }
   }, [session, target]);
   // console.log(subscribers);
-
+  const soundControl = useCallback(() => {
+    subscribers.map((el: any) => el.subscribeToAudio(sound));
+    setSound(!sound);
+  }, [sound, subscribers]);
+  // console.log();
   return (
     <div className="voiceChatMiddle">
       <div className="wrapper">
@@ -340,8 +346,9 @@ const ChatMiddle = () => {
             <a className="menu-item">
               <img
                 style={{ width: '25px;', height: '25px' }}
-                src={volume}
+                src={sound ? unvolume : volume}
                 alt=""
+                onClick={soundControl}
               />
             </a>
             <a className="menu-item">
