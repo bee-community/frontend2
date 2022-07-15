@@ -108,6 +108,12 @@ const ChatMiddle = () => {
     };
   }, []);
 
+  useEffect(() => {
+    console.log('사람');
+    console.log(subscribers);
+    console.log(subscribers.length);
+    console.log(subscribers[subscribers.length - 1]);
+  }, [subscribers]);
   // const handleChangeSessionId = e => {
   //   this.setState({
   //     mySessionId: e.target.value,
@@ -447,7 +453,7 @@ const ChatMiddle = () => {
                     <div
                       className="stream-container"
                       onClick={() => handleMainVideoStream(publisher)}>
-                      <UserAudioComponent streamManager={publisher} />
+                      <UserAudioComponent streamManager={publisher} idx={18} />
                     </div>
                   ) : null}
                   {subscribers.map((sub: any, i: any) => {
@@ -455,7 +461,7 @@ const ChatMiddle = () => {
                       return (
                         <div key={i} onClick={() => handleMainVideoStream(sub)}>
                           {/* <div>ssss</div> */}
-                          <UserAudioComponent streamManager={sub} />
+                          <UserAudioComponent streamManager={sub} idx={i} />
                         </div>
                       );
                     } else {

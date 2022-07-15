@@ -88,13 +88,13 @@ const Test = styled.img`
 `;
 function UserAudioComponent(props: any) {
   console.log('유저 비디오 프롭스', props);
-  const randomNumber = Math.floor(Math.random() * 20);
+  // const randomNumber = Math.floor(Math.random() * 19);
   return (
     <div>
       {props.streamManager !== undefined ? (
         <OuterCircle>
           <InnerCircle>
-            <Test src={bgList[randomNumber]}></Test>
+            <Test src={bgList[props.idx]}></Test>
             <OpenViduAudioComponent streamManager={props.streamManager} />
           </InnerCircle>
         </OuterCircle>
