@@ -18,7 +18,10 @@ export const AsideWrap = styled.aside`
   }
   @media (max-width: ${props => props.theme.screenSize.md}) {
     display: block;
+    height: 100vh;
+    border-radius: 0;
     overflow-y: none;
+    -webkit-tap-highlight-color: white;
   }
 `;
 export const Bio = styled.div`
