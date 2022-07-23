@@ -16,6 +16,10 @@ export const AsideWrap = styled.aside`
     display: none;
     height: auto;
   }
+  @media (max-width: ${props => props.theme.screenSize.md}) {
+    display: block;
+    overflow-y: none;
+  }
 `;
 export const Bio = styled.div`
   display: flex;
