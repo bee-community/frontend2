@@ -38,13 +38,13 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
     return `${day}일 ${hour}시간 ${min}분 후 종료`;
   };
   // console.log(Channels)
-  const renderHash = (ob: HashTag[]) => {
-    let hash = '';
-    ob.forEach(element => {
-      hash += '#' + element.hashTag.tagName + ' ';
-    });
-    return hash;
-  };
+  // const renderHash = (ob: HashTag[]) => {
+  //   let hash = '';
+  //   ob.forEach(element => {
+  //     hash += '#' + element.hashTag.tagName + ' ';
+  //   });
+  //   return hash;
+  // };
 
   const onScroll = useCallback(
     value => {
@@ -119,6 +119,22 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const hashTagSearch = useCallback(hash => {
+    console.log(hash);
+    axios
+      .get(`/api/v1/webrtc/chat/hashtag/${hash}`, {
+        headers: {
+          Authorization: 'jwt ' + JWTtoken.JWTtoken,
+        },
+      })
+      .then((res: any) => {
+        console.log(res.data);
+        setDataList(res.data.channels);
+      });
+  }, []);
+  const hashTagSearchEventPrevent = useCallback(e => {
+    e.stopPropagation();
+  }, []);
   return (
     <>
       <Scrollbar maximalThumbYSize={95} onScroll={onScroll}>
@@ -127,7 +143,7 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
           {DataList?.map((channela: any, index: number) => {
             // console.log(channel)
             // console.log(channel.channelHashTags)
-            let h = renderHash(channela.channelHashTags);
+            // let h = renderHash(channela.channelHashTags);
             let ttime = secondsToTime(channela.timeToLive);
             let chatType;
             if (channela.channelType === 'chat') {
@@ -142,7 +158,19 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
                 onClick={() => onClickChatBeforeModal(channela, index)}>
                 <div className="first">
                   <span className="tag">
-                    <span className="chatTypeTag">{chatType}</span> {h}
+                    <span className="chatTypeTag">{chatType}</span>
+                    {channela.channelHashTags.map((el: any, idx: number) => {
+                      return (
+                        <span
+                          key={idx}
+                          onClick={e => {
+                            hashTagSearchEventPrevent(e);
+                            hashTagSearch(el.hashTag.tagName);
+                          }}>
+                          #{el.hashTag.tagName}{' '}
+                        </span>
+                      );
+                    })}
                   </span>
                   <span className="limit">
                     <span>{channela.currentParticipants}</span>

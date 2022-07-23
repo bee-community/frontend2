@@ -80,6 +80,7 @@
   color: #5206b9;
   border-radius: 5px;
   padding: 1px 5px 1px 5px;
+  margin-right: 3px;
   --saf-0: rgba(var(--sk_foreground_low, 29, 28, 29), 0.13);
   box-shadow: 0 0 0 1px var(--saf-0), 0 1px 3px 0 rgba(0, 0, 0, 0.08);
 }
