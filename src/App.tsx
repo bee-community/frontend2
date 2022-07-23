@@ -1,3 +1,5 @@
+import Test from 'components/Aside/test';
+import BottomNav from 'components/BottomNav/BottomNav';
 import Template from 'components/Templates';
 import Article from 'pages/Article';
 import ArticlePost from 'pages/ArticlePost';
@@ -36,7 +38,9 @@ function App() {
 
         <Route path="signup" element={<SignUp />} />
         <Route path="login" element={<LogIn />} />
+        <Route path="chat" element={<Test />} />
       </Routes>
+      <BottomNav></BottomNav>
     </BrowserRouter>
   );
 }
