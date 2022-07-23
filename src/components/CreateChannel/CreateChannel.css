@@ -285,3 +285,19 @@
   margin-left: 10px;
   color: #ffe576;
 }
+
+@media (max-width: 766px) {
+  .createChannel .modal {
+    width: 90%;
+    height: 100vh;
+  }
+  .createChannel .closeButton {
+    cursor: pointer;
+    position: absolute;
+    top: 30px;
+    width: 20px;
+    height: 20px;
+    left: calc(100vw - 10px);
+    margin: 0 !important;
+  }
+}
