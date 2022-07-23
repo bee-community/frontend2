@@ -15,12 +15,14 @@ export const AsideWrap = styled.aside`
   @media (max-width: ${props => props.theme.screenSize.lg}) {
     display: none;
     height: auto;
+    overflow-y: none;
   }
   @media (max-width: ${props => props.theme.screenSize.md}) {
     display: block;
-    height: 100vh;
+    height: calc(90vh);
     border-radius: 0;
     overflow-y: none;
+    padding-bottom: 0px;
     -webkit-tap-highlight-color: white;
   }
 `;

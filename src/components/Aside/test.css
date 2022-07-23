@@ -52,3 +52,10 @@
   display: flex;
   margin-bottom: 10px;
 }
+
+@media (max-width: 766px) {
+  .chatbox {
+    border-radius: 15px;
+    width: 330px;
+  }
+}

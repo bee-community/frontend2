@@ -78,7 +78,7 @@ const BottomNav = () => {
           </Link>
         </div>
       </nav>
-      <div className="bottomNavTrick"></div>
+      {/* <div className="bottomNavTrick"></div> */}
     </>
   );
 };
