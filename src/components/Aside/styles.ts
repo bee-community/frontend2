@@ -16,6 +16,13 @@ export const AsideWrap = styled.aside`
     display: none;
     height: auto;
   }
+  @media (max-width: ${props => props.theme.screenSize.md}) {
+    display: block;
+    height: 100vh;
+    border-radius: 0;
+    overflow-y: none;
+    -webkit-tap-highlight-color: white;
+  }
 `;
 export const Bio = styled.div`
   display: flex;

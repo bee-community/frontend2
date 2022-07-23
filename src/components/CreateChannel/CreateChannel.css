@@ -285,3 +285,39 @@
   margin-left: 10px;
   color: #ffe576;
 }
+
+@media (max-width: 766px) {
+  .createChannel .modal {
+    width: 90vw;
+    height: 100vh;
+    border-radius: 0px;
+  }
+  .createChannel .closeButton {
+    cursor: pointer;
+    position: absolute;
+    top: 30px;
+    width: 20px;
+    height: 20px;
+    left: calc(100vw - 10px);
+    margin: 0 !important;
+  }
+  .mobile {
+    width: 90vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .createChannel .entry2 {
+    height: 25px;
+    position: absolute;
+    width: 160px;
+    top: 0px;
+    left: 100px;
+  }
+
+  .createChannel .entry:nth-child(1) {
+    left: 0px;
+    top: 0px;
+  }
+}
