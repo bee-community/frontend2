@@ -308,4 +308,16 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
+  .createChannel .entry2 {
+    height: 25px;
+    position: absolute;
+    width: 160px;
+    top: 0px;
+    left: 100px;
+  }
+
+  .createChannel .entry:nth-child(1) {
+    left: 0px;
+    top: 0px;
+  }
 }
