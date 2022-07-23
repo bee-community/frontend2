@@ -144,103 +144,107 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
           className="closeButton"
           src={xButton}
           onClick={onCloseModal}></img>
-        <Label2 id="workspace-label">
-          <div>
-            <span>채팅방 이름</span>
-            {!newWorkspace && (
-              <span className="warning">이름을 입력해주세요.</span>
-            )}
-          </div>
-          <Input
-            id="workspace"
-            value={newWorkspace}
-            onChange={onChangeNewWorkspace}></Input>
-        </Label2>
-        <Label2 id="workspace-label">
-          <div>
-            <span>해쉬태그</span>
-            {tags.length === 0 && (
-              <span className="warning">
-                태그를 작성한 후 엔터를 입력해주세요.
-              </span>
-            )}
-          </div>
-          {/* <Input
+        <div className="mobile">
+          <Label2 id="workspace-label">
+            <div>
+              <span>채팅방 이름</span>
+              {!newWorkspace && (
+                <span className="warning trickWarning">
+                  이름을 입력해주세요.
+                </span>
+              )}
+            </div>
+            <Input
+              id="workspace"
+              value={newWorkspace}
+              onChange={onChangeNewWorkspace}></Input>
+          </Label2>
+          <Label2 id="workspace-label">
+            <div>
+              <span>해쉬태그</span>
+              {tags.length === 0 && (
+                <span className="warning">
+                  태그를 작성한 후 엔터를 입력해주세요.
+                </span>
+              )}
+            </div>
+            {/* <Input
             id="workspace"
             value={newHash}
             onChange={onChangeNewHash}></Input> */}
-          <div className={active ? 'hashWrapperActive' : 'hashWrapper'}>
-            {tags.map((tag: any, index: number) => {
-              return (
-                <div className="testWrapper" key={index}>
-                  <div className="tag">
-                    <div className="test">{tag}</div>
-                    <img
-                      alt="hashTagDelete"
-                      role="presentation"
-                      onClick={() => deleteClick(index)}
-                      src={xx}
-                      className="material-icons"
-                    />
+            <div className={active ? 'hashWrapperActive' : 'hashWrapper'}>
+              {tags.map((tag: any, index: number) => {
+                return (
+                  <div className="testWrapper" key={index}>
+                    <div className="tag">
+                      <div className="test">{tag}</div>
+                      <img
+                        alt="hashTagDelete"
+                        role="presentation"
+                        onClick={() => deleteClick(index)}
+                        src={xx}
+                        className="material-icons"
+                      />
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+              <input
+                className="hashInput"
+                value={newHash}
+                ref={hashref}
+                onFocus={() => setActive(true)}
+                onBlur={() => setActive(false)}
+                onChange={onChangeNewHash}
+                onKeyDown={onKeyKey}></input>
+            </div>
+          </Label2>
+          <Label2 id="workspace-label">
+            <div>
+              <span>채팅방 종류</span>
+            </div>
             <input
-              className="hashInput"
-              value={newHash}
-              ref={hashref}
-              onFocus={() => setActive(true)}
-              onBlur={() => setActive(false)}
-              onChange={onChangeNewHash}
-              onKeyDown={onKeyKey}></input>
-          </div>
-        </Label2>
-        <Label2 id="workspace-label">
-          <div>
-            <span>채팅방 종류</span>
-          </div>
-          <input
-            onChange={onChangeRadio}
-            value="chat"
-            type="radio"
-            className="hidden"
-            id="input1"
-            name="inputs"
-          />
-          <label className="entry" htmlFor="input1">
-            <div
-              style={{
-                borderColor: chatType === 'chat' ? '#ffe576' : 'white',
-              }}
-              className="circle"></div>
-            <div className="entry-label">문자</div>
-          </label>
-          <input
-            onChange={onChangeRadio}
-            value="voice"
-            type="radio"
-            className="hidden"
-            id="input2"
-            name="inputs"
-          />
-          <label className="entry2" htmlFor="input2">
-            <div
-              style={{
-                borderColor: chatType === 'chat' ? 'white' : '#ffe576',
-              }}
-              className="circle"></div>
-            <div className="entry-label2">음성</div>
-          </label>
+              onChange={onChangeRadio}
+              value="chat"
+              type="radio"
+              className="hidden"
+              id="input1"
+              name="inputs"
+            />
+            <label className="entry" htmlFor="input1">
+              <div
+                style={{
+                  borderColor: chatType === 'chat' ? '#ffe576' : 'white',
+                }}
+                className="circle"></div>
+              <div className="entry-label">문자</div>
+            </label>
+            <input
+              onChange={onChangeRadio}
+              value="voice"
+              type="radio"
+              className="hidden"
+              id="input2"
+              name="inputs"
+            />
+            <label className="entry2" htmlFor="input2">
+              <div
+                style={{
+                  borderColor: chatType === 'chat' ? 'white' : '#ffe576',
+                }}
+                className="circle"></div>
+              <div className="entry-label2">음성</div>
+            </label>
 
-          <div
-            style={{
-              transform:
-                chatType === 'chat' ? 'translateX(0px)' : 'translateX(100px)',
-            }}
-            className="highlight"></div>
-        </Label2>
-        <Button onClick={onCreateWorkspace}>채팅방 생성!</Button>
+            <div
+              style={{
+                transform:
+                  chatType === 'chat' ? 'translateX(0px)' : 'translateX(100px)',
+              }}
+              className="highlight"></div>
+          </Label2>
+          <Button onClick={onCreateWorkspace}>채팅방 생성!</Button>
+        </div>
       </div>
       {/* <img className="modalBee" src={cuteBee}></img> */}
     </div>
