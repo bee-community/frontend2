@@ -168,21 +168,25 @@ const Chat = () => {
   );
 
   const leaveSession = () => {
-    if (openViduSession.sessionCheck) {
-      openViduSession.sessionCheck.disconnect();
-      console.log('보내나');
-      axios
-        .post('/api/v1/webrtc/voice/remove-user', {
-          sessionName: channelInfo.id,
-          email: 'ksw',
-          token: openViduSession.voiceToken,
-        })
-        .then((response: any) => {
-          console.log('TOKEN', response);
-        })
-        .catch((err: any) => {
-          console.log(err);
-        });
+    try {
+      if (openViduSession.sessionCheck) {
+        openViduSession.sessionCheck.disconnect();
+        console.log('보내나');
+        axios
+          .post('/api/v1/webrtc/voice/remove-user', {
+            sessionName: channelInfo.id,
+            email: 'ksw',
+            token: openViduSession.voiceToken,
+          })
+          .then((response: any) => {
+            console.log('TOKEN', response);
+          })
+          .catch((err: any) => {
+            console.log(err);
+          });
+      }
+    } catch (err) {
+      console.log('error');
     }
   };
   const socketDisconnect = () => {

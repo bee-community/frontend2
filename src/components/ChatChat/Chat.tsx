@@ -163,6 +163,8 @@ const Chat = () => {
     [chat],
   );
   const socketDisconnect = () => {
+    console.log(happy);
+    console.log(client);
     console.log('종료');
     happy.unsubscribe();
     // console.log(happy);
