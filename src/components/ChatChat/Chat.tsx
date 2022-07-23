@@ -5,6 +5,8 @@ import timeIcon from 'assets/chatImages/timeIcon.png';
 import xbutton from 'assets/chatImages/xbutton_gray.png';
 import ChatWraper from 'components/ChatBox/ChatWraper';
 import ChatEndModal from 'components/ChatEndModal/ChatEndModal';
+import PointModal from 'components/ChatList/PointModal';
+import RemainPoint from 'components/ChatList/RemainPoint';
 import ChatMiddle from 'components/ChatMiddle/ChatMiddle';
 import ChatZZone from 'components/ChatZZone/ChatZZone';
 import { JwtStateContext } from 'context/JwtContext';
@@ -41,9 +43,10 @@ const Chat = () => {
   const userChatName = useSelector((store: any) => store.userEnterNumber);
   const indexChat = useSelector((store: any) => store.indexChat);
   const chatColor = useSelector((store: any) => store.chatColor);
+  const pointOpen = useSelector((store: any) => store.pointOpen);
   const dispatcher = useDispatch();
-  const chatUrl = '/api/v1/webrtc/channels/0';
-  const myChatUrl = '/api/v1/webrtc/mychannel/0';
+  const chatUrl = '/api/v1/webrtc/chat/channels/0';
+  const myChatUrl = '/api/v1/webrtc/chat/mychannel/0';
   const { data: Data, revalidate }: any = useSWR(
     chatColor.chatColor == 'chatList' ? chatUrl : myChatUrl,
     url => fetcher(url, JWTtoken.JWTtoken),
@@ -91,7 +94,9 @@ const Chat = () => {
   //   fetcher,
   // );
   // const { jwt, setJwt } = useContext<any>(JwtContext);
-
+  useEffect(() => {
+    console.log('화이팅');
+  }, [pointOpen]);
   const onSubmitForm = useCallback(
     e => {
       // console.log(chat);
@@ -157,6 +162,19 @@ const Chat = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [chat],
   );
+  const socketDisconnect = () => {
+    console.log(happy);
+    console.log(client);
+    console.log('종료');
+    happy.unsubscribe();
+    // console.log(happy);
+    // console.log(client);
+    client.disconnect();
+    dispatcher(resetPublicChats());
+    dispatcher(setLogId({ value: 0 }));
+    setChatList([]);
+  };
+
   const ExitClick = () => {
     // if (chat?.trim()) {
     //   axios
@@ -191,19 +209,14 @@ const Chat = () => {
       );
 
       // navigate('/chat/chatList');
-      dispatcher(setChatState({ value: 'chatList' }));
+      socketDisconnect();
+      if (chatColor.chatColor == 'chatList') {
+        dispatcher(setChatState({ value: 'chatList' }));
+      } else {
+        dispatcher(setChatState({ value: 'myList' }));
+      }
     }
     revalidate();
-  };
-  const socketDisconnect = () => {
-    console.log('종료');
-    happy.unsubscribe();
-    // console.log(happy);
-    // console.log(client);
-    client.disconnect();
-    dispatcher(resetPublicChats());
-    dispatcher(setLogId({ value: 0 }));
-    setChatList([]);
   };
 
   // useEffect(() => {
@@ -224,10 +237,10 @@ const Chat = () => {
   //       listenBackEvent();
   //     }
   //   });
+  console.log(pointOpen);
 
   //   return unlistenHistoryEvent;
   // }, []);
-
   return (
     <div className="chat">
       <Container>
@@ -351,6 +364,8 @@ const Chat = () => {
               onSubmitForm={onSubmitForm}></ChatWraper>
           </div>
           <ChatEndModal></ChatEndModal>
+          {pointOpen.pointOpen && <PointModal></PointModal>}
+          {pointOpen.remainOpen && <RemainPoint></RemainPoint>}
         </ChatBox>
       </Container>
     </div>

@@ -52,6 +52,7 @@ export interface Channel {
   timeToLive: number;
   users: User | null;
   channelHashTags: HashTag[];
+  channelType: string;
 }
 
 export interface ChannelResponse {

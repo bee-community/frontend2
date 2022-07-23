@@ -186,6 +186,24 @@ export const Label = styled.label`
   }
 `;
 
+export const Label2 = styled.label`
+  margin-bottom: 16px;
+  position: relative;
+  & > div {
+    display: flex;
+  }
+  & > div > span {
+    display: block;
+    text-align: left;
+    padding-bottom: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    line-height: 1.46666667;
+    font-weight: 700;
+    color: white;
+  }
+`;
+
 export const Input = styled.input`
   border-radius: 4px;
   --saf-0: rgba(var(--sk_foreground_high_solid, 134, 134, 134), 1);
@@ -209,7 +227,7 @@ export const Input = styled.input`
 
 export const Button = styled.button`
   margin-bottom: 12px;
-  margin-top: 12px;
+  margin-top: 42px;
   width: 100%;
   max-width: 100%;
   background-color: #ffe576;

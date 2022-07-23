@@ -1,11 +1,12 @@
 import xButton from 'assets/chatImages/xbutton.png';
 import xx from 'assets/chatImages/xx.png';
 import axios from 'axios';
+import ChatList from 'components/ChatList/ChatList';
 import React, { useEffect, VFC, useCallback, useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
 import useInput from '../../hooks/useInput';
-import { Label, Input, Button } from '../Aside/styles';
+import { Label2, Label, Input, Button } from '../Aside/styles';
 import './CreateChannel.css';
 
 interface Props {
@@ -20,6 +21,12 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
   const [tags, setTags] = useState<any>([]);
   const hashref = useRef<HTMLInputElement>(null);
   const [active, setActive] = useState(false);
+  const [chatType, setChatType] = useState('chat');
+  const onChangeRadio = (e: any) => {
+    setChatType(e.target.value);
+    console.log(e.target.value);
+  };
+
   const onKeyKey = (e: any) => {
     // console.log(e.key);
     // console.log(e.keyCode);
@@ -32,7 +39,7 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
       setTags([...tags.slice(0, size - 1)]);
     }
   };
-
+  console.log(tags);
   const deleteClick = (index: number) => {
     // console.log(index);
     // console.log('click delete');
@@ -47,14 +54,16 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
         /* https://ehddud100677.tistory.com/350 */
       }
       if (!newWorkspace || !newWorkspace.trim()) return;
-
+      if (tags.length < 1) {
+      }
       axios
         .post(
-          `/api/v1/webrtc/channel`,
+          `/api/v1/webrtc/chat/channel`,
           {
             channelName: newWorkspace,
             // limitParticipants: 15,
             hashTags: tags,
+            channelType: chatType,
           },
           {
             headers: {
@@ -71,6 +80,9 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
         .catch(function (error) {
           // handle error
           console.log(error);
+        })
+        .finally(() => {
+          // console.log(chatType);
         });
       // if (!newUrl || !newUrl.trim()) return;
       // console.log(newWorkspace)
@@ -100,7 +112,7 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
       //     });
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [newWorkspace, newHash],
+    [newWorkspace, newHash, chatType],
   );
 
   useEffect(() => {
@@ -132,15 +144,27 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
           className="closeButton"
           src={xButton}
           onClick={onCloseModal}></img>
-        <Label id="workspace-label">
-          <span>채팅방 이름</span>
+        <Label2 id="workspace-label">
+          <div>
+            <span>채팅방 이름</span>
+            {!newWorkspace && (
+              <span className="warning">이름을 입력해주세요.</span>
+            )}
+          </div>
           <Input
             id="workspace"
             value={newWorkspace}
             onChange={onChangeNewWorkspace}></Input>
-        </Label>
-        <Label id="workspace-label">
-          <span>해쉬태그</span>
+        </Label2>
+        <Label2 id="workspace-label">
+          <div>
+            <span>해쉬태그</span>
+            {tags.length === 0 && (
+              <span className="warning">
+                태그를 작성한 후 엔터를 입력해주세요.
+              </span>
+            )}
+          </div>
           {/* <Input
             id="workspace"
             value={newHash}
@@ -171,7 +195,51 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
               onChange={onChangeNewHash}
               onKeyDown={onKeyKey}></input>
           </div>
-        </Label>
+        </Label2>
+        <Label2 id="workspace-label">
+          <div>
+            <span>채팅방 종류</span>
+          </div>
+          <input
+            onChange={onChangeRadio}
+            value="chat"
+            type="radio"
+            className="hidden"
+            id="input1"
+            name="inputs"
+          />
+          <label className="entry" htmlFor="input1">
+            <div
+              style={{
+                borderColor: chatType === 'chat' ? '#ffe576' : 'white',
+              }}
+              className="circle"></div>
+            <div className="entry-label">문자</div>
+          </label>
+          <input
+            onChange={onChangeRadio}
+            value="voice"
+            type="radio"
+            className="hidden"
+            id="input2"
+            name="inputs"
+          />
+          <label className="entry2" htmlFor="input2">
+            <div
+              style={{
+                borderColor: chatType === 'chat' ? 'white' : '#ffe576',
+              }}
+              className="circle"></div>
+            <div className="entry-label2">음성</div>
+          </label>
+
+          <div
+            style={{
+              transform:
+                chatType === 'chat' ? 'translateX(0px)' : 'translateX(100px)',
+            }}
+            className="highlight"></div>
+        </Label2>
         <Button onClick={onCreateWorkspace}>채팅방 생성!</Button>
       </div>
       {/* <img className="modalBee" src={cuteBee}></img> */}
