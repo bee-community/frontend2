@@ -23,7 +23,7 @@ import {
 } from '../../slice/userDataSlice';
 import { setUserEnterNumber } from '../../slice/userEnterNumberSlice';
 import { Channel, HashTag } from '../../typings/db';
-import './ChatBeforeModal.css';
+import './ChatBeforeModal2.css';
 
 interface Props {
   sendChannelInfo: Channel;
@@ -435,11 +435,11 @@ const ChatBeforeModal: VFC<Props> = ({
     return null;
   }
 
-  if (screen.width < 776) {
+  if (screen.width > 776) {
     return null;
   }
   return (
-    <div className="ChatBeforeModal">
+    <div className="ChatBeforeModal2">
       <div className="modal ">
         <div className="closeButtonWrapper">
           <img

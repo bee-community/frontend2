@@ -5,7 +5,7 @@ export const AsideWrap = styled.aside`
   height: calc(100vh - 140px);
   background-color: ${props => props.theme.background.gray};
   border-radius: 0 40px 40px 0;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -23,7 +23,7 @@ export const AsideWrap = styled.aside`
     border-radius: 0;
     overflow-y: none;
     padding-bottom: 0px;
-    -webkit-tap-highlight-color: white;
+    -webkit-tap-highlight-color: transparent;
   }
 `;
 export const Bio = styled.div`
