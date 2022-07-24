@@ -289,7 +289,7 @@
 @media (max-width: 766px) {
   .createChannel .modal {
     width: 90vw;
-    height: 100vh;
+    height: calc(var(--vh) * 100);
     border-radius: 0px;
   }
   .createChannel .closeButton {
@@ -320,4 +320,8 @@
     left: 0px;
     top: 0px;
   }
+}
+
+.scrollLock {
+  overflow: hidden;
 }

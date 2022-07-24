@@ -131,10 +131,24 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
     //   });
     // return () => disconnect();
   }, []);
-  // console.log('ggg');
+
+  const setScreenSize = () => {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  };
+
+  useEffect(() => {
+    setScreenSize();
+    // const body = document.getElementsByTagName('body')[0];
+    // body.classList.add('scrollLock');
+
+    // return () => body.classList.remove('scrollLock');
+  }, []);
+
   if (!show) {
     return null;
   }
+
   return (
     <div className="createChannel">
       <div className="modal">
