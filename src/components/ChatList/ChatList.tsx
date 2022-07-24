@@ -59,6 +59,16 @@ const ChatList = () => {
     softRemover(); // 해당 컴포넌트가 나타나면 함수가 바로실행됨.
   }, [softRemover]);
 
+  const setScreenSize = () => {
+    let vh = window.innerHeight * 0.01;
+    console.log(vh);
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  };
+
+  useEffect(() => {
+    setScreenSize();
+  }, []);
+
   return (
     <div className="ChatList">
       <Container>

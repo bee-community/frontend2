@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { Scrollbar } from 'react-scrollbars-custom';
 
 import { Channel, HashTag } from '../../typings/db';
-import './ChatRoom.css';
+import '../ChatRoom/ChatRoom.css';
 
 interface Props {
   onClickChatBeforeModal: (name: Channel, index: number) => void;

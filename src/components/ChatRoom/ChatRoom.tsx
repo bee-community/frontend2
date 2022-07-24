@@ -137,10 +137,7 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
   }, []);
   return (
     <>
-      <Scrollbar
-        permanentTrackY={false}
-        maximalThumbYSize={95}
-        onScroll={onScroll}>
+      <Scrollbar maximalThumbYSize={95} onScroll={onScroll}>
         {/* <NavLink to={'/chat/chatList/1'}> */}
         <div className="con">
           {DataList?.map((channela: any, index: number) => {

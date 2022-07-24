@@ -12,7 +12,7 @@ export const ChatBox = styled.div`
 
   @media (max-width: ${props => props.theme.screenSize.md}) {
     width: 100%;
-    height: calc(85vh - 200px);
+    height: calc(var(--vh) * 100 - 200px);
     border-radius: 15px;
     background-color: rgb(244, 244, 244);
   }
