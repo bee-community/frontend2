@@ -156,6 +156,10 @@ export const Box = styled.div`
     cursor: pointer;
     align-items: center;
   }
+  @media (max-width: ${props => props.theme.screenSize.md}) {
+    width: calc(96% - 10px);
+    margin-left: 3%;
+  }
 `;
 
 export const ChatBox = styled.div`
