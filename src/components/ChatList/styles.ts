@@ -14,6 +14,7 @@ export const ChatBox = styled.div`
     width: 100%;
     height: calc(85vh - 200px);
     border-radius: 15px;
+    background-color: rgb(244, 244, 244);
   }
 `;
 
