@@ -87,8 +87,8 @@
 
 @media (max-width: 766px) {
   .a1 {
-    width: 98%;
-    margin-left: 2px;
+    width: 96%;
+    margin-left: 8px;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   }
