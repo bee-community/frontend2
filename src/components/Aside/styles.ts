@@ -12,6 +12,7 @@ export const AsideWrap = styled.aside`
   ::-webkit-scrollbar {
     display: none;
   }
+
   @media (max-width: ${props => props.theme.screenSize.lg}) {
     display: none;
     height: auto;
@@ -19,9 +20,9 @@ export const AsideWrap = styled.aside`
   }
   @media (max-width: ${props => props.theme.screenSize.md}) {
     display: block;
-    height: calc(90vh);
+    height: calc(var(--vh) * 100 - 60px);
     border-radius: 0;
-    overflow-y: none;
+    overflow: hidden;
     padding-bottom: 0px;
     -webkit-tap-highlight-color: transparent;
   }

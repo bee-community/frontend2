@@ -53,6 +53,9 @@
   margin-bottom: 10px;
 }
 
+.scrollLock {
+  overflow: hidden;
+}
 @media (max-width: 766px) {
   .chatbox {
     border-radius: 15px;

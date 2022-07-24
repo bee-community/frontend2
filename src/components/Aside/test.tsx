@@ -138,6 +138,20 @@ function Aside() {
     setShowCreateChannel(false);
   }, []);
 
+  const setScreenSize = () => {
+    let vh = window.innerHeight * 0.01;
+    console.log(vh);
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  };
+
+  useEffect(() => {
+    setScreenSize();
+    const body = document.getElementsByTagName('body')[0];
+    body.classList.add('scrollLock');
+
+    return () => body.classList.remove('scrollLock');
+  }, []);
+
   return (
     <AsideWrap>
       <Bio>

@@ -1,4 +1,4 @@
-import Test from 'components/Aside/test';
+import Test from 'components/Aside/Test';
 import BottomNav from 'components/BottomNav/BottomNav';
 import Template from 'components/Templates';
 import Article from 'pages/Article';
