@@ -4,12 +4,14 @@ import ChatList from 'components/ChatList/ChatList';
 import CreateChannel from 'components/CreateChannel/CreateChannel';
 import MyChatList from 'components/MyChatList/MyChatList';
 import VoiceChat from 'components/VoiceChat/Chat';
+import { url } from 'inspector';
 import React, { useEffect, useState, useCallback, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setChatColor } from 'slice/chatColorSlice';
 import { setChatState } from 'slice/chatStateSlice';
 import { setLogId } from 'slice/logIdSlice';
 
+import searchIcon from '../../assets/chatImages/searchImage.png';
 import ChatContext from '../../context/ChatContext';
 import { resetPublicChats } from '../../slice/publicChats';
 import {
@@ -153,25 +155,41 @@ function Aside() {
     return () => body.classList.remove('scrollLock');
   }, []);
 
+  const hashTagSearch = useCallback(hash => {
+    console.log(hash);
+    axios
+      .get(`/api/v1/webrtc/chat/hashtag/${hash}`, {
+        headers: {
+          Authorization: 'jwt ' + JWTtoken.JWTtoken,
+        },
+      })
+      .then((res: any) => {
+        console.log(res.data);
+        setDataList(res.data.channels);
+      });
+  }, []);
   return (
     <AsideWrap>
       <Bio>
-        <span>채팅</span>
-        {/* <a href="/mypage">
-          <img src={mypageButton} />
-          <div>마이페이지</div>
-        </a> */}
-        <img
+        <div className="searchInputWrapper">
+          <input
+            className="searchInput"
+            placeholder="원하시는 키워드를 검색하세요"></input>
+          <div>
+            <img className="searchIcon" alt="" src={searchIcon}></img>
+          </div>
+        </div>
+        {/* <img
           alt="closeButton"
           role="presentation"
           src={addButton}
           onClick={onClickCreateChannel}
-        />
+        /> */}
       </Bio>
       <CreateChannel
         show={showCreateChannel}
         onCloseModal={onCloseModal}></CreateChannel>
-      <Box>
+      <Box style={{ marginTop: '10px' }}>
         <ChatButton
           onClick={() => {
             dispatcher(setChatColor({ value: 'chatList' }));

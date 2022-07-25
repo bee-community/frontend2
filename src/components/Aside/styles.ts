@@ -246,6 +246,7 @@ export const Button = styled.button`
   background-color: #ffe576;
   border: none;
   font-size: 18px;
+  color: black;
   font-weight: 900;
   height: 44px;
   min-width: 96px;

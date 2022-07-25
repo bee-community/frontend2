@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import chatDataListSlice from 'slice/chatDataListSlice';
 import clientSlice from 'slice/clientSlice';
 import indexChatSlice from 'slice/indexChatSlice';
 import openViduSessionCheckReducer from 'slice/openViduSessionCheckSlice';
@@ -31,5 +32,6 @@ export const store = configureStore({
     chatState: chatStateReducer,
     pointOpen: pointModalReducer,
     openViduSessionCheck: openViduSessionCheckReducer,
+    dataList: chatDataListSlice,
   },
 });

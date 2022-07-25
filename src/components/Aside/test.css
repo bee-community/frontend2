@@ -61,4 +61,28 @@
     border-radius: 15px;
     width: 330px;
   }
+  .searchInputWrapper {
+    position: relative;
+  }
+  .searchInput {
+    margin-left: 3%;
+    border: none;
+    cursor: pointer;
+    width: calc(var(--vw) * 82 - 10px);
+    height: 30px;
+    font-size: 14px;
+    padding: 0px;
+    padding-left: 10px;
+    border-radius: 8px;
+  }
+  .searchInput:focus {
+    outline: none;
+  }
+  .searchIcon {
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    top: 7px;
+    left: calc(var(--vw) * 82 - 15px);
+  }
 }
