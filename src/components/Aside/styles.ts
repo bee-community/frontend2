@@ -157,7 +157,7 @@ export const Box = styled.div`
   }
   @media (max-width: ${props => props.theme.screenSize.md}) {
     width: calc(var(--vw) * 82);
-    margin-left: 3%;
+    margin-left: calc(var(--vw) * 3.5);
   }
 `;
 

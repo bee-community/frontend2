@@ -65,7 +65,7 @@
     position: relative;
   }
   .searchInput {
-    margin-left: 3%;
+    margin-left: calc(var(--vw) * 3.5);
     border: none;
     cursor: pointer;
     width: calc(var(--vw) * 82 - 10px);
@@ -73,6 +73,8 @@
     font-size: 14px;
     padding: 0px;
     padding-left: 10px;
+    padding-top: 3px;
+    padding-bottom: 3px;
     border-radius: 8px;
   }
   .searchInput:focus {
@@ -82,8 +84,8 @@
     position: absolute;
     width: 17px;
     height: 17px;
-    top: 7px;
-    left: calc(var(--vw) * 82 - 15px);
+    top: 10px;
+    left: calc(var(--vw) * 77);
   }
   .dropdown {
     font-size: 10px;
@@ -135,5 +137,16 @@
 
   .dropdown .dropdown-content .dropdown-item:hover {
     background-color: #f4f4f4;
+  }
+
+  .create {
+    position: absolute;
+    top: calc(var(--vh) * 92 - 60px);
+    left: calc(var(--vw) * 78);
+  }
+
+  .createImg {
+    width: 40px;
+    height: 40px;
   }
 }

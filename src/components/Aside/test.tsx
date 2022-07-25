@@ -14,6 +14,7 @@ import { setDataList as setDataList2 } from 'slice/chatDataListSlice';
 import { setChatState } from 'slice/chatStateSlice';
 import { setLogId } from 'slice/logIdSlice';
 
+import mobileCreateChannel from '../../assets/chatImages/mobileCreateChannel.png';
 import searchIcon from '../../assets/chatImages/searchImage.png';
 import ChatContext from '../../context/ChatContext';
 import { resetPublicChats } from '../../slice/publicChats';
@@ -268,6 +269,9 @@ function Aside() {
             return null;
         }
       })()}
+      <div className="create" onClick={onClickCreateChannel}>
+        <img className="createImg" alt="" src={mobileCreateChannel}></img>
+      </div>
     </AsideWrap>
   );
 }
