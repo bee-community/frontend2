@@ -138,3 +138,11 @@
   width: 143px;
   height: 205px;
 }
+
+@media (max-width: 766px) {
+  .ChatBeforeModal2 .modal {
+    width: calc(var(--vw) * 100);
+    height: calc(var(--vh) * 100);
+    border-radius: 0px;
+  }
+}
