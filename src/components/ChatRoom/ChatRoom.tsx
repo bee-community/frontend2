@@ -1,8 +1,9 @@
 import timeIcon from 'assets/chatImages/chat_time.png';
 import axios from 'axios';
 import React, { useCallback, useEffect, useState, VFC } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Scrollbar } from 'react-scrollbars-custom';
+import { setDataList as setDataList2 } from 'slice/chatDataListSlice';
 
 import { Channel, HashTag } from '../../typings/db';
 import './ChatRoom.css';
@@ -13,7 +14,9 @@ interface Props {
 
 const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
   // const [Data, setData] = useState<ChannelResponse>();
+  const dispatcher = useDispatch();
   const [DataList, setDataList] = useState<any>([]);
+  const DataList2 = useSelector((store: any) => store.dataList.dataList);
   const JWTtoken = useSelector((store: any) => store.JWTtoken);
   // const chatColor = useSelector((store: any) => store.chatColor);
   const [channelIndex, setChannelIndex] = useState(0);
@@ -50,7 +53,7 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
     value => {
       if (
         value.scrollTop == value.contentScrollHeight - value.clientHeight &&
-        DataList.length % 20 == 0
+        DataList2.length % 20 == 0
       ) {
         console.log('Bottom');
         axios
@@ -65,14 +68,17 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
           )
           .then((res: any) => {
             // console.log(res.data);
-            setDataList([...DataList, ...res.data.channels]);
+            // setDataList([...DataList, ...res.data.channels]);
+            dispatcher(
+              setDataList2({ value: [...DataList, ...res.data.channels] }),
+            );
           });
         setChannelIndex(prev => prev + 1);
       }
       // console.log(value);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [DataList],
+    [DataList2],
   );
   useEffect(() => {
     let timer = setInterval(async () => {
@@ -94,7 +100,8 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
             // console.log(test);
           });
       }
-      setDataList(test);
+      setDataList2({ value: test });
+      // setDataList(test);
     }, 50000);
 
     return () => {
@@ -104,7 +111,7 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
   }, [channelIndex]);
   useEffect(() => {
     // console.log(DataList.length);
-  }, [DataList]);
+  }, [DataList2]);
   useEffect(() => {
     axios
       .get('/api/v1/webrtc/chat/channels/0', {
@@ -115,7 +122,8 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
       .then((res: any) => {
         // console.log(res.data);
         console.log('rrarr');
-        setDataList(res.data.channels);
+        // setDataList(res.data.channels);
+        dispatcher(setDataList2({ value: res.data.channels }));
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -129,7 +137,8 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
       })
       .then((res: any) => {
         console.log(res.data);
-        setDataList(res.data.channels);
+        dispatcher(setDataList2({ value: res.data.channels }));
+        // setDataList(res.data.channels);
       });
   }, []);
   const hashTagSearchEventPrevent = useCallback(e => {
@@ -140,7 +149,7 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
       <Scrollbar maximalThumbYSize={95} onScroll={onScroll}>
         {/* <NavLink to={'/chat/chatList/1'}> */}
         <div className="con">
-          {DataList?.map((channela: any, index: number) => {
+          {DataList2?.map((channela: any, index: number) => {
             // console.log(channel)
             // console.log(channel.channelHashTags)
             // let h = renderHash(channela.channelHashTags);

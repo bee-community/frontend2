@@ -1,4 +1,5 @@
 import addButton from 'assets/chatImages/addbutton2.png';
+import axios from 'axios';
 import Chat from 'components/ChatChat/Chat';
 import ChatList from 'components/ChatList/ChatList';
 import CreateChannel from 'components/CreateChannel/CreateChannel';
@@ -8,6 +9,7 @@ import { url } from 'inspector';
 import React, { useEffect, useState, useCallback, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setChatColor } from 'slice/chatColorSlice';
+import { setDataList as setDataList2 } from 'slice/chatDataListSlice';
 import { setChatState } from 'slice/chatStateSlice';
 import { setLogId } from 'slice/logIdSlice';
 
@@ -39,6 +41,13 @@ function Aside() {
   const chatColor = useSelector((store: any) => store.chatColor);
   const chatState = useSelector((store: any) => store.chatState);
   const dispatcher = useDispatch();
+  const DataList2 = useSelector((store: any) => store.dataList.dataList);
+  const JWTtoken = useSelector((store: any) => store.JWTtoken);
+  const [text, setText] = useState('');
+  const onChangeText = (e: any) => {
+    setText(e.target.value);
+    console.log(e.code);
+  };
 
   // const chatUrl = '/api/v1/webrtc/channels/0';
   // const myChatUrl = '/api/v1/webrtc/mychannel/0';
@@ -165,17 +174,27 @@ function Aside() {
       })
       .then((res: any) => {
         console.log(res.data);
-        setDataList(res.data.channels);
+        dispatcher(setDataList2({ value: res.data.channels }));
+        // setDataList(res.data.channels);
       });
   }, []);
+  const handleOnKeyPress = (e: any) => {
+    if (e.key === 'Enter') {
+      hashTagSearch(text);
+      setText('');
+    }
+  };
   return (
     <AsideWrap>
       <Bio>
         <div className="searchInputWrapper">
           <input
+            value={text}
+            onChange={onChangeText}
+            onKeyPress={handleOnKeyPress}
             className="searchInput"
             placeholder="원하시는 키워드를 검색하세요"></input>
-          <div>
+          <div onClick={() => hashTagSearch(text)}>
             <img className="searchIcon" alt="" src={searchIcon}></img>
           </div>
         </div>
