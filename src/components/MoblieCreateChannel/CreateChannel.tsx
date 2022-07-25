@@ -3,7 +3,8 @@ import xx from 'assets/chatImages/xx.png';
 import axios from 'axios';
 import ChatList from 'components/ChatList/ChatList';
 import React, { useEffect, VFC, useCallback, useState, useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setNeedScroll } from 'slice/chatMobileScroll';
 
 import useInput from '../../hooks/useInput';
 import { Label2, Label, Input, Button } from '../Aside/styles';
@@ -16,12 +17,14 @@ interface Props {
 
 const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
   const { JWTtoken } = useSelector((store: any) => store);
+  const needScroll = useSelector((store: any) => store.needScroll.needScroll);
   const [newWorkspace, onChangeNewWorkspace] = useInput('');
   const [newHash, onChangeNewHash, setNewHash] = useInput('');
   const [tags, setTags] = useState<any>([]);
   const hashref = useRef<HTMLInputElement>(null);
   const [active, setActive] = useState(false);
   const [chatType, setChatType] = useState('chat');
+  const dispatcher = useDispatch();
   const onChangeRadio = (e: any) => {
     setChatType(e.target.value);
     console.log(e.target.value);
@@ -75,6 +78,7 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
         .then(res => {
           // console.log(res);
           onCloseModal();
+          dispatcher(setNeedScroll({ value: needScroll + 1 }));
           location.reload();
         })
         .catch(function (error) {

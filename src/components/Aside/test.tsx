@@ -40,6 +40,7 @@ function Aside() {
   // dummy popular Article
   const { client, happy, setChatList } = useContext<any>(ChatContext);
   // const { JWTtoken, publicChats } = useSelector((store: any) => store);
+  const needScroll = useSelector((store: any) => store.needScroll.needScroll);
   const chatColor = useSelector((store: any) => store.chatColor);
   const chatState = useSelector((store: any) => store.chatState);
   const dispatcher = useDispatch();
@@ -167,7 +168,10 @@ function Aside() {
 
     return () => body.classList.remove('scrollLock');
   }, []);
-
+  useEffect(() => {
+    console.log('nedhello');
+    window.scrollTo(0, 0);
+  }, [needScroll]);
   const hashTagSearch = useCallback(hash => {
     console.log(hash);
     axios

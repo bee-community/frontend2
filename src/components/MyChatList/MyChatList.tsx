@@ -7,8 +7,8 @@ import { useDispatch } from 'react-redux';
 import { setIndexChat } from 'slice/indexChatSlice';
 
 import { Channel } from '../../typings/db';
-import './ChatList.css';
-import { ChatBox, Container } from './styles';
+import '../ChatList/ChatList.css';
+import { ChatBox, Container } from '../ChatList/styles';
 
 const MyList = () => {
   const dispatcher = useDispatch();
