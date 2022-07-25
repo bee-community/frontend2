@@ -3,6 +3,7 @@ import axios from 'axios';
 import Chat from 'components/ChatChat/Chat';
 import ChatList from 'components/ChatList/ChatList';
 import CreateChannel from 'components/CreateChannel/CreateChannel';
+import Dropdown from 'components/Dropdown/Dropdown';
 import MyChatList from 'components/MyChatList/MyChatList';
 import VoiceChat from 'components/VoiceChat/Chat';
 import { url } from 'inspector';
@@ -44,6 +45,8 @@ function Aside() {
   const DataList2 = useSelector((store: any) => store.dataList.dataList);
   const JWTtoken = useSelector((store: any) => store.JWTtoken);
   const [text, setText] = useState('');
+  const [selected, setSelected] = useState('참여인원수');
+
   const onChangeText = (e: any) => {
     setText(e.target.value);
     console.log(e.code);
@@ -205,6 +208,7 @@ function Aside() {
           onClick={onClickCreateChannel}
         /> */}
       </Bio>
+
       <CreateChannel
         show={showCreateChannel}
         onCloseModal={onCloseModal}></CreateChannel>
@@ -249,6 +253,7 @@ function Aside() {
           내 채팅방
         </button> */}
       </Box>
+      <Dropdown selected={selected} setSelected={setSelected}></Dropdown>
       {(() => {
         switch (chatState.chatState) {
           case 'chatList':
