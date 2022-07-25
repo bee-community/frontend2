@@ -240,7 +240,7 @@ export const Input = styled.input`
 
 export const Button = styled.button`
   margin-bottom: 12px;
-  margin-top: 42px;
+  margin-top: 25px;
   width: 100%;
   max-width: 100%;
   background-color: #ffe576;
