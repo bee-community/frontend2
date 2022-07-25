@@ -1,3 +1,4 @@
+import ChatBeforeModal2 from 'components/ChatBeforeModal2/ChatBeforeModal2';
 import ChatBeforeModal from 'components/ChatBeforeModal/ChatBeforeModal';
 import ChatRoomMy from 'components/ChatRoomMy/ChatRoomMy';
 import React, { useCallback, useState } from 'react';
@@ -51,6 +52,10 @@ const MyList = () => {
             show={showChatBeforeModal}
             onCloseModal={onCloseModal}></ChatBeforeModal>
         </ChatBox>
+        <ChatBeforeModal2
+          sendChannelInfo={sendChannelInfo}
+          show={showChatBeforeModal}
+          onCloseModal={onCloseModal}></ChatBeforeModal2>
       </Container>
     </div>
   );
