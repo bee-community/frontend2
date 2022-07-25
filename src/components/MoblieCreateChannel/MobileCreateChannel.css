@@ -288,7 +288,7 @@
 
 @media (max-width: 766px) {
   .createChannel .modal {
-    width: 90vw;
+    width: calc(var(--vw) * 90);
     height: calc(var(--vh) * 100);
     border-radius: 0px;
   }

@@ -136,18 +136,18 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
     // return () => disconnect();
   }, []);
 
-  const setScreenSize = () => {
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-  };
+  // const setScreenSize = () => {
+  //   let vh = window.innerHeight * 0.01;
+  //   document.documentElement.style.setProperty('--vh', `${vh}px`);
+  // };
 
-  useEffect(() => {
-    setScreenSize();
-    // const body = document.getElementsByTagName('body')[0];
-    // body.classList.add('scrollLock');
+  // useEffect(() => {
+  //   // setScreenSize();
+  //   const body = document.getElementsByTagName('body')[0];
+  //   body.classList.remove('scrollLock');
 
-    // return () => body.classList.remove('scrollLock');
-  }, []);
+  //   return () => body.classList.add('scrollLock');
+  // }, [show]);
 
   if (!show) {
     return null;
@@ -173,6 +173,9 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
               )}
             </div>
             <Input
+              onBlur={() => {
+                window.scrollTo(0, 0);
+              }}
               id="workspace"
               value={newWorkspace}
               onChange={onChangeNewWorkspace}></Input>
@@ -211,8 +214,14 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
                 className="hashInput"
                 value={newHash}
                 ref={hashref}
-                onFocus={() => setActive(true)}
-                onBlur={() => setActive(false)}
+                onFocus={() => {
+                  setActive(true);
+                }}
+                onBlur={() => {
+                  setActive(false);
+                  window.scrollTo(0, 0);
+                  window.document.body.scrollTop = 0;
+                }}
                 onChange={onChangeNewHash}
                 onKeyDown={onKeyKey}></input>
             </div>

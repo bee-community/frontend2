@@ -148,10 +148,14 @@ function Aside() {
 
   const onClickCreateChannel = useCallback(() => {
     setShowCreateChannel(true);
+    const body = document.getElementsByTagName('body')[0];
+    body.classList.remove('scrollLock');
   }, []);
 
   const onCloseModal = useCallback(() => {
     setShowCreateChannel(false);
+    const body = document.getElementsByTagName('body')[0];
+    body.classList.add('scrollLock');
   }, []);
 
   const setScreenSize = () => {
