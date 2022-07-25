@@ -137,7 +137,6 @@ export const Box = styled.div`
   // align-items: center;
   height: 40px;
   background-color: white;
-
   & > span:nth-child(1) {
     flex: 6;
     display: flex;
@@ -157,7 +156,7 @@ export const Box = styled.div`
     align-items: center;
   }
   @media (max-width: ${props => props.theme.screenSize.md}) {
-    width: calc(96% - 10px);
+    width: calc(var(--vw) * 82);
     margin-left: 3%;
   }
 `;
@@ -281,6 +280,8 @@ export const ChatButton = styled.button<{
   align-items: center;
   border-radius: 44px;
   height: 40px;
+  width: 150px;
+  color: black;
   font-size: 14px;
   font-weight: ${(props: any) => props.fontWeight};
   background-color: ${(props: any) => props.backgroundColor};
