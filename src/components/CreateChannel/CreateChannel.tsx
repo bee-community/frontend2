@@ -217,7 +217,43 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
             <div>
               <span>채팅방 종류</span>
             </div>
-            <input
+            <div className="radio">
+              <label className="custom-radio-btn">
+                <span onClick={() => setChatType('chat')} className="label">
+                  문자
+                </span>
+                <input
+                  onChange={onChangeRadio}
+                  value="chat"
+                  type="radio"
+                  name="sample"
+                  checked={chatType === 'chat' ? true : false}></input>
+                <span
+                  onClick={() => setChatType('chat')}
+                  style={{
+                    borderColor: chatType === 'chat' ? '#ffe576' : 'white',
+                  }}
+                  className="checkmark"></span>
+              </label>
+              <label className="custom-radio-btn">
+                <span onClick={() => setChatType('voice')} className="label">
+                  음성
+                </span>
+                <input
+                  onChange={onChangeRadio}
+                  value="voice"
+                  type="radio"
+                  name="sample"
+                  checked={chatType === 'chat' ? false : true}></input>
+                <span
+                  onClick={() => setChatType('voice')}
+                  style={{
+                    borderColor: chatType === 'chat' ? 'white' : '#ffe576',
+                  }}
+                  className="checkmark"></span>
+              </label>
+            </div>
+            {/* <input
               onChange={onChangeRadio}
               value="chat"
               type="radio"
@@ -255,7 +291,7 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
                 transform:
                   chatType === 'chat' ? 'translateX(0px)' : 'translateX(100px)',
               }}
-              className="highlight"></div>
+              className="highlight"></div> */}
           </Label2>
           <Button onClick={onCreateWorkspace}>채팅방 생성!</Button>
         </div>
