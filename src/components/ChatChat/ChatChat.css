@@ -320,3 +320,18 @@
   background: #dddddd !important;
   /* height: 95px !important; */
 }
+
+@media (max-width: 766px) {
+  .chat .ScrollbarsCustom-Track.ScrollbarsCustom-TrackY {
+    background-color: transparent !important;
+    width: 5px !important;
+    right: 6px !important;
+    /* left: 320px !important; */
+    /* height: 100% !important; */
+  }
+
+  .chat .ScrollbarsCustom-Thumb.ScrollbarsCustom-ThumbY {
+    background: transparent !important;
+    /* height: 95px !important; */
+  }
+}

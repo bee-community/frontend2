@@ -27,7 +27,7 @@ import useInput from '../../hooks/useInput';
 import { resetPublicChats } from '../../slice/publicChats';
 import { changeUserDataMessage } from '../../slice/userDataSlice';
 import fetcher from '../../utils/fetcher';
-import './ChatChat.css';
+import './VoiceChat.css';
 import './drawer.css';
 import { ChatBoxVoice, Container } from './styles';
 

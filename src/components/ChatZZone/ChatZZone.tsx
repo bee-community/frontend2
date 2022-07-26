@@ -10,7 +10,7 @@ import makeSection from 'utils/makeSection';
 import ChatContext from '../../context/ChatContext';
 // import { JwtStateContext, DispatchContext } from '../../context/JwtContext';
 import ScrollContext from '../../context/ScrollContext';
-import './ChatChat.css';
+import './ChatZZone.css';
 
 const ChatZZone = () => {
   // const scrollBarRef = useRef<any>(null);

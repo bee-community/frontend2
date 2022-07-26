@@ -2,7 +2,7 @@ import plusButton from 'assets/chatImages/plusButton.png';
 import React, { VFC } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 
-import './ChatChat.css';
+import './ChatWraper.css';
 
 interface Props {
   chat: string;
