@@ -334,4 +334,10 @@
     background: transparent !important;
     /* height: 95px !important; */
   }
+  .drawerWrapper .exit {
+    top: calc(var(--vh) * 92);
+  }
+  .drawerWrapper .trick {
+    top: calc(var(--vh) * 92);
+  }
 }

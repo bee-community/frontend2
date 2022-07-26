@@ -334,4 +334,8 @@
     background: transparent !important;
     /* height: 95px !important; */
   }
+  .mobileChat .chatZZone {
+    height: calc(var(--vh) * 92 - 63px);
+    width: 100%;
+  }
 }

@@ -28,5 +28,20 @@
 }
 
 .EZDrawer__container {
-  height: 509px !important;
+  height: 509px;
+}
+
+@media (max-width: 766px) {
+  .EZDrawer__container {
+    width: calc(var(--vw) * 75) !important;
+    height: calc(var(--vh) * 100) !important;
+  }
+  .EZDrawer .EZDrawer__overlay {
+    display: none;
+    height: calc(var(--vh) * 100) !important;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
 }
