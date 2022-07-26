@@ -354,8 +354,6 @@ const Chat = () => {
                 src={hamBurger}
               />
             </div>
-            <ChatMiddle></ChatMiddle>
-
             <ChatZZone></ChatZZone>
 
             <ChatWraper
