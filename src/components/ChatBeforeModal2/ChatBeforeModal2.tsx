@@ -1,6 +1,6 @@
 import timeIcon from 'assets/chatImages/chat_time_white.png';
-import cuteBee from 'assets/chatImages/removebee.png';
-import xButton from 'assets/chatImages/xbutton.png';
+import mobileBee from 'assets/chatImages/mobileBee.png';
+import xButton from 'assets/chatImages/mobileXbutton.png';
 import axios from 'axios';
 import React, { useEffect, VFC, useState, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -464,15 +464,17 @@ const ChatBeforeModal: VFC<Props> = ({
             <span>{`/${sendChannelInfo.limitParticipants}`}</span>
           </div>
         </div>
-        <div className="yellowButton" onClick={connect}>
-          채팅방 참여하기
+        <img
+          alt="BeeImage"
+          role="presentation"
+          className="modalBee"
+          src={mobileBee}></img>
+        <div className="centerBee">
+          <div className="yellowButton" onClick={connect}>
+            채팅방 참여하기
+          </div>
         </div>
       </div>
-      <img
-        alt="BeeImage"
-        role="presentation"
-        className="modalBee"
-        src={cuteBee}></img>
     </div>
   );
 };
