@@ -20,7 +20,7 @@ export const AsideWrap = styled.aside`
   }
   @media (max-width: ${props => props.theme.screenSize.md}) {
     display: block;
-    height: calc(var(--vh) * 100 - 60px);
+    height: calc(var(--vh) * 100);
     border-radius: 0;
     overflow: hidden;
     padding-bottom: 0px;

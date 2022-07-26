@@ -1,6 +1,6 @@
 import addButton from 'assets/chatImages/addbutton2.png';
 import axios from 'axios';
-import Chat from 'components/ChatChat/Chat';
+import Chat from 'components/ChatChat/MobileChat';
 import ChatList from 'components/ChatList/ChatList';
 import Dropdown from 'components/Dropdown/Dropdown';
 import CreateChannel from 'components/MoblieCreateChannel/CreateChannel';
@@ -42,7 +42,7 @@ function Aside() {
   // const { JWTtoken, publicChats } = useSelector((store: any) => store);
   const needScroll = useSelector((store: any) => store.needScroll.needScroll);
   const chatColor = useSelector((store: any) => store.chatColor);
-  const chatState = useSelector((store: any) => store.chatState);
+  const chatState = useSelector((store: any) => store.chatState.chatState);
   const dispatcher = useDispatch();
   const DataList2 = useSelector((store: any) => store.dataList.dataList);
   const JWTtoken = useSelector((store: any) => store.JWTtoken);
@@ -198,73 +198,62 @@ function Aside() {
   };
   return (
     <AsideWrap>
-      <Bio>
-        <div className="searchInputWrapper">
-          <input
-            value={text}
-            onChange={onChangeText}
-            onKeyPress={handleOnKeyPress}
-            className="searchInput"
-            placeholder="원하시는 키워드를 검색하세요"></input>
-          <div onClick={() => hashTagSearch(text)}>
-            <img className="searchIcon" alt="" src={searchIcon}></img>
+      {chatState !== 'chat' && 'voicechat' && (
+        <Bio>
+          <div className="searchInputWrapper">
+            <input
+              value={text}
+              onChange={onChangeText}
+              onKeyPress={handleOnKeyPress}
+              className="searchInput"
+              placeholder="원하시는 키워드를 검색하세요"></input>
+            <div onClick={() => hashTagSearch(text)}>
+              <img className="searchIcon" alt="" src={searchIcon}></img>
+            </div>
           </div>
-        </div>
-        {/* <img
-          alt="closeButton"
-          role="presentation"
-          src={addButton}
-          onClick={onClickCreateChannel}
-        /> */}
-      </Bio>
+        </Bio>
+      )}
 
       <CreateChannel
         show={showCreateChannel}
         onCloseModal={onCloseModal}></CreateChannel>
-      <Box style={{ marginTop: '10px' }}>
-        <ChatButton
-          onClick={() => {
-            dispatcher(setChatColor({ value: 'chatList' }));
-            dispatcher(setChatState({ value: 'chatList' }));
-            // chatGetType = 'chatList';
-            console.log('dad');
-            // revalidate();
-          }}
-          backgroundColor={
-            chatColor.chatColor == 'chatList' ? '#ffe576' : 'white'
-          }
-          fontWeight={chatColor.chatColor == 'chatList' ? '700' : '400'}>
-          채팅방 리스트
-        </ChatButton>
-        <ChatButton
-          onClick={() => {
-            dispatcher(setChatColor({ value: 'myList' }));
-            dispatcher(setChatState({ value: 'myList' }));
-            console.log('dad2');
-            // revalidate();
-          }}
-          backgroundColor={
-            chatColor.chatColor == 'myList' ? '#ffe576' : 'white'
-          }
-          fontWeight={chatColor.chatColor == 'myList' ? '700' : '400'}>
-          내 채팅방
-        </ChatButton>
-        {/* <button
-          onClick={() => setChatState('chatList')}
-          className={teststyle.a}
-          // style={{
-          //   backgroundColor: CHAT_STATE_COLORS[chatState],
-          // }}
-        >
-          채팅방 리스트
-        </button> */}
-        {/* <button className="b" onClick={() => setChatState('myList')}>
-          내 채팅방
-        </button> */}
-      </Box>
-      <Dropdown selected={selected} setSelected={setSelected}></Dropdown>
+      {chatState !== 'chat' && 'voicechat' && (
+        <>
+          <Box style={{ marginTop: '10px' }}>
+            <ChatButton
+              onClick={() => {
+                dispatcher(setChatColor({ value: 'chatList' }));
+                dispatcher(setChatState({ value: 'chatList' }));
+                // chatGetType = 'chatList';
+                console.log('dad');
+                // revalidate();
+              }}
+              backgroundColor={
+                chatColor.chatColor == 'chatList' ? '#ffe576' : 'white'
+              }
+              fontWeight={chatColor.chatColor == 'chatList' ? '700' : '400'}>
+              채팅방 리스트
+            </ChatButton>
+            <ChatButton
+              onClick={() => {
+                dispatcher(setChatColor({ value: 'myList' }));
+                dispatcher(setChatState({ value: 'myList' }));
+                console.log('dad2');
+                // revalidate();
+              }}
+              backgroundColor={
+                chatColor.chatColor == 'myList' ? '#ffe576' : 'white'
+              }
+              fontWeight={chatColor.chatColor == 'myList' ? '700' : '400'}>
+              내 채팅방
+            </ChatButton>
+          </Box>
+          <Dropdown selected={selected} setSelected={setSelected}></Dropdown>
+        </>
+      )}
+
       {(() => {
-        switch (chatState.chatState) {
+        switch (chatState) {
           case 'chatList':
             return <ChatList />;
           case 'myList':
@@ -277,9 +266,11 @@ function Aside() {
             return null;
         }
       })()}
-      <div className="create" onClick={onClickCreateChannel}>
-        <img className="createImg" alt="" src={mobileCreateChannel}></img>
-      </div>
+      {chatState !== 'chat' && 'voicechat' && (
+        <div className="create" onClick={onClickCreateChannel}>
+          <img className="createImg" alt="" src={mobileCreateChannel}></img>
+        </div>
+      )}
     </AsideWrap>
   );
 }

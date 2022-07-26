@@ -142,10 +142,6 @@ function Aside() {
     <AsideWrap>
       <Bio>
         <span>채팅</span>
-        {/* <a href="/mypage">
-          <img src={mypageButton} />
-          <div>마이페이지</div>
-        </a> */}
         <img
           alt="closeButton"
           role="presentation"

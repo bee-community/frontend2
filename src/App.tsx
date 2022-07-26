@@ -13,9 +13,12 @@ import Question from 'pages/Question';
 import Report from 'pages/Report';
 import RequestBoard from 'pages/RequestBoard';
 import SignUp from 'pages/SignUp';
+import { useSelector } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
+  const chatState = useSelector((store: any) => store.chatState.chatState);
+
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
@@ -40,7 +43,7 @@ function App() {
         <Route path="login" element={<LogIn />} />
         <Route path="chat" element={<Test />} />
       </Routes>
-      <BottomNav></BottomNav>
+      {chatState !== 'chat' && 'voicechat' && <BottomNav></BottomNav>}
     </BrowserRouter>
   );
 }
