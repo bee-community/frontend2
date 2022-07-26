@@ -26,7 +26,7 @@ import useInput from '../../hooks/useInput';
 import { resetPublicChats } from '../../slice/publicChats';
 import { changeUserDataMessage } from '../../slice/userDataSlice';
 import fetcher from '../../utils/fetcher';
-import './ChatChat.css';
+import './MobileChatChat.css';
 import './drawer.css';
 import { ChatBox, Container } from './styles';
 
@@ -242,7 +242,7 @@ const Chat = () => {
   //   return unlistenHistoryEvent;
   // }, []);
   return (
-    <div className="chat">
+    <div className="mobileChat">
       <Container>
         <ChatBox>
           <Drawer

@@ -28,7 +28,7 @@ import {
   ListTitle,
   Box,
   ChatButton,
-} from './styles';
+} from './mobileStyles';
 import './test.css';
 
 // const CHAT_STATE_COLORS = {
@@ -197,7 +197,7 @@ function Aside() {
     }
   };
   return (
-    <AsideWrap>
+    <AsideWrap chatState={chatState}>
       {chatState !== 'chat' && 'voicechat' && (
         <Bio>
           <div className="searchInputWrapper">
