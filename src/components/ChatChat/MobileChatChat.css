@@ -335,7 +335,23 @@
     /* height: 95px !important; */
   }
   .mobileChat .chatZZone {
-    height: calc(var(--vh) * 92 - 63px);
+    height: calc(var(--vh) * 100 - 128px);
     width: 100%;
+  }
+  .mobileChat .ScrollbarsCustom-Wrapper {
+    width: 100%;
+  }
+  .mobileChat .iinput {
+    width: calc(var(--vw) * 70);
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  .mobileChat .submit {
+    border-radius: 10px;
+    color: black;
+  }
+  .mobileChat .chatHeader {
+    padding-top: 7px;
+    border-bottom: solid 1px #f4f4f4;
   }
 }

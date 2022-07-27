@@ -208,3 +208,9 @@
   border: none;
   outline: none;
 }
+
+@media (max-width: 766px) {
+  .chatZZone .DateButton {
+    padding: 0 0px;
+  }
+}

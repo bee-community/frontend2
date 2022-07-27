@@ -89,7 +89,7 @@ const ChatZZone = () => {
         let arr = chatList;
         // let arr: any = [];
         // console.log(arr);
-        // console.log(res.data);
+        console.log(res.data);
         setChatList([...arr, res.data]);
         if (logId.logId == 0) {
           return;
@@ -110,6 +110,8 @@ const ChatZZone = () => {
         console.log('가장위');
         if (logId.logId < 20) {
           let a = logId.logId + 1;
+          console.log('ttttt', a);
+
           dispatcher(setLogId({ value: a }));
         } else {
           let b = logId.logId - 20;
