@@ -9,7 +9,6 @@ import unmuteIcon from 'assets/chatImages/unmute.png';
 import unvoice from 'assets/chatImages/unvoice.png';
 import voice from 'assets/chatImages/voice.png';
 import volume from 'assets/chatImages/volume.png';
-import axios from 'axios';
 import { OpenVidu } from 'openvidu-browser';
 import { useCallback, useEffect, useState, useContext, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -20,6 +19,7 @@ import {
 } from 'slice/openViduSessionCheckSlice';
 import { setPointOpen } from 'slice/pointModal';
 
+import axios from '../../chatApi';
 import ChatContext from '../../context/ChatContext';
 import UserAudioComponent from './AudioComponent';
 import './voiceChatMiddle.css';
@@ -239,7 +239,7 @@ const ChatMiddle = () => {
       window.addEventListener('beforeunload', onbeforeunload);
 
       const OV = new OpenVidu();
-
+      console.log(OV);
       var mySession = OV.initSession();
       console.log('오픈비두두두', mySession);
       setSession(mySession);
@@ -266,11 +266,13 @@ const ChatMiddle = () => {
 
       getToken().then((tt: any) => {
         console.log(tt);
+        console.log(mySession);
         mySession
           // .connect(tt, { clientData: nickname })
           .connect(tt, { clientData: 'ksw' })
           .then(async () => {
             var devices = await OV.getDevices();
+            console.log(devices);
             var videoDevices = devices.filter(
               device => device.kind === 'videoinput',
             );

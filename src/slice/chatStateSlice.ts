@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  chatState: 'chatList',
+  chatState: 'chat',
 };
 
 const chatStateSlice = createSlice({

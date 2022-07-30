@@ -3,7 +3,7 @@ import hamBurger from 'assets/chatImages/hamburger.png';
 import setting from 'assets/chatImages/setting.png';
 import timeIcon from 'assets/chatImages/timeIcon.png';
 import xbutton from 'assets/chatImages/xbutton_gray.png';
-import ChatWraper from 'components/ChatBox/ChatWraper';
+import ChatWraper from 'components/ChatBox/MobileWrapper';
 import ChatEndModal from 'components/ChatEndModal/ChatEndModal';
 import PointModal from 'components/ChatList/PointModal';
 import RemainPoint from 'components/ChatList/RemainPoint';
@@ -176,18 +176,6 @@ const Chat = () => {
   };
 
   const ExitClick = () => {
-    // if (chat?.trim()) {
-    //   axios
-    //     .post(`api`, {
-    //       content: chat,
-    //     })
-    //     .then(() => {
-    //       // revalidate()
-    //       setChat('');
-    //     })
-    //     .catch(console.error);
-    // }
-    // setChat('');
     if (client) {
       var exitMessage = {
         type: 'EXIT',
@@ -195,14 +183,11 @@ const Chat = () => {
         senderName: userData.username,
         message: '',
       };
-      // console.log(exitMessage);
-      // console.log(jwt);
       client.send(
         '/pub/chat/room',
         {
           jwt: jwt,
-          // username: 'user',
-          // username: userData.username,
+
           channelId: channelInfo.id,
         },
         JSON.stringify(exitMessage),
@@ -219,24 +204,6 @@ const Chat = () => {
     revalidate();
   };
 
-  // useEffect(() => {
-  //   const listenBackEvent = () => {
-  //     // 뒤로가기 할 때 수행할 동작을 적는다
-  //     console.log('백스페이스');
-  //     revalidate();
-  //     // console.log(happy);
-  //     // happy.unsubscribe();
-  //     // console.log(happy);
-  //     // client.disconnect();
-  //     // setPublicChats([]);
-  //     // setLogId(0);
-  //   };
-
-  //   const unlistenHistoryEvent = history.listen(({ action }) => {
-  //     if (action === 'POP') {
-  //       listenBackEvent();
-  //     }
-  //   });
   console.log(pointOpen);
 
   //   return unlistenHistoryEvent;

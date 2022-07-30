@@ -1,10 +1,10 @@
 import timeIcon from 'assets/chatImages/chat_time.png';
-import axios from 'axios';
 import React, { useCallback, useEffect, useState, VFC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Scrollbar } from 'react-scrollbars-custom';
 import { setDataList as setDataList2 } from 'slice/chatDataListSlice';
 
+import axios from '../../chatApi';
 import { Channel, HashTag } from '../../typings/db';
 import './ChatRoom.css';
 
@@ -114,7 +114,7 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
   }, [DataList2]);
   useEffect(() => {
     axios
-      .get('/api/v1/webrtc/chat/channels/0', {
+      .get('/api/v1/webrtc/chat/channels/partiDESC/0', {
         headers: {
           Authorization: 'jwt ' + JWTtoken.JWTtoken,
         },

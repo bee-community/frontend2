@@ -1,5 +1,4 @@
 import xButton from 'assets/chatImages/xbutton.png';
-import axios from 'axios';
 import ChatContext from 'context/ChatContext';
 import React, { useCallback, useContext, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,6 +9,7 @@ import {
   setRemainOpen,
 } from 'slice/pointModal';
 
+import axios from '../../chatApi';
 import './pointModal.css';
 
 const PointModal = () => {

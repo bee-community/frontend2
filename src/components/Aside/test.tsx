@@ -1,5 +1,4 @@
 import addButton from 'assets/chatImages/addbutton2.png';
-import axios from 'axios';
 import Chat from 'components/ChatChat/MobileChat';
 import ChatList from 'components/ChatList/ChatList';
 import Dropdown from 'components/Dropdown/Dropdown';
@@ -16,6 +15,7 @@ import { setLogId } from 'slice/logIdSlice';
 
 import mobileCreateChannel from '../../assets/chatImages/mobileCreateChannel.png';
 import searchIcon from '../../assets/chatImages/searchImage.png';
+import axios from '../../chatApi';
 import ChatContext from '../../context/ChatContext';
 import { resetPublicChats } from '../../slice/publicChats';
 import {

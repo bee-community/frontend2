@@ -1,11 +1,11 @@
 import xButton from 'assets/chatImages/mobileXbutton.png';
 import xx from 'assets/chatImages/xx.png';
-import axios from 'axios';
 import ChatList from 'components/ChatList/ChatList';
 import React, { useEffect, VFC, useCallback, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setNeedScroll } from 'slice/chatMobileScroll';
 
+import axios from '../../chatApi';
 import useInput from '../../hooks/useInput';
 import { Label2, Label, Input, Button } from '../Aside/styles';
 import './MobileCreateChannel.css';

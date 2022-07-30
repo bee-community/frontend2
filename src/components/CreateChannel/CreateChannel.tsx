@@ -1,10 +1,10 @@
 import xButton from 'assets/chatImages/xbutton.png';
 import xx from 'assets/chatImages/xx.png';
-import axios from 'axios';
 import ChatList from 'components/ChatList/ChatList';
 import React, { useEffect, VFC, useCallback, useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
+import axios from '../../chatApi';
 import useInput from '../../hooks/useInput';
 import { Label2, Label, Input, Button } from '../Aside/styles';
 import './CreateChannel.css';

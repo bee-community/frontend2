@@ -1,5 +1,4 @@
 import xButton from 'assets/chatImages/xbutton.png';
-import axios from 'axios';
 import ChatContext from 'context/ChatContext';
 import React, {
   useCallback,
@@ -11,6 +10,7 @@ import React, {
 import { useDispatch, useSelector } from 'react-redux';
 import { setRemainOpen } from 'slice/pointModal';
 
+import axios from '../../chatApi';
 import './remainPoint.css';
 
 const RemainPoint = () => {

@@ -3,7 +3,6 @@ import hamBurger from 'assets/chatImages/hamburger.png';
 import setting from 'assets/chatImages/setting.png';
 import timeIcon from 'assets/chatImages/timeIcon.png';
 import xbutton from 'assets/chatImages/xbutton_gray.png';
-import axios from 'axios';
 import ChatWraper from 'components/ChatBox/ChatWraper';
 import ChatEndModal from 'components/ChatEndModal/ChatEndModal';
 import PointModal from 'components/ChatList/PointModal';
@@ -21,6 +20,7 @@ import { setChatState } from 'slice/chatStateSlice';
 import { setLogId } from 'slice/logIdSlice';
 import useSWR from 'swr';
 
+import axios from '../../chatApi';
 import ChatContext from '../../context/ChatContext';
 // import JwtContext from '../../context/JwtContext';
 import useInput from '../../hooks/useInput';

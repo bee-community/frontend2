@@ -1,7 +1,6 @@
 import timeIcon from 'assets/chatImages/chat_time_white.png';
 import cuteBee from 'assets/chatImages/removebee.png';
 import xButton from 'assets/chatImages/xbutton.png';
-import axios from 'axios';
 import React, { useEffect, VFC, useState, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setChatState } from 'slice/chatStateSlice';
@@ -11,6 +10,7 @@ import { setLogId } from 'slice/logIdSlice';
 import SockJS from 'sockjs-client';
 import { over } from 'stompjs';
 
+import axios from '../../chatApi';
 // import { history } from 'utils/history';
 // import fetcher2 from 'utils/fetcher2';
 import ChatContext from '../../context/ChatContext';

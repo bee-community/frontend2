@@ -1,9 +1,9 @@
 import timeIcon from 'assets/chatImages/chat_time.png';
-import axios from 'axios';
 import React, { useCallback, useEffect, useState, VFC } from 'react';
 import { useSelector } from 'react-redux';
 import { Scrollbar } from 'react-scrollbars-custom';
 
+import axios from '../../chatApi';
 import { Channel, HashTag } from '../../typings/db';
 import '../ChatRoom/ChatRoom.css';
 
