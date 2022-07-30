@@ -330,6 +330,10 @@
     /* height: 100% !important; */
   }
 
+  .mobileChat .ScrollbarsCustom {
+    height: 95% !important;
+  }
+
   .mobileChat .ScrollbarsCustom-Thumb.ScrollbarsCustom-ThumbY {
     background: transparent !important;
     /* height: 95px !important; */
