@@ -242,7 +242,7 @@ const Chat = () => {
   //   return unlistenHistoryEvent;
   // }, []);
   return (
-    <div className="chat">
+    <div className="chat chatchat">
       <Container>
         <ChatBox>
           <Drawer
