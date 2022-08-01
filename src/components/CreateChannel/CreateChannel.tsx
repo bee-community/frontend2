@@ -21,7 +21,7 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
   const [tags, setTags] = useState<any>([]);
   const hashref = useRef<HTMLInputElement>(null);
   const [active, setActive] = useState(false);
-  const [chatType, setChatType] = useState('chat');
+  const [chatType, setChatType] = useState('TEXT');
   const onChangeRadio = (e: any) => {
     setChatType(e.target.value);
     console.log(e.target.value);
@@ -219,36 +219,36 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
             </div>
             <div className="radio">
               <label className="custom-radio-btn">
-                <span onClick={() => setChatType('chat')} className="label">
+                <span onClick={() => setChatType('TEXT')} className="label">
                   문자
                 </span>
                 <input
                   onChange={onChangeRadio}
-                  value="chat"
+                  value="TEXT"
                   type="radio"
                   name="sample"
-                  checked={chatType === 'chat' ? true : false}></input>
+                  checked={chatType === 'TEXT' ? true : false}></input>
                 <span
-                  onClick={() => setChatType('chat')}
+                  onClick={() => setChatType('TEXT')}
                   style={{
-                    borderColor: chatType === 'chat' ? '#ffe576' : 'white',
+                    borderColor: chatType === 'TEXT' ? '#ffe576' : 'white',
                   }}
                   className="checkmark"></span>
               </label>
               <label className="custom-radio-btn">
-                <span onClick={() => setChatType('voice')} className="label">
+                <span onClick={() => setChatType('VOIP')} className="label">
                   음성
                 </span>
                 <input
                   onChange={onChangeRadio}
-                  value="voice"
+                  value="VOIP"
                   type="radio"
                   name="sample"
-                  checked={chatType === 'chat' ? false : true}></input>
+                  checked={chatType === 'TEXT' ? false : true}></input>
                 <span
-                  onClick={() => setChatType('voice')}
+                  onClick={() => setChatType('VOIP')}
                   style={{
-                    borderColor: chatType === 'chat' ? 'white' : '#ffe576',
+                    borderColor: chatType === 'TEXT' ? 'white' : '#ffe576',
                   }}
                   className="checkmark"></span>
               </label>
@@ -271,7 +271,7 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
             </label>
             <input
               onChange={onChangeRadio}
-              value="voice"
+              value="VOIP"
               type="radio"
               className="hidden"
               id="input2"
