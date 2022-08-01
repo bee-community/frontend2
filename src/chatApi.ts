@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://sagang3.duckdns.org:444',
+  baseURL: 'https://sagang3.duckdns.org:9443',
 });
 
 export default api;

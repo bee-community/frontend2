@@ -28,7 +28,7 @@ interface chatUserProfile {
   user: any;
   index: number;
 }
-const OPENVIDU_SERVER_URL = 'https://sagang3.duckdns.org';
+const OPENVIDU_SERVER_URL = 'https://sagang3.duckdns.org:8481';
 // const OPENVIDU_SERVER_URL = "https://" + window.location.hostname + ":4443";
 const OPENVIDU_SERVER_SECRET = 'MY_SECRET';
 // const nickname = "Participant" + Math.floor(Math.random() * 100);
@@ -273,9 +273,9 @@ const ChatMiddle = () => {
           .then(async () => {
             var devices = await OV.getDevices();
             console.log(devices);
-            var videoDevices = devices.filter(
-              device => device.kind === 'videoinput',
-            );
+            // var videoDevices = devices.filter(
+            //   device => device.kind === 'videoinput',
+            // );
 
             let publisherOV: any = OV.initPublisher('', {
               audioSource: undefined,
@@ -307,6 +307,7 @@ const ChatMiddle = () => {
     setSound(!sound);
   }, [sound, subscribers]);
   // console.log();
+  console.log(publisher);
   return (
     <div className="voiceChatMiddle">
       <div className="wrapper">
@@ -389,51 +390,13 @@ const ChatMiddle = () => {
               />
             </a>
           </nav>
-          {/* {userChatName.userEnterNumber.map(
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            ({ user: any, index }: chatUserProfile) => {
-              return <div key={index} className="userProfile"></div>;
-            },
-          )} */}
-          {/* <div className="wrapper">
-        <div className="profileWrapper">
-      
-        </div>
-      </div> */}
-
-          {/* {session === undefined ? (
-            <img
-              className="greenbutton"
-              alt=""
-              src={green}
-              onClick={() => {
-                window.alert('음성채팅이 시작됩니다.');
-                joinSession();
-              }}></img>
-          ) : (
-            <img
-              className="greenbutton"
-              alt=""
-              src={red}
-              onClick={leaveSession}></img>
-          )} */}
           <Scrollbar
             style={{ width: '330px', height: '330px' }}
             noScrollX={true}
             maximalThumbYSize={95}>
             {session !== undefined ? (
               <div id="session">
-                <div id="session-header">
-                  {/* <h1 id="session-title">{mySessionId}</h1> */}
-                  {/* <div>session</div> */}
-                  {/* <input
-                className="btn btn-large btn-danger"
-                type="button"
-                id="buttonLeaveSession"
-                onClick={this.leaveSession}
-                value="Leave sessionsss"
-              /> */}
-                </div>
+                <div id="session-header"></div>
 
                 {mainStreamManager !== undefined ? (
                   <div id="main-video" className="col-md-6">
@@ -451,13 +414,18 @@ const ChatMiddle = () => {
                   </div>
                 ) : null}
                 <div id="video-container" className="hi">
-                  {publisher !== undefined ? (
+                  <div
+                    className="stream-container"
+                    onClick={() => handleMainVideoStream(publisher)}>
+                    <UserAudioComponent streamManager={publisher} idx={18} />
+                  </div>
+                  {/* {publisher !== undefined ? (
                     <div
                       className="stream-container"
                       onClick={() => handleMainVideoStream(publisher)}>
                       <UserAudioComponent streamManager={publisher} idx={18} />
                     </div>
-                  ) : null}
+                  ) : null} */}
                   {subscribers.map((sub: any, i: any) => {
                     if (i < 9) {
                       return (

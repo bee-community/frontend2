@@ -30,7 +30,7 @@ interface Props {
   show: boolean;
   onCloseModal: () => void;
 }
-const socketURL = 'http://sagang3.duckdns.org:81/ws-stomp';
+const socketURL = 'https://sagang3.duckdns.org:9443/ws-stomp';
 var stompClient: any = null;
 let trick = '';
 let avoid = false;
@@ -287,23 +287,6 @@ const ChatBeforeModal: VFC<Props> = ({
   };
 
   const connect = async () => {
-    // dispatch({ value: 'dada', type: 'CHANGE' });
-
-    // setJwt('2222test');
-    // setJwt(
-    //   'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjUxNTE0NjY3LCJpYXQiOjE2NTE0OTY2Njd9.I3Wlq_f7elhOsJ9wP07-YCRba9ITlyI7BbQyqXWjmB5ClkQ5iqOsNdNUqpX2BG2BgCrHwvsujA6O15ojMmAI2Q',
-    // );
-    // setTest('hello');
-    // console.log(testName);
-    // try {
-    //   await axios.post('/api/v1/webrtc/register', {
-    //     // nickname: 'user',
-    //     email: testName,
-    //     password: 'user',
-    //   });
-    // } catch (err) {
-    //   console.log(err);
-    // }
     try {
       var ress: any = await axios.post('/api/v1/webrtc/chat/authenticate', {
         // nickname: 'user',
@@ -335,9 +318,9 @@ const ChatBeforeModal: VFC<Props> = ({
     } catch (err) {
       console.log(err);
     } finally {
-      if (sendChannelInfo.channelType === 'chat') {
+      if (sendChannelInfo.channelType === 'TEXT') {
         dispatcher(setChatState({ value: 'chat' }));
-      } else if (sendChannelInfo.channelType === 'voice') {
+      } else if (sendChannelInfo.channelType === 'VOIP') {
         dispatcher(setChatState({ value: 'voicechat' }));
       }
     }

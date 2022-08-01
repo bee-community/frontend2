@@ -30,7 +30,8 @@ interface Props {
   show: boolean;
   onCloseModal: () => void;
 }
-const socketURL = 'http://sagang3.duckdns.org:81/ws-stomp';
+const socketURL = 'https://sagang3.duckdns.org:9443/ws-stomp';
+
 var stompClient: any = null;
 let trick = '';
 let avoid = false;
@@ -335,9 +336,9 @@ const ChatBeforeModal: VFC<Props> = ({
     } catch (err) {
       console.log(err);
     } finally {
-      if (sendChannelInfo.channelType === 'chat') {
+      if (sendChannelInfo.channelType === 'TEXT') {
         dispatcher(setChatState({ value: 'chat' }));
-      } else if (sendChannelInfo.channelType === 'voice') {
+      } else if (sendChannelInfo.channelType === 'VOIP') {
         dispatcher(setChatState({ value: 'voicechat' }));
       }
     }

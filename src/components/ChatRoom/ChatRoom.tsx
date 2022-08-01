@@ -130,7 +130,7 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
   const hashTagSearch = useCallback(hash => {
     console.log(hash);
     axios
-      .get(`/api/v1/webrtc/chat/hashtag/${hash}`, {
+      .get(`/api/v1/webrtc/chat/hashtag/partiDESC/${hash}`, {
         headers: {
           Authorization: 'jwt ' + JWTtoken.JWTtoken,
         },
@@ -155,7 +155,7 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
             // let h = renderHash(channela.channelHashTags);
             let ttime = secondsToTime(channela.timeToLive);
             let chatType;
-            if (channela.channelType === 'chat') {
+            if (channela.channelType === 'TEXT') {
               chatType = '문자';
             } else {
               chatType = '음성';
