@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Scrollbar } from 'react-scrollbars-custom';
 import { setChatState } from 'slice/chatStateSlice';
 import { setLogId } from 'slice/logIdSlice';
+import styled from 'styled-components';
 import useSWR from 'swr';
 
 import ChatContext from '../../context/ChatContext';
@@ -29,6 +30,80 @@ import fetcher from '../../utils/fetcher';
 import './MobileChatChat.css';
 import './drawer.css';
 import { ChatBox, Container } from './styles';
+
+const ModalBackground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.8);
+`;
+
+const PPointModal = styled.div`
+  position: absolute;
+  top: calc(var(--vh) * 50 - 100px);
+  left: calc(var(--vw) * 50 - calc(var(--vw) * 40));
+  background-color: white;
+  border-radius: 20px;
+  width: calc(var(--vw) * 80);
+  height: 200px;
+  border: 1px solid black;
+
+  & > .yellowArea {
+    width: 100%;
+    height: 35%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #ffe576;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  & > .textArea {
+    width: 100%;
+    height: 35%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 16px;
+    line-height: 22px;
+    & > div:nth-child(1) {
+      & > span:nth-child(1) {
+        font-weight: 700;
+        color: rgb(82, 6, 185);
+      }
+    }
+    & > div:nth-child(2) {
+      & > span:nth-child(1) {
+        font-weight: 700;
+      }
+    }
+  }
+  & > .confirmButton {
+    width: 100%;
+    height: 35%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & > div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 130px;
+      height: 45px;
+      border-radius: 10px;
+      background-color: #ffe576;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 30px;
+    }
+  }
+`;
 
 // interface Props {
 //   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -329,6 +404,24 @@ const Chat = () => {
               onSubmitForm={onSubmitForm}></ChatWraper>
           </div>
           <ChatEndModal></ChatEndModal>
+          <ModalBackground>
+            <PPointModal>
+              <div className="yellowArea">시간 추가</div>
+              <div className="textArea">
+                <div>
+                  <span>500포인트 이용</span>
+                  <span>하여</span>
+                </div>
+                <div>
+                  <span>1시간 추가</span>
+                  <span>되었습니다.</span>
+                </div>
+              </div>
+              <div className="confirmButton">
+                <div>확인</div>
+              </div>
+            </PPointModal>
+          </ModalBackground>
           {pointOpen.pointOpen && <PointModal></PointModal>}
           {pointOpen.remainOpen && <RemainPoint></RemainPoint>}
         </ChatBox>
