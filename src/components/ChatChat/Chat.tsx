@@ -3,7 +3,7 @@ import hamBurger from 'assets/chatImages/hamburger.png';
 import setting from 'assets/chatImages/setting.png';
 import timeIcon from 'assets/chatImages/timeIcon.png';
 import xbutton from 'assets/chatImages/xbutton_gray.png';
-import ChatWraper from 'components/ChatBox/MobileWrapper';
+import ChatWraper from 'components/ChatBox/ChatWraper';
 import ChatEndModal from 'components/ChatEndModal/ChatEndModal';
 import PointModal from 'components/ChatList/PointModal';
 import RemainPoint from 'components/ChatList/RemainPoint';

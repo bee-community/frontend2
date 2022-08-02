@@ -119,3 +119,56 @@ export const SendButton = styled.button`
     height: 42px;
   }
 `;
+
+export const HideDrawer = styled.div`
+  position: absolute;
+  width: 100%;
+  top: 80px;
+  display: flex;
+  justify-content: space-around;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  & > div:nth-child(1) > img {
+    width: 50px;
+    height: 50px;
+  }
+
+  & > div:nth-child(1) > div {
+    display: flex;
+    font-weight: 700;
+    justify-content: center;
+    align-items: center;
+  }
+
+  & > div:nth-child(2) > img {
+    width: 45px;
+    height: 45px;
+  }
+
+  & > div:nth-child(2) > div {
+    display: flex;
+    font-weight: 700;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8px;
+  }
+
+  & > div:nth-child(3) > img {
+    width: 45px;
+    height: 45px;
+  }
+
+  & > div:nth-child(3) > div {
+    display: flex;
+    font-weight: 700;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4px;
+  }
+`;

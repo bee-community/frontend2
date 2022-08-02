@@ -13,6 +13,7 @@ import {
   TextArea,
   PlusButton,
   SendButton,
+  HideDrawer,
 } from './style';
 
 interface Props {
@@ -85,73 +86,20 @@ const ChatBox: VFC<Props> = ({ chat, onSubmitForm, onChangeChat }) => {
           onKeyDown={onKeydownChat}></TextArea>
         <SendButton onClick={onSubmitForm}>전송</SendButton>
       </ChatInput>
-      <div>
-        <div
-          style={{
-            position: 'absolute',
-            width: '100%',
-            top: '80px',
-            display: 'flex',
-            justifyContent: 'space-around',
-          }}>
-          <div>
-            <img
-              style={{
-                width: '50px',
-                height: '50px',
-              }}
-              alt=""
-              src={mobileAddTime}></img>
-            <div
-              style={{
-                display: 'flex',
-                fontWeight: '700',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              시간 추가
-            </div>
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <img
-              style={{ width: '45px', height: '45px' }}
-              alt=""
-              src={mobileAddImge}></img>
-            <div
-              style={{
-                marginTop: '9px',
-                fontWeight: '700',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              사진
-            </div>
-          </div>
-          <div>
-            <img
-              style={{ width: '45px', height: '45px' }}
-              alt=""
-              src={mobileAddVideo}></img>
-            <div
-              style={{
-                display: 'flex',
-                marginTop: '4px',
-                fontWeight: '700',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              동영상
-            </div>
-          </div>
+      <HideDrawer>
+        <div>
+          <img alt="" src={mobileAddTime}></img>
+          <div>시간 추가</div>
         </div>
-      </div>
+        <div>
+          <img alt="" src={mobileAddImge}></img>
+          <div>사진</div>
+        </div>
+        <div>
+          <img alt="" src={mobileAddVideo}></img>
+          <div>동영상</div>
+        </div>
+      </HideDrawer>
     </Wrapper>
   );
 };
