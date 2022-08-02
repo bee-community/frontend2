@@ -27,6 +27,7 @@ import useInput from '../../hooks/useInput';
 import { resetPublicChats } from '../../slice/publicChats';
 import { changeUserDataMessage } from '../../slice/userDataSlice';
 import fetcher from '../../utils/fetcher';
+import '../ChatBox/ChatWraper.css';
 import './MobileChatChat.css';
 import './drawer.css';
 import { ChatBox, Container } from './styles';
@@ -404,7 +405,7 @@ const Chat = () => {
               onSubmitForm={onSubmitForm}></ChatWraper>
           </div>
           <ChatEndModal></ChatEndModal>
-          <ModalBackground>
+          {/* <ModalBackground>
             <PPointModal>
               <div className="yellowArea">시간 추가</div>
               <div className="textArea">
@@ -421,7 +422,7 @@ const Chat = () => {
                 <div>확인</div>
               </div>
             </PPointModal>
-          </ModalBackground>
+          </ModalBackground> */}
           {pointOpen.pointOpen && <PointModal></PointModal>}
           {pointOpen.remainOpen && <RemainPoint></RemainPoint>}
         </ChatBox>

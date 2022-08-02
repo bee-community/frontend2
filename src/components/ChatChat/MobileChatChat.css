@@ -339,8 +339,9 @@
     /* height: 95px !important; */
   }
   .mobileChat .chatZZone {
-    height: calc(var(--vh) * 100 - 128px);
+    height: calc(var(--vh) * 100 - var(--stretch));
     width: 100%;
+    transition: 0.5s;
   }
   .mobileChat .ScrollbarsCustom-Wrapper {
     width: 100%;
