@@ -6,7 +6,7 @@ import React, { VFC, useState, useEffect } from 'react';
 import Drawer from 'react-modern-drawer';
 import { useDispatch } from 'react-redux';
 import TextareaAutosize from 'react-textarea-autosize';
-import { setPointOpen } from 'slice/pointModal';
+import { setPointOpen, setWaitOpen } from 'slice/pointModal';
 
 import {
   ModalBackground,
@@ -100,11 +100,21 @@ const ChatBox: VFC<Props> = ({ chat, onSubmitForm, onChangeChat }) => {
           <img alt="" src={mobileAddTime}></img>
           <div>시간 추가</div>
         </div>
-        <div>
+        <div
+          onClick={() => {
+            dispatcher(setWaitOpen({ value: true }));
+            setActive(false);
+            setCloseDrawer();
+          }}>
           <img alt="" src={mobileAddImge}></img>
           <div>사진</div>
         </div>
-        <div>
+        <div
+          onClick={() => {
+            dispatcher(setWaitOpen({ value: true }));
+            setActive(false);
+            setCloseDrawer();
+          }}>
           <img alt="" src={mobileAddVideo}></img>
           <div>동영상</div>
         </div>

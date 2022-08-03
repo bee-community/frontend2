@@ -18,7 +18,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Scrollbar } from 'react-scrollbars-custom';
 import { setChatState } from 'slice/chatStateSlice';
 import { setLogId } from 'slice/logIdSlice';
-import { setRemainOpen, setPointOpen } from 'slice/pointModal';
+import { setRemainOpen, setPointOpen, setWaitOpen } from 'slice/pointModal';
 import styled from 'styled-components';
 import useSWR from 'swr';
 
@@ -444,6 +444,29 @@ const Chat = () => {
                 <div
                   onClick={() => {
                     dispatcher(setRemainOpen({ value: false }));
+                  }}
+                  className="confirmButton">
+                  <div>확인</div>
+                </div>
+              </PPointModal>
+            </>
+          )}
+          {pointOpen.waitOpen && (
+            <>
+              <ModalBackground
+                onClick={() => {
+                  dispatcher(setWaitOpen({ value: false }));
+                }}></ModalBackground>
+              <PPointModal>
+                <div className="yellowArea">잠깐!</div>
+                <div className="textArea">
+                  <div>
+                    <span style={{ color: 'black' }}>개발중인 기능입니다.</span>
+                  </div>
+                </div>
+                <div
+                  onClick={() => {
+                    dispatcher(setWaitOpen({ value: false }));
                   }}
                   className="confirmButton">
                   <div>확인</div>
