@@ -1,0 +1,202 @@
+.MobilePointModal .hhh {
+  width: 100%;
+  height: 18%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background-color: #ffe576;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.MobilePointModal .pointButton {
+  position: absolute;
+  top: 260px;
+  left: calc(50% - 65px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 45px;
+  border-radius: 10px;
+  border: none;
+  background-color: #ffe576;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  cursor: pointer;
+  color: black;
+}
+.MobilePointModal .showOverlay {
+  bottom: 0;
+  display: flex;
+  font-size: 16px;
+  left: calc(50% - 55px);
+  margin-bottom: 7px;
+  position: absolute;
+}
+.MobilePointModal .check {
+  bottom: 0;
+  display: flex;
+  left: calc(50% + 40px);
+  margin-bottom: 10px;
+  position: absolute;
+  visibility: hidden;
+}
+.MobilePointModal .containerOuter {
+  z-index: 100;
+  position: absolute;
+  top: calc(var(--vh) * 50 - 200px);
+  left: calc(var(--vw) * 50 - calc(var(--vw) * 40));
+  background-color: white;
+  border-radius: 20px;
+  width: calc(var(--vw) * 80);
+  height: 400px;
+}
+.MobilePointModal .container123 {
+  box-sizing: border-box;
+  padding: 10px 20px;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 320px;
+  color: white;
+}
+.MobilePointModal .hidden {
+  display: none;
+}
+.MobilePointModal .entry {
+  height: 25px;
+  position: absolute;
+  width: 160px;
+}
+.MobilePointModal .entry:nth-child(2) {
+  left: calc(50% - 105px);
+  top: 18px;
+}
+.MobilePointModal .entry:nth-child(4) {
+  left: calc(50% - 105px);
+  top: 68px;
+}
+.MobilePointModal .entry:nth-child(6) {
+  left: calc(50% - 105px);
+  top: 118px;
+}
+.MobilePointModal .entry:nth-child(8) {
+  left: calc(50% - 105px);
+  top: 168px;
+}
+.MobilePointModal .entry:nth-child(10) {
+  left: calc(50% - 105px);
+  top: 218px;
+}
+.MobilePointModal .circle {
+  border: 2px solid #ffe576;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 20px;
+  position: absolute;
+  transition: border-color 300ms;
+  width: 20px;
+}
+
+.MobilePointModal .PointModal .closeButton {
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  left: 215px;
+}
+
+.MobilePointModal .point {
+  margin-left: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #5206b9;
+  font-weight: 700;
+}
+
+.MobilePointModal .point1 {
+  margin-left: 42px;
+}
+.MobilePointModal .point2 {
+  margin-left: 42px;
+}
+.MobilePointModal .point3 {
+  margin-left: 40px;
+}
+.MobilePointModal .point4 {
+  margin-left: 40px;
+}
+.MobilePointModal .point5 {
+  margin-left: 40px;
+}
+.entry-label {
+  color: black;
+  width: 200px;
+  display: flex;
+  cursor: pointer;
+  margin-top: 3px;
+  padding-left: 40px;
+  font-weight: 700;
+  font-size: 16px;
+  user-select: none;
+  -moz-user-select: none;
+}
+.MobilePointModal .overlay {
+  background: #fff;
+  mask: url(#holes);
+  -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAACMCAYAAAAOc+uVAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAItSURBVHic7ZnNjhJBFIVPA0txr0Iyw+tIdOXWaDRufZWZeYbZuMKOUV9Gg+HHGN/BHBcNcSBT1KVOEVycb0mq635UVd9U5zQkif+Y3rkFclhQxYIqFlQZiM8vALQAPgP4AWC1+X0E4ALAFMBzAOPiCixjRfIdyX5g/h7JFyTnJYVKBGckHxQsxJBke2rBK5LF55bdal6fSnCmyO1JhlcyKrhkwbYekBySXNcUfF1L7o7k20jhhsxetxYAJk3T/Kks2EfXmkaHxkXO1MfacgCwmbPNjYsIftV1knzJDYgIfqsgkuJ7bkBE8FcFkRTr3IBzXxay9SOCjyuIFM8dEZxUECmeOyL4tIJIimluQKRRLwFcnqBRDwDMUaFRjwG8quC0zxtk5ACEL6wrksNaZiQfkvwZKRxtM08AfGDgBh2Q6wG4BfAo+sAxXB/xp+6VI3lzTMGSK3/Lgu1mt62fji1W+tH0m+R7dm9iZNVeMnjm9om0mUOs8O+zc47dz84Juh76DJG3NYEqeHLOfVnIYkEVC6pYUMWCKhZUsaCKBVUsqGJBFQuqWFDFgipO3OnEfRcn7qWCTtxTOHFP4cS9Ek7cVZy4qzhxL4ZO3AXoxF2QoxP3DifuW5y4q1hQxYIqFlSxoIoFVSyoYkEVC6pYUMWCKhZUsaCKE3c6cd/FiXupoBP3FE7cUzhxr4QTdxUn7ipO3IuhE3cBOnEX5OjEvcOJ+xYn7ioWVLGgigVV/gKEL4RSyM8Z8wAAAABJRU5ErkJggg==);
+  height: 140px;
+  pointer-events: none;
+  transition: background 300ms;
+  width: 40px;
+}
+.MobilePointModal .highlight {
+  background: #ffe576;
+  border-radius: 50%;
+  height: 12px;
+  left: calc(50% - 99px);
+  pointer-events: none;
+  position: absolute;
+  top: 24px;
+  transition: transform 400ms cubic-bezier(0.175, 0.885, 0.32, 1.2);
+  transform: translateY(-50px);
+  width: 12px;
+}
+.MobilePointModal .hidden:nth-child(1):checked ~ .highlight {
+  transform: translateY(0);
+}
+.MobilePointModal .hidden:nth-child(3):checked ~ .highlight {
+  transform: translateY(50px);
+}
+.MobilePointModal .hidden:nth-child(5):checked ~ .highlight {
+  transform: translateY(100px);
+}
+.MobilePointModal .hidden:nth-child(7):checked ~ .highlight {
+  transform: translateY(150px);
+}
+.MobilePointModal .hidden:nth-child(9):checked ~ .highlight {
+  transform: translateY(200px);
+}
+.MobilePointModal .hidden:nth-child(1):checked + .entry .circle {
+  border-color: #ffe576;
+}
+.MobilePointModal .hidden:nth-child(3):checked + .entry .circle {
+  border-color: #ffe576;
+}
+.MobilePointModal .hidden:nth-child(5):checked + .entry .circle {
+  border-color: #ffe576;
+}
+.MobilePointModal .hidden:nth-child(7):checked + .entry .circle {
+  border-color: #ffe576;
+}
+.MobilePointModal .hidden:nth-child(9):checked + .entry .circle {
+  border-color: #ffe576;
+}
+/* .check:checked ~ .containerOuter .overlay {
+    background: #ecf0f4;
+  } */

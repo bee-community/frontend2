@@ -4,7 +4,9 @@ import mobileAddVideo from 'assets/chatImages/mobileAddVideo.png';
 import plusButton from 'assets/chatImages/plusButton.png';
 import React, { VFC, useState, useEffect } from 'react';
 import Drawer from 'react-modern-drawer';
+import { useDispatch } from 'react-redux';
 import TextareaAutosize from 'react-textarea-autosize';
+import { setPointOpen } from 'slice/pointModal';
 
 import {
   ModalBackground,
@@ -24,6 +26,8 @@ interface Props {
 const ChatBox: VFC<Props> = ({ chat, onSubmitForm, onChangeChat }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [active, setActive] = useState(false);
+  const dispatcher = useDispatch();
+
   const onKeydownChat = (e: any) => {
     if (e.key === 'Enter' && e.keyCode === 13) {
       if (!e.shiftKey) {
@@ -87,7 +91,12 @@ const ChatBox: VFC<Props> = ({ chat, onSubmitForm, onChangeChat }) => {
         <SendButton onClick={onSubmitForm}>전송</SendButton>
       </ChatInput>
       <HideDrawer>
-        <div>
+        <div
+          onClick={() => {
+            dispatcher(setPointOpen({ value: true }));
+            setActive(false);
+            setCloseDrawer();
+          }}>
           <img alt="" src={mobileAddTime}></img>
           <div>시간 추가</div>
         </div>

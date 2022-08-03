@@ -5,7 +5,7 @@ import timeIcon from 'assets/chatImages/timeIcon.png';
 import xbutton from 'assets/chatImages/xbutton_gray.png';
 import ChatWraper from 'components/ChatBox/MobileWrapper';
 import ChatEndModal from 'components/ChatEndModal/ChatEndModal';
-import PointModal from 'components/ChatList/PointModal';
+import PointModal from 'components/ChatList/MobilePointModal';
 import RemainPoint from 'components/ChatList/RemainPoint';
 import ChatMiddle from 'components/ChatMiddle/ChatMiddle';
 import ChatZZone from 'components/ChatZZone/ChatZZone';
@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Scrollbar } from 'react-scrollbars-custom';
 import { setChatState } from 'slice/chatStateSlice';
 import { setLogId } from 'slice/logIdSlice';
+import { setRemainOpen, setPointOpen } from 'slice/pointModal';
 import styled from 'styled-components';
 import useSWR from 'swr';
 
@@ -120,6 +121,7 @@ const Chat = () => {
   const indexChat = useSelector((store: any) => store.indexChat);
   const chatColor = useSelector((store: any) => store.chatColor);
   const pointOpen = useSelector((store: any) => store.pointOpen);
+
   const dispatcher = useDispatch();
   const chatUrl = '/api/v1/webrtc/chat/channels/0';
   const myChatUrl = '/api/v1/webrtc/chat/mychannel/0';
@@ -405,26 +407,50 @@ const Chat = () => {
               onSubmitForm={onSubmitForm}></ChatWraper>
           </div>
           <ChatEndModal></ChatEndModal>
-          {/* <ModalBackground>
-            <PPointModal>
-              <div className="yellowArea">시간 추가</div>
-              <div className="textArea">
-                <div>
-                  <span>500포인트 이용</span>
-                  <span>하여</span>
+
+          {pointOpen.pointOpen && (
+            <>
+              <ModalBackground
+                onClick={() => {
+                  dispatcher(setPointOpen({ value: false }));
+                }}></ModalBackground>
+              <PointModal></PointModal>
+            </>
+          )}
+          {pointOpen.remainOpen && (
+            <>
+              <ModalBackground
+                onClick={() => {
+                  dispatcher(setRemainOpen({ value: false }));
+                }}></ModalBackground>
+              <PPointModal>
+                <div className="yellowArea">시간 추가</div>
+                <div className="textArea">
+                  <div>
+                    <span>{pointOpen.usePoint}포인트 사용</span>
+                    <span>하여</span>
+                  </div>
+                  <div>
+                    {(function () {
+                      if (pointOpen.usePoint === 100) {
+                        return <span>30분 추가</span>;
+                      } else {
+                        return <span>{pointOpen.usePoint / 200}시간 추가</span>;
+                      }
+                    })()}
+                    <span>되었습니다.</span>
+                  </div>
                 </div>
-                <div>
-                  <span>1시간 추가</span>
-                  <span>되었습니다.</span>
+                <div
+                  onClick={() => {
+                    dispatcher(setRemainOpen({ value: false }));
+                  }}
+                  className="confirmButton">
+                  <div>확인</div>
                 </div>
-              </div>
-              <div className="confirmButton">
-                <div>확인</div>
-              </div>
-            </PPointModal>
-          </ModalBackground> */}
-          {pointOpen.pointOpen && <PointModal></PointModal>}
-          {pointOpen.remainOpen && <RemainPoint></RemainPoint>}
+              </PPointModal>
+            </>
+          )}
         </ChatBox>
       </Container>
     </div>
