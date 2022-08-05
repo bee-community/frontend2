@@ -199,7 +199,7 @@ function Aside() {
   };
   return (
     <AsideWrap chatState={chatState}>
-      {chatState !== 'chat' && 'voicechat' && (
+      {chatState !== 'chat' && chatState !== 'voicechat' && (
         <Bio>
           <div className="searchInputWrapper">
             <input
@@ -218,7 +218,7 @@ function Aside() {
       <CreateChannel
         show={showCreateChannel}
         onCloseModal={onCloseModal}></CreateChannel>
-      {chatState !== 'chat' && 'voicechat' && (
+      {chatState !== 'chat' && chatState !== 'voicechat' && (
         <>
           <Box style={{ marginTop: '10px' }}>
             <ChatButton
@@ -267,7 +267,7 @@ function Aside() {
             return null;
         }
       })()}
-      {chatState !== 'chat' && 'voicechat' && (
+      {chatState !== 'chat' && chatState !== 'voicechat' && (
         <div className="create" onClick={onClickCreateChannel}>
           <img className="createImg" alt="" src={mobileCreateChannel}></img>
         </div>
