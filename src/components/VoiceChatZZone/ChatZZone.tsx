@@ -134,7 +134,7 @@ const ChatZZone = () => {
         <></>
       )}
       <Scrollbar
-        style={{ width: '330px', height: '100px' }}
+        className="voiceChatStyle"
         noScrollX={true}
         maximalThumbYSize={95}
         ref={scrollBarRef}
