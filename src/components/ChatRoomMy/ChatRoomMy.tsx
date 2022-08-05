@@ -1,7 +1,8 @@
 import timeIcon from 'assets/chatImages/chat_time.png';
 import React, { useCallback, useEffect, useState, VFC } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Scrollbar } from 'react-scrollbars-custom';
+import { setMyDataList } from 'slice/chatDataListSlice';
 
 import axios from '../../chatApi';
 import { Channel, HashTag } from '../../typings/db';
@@ -13,7 +14,10 @@ interface Props {
 
 const ChatRoomMy: VFC<Props> = ({ onClickChatBeforeModal }) => {
   // const [Data, setData] = useState<ChannelResponse>();
+  const dispatcher = useDispatch();
+
   const [DataList, setDataList] = useState<any>([]);
+  const DataList2 = useSelector((store: any) => store.dataList.myDataList);
   const JWTtoken = useSelector((store: any) => store.JWTtoken);
   // const chatColor = useSelector((store: any) => store.chatColor);
   const [channelIndex, setChannelIndex] = useState(0);
@@ -50,7 +54,7 @@ const ChatRoomMy: VFC<Props> = ({ onClickChatBeforeModal }) => {
     value => {
       if (
         value.scrollTop == value.contentScrollHeight - value.clientHeight &&
-        DataList.length % 20 == 0
+        DataList2.length % 20 == 0
       ) {
         console.log('Bottom');
         axios
@@ -68,7 +72,7 @@ const ChatRoomMy: VFC<Props> = ({ onClickChatBeforeModal }) => {
       // console.log(value);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [DataList],
+    [DataList2],
   );
   useEffect(() => {
     let timer = setInterval(async () => {
@@ -89,7 +93,7 @@ const ChatRoomMy: VFC<Props> = ({ onClickChatBeforeModal }) => {
             // console.log(test);
           });
       }
-      setDataList(test);
+      dispatcher(setMyDataList({ value: test }));
     }, 50000);
 
     return () => clearInterval(timer);
@@ -97,10 +101,10 @@ const ChatRoomMy: VFC<Props> = ({ onClickChatBeforeModal }) => {
   }, []);
   useEffect(() => {
     // console.log(DataList.length);
-  }, [DataList]);
+  }, [DataList2]);
   useEffect(() => {
     axios
-      .get('/api/v1/webrtc/chat/mychannel/0', {
+      .get('/api/v1/webrtc/chat/mychannel/partiDESC/0', {
         headers: {
           Authorization: 'jwt ' + JWTtoken.JWTtoken,
         },
@@ -108,20 +112,21 @@ const ChatRoomMy: VFC<Props> = ({ onClickChatBeforeModal }) => {
       .then((res: any) => {
         // console.log(res.data);
         console.log('hhh');
-        setDataList(res.data.channels);
+        dispatcher(setMyDataList({ value: res.data.channels }));
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const hashTagSearch = useCallback(hash => {
     console.log(hash);
     axios
-      .get(`/api/v1/webrtc/chat/hashtag/${hash}`, {
+      .get(`/api/v1/webrtc/chat/hashtag/${hash}/partiDESC/0`, {
         headers: {
           Authorization: 'jwt ' + JWTtoken.JWTtoken,
         },
       })
       .then((res: any) => {
         console.log(res.data);
+        dispatcher(setMyDataList({ value: res.data.channels }));
         setDataList(res.data.channels);
       });
   }, []);
@@ -133,13 +138,13 @@ const ChatRoomMy: VFC<Props> = ({ onClickChatBeforeModal }) => {
       <Scrollbar maximalThumbYSize={95} onScroll={onScroll}>
         {/* <NavLink to={'/chat/chatList/1'}> */}
         <div className="con">
-          {DataList?.map((channela: any, index: number) => {
+          {DataList2?.map((channela: any, index: number) => {
             // console.log(channel)
             // console.log(channel.channelHashTags)
             // let h = renderHash(channela.channelHashTags);
             let ttime = secondsToTime(channela.timeToLive);
             let chatType;
-            if (channela.channelType === 'chat') {
+            if (channela.channelType === 'TEXT') {
               chatType = '문자';
             } else {
               chatType = '음성';

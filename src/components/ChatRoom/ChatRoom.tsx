@@ -100,7 +100,7 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
             // console.log(test);
           });
       }
-      setDataList2({ value: test });
+      dispatcher(setDataList2({ value: test }));
       // setDataList(test);
     }, 50000);
 
@@ -130,7 +130,7 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
   const hashTagSearch = useCallback(hash => {
     console.log(hash);
     axios
-      .get(`/api/v1/webrtc/chat/hashtag/partiDESC/${hash}`, {
+      .get(`/api/v1/webrtc/chat/hashtag/${hash}/partiDESC/0`, {
         headers: {
           Authorization: 'jwt ' + JWTtoken.JWTtoken,
         },
