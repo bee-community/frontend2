@@ -43,7 +43,9 @@ function App() {
         <Route path="login" element={<LogIn />} />
         <Route path="chat" element={<Test />} />
       </Routes>
-      {chatState !== 'chat' && 'voicechat' && <BottomNav></BottomNav>}
+      {chatState !== 'chat' && chatState !== 'voicechat' && (
+        <BottomNav></BottomNav>
+      )}
     </BrowserRouter>
   );
 }
