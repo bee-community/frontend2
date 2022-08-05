@@ -49,8 +49,8 @@ const Chat = () => {
     (store: any) => store.openViduSessionCheck,
   );
   const dispatcher = useDispatch();
-  const chatUrl = '/api/v1/webrtc/chat/channels/0';
-  const myChatUrl = '/api/v1/webrtc/chat/mychannel/0';
+  const chatUrl = '/api/v1/webrtc/chat/channels/partiDESC/0';
+  const myChatUrl = '/api/v1/webrtc/chat/mychannel/partiDESC/0';
   const { data: Data, revalidate }: any = useSWR(
     chatColor.chatColor == 'chatList' ? chatUrl : myChatUrl,
     url => fetcher(url, JWTtoken.JWTtoken),

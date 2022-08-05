@@ -274,7 +274,7 @@ const ChatMiddle = () => {
             var devices = await OV.getDevices();
             console.log(devices);
             // var videoDevices = devices.filter(
-            //   device => device.kind === 'videoinput',
+            //   device => device.kind === 'audioinput',
             // );
 
             let publisherOV: any = OV.initPublisher('', {
