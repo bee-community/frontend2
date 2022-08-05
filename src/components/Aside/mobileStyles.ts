@@ -26,7 +26,9 @@ export const AsideWrap = styled.aside<{ chatState: any }>`
     padding-bottom: 0px;
     -webkit-tap-highlight-color: transparent;
     padding: ${props =>
-      props.chatState !== 'chat' && 'voicechat' ? '20px' : '0px'};
+      props.chatState !== 'chat' && props.chatState !== 'voicechat'
+        ? '20px'
+        : '0px'};
   }
 `;
 export const Bio = styled.div`
