@@ -197,9 +197,6 @@ const Chat = () => {
       if (client) {
         chat?.trim();
         var chatMessage = {
-          type: 'CHAT',
-          channelId: channelInfo.id,
-          senderName: userData.username,
           message: chat?.trim(),
         };
         // console.log(chatMessage);
@@ -210,7 +207,7 @@ const Chat = () => {
             jwt: jwt,
             // username: 'user',
             channelId: channelInfo.id,
-            username: userData.username,
+            type: 'CHAT',
           },
           JSON.stringify(chatMessage),
         );
@@ -218,22 +215,6 @@ const Chat = () => {
         // setUserData({ ...userData, message: '' });
         dispatcher(changeUserDataMessage({ message: '' }));
       }
-      // mutateChat(prevChatData => {
-      //   prevChatData?.[0].logs.unshift({
-      //     id: chatLogData?.[0].logs[0].id + 1,
-      //     // id: -2,
-      //     type: 'CHAT',
-      //     message: chat?.trim(),
-      //     name: userData.username,
-      //     sendTime: new Date(),
-      //   });
-      //   return prevChatData;
-      // }, false).then(() => {
-      //   console.log(chatLogData);
-      //   console.log('스크롤아래');
-      //   scrollBarRef.current.scrollToBottom();
-      //   // revalidate();
-      // });
       setChat('');
       // console.log(publicChats);
     },

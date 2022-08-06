@@ -306,14 +306,15 @@ const ChatBeforeModal: VFC<Props> = ({
     //   console.log(err);
     // }
     try {
-      var ress: any = await axios.post('/api/v1/webrtc/chat/authenticate', {
-        // nickname: 'user',
-        email: testName,
-        password: 'user',
-      });
-      dispatch({ value: ress.data.jwttoken, type: 'CHANGE' });
-      // setJwt(ress.data.twttoken);
-      // trick = ress.data.jwttoken;
+      // var ress: any = await axios.post('/api/v1/webrtc/chat/authenticate', {
+      //   // nickname: 'user',
+      //   email: testName,
+      //   password: 'user',
+      // });
+      // console.log(ress.data.jwttoken);
+
+      trick = JWTtoken.JWTtoken;
+      dispatch({ value: trick, type: 'CHANGE' });
 
       trick = JWTtoken.JWTtoken;
       // console.log(trick);

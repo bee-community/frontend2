@@ -118,10 +118,7 @@ const Chat = () => {
       // setChat('');
       if (client) {
         chat?.trim();
-        var chatMessage = {
-          type: 'CHAT',
-          channelId: channelInfo.id,
-          senderName: userData.username,
+        let chatMessage = {
           message: chat?.trim(),
         };
         // console.log(chatMessage);
@@ -130,9 +127,8 @@ const Chat = () => {
           '/pub/chat/room',
           {
             jwt: jwt,
-            // username: 'user',
+            type: 'CHAT',
             channelId: channelInfo.id,
-            username: userData.username,
           },
           JSON.stringify(chatMessage),
         );
@@ -140,24 +136,7 @@ const Chat = () => {
         // setUserData({ ...userData, message: '' });
         dispatcher(changeUserDataMessage({ message: '' }));
       }
-      // mutateChat(prevChatData => {
-      //   prevChatData?.[0].logs.unshift({
-      //     id: chatLogData?.[0].logs[0].id + 1,
-      //     // id: -2,
-      //     type: 'CHAT',
-      //     message: chat?.trim(),
-      //     name: userData.username,
-      //     sendTime: new Date(),
-      //   });
-      //   return prevChatData;
-      // }, false).then(() => {
-      //   console.log(chatLogData);
-      //   console.log('스크롤아래');
-      //   scrollBarRef.current.scrollToBottom();
-      //   // revalidate();
-      // });
       setChat('');
-      // console.log(publicChats);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [chat],

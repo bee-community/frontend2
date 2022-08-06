@@ -259,7 +259,7 @@ const ChatZZone = () => {
               </div>
             );
           } else {
-            if (chat.chatMessage === null) {
+            if (chat.chatMessage === '') {
               return;
             }
             return (
