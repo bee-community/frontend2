@@ -4,12 +4,15 @@ import ChatList from 'components/ChatList/ChatList';
 import Dropdown from 'components/Dropdown/Dropdown';
 import CreateChannel from 'components/MoblieCreateChannel/CreateChannel';
 import MyChatList from 'components/MyChatList/MyChatList';
-import VoiceChat from 'components/VoiceChat/Chat';
+import VoiceChat from 'components/VoiceChat/MobileVoiceChat';
 import { url } from 'inspector';
 import React, { useEffect, useState, useCallback, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setChatColor } from 'slice/chatColorSlice';
-import { setDataList as setDataList2 } from 'slice/chatDataListSlice';
+import {
+  setDataList as setDataList2,
+  setMyDataList,
+} from 'slice/chatDataListSlice';
 import { setChatState } from 'slice/chatStateSlice';
 import { setLogId } from 'slice/logIdSlice';
 
@@ -180,7 +183,7 @@ function Aside() {
   const hashTagSearch = useCallback(hash => {
     console.log(hash);
     axios
-      .get(`/api/v1/webrtc/chat/hashtag/${hash}`, {
+      .get(`/api/v1/webrtc/chat/hashtag/${hash}/partiDESC/0`, {
         headers: {
           Authorization: 'jwt ' + JWTtoken.JWTtoken,
         },
@@ -188,6 +191,7 @@ function Aside() {
       .then((res: any) => {
         console.log(res.data);
         dispatcher(setDataList2({ value: res.data.channels }));
+        dispatcher(setMyDataList({ value: res.data.channels }));
         // setDataList(res.data.channels);
       });
   }, []);

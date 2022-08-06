@@ -314,3 +314,28 @@
 .voiceChatMiddle .credit a:hover {
   text-decoration: underline;
 }
+
+@media (max-width: 766px) {
+  .voiceChatMiddle {
+    width: calc(var(--vw) * 100) !important;
+    height: calc(var(--vh) * 70);
+  }
+  .voiceChatMiddle .profileWrapper {
+    display: flex;
+    width: calc(var(--vw) * 100);
+    height: calc(var(--vh) * 70);
+    margin-left: 10px;
+    flex-wrap: wrap;
+  }
+  .voiceChatMiddle .menu-item,
+  .voiceChatMiddle .menu-open-button {
+    top: calc(var(--vh) * -30.5);
+    left: calc(var(--vw) * -39);
+  }
+  .voiceChatMiddle .hi {
+    width: calc(var(--vw) * 100);
+  }
+  .voiceChatMiddle .voiceChatMiddleScroll {
+    width: calc(var(--vw) * 100) !important;
+  }
+}

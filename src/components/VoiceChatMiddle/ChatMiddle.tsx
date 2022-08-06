@@ -392,6 +392,7 @@ const ChatMiddle = () => {
           </nav>
           <Scrollbar
             style={{ width: '330px', height: '330px' }}
+            className="voiceChatMiddleScroll"
             noScrollX={true}
             maximalThumbYSize={95}>
             {session !== undefined ? (

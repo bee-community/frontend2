@@ -309,8 +309,6 @@ const ChatBeforeModal: VFC<Props> = ({
         {
           channelId: sendChannelInfo.id,
           jwt: trick,
-          // jwt: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjUxNTE0NjY3LCJpYXQiOjE2NTE0OTY2Njd9.I3Wlq_f7elhOsJ9wP07-YCRba9ITlyI7BbQyqXWjmB5ClkQ5iqOsNdNUqpX2BG2BgCrHwvsujA6O15ojMmAI2Q',
-          // username: 'user',
         },
         onConnected,
         onError,

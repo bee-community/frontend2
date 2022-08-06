@@ -451,7 +451,10 @@ const ChatBeforeModal: VFC<Props> = ({
             onClick={onCloseModal}></img>
         </div>
         <div className="textArea">
-          <input value={testName} onChange={onChangeTestName}></input>
+          <input
+            style={{ fontSize: '18px' }}
+            value={testName}
+            onChange={onChangeTestName}></input>
           <div className="modalTag">{hash1}</div>
           <div className="modalTitle">{sendChannelInfo.channelName}</div>
           <div className="modalTimeLimit">

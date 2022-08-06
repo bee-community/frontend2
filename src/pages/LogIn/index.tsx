@@ -18,6 +18,7 @@ function LogIn() {
   const [tokenType, setTokenType] = useState('');
 
   const onChangeEmail = useCallback(e => {
+    console.log(e.target.value);
     setEmail(e.target.value);
   }, []);
   const onChangePassword = useCallback(e => {
@@ -99,6 +100,7 @@ function LogIn() {
           onChange={onChangePassword}
         />
         <Button
+          onClick={onSubmit}
           buttonType="contained"
           color="black"
           radius="square"

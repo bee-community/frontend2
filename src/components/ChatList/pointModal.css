@@ -110,6 +110,8 @@
   color: #ffe576;
 }
 .PointModal .entry-label {
+  color: white;
+  font-weight: 500;
   width: 150px;
   display: flex;
   cursor: pointer;

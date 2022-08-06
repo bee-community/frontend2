@@ -1,0 +1,51 @@
+.EZDrawer .EZDrawer__checkbox {
+  display: none;
+}
+.EZDrawer .EZDrawer__checkbox:checked ~ .EZDrawer__overlay {
+  display: block;
+  opacity: 1;
+}
+.EZDrawer .EZDrawer__checkbox:checked ~ .EZDrawer__container {
+  visibility: visible;
+  transform: translate3d(0, 0, 0) !important;
+}
+
+.EZDrawer .EZDrawer__overlay {
+  display: none;
+  height: 509px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.EZDrawer .EZDrawer__container {
+  position: absolute;
+  visibility: hidden;
+  background: white;
+  transition: all;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
+}
+
+.EZDrawer__container {
+  height: 509px;
+}
+
+@media (max-width: 766px) {
+  .mobileChat .EZDrawer__container {
+    width: calc(var(--vw) * 75) !important;
+    height: calc(var(--vh) * 100) !important;
+  }
+  .mobileChat .EZDrawer .EZDrawer__overlay {
+    display: none;
+    height: calc(var(--vh) * 100) !important;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+  .chatInput .EZDrawer__container {
+    width: calc(var(--vw) * 100) !important;
+    height: calc(var(--vh) * 20) !important;
+  }
+}
