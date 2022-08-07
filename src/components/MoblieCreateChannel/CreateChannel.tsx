@@ -4,6 +4,7 @@ import ChatList from 'components/ChatList/ChatList';
 import React, { useEffect, VFC, useCallback, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setNeedScroll } from 'slice/chatMobileScroll';
+import { setCreatePointModalExcept } from 'slice/pointModal';
 
 import axios from '../../chatApi';
 import useInput from '../../hooks/useInput';
@@ -85,6 +86,9 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
         .catch(function (error) {
           // handle error
           console.log(error);
+          if (error.response.status === 409) {
+            dispatcher(setCreatePointModalExcept({ value: true }));
+          }
         })
         .finally(() => {
           // console.log(chatType);

@@ -1,6 +1,7 @@
 import addButton from 'assets/chatImages/addbutton2.png';
 import Chat from 'components/ChatChat/MobileChat';
 import ChatList from 'components/ChatList/ChatList';
+import CreateChannelExceptModal from 'components/CreateChannel/CreateChannelExceptModal';
 import Dropdown from 'components/Dropdown/Dropdown';
 import CreateChannel from 'components/MoblieCreateChannel/CreateChannel';
 import MyChatList from 'components/MyChatList/MyChatList';
@@ -51,7 +52,9 @@ function Aside() {
   const JWTtoken = useSelector((store: any) => store.JWTtoken);
   const [text, setText] = useState('');
   const [selected, setSelected] = useState('참여인원수');
-
+  const CreateChannelExceptModalOpen = useSelector(
+    (store: any) => store.pointOpen.createPointModalExcept,
+  );
   const onChangeText = (e: any) => {
     setText(e.target.value);
     console.log(e.code);
@@ -222,6 +225,9 @@ function Aside() {
       <CreateChannel
         show={showCreateChannel}
         onCloseModal={onCloseModal}></CreateChannel>
+      {CreateChannelExceptModalOpen && (
+        <CreateChannelExceptModal></CreateChannelExceptModal>
+      )}
       {chatState !== 'chat' && chatState !== 'voicechat' && (
         <>
           <Box style={{ marginTop: '10px' }}>
