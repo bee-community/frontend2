@@ -38,7 +38,7 @@ const RemainPoint = () => {
       // console.log(now);
       console.log(remain.current.innerHTML);
       now -= step;
-    }, 10);
+    }, 1);
   }, [pointOpen]);
   useEffect(() => {
     console.log(pointOpen.remainPoint);

@@ -1,6 +1,6 @@
 .PointModal .hhh {
   text-align: center;
-  margin-top: 10px;
+  margin-top: 15px;
   font-size: 20px;
   color: #ffe576;
 }
@@ -32,9 +32,10 @@
   visibility: hidden;
 }
 .PointModal .containerOuter {
+  z-index: 100;
   position: absolute;
-  top: 90px;
-  left: 40px;
+  top: 75px;
+  left: 45px;
   height: 360px;
   background: rgba(17, 17, 17, 0.9);
   border-radius: 15px;
@@ -89,7 +90,7 @@
 .PointModal .closeButton {
   cursor: pointer;
   position: absolute;
-  top: 10px;
+  top: 15px;
   left: 215px;
 }
 

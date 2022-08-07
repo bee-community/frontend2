@@ -2,6 +2,7 @@ import backSpace from 'assets/chatImages/backspace.png';
 import hamBurger from 'assets/chatImages/hamburger.png';
 import setting from 'assets/chatImages/setting.png';
 import timeIcon from 'assets/chatImages/timeIcon.png';
+import xButton2 from 'assets/chatImages/xbutton.png';
 import xbutton from 'assets/chatImages/xbutton_gray.png';
 import ChatWraper from 'components/ChatBox/ChatWraper';
 import ChatEndModal from 'components/ChatEndModal/ChatEndModal';
@@ -18,6 +19,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Scrollbar } from 'react-scrollbars-custom';
 import { setChatState } from 'slice/chatStateSlice';
 import { setLogId } from 'slice/logIdSlice';
+import {
+  setDesktopBottomDrawerOpen,
+  setUsePointExcept,
+  setWaitOpen,
+} from 'slice/pointModal';
 import useSWR from 'swr';
 
 import ChatContext from '../../context/ChatContext';
@@ -28,7 +34,13 @@ import { changeUserDataMessage } from '../../slice/userDataSlice';
 import fetcher from '../../utils/fetcher';
 import './ChatChat.css';
 import './drawer.css';
-import { ChatBox, Container, ModalBackground } from './styles';
+import {
+  ChatBox,
+  Container,
+  ModalBackground,
+  PPointModal2,
+  ModalBackgroundOutEvent,
+} from './styles';
 
 // interface Props {
 //   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -46,6 +58,9 @@ const Chat = () => {
   const pointOpen = useSelector((store: any) => store.pointOpen);
   const desktopBottomDrawerOpen = useSelector(
     (store: any) => store.pointOpen.desktopBottomDrawerOpen,
+  );
+  const usePointExcept = useSelector(
+    (store: any) => store.pointOpen.usePointExcept,
   );
   const dispatcher = useDispatch();
   const chatUrl = '/api/v1/webrtc/chat/channels/partiDESC/0';
@@ -227,16 +242,29 @@ const Chat = () => {
     <div className="chat chatchat">
       <Container>
         <ChatBox>
-          {desktopBottomDrawerOpen && <ModalBackground></ModalBackground>}
+          {desktopBottomDrawerOpen && (
+            <ModalBackground
+              onClick={() => {
+                dispatcher(setDesktopBottomDrawerOpen({ value: false }));
+                document.documentElement.style.setProperty(
+                  '--deskTopBottomDrawer',
+                  `385px`,
+                );
+                document.documentElement.style.setProperty(
+                  '--deskTopBottomDrawerZindex',
+                  `0`,
+                );
+              }}></ModalBackground>
+          )}
           <Drawer
             open={isOpen}
             overlayOpacity={0.7}
             onClose={() => {
-              toggleDrawer();
               document.documentElement.style.setProperty(
                 '--deskTopBottomDrawerZindex',
                 `0`,
               );
+              toggleDrawer();
             }}
             direction="right"
             className="bla bla bla"
@@ -255,11 +283,11 @@ const Chat = () => {
                     alt="toggleButton"
                     role="presentation"
                     onClick={() => {
-                      toggleDrawer();
                       document.documentElement.style.setProperty(
                         '--deskTopBottomDrawerZindex',
-                        `1001`,
+                        `0`,
                       );
+                      toggleDrawer();
                     }}
                     src={xbutton}
                   />
@@ -361,6 +389,52 @@ const Chat = () => {
           <ChatEndModal></ChatEndModal>
           {pointOpen.pointOpen && <PointModal></PointModal>}
           {pointOpen.remainOpen && <RemainPoint></RemainPoint>}
+          {pointOpen.waitOpen && (
+            <>
+              <ModalBackgroundOutEvent
+                onClick={() => {
+                  dispatcher(setWaitOpen({ value: false }));
+                }}></ModalBackgroundOutEvent>
+              <PPointModal2>
+                <div className="yellowArea">잠깐!</div>
+                <div
+                  onClick={() => {
+                    dispatcher(setWaitOpen({ value: false }));
+                  }}>
+                  <img src={xButton2} alt=""></img>
+                </div>
+                <div className="textArea">
+                  <div>
+                    <span style={{ color: 'white' }}>개발중인 기능입니다.</span>
+                  </div>
+                </div>
+              </PPointModal2>
+            </>
+          )}
+          {usePointExcept && (
+            <>
+              <ModalBackgroundOutEvent
+                onClick={() => {
+                  dispatcher(setUsePointExcept({ value: false }));
+                }}></ModalBackgroundOutEvent>
+              <PPointModal2>
+                <div className="yellowArea">잠깐!</div>
+                <div
+                  onClick={() => {
+                    dispatcher(setUsePointExcept({ value: false }));
+                  }}>
+                  <img src={xButton2} alt=""></img>
+                </div>
+                <div className="textArea">
+                  <div>
+                    <span style={{ color: 'white' }}>
+                      남은 포인트를 확인해주세요.
+                    </span>
+                  </div>
+                </div>
+              </PPointModal2>
+            </>
+          )}
         </ChatBox>
       </Container>
     </div>
