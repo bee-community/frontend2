@@ -301,7 +301,12 @@ const ChatBeforeModal: VFC<Props> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sendChannelInfo, userData]);
   // console.log(sendChannelInfo);
-
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      '--deskTopBottomDrawer',
+      `385px`,
+    );
+  }, []);
   const onChangeTestName = (e: any) => {
     // console.log(testName);
 

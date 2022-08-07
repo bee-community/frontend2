@@ -222,3 +222,10 @@ textarea:focus {
   background-color: #111111;
   border-radius: 100%;
 }
+
+.chatWrapper {
+  display: flex;
+  flex-direction: column;
+  z-index: 0;
+  background-color: white;
+}

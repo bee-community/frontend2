@@ -127,7 +127,7 @@ const ChatZZone = () => {
   // console.log(chatSections);
   // console.log(Object.entries(chatSections).length);
   return (
-    <div className="chatZZone">
+    <div className="chatZZone fix">
       {Object.entries(chatSections).length === 0 ? (
         <div className="DateWrapper">
           <div className="DateButton">{dayjs(Date()).format('YYYY-MM-DD')}</div>

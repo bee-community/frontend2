@@ -28,7 +28,7 @@ import { changeUserDataMessage } from '../../slice/userDataSlice';
 import fetcher from '../../utils/fetcher';
 import './ChatChat.css';
 import './drawer.css';
-import { ChatBox, Container } from './styles';
+import { ChatBox, Container, ModalBackground } from './styles';
 
 // interface Props {
 //   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -44,6 +44,9 @@ const Chat = () => {
   const indexChat = useSelector((store: any) => store.indexChat);
   const chatColor = useSelector((store: any) => store.chatColor);
   const pointOpen = useSelector((store: any) => store.pointOpen);
+  const desktopBottomDrawerOpen = useSelector(
+    (store: any) => store.pointOpen.desktopBottomDrawerOpen,
+  );
   const dispatcher = useDispatch();
   const chatUrl = '/api/v1/webrtc/chat/channels/partiDESC/0';
   const myChatUrl = '/api/v1/webrtc/chat/mychannel/partiDESC/0';
@@ -224,6 +227,7 @@ const Chat = () => {
     <div className="chat chatchat">
       <Container>
         <ChatBox>
+          {desktopBottomDrawerOpen && <ModalBackground></ModalBackground>}
           <Drawer
             open={isOpen}
             overlayOpacity={0.7}
@@ -333,7 +337,7 @@ const Chat = () => {
                 src={hamBurger}
               />
             </div>
-            <ChatMiddle></ChatMiddle>
+            {/* <ChatMiddle></ChatMiddle> */}
 
             <ChatZZone></ChatZZone>
 

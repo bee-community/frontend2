@@ -7,6 +7,7 @@ const initialState = {
   usePoint: 0,
   waitOpen: false,
   createPointModalExcept: false,
+  desktopBottomDrawerOpen: false,
 };
 
 const pointModalSlice = createSlice({
@@ -37,6 +38,10 @@ const pointModalSlice = createSlice({
       console.log(payload.value);
       state.createPointModalExcept = payload.value;
     },
+    setDesktopBottomDrawerOpen: (state, { payload }) => {
+      console.log(payload.value);
+      state.desktopBottomDrawerOpen = payload.value;
+    },
   },
 });
 
@@ -47,5 +52,6 @@ export const {
   setRemainPoint,
   setRemainOpen,
   setCreatePointModalExcept,
+  setDesktopBottomDrawerOpen,
 } = pointModalSlice.actions;
 export default pointModalSlice.reducer;

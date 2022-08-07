@@ -214,3 +214,8 @@
     padding: 0 0px;
   }
 }
+
+.chatZZone.fix {
+  height: var(--deskTopBottomDrawer);
+  transition: 0.5s;
+}
