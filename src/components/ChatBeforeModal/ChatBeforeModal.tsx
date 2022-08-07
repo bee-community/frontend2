@@ -116,7 +116,7 @@ const ChatBeforeModal: VFC<Props> = ({
 
   const onMessageReceivedExcept = (payload: any) => {
     var payloadData = JSON.parse(payload.body);
-    // console.log(payloadData.users);
+    console.log(payloadData);
     dispatcher(setUserEnterNumber({ value: payloadData.users }));
     // console.log(payload);
     switch (payloadData.type) {
@@ -161,7 +161,7 @@ const ChatBeforeModal: VFC<Props> = ({
     var payloadData = JSON.parse(payload.body);
     // console.log(payloadData.users);
     dispatcher(setUserEnterNumber({ value: payloadData.users }));
-
+    console.log(payloadData);
     // console.log(payload);
     switch (payloadData.type) {
       case 'RENEWAL':

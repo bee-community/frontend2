@@ -22,7 +22,7 @@ const ChatRoomMy: VFC<Props> = ({ onClickChatBeforeModal }) => {
   // const chatColor = useSelector((store: any) => store.chatColor);
   const [channelIndex, setChannelIndex] = useState(0);
   // const chatUrl = '/api/v1/webrtc/channels/';
-  const myChatUrl = '/api/v1/webrtc/chat/mychannel/';
+  const myChatUrl = '/api/v1/webrtc/chat/mychannel/partiDESC/';
   // const { data: Data }: any = useSWR(
   //   chatColor.chatColor == 'chatList' ? chatUrl : myChatUrl,
   //   url => fetcher(url, JWTtoken.JWTtoken),

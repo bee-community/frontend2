@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   JWTtoken:
-    'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrc3ciLCJleHAiOjE2NTk3OTE3ODEsImlhdCI6MTY1OTc3Mzc4MX0.K5jnTw9P0DEt2moZPOdQjsrKtfVfrQTznN6w6hFBpU7PNaqytgp4r3RTI4efiwuHlatwyZpO41rzzo5iZ5OTZw',
+    'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrc3ciLCJleHAiOjE2NTk4NzUyNDgsImlhdCI6MTY1OTg1NzI0OH0.xTXUSCQgncN7Een7jjTTuE84oahlJj-pdqBor89HnsVN8-JyNYD75iPpSTUMfPkfZFq6mHGcvTBmur9gD6OLeg',
 };
 
 const tokenSlice = createSlice({

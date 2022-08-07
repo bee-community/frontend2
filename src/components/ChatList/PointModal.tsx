@@ -21,7 +21,6 @@ const PointModal = () => {
     setTTL(e.target.value);
   };
   const getPoint = useCallback(() => {
-    console.log('sibal');
     axios
       .get(`/api/v1/webrtc/chat/point/${channelInfo.id}`, {
         headers: {

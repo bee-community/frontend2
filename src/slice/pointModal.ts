@@ -6,6 +6,7 @@ const initialState = {
   remainPoint: 0,
   usePoint: 0,
   waitOpen: false,
+  createPointModalExcept: false,
 };
 
 const pointModalSlice = createSlice({
@@ -32,6 +33,10 @@ const pointModalSlice = createSlice({
       console.log(payload.value);
       state.waitOpen = payload.value;
     },
+    setCreatePointModalExcept: (state, { payload }) => {
+      console.log(payload.value);
+      state.createPointModalExcept = payload.value;
+    },
   },
 });
 
@@ -41,5 +46,6 @@ export const {
   setUsePoint,
   setRemainPoint,
   setRemainOpen,
+  setCreatePointModalExcept,
 } = pointModalSlice.actions;
 export default pointModalSlice.reducer;

@@ -20,7 +20,7 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
   const JWTtoken = useSelector((store: any) => store.JWTtoken);
   // const chatColor = useSelector((store: any) => store.chatColor);
   const [channelIndex, setChannelIndex] = useState(0);
-  const chatUrl = '/api/v1/webrtc/chat/channels/';
+  const chatUrl = '/api/v1/webrtc/chat/channels/partiDESC/';
   // const myChatUrl = '/api/v1/webrtc/mychannel/';
   // const { data: Data }: any = useSWR(
   //   chatColor.chatColor == 'chatList' ? chatUrl : myChatUrl,

@@ -2,7 +2,8 @@ import xButton from 'assets/chatImages/xbutton.png';
 import xx from 'assets/chatImages/xx.png';
 import ChatList from 'components/ChatList/ChatList';
 import React, { useEffect, VFC, useCallback, useState, useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCreatePointModalExcept } from 'slice/pointModal';
 
 import axios from '../../chatApi';
 import useInput from '../../hooks/useInput';
@@ -15,6 +16,7 @@ interface Props {
 }
 
 const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
+  const dispatcher = useDispatch();
   const { JWTtoken } = useSelector((store: any) => store);
   const [newWorkspace, onChangeNewWorkspace] = useInput('');
   const [newHash, onChangeNewHash, setNewHash] = useInput('');
@@ -61,7 +63,6 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
           `/api/v1/webrtc/chat/channel`,
           {
             channelName: newWorkspace,
-            // limitParticipants: 15,
             hashTags: tags,
             channelType: chatType,
           },
@@ -80,6 +81,9 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
         .catch(function (error) {
           // handle error
           console.log(error);
+          if (error.response.status === 409) {
+            dispatcher(setCreatePointModalExcept({ value: true }));
+          }
         })
         .finally(() => {
           // console.log(chatType);
