@@ -83,16 +83,13 @@ const ChatBeforeModal: VFC<Props> = ({
   };
 
   const userJoin = () => {
-    var chatMessage = {
-      type: 'ENTER',
-      channelId: sendChannelInfo.id,
-      message: 'message',
+    let chatMessage = {
+      message: '',
     };
     stompClient.send(
       '/pub/chat/room',
       {
         jwt: trick,
-        // jwt: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjUxNTE0NjY3LCJpYXQiOjE2NTE0OTY2Njd9.I3Wlq_f7elhOsJ9wP07-YCRba9ITlyI7BbQyqXWjmB5ClkQ5iqOsNdNUqpX2BG2BgCrHwvsujA6O15ojMmAI2Q',
         channelId: sendChannelInfo.id,
         type: 'ENTER',
       },
@@ -102,9 +99,8 @@ const ChatBeforeModal: VFC<Props> = ({
 
   const userJoinExcept = () => {
     console.log('재입장');
-    var chatMessage = {
-      type: 'REENTER',
-      channelId: sendChannelInfo.id,
+    let chatMessage = {
+      message: '',
     };
     stompClient.send(
       '/pub/chat/room',
@@ -144,7 +140,7 @@ const ChatBeforeModal: VFC<Props> = ({
       case 'CHAT':
         // console.log('2222222222222');'
         // console.log(payloadData);
-        payloadData['sendTime'] = Date();
+        // payloadData['sendTime'] = Date();
         // console.log(payloadData);
         dispatcher(pushPublicChats({ value: payloadData }));
 
@@ -187,7 +183,7 @@ const ChatBeforeModal: VFC<Props> = ({
       case 'CHAT':
         // console.log('2222222222222');'
         // console.log(payloadData);
-        payloadData['sendTime'] = Date();
+        // payloadData['sendTime'] = Date();
         // console.log(payloadData);
         dispatcher(pushPublicChats({ value: payloadData }));
 
