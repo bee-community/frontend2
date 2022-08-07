@@ -9,9 +9,18 @@ import React, {
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setRemainOpen } from 'slice/pointModal';
+import styled from 'styled-components';
 
 import axios from '../../chatApi';
 import './remainPoint.css';
+
+const ModalBackgroundOutEvent = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+`;
 
 const RemainPoint = () => {
   const remain = useRef<any>();
@@ -25,19 +34,24 @@ const RemainPoint = () => {
     let now = pointOpen.remainPoint;
 
     const handle = setInterval(() => {
-      remain.current.innerHTML = Math.ceil(pointOpen.remainPoint - now);
+      try {
+        remain.current.innerHTML = Math.ceil(pointOpen.remainPoint - now);
 
-      // 목표에 도달하면 정지
-      if (remain.current.innerHTML == pointOpen.remainPoint) {
-        console.log('first');
+        // 목표에 도달하면 정지
+        if (remain.current.innerHTML == pointOpen.remainPoint) {
+          console.log('first');
+          clearInterval(handle);
+        }
+
+        // 적용될 수치, 점점 줄어듬
+        const step = now / 10;
+        // console.log(now);
+        console.log(remain.current.innerHTML);
+        now -= step;
+      } catch {
         clearInterval(handle);
+        console.log('다 끝나기전에 누르셨군요.');
       }
-
-      // 적용될 수치, 점점 줄어듬
-      const step = now / 10;
-      // console.log(now);
-      console.log(remain.current.innerHTML);
-      now -= step;
     }, 1);
   }, [pointOpen]);
   useEffect(() => {
@@ -45,26 +59,32 @@ const RemainPoint = () => {
     counter();
   }, []);
   return (
-    <div className="remainWrapper">
-      <img
-        alt="closeButton"
-        role="presentation"
-        className="closeButton"
+    <>
+      <ModalBackgroundOutEvent
         onClick={() => {
           dispatcher(setRemainOpen({ value: false }));
-        }}
-        src={xButton}></img>
-      <div className="left">
-        <div className="borderRight">
-          <div className="usePoint">사용 포인트</div>
-          <div className="usePointPoint">{pointOpen.usePoint}</div>
+        }}></ModalBackgroundOutEvent>
+      <div className="remainWrapper">
+        <img
+          alt="closeButton"
+          role="presentation"
+          className="closeButton"
+          onClick={() => {
+            dispatcher(setRemainOpen({ value: false }));
+          }}
+          src={xButton}></img>
+        <div className="left">
+          <div className="borderRight">
+            <div className="usePoint">사용 포인트</div>
+            <div className="usePointPoint">{pointOpen.usePoint}</div>
+          </div>
+        </div>
+        <div className="right">
+          <div className="remainPoint">남은 포인트</div>
+          <div className="remainPointPoint" ref={remain}></div>
         </div>
       </div>
-      <div className="right">
-        <div className="remainPoint">남은 포인트</div>
-        <div className="remainPointPoint" ref={remain}></div>
-      </div>
-    </div>
+    </>
   );
 };
 
