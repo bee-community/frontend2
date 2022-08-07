@@ -141,7 +141,7 @@ const ChatBeforeModal: VFC<Props> = ({
       case 'CHAT':
         // console.log('2222222222222');'
         console.log(payloadData);
-        payloadData['sendTime'] = Date();
+        // payloadData['sendTime'] = Date();
         // console.log(payloadData);
         dispatcher(pushPublicChats({ value: payloadData }));
 
@@ -184,7 +184,7 @@ const ChatBeforeModal: VFC<Props> = ({
       case 'CHAT':
         // console.log('2222222222222');'
         // console.log(payloadData);
-        payloadData['sendTime'] = Date();
+        // payloadData['sendTime'] = Date();
         // console.log(payloadData);
         dispatcher(pushPublicChats({ value: payloadData }));
         break;
