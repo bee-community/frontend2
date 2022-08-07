@@ -29,11 +29,19 @@ const ChatBox: VFC<Props> = ({ chat, onSubmitForm, onChangeChat }) => {
       '--deskTopBottomDrawer',
       `309px`,
     );
+    document.documentElement.style.setProperty(
+      '--deskTopBottomDrawerZindex',
+      `1001`,
+    );
   };
   const setCloseDrawer = () => {
     document.documentElement.style.setProperty(
       '--deskTopBottomDrawer',
       `385px`,
+    );
+    document.documentElement.style.setProperty(
+      '--deskTopBottomDrawerZindex',
+      `0`,
     );
   };
   const onKeydownChat = (e: any) => {

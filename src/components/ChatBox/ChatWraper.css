@@ -226,6 +226,6 @@ textarea:focus {
 .chatWrapper {
   display: flex;
   flex-direction: column;
-  z-index: 0;
+  z-index: var(--deskTopBottomDrawerZindex);
   background-color: white;
 }

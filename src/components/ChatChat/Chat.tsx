@@ -231,7 +231,13 @@ const Chat = () => {
           <Drawer
             open={isOpen}
             overlayOpacity={0.7}
-            onClose={toggleDrawer}
+            onClose={() => {
+              toggleDrawer();
+              document.documentElement.style.setProperty(
+                '--deskTopBottomDrawerZindex',
+                `0`,
+              );
+            }}
             direction="right"
             className="bla bla bla"
             style={{ height: '509px' }}>
@@ -248,7 +254,13 @@ const Chat = () => {
                     className="xbutton"
                     alt="toggleButton"
                     role="presentation"
-                    onClick={toggleDrawer}
+                    onClick={() => {
+                      toggleDrawer();
+                      document.documentElement.style.setProperty(
+                        '--deskTopBottomDrawerZindex',
+                        `1001`,
+                      );
+                    }}
                     src={xbutton}
                   />
                 </div>
