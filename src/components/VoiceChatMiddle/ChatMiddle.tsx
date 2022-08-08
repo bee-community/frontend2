@@ -56,6 +56,7 @@ const ChatMiddle = () => {
   const [voiceToken, setVoiceToken] = useState('');
   const menuModal = useRef<any>();
   const leaveSession = useCallback(() => {
+    console.log(session);
     if (target) {
       setTarget(false);
       console.log('오픈비두 세션종료');
@@ -88,10 +89,41 @@ const ChatMiddle = () => {
     }
   }, [target, session, voiceToken]);
 
-  const onbeforeunload = (event: any) => {
-    console.log('ttt*************************');
-    leaveSession();
+  // const onbeforeunload = (e: any) => {
+  //   window.alert('time');
+  //   console.log('ttt*************************');
+  //   leaveSession();
+  // };
+
+  // useEffect(() => {
+  //   window.addEventListener('beforeunload', onbeforeunload);
+  //   return () => {
+  //     window.removeEventListener('beforeunload', onbeforeunload);
+  //   };
+  // }, []);
+
+  const alertUser = (e: any) => {
+    console.log('새로고침 테스트');
+    axios
+      .post('/api/v1/webrtc/voice/remove-user', {
+        sessionName: window.localStorage.getItem('voiceSessionId'),
+        email: 'ksw',
+        token: window.localStorage.getItem('voiceToken'),
+      })
+      .then((response: any) => {
+        console.log('TOKEN', response);
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
   };
+
+  useEffect(() => {
+    window.addEventListener('beforeunload', alertUser);
+    return () => {
+      window.removeEventListener('beforeunload', alertUser);
+    };
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -118,17 +150,6 @@ const ChatMiddle = () => {
     console.log(subscribers.length);
     console.log(subscribers[subscribers.length - 1]);
   }, [subscribers]);
-  // const handleChangeSessionId = e => {
-  //   this.setState({
-  //     mySessionId: e.target.value,
-  //   });
-  // };
-
-  // const handleChangeUserName = e => {
-  //   this.setState({
-  //     myUserName: e.target.value,
-  //   });
-  // };
 
   const handleMainVideoStream = (stream: any) => {
     if (mainStreamManager !== stream) {
@@ -240,7 +261,7 @@ const ChatMiddle = () => {
   const joinSession = useCallback(() => {
     if (target) {
       setTarget(false);
-      window.addEventListener('beforeunload', onbeforeunload);
+      // window.addEventListener('beforeunload', onbeforeunload);
 
       const OV = new OpenVidu();
       console.log(OV);
@@ -275,6 +296,8 @@ const ChatMiddle = () => {
           // .connect(tt, { clientData: nickname })
           .connect(tt, { clientData: 'ksw' })
           .then(async () => {
+            window.localStorage.setItem('voiceToken', tt);
+            window.localStorage.setItem('voiceSessionId', channelInfo.id);
             var devices = await OV.getDevices();
             console.log(devices);
             // var videoDevices = devices.filter(
