@@ -171,28 +171,28 @@ const Chat = () => {
     [chat],
   );
 
-  const leaveSession = () => {
-    try {
-      if (openViduSession.sessionCheck) {
-        openViduSession.sessionCheck.disconnect();
-        console.log('보내나');
-        axios
-          .post('/api/v1/webrtc/voice/remove-user', {
-            sessionName: channelInfo.id,
-            email: 'ksw',
-            token: openViduSession.voiceToken,
-          })
-          .then((response: any) => {
-            console.log('TOKEN', response);
-          })
-          .catch((err: any) => {
-            console.log(err);
-          });
-      }
-    } catch (err) {
-      console.log('error');
-    }
-  };
+  // const leaveSession = () => {
+  //   try {
+  //     if (openViduSession.sessionCheck) {
+  //       openViduSession.sessionCheck.disconnect();
+  //       console.log('보내나');
+  //       axios
+  //         .post('/api/v1/webrtc/voice/remove-user', {
+  //           sessionName: channelInfo.id,
+  //           email: 'ksw',
+  //           token: openViduSession.voiceToken,
+  //         })
+  //         .then((response: any) => {
+  //           console.log('TOKEN', response);
+  //         })
+  //         .catch((err: any) => {
+  //           console.log(err);
+  //         });
+  //     }
+  //   } catch (err) {
+  //     console.log('error');
+  //   }
+  // };
   const socketDisconnect = () => {
     console.log('종료');
     happy.unsubscribe();
@@ -224,7 +224,7 @@ const Chat = () => {
         },
         JSON.stringify(exitMessage),
       );
-      leaveSession();
+      // leaveSession();
       socketDisconnect();
       if (chatColor.chatColor == 'chatList') {
         dispatcher(setChatState({ value: 'chatList' }));
@@ -339,7 +339,7 @@ const Chat = () => {
               <div
                 style={{ cursor: 'pointer' }}
                 onClick={() => {
-                  leaveSession();
+                  // leaveSession();
                   socketDisconnect();
                   if (chatColor.chatColor == 'chatList') {
                     dispatcher(setChatState({ value: 'chatList' }));

@@ -101,9 +101,7 @@ const ChatMiddle = () => {
   //     window.removeEventListener('beforeunload', onbeforeunload);
   //   };
   // }, []);
-
-  const alertUser = (e: any) => {
-    console.log('새로고침 테스트');
+  const emergencyLeaveSession = () => {
     axios
       .post('/api/v1/webrtc/voice/remove-user', {
         sessionName: window.localStorage.getItem('voiceSessionId'),
@@ -117,32 +115,42 @@ const ChatMiddle = () => {
         console.log(err);
       });
   };
+  const alertUser = (e: any) => {
+    console.log('새로고침 테스트');
+    emergencyLeaveSession();
+  };
 
   useEffect(() => {
     window.addEventListener('beforeunload', alertUser);
     return () => {
       window.removeEventListener('beforeunload', alertUser);
-    };
-  }, []);
-
-  useEffect(() => {
-    return () => {
-      console.log('이거거거거걱거거거');
+      console.log('탈출');
+      console.log(session);
       if (session) {
         session.disconnect();
-        axios
-          .post('/api/v1/webrtc/voice/remove-user', {
-            sessionName: channelInfo.id,
-            email: 'ksw',
-            token: voiceToken,
-          })
-          .then((response: any) => {
-            console.log('TOKEN', response);
-          })
-          .catch();
       }
+      emergencyLeaveSession();
     };
-  }, []);
+  }, [session]);
+
+  // useEffect(() => {
+  //   return () => {
+  //     console.log('이거거거거걱거거거');
+  //     if (session) {
+  //       session.disconnect();
+  //       axios
+  //         .post('/api/v1/webrtc/voice/remove-user', {
+  //           sessionName: channelInfo.id,
+  //           email: 'ksw',
+  //           token: voiceToken,
+  //         })
+  //         .then((response: any) => {
+  //           console.log('TOKEN', response);
+  //         })
+  //         .catch();
+  //     }
+  //   };
+  // }, []);
 
   useEffect(() => {
     console.log('사람');
@@ -268,7 +276,7 @@ const ChatMiddle = () => {
       var mySession = OV.initSession();
       console.log('오픈비두두두', mySession);
       setSession(mySession);
-      dispatcher(setSessionCheck({ value: mySession }));
+      // dispatcher(setSessionCheck({ value: mySession }));
 
       mySession.on('streamCreated', event => {
         var subscriberOV = mySession.subscribe(event.stream, 'subscriber');
