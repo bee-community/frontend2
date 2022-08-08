@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setVoiceStateInfoModal } from 'slice/pointModal';
 import styled from 'styled-components';
 
 const VoiceFadeOutModalWrapper = styled.div`
@@ -20,6 +21,7 @@ const VoiceFadeOutModalWrapper = styled.div`
 `;
 
 const VoiceFadeOutModal = () => {
+  const dispatcher = useDispatch();
   const fadeOutRef = useRef<any>(null);
   const [count, setCount] = useState(1);
   const voiceStateInfoText = useSelector(
@@ -53,6 +55,10 @@ const VoiceFadeOutModal = () => {
     fadeOutEffect();
     setCount(1);
     fadeOutRef.current.style.opacity = 1;
+
+    return () => {
+      dispatcher(setVoiceStateInfoModal({ value: false }));
+    };
   }, [voiceStateInfoText]);
 
   return (
