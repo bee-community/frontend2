@@ -22,11 +22,21 @@ import {
   setVoiceStateInfoModal,
   setVoiceStateInfoText,
 } from 'slice/pointModal';
+import styled from 'styled-components';
 
 import axios from '../../chatApi';
 import ChatContext from '../../context/ChatContext';
 import UserAudioComponent from './AudioComponent';
 import './voiceChatMiddle.css';
+
+const ModalBackgroundOutEvent = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+`;
 
 interface chatUserProfile {
   user: any;
@@ -54,6 +64,7 @@ const ChatMiddle = () => {
   const [sound, setSound] = useState(false);
   const [target, setTarget] = useState<any>(true);
   const [voiceToken, setVoiceToken] = useState('');
+  const [menuActive, setMenuActive] = useState(false);
   const menuModal = useRef<any>();
   const leaveSession = useCallback(() => {
     console.log(session);
@@ -350,166 +361,176 @@ const ChatMiddle = () => {
     setSound(!sound);
   }, [sound, subscribers]);
   // console.log();
-  console.log(publisher);
   return (
-    <div className="voiceChatMiddle">
-      <div className="wrapper">
-        <div className="profileWrapper">
-          <nav className="menu">
-            <input
-              type="checkbox"
-              className="menu-open"
-              name="menu-open"
-              id="menu-open"
-            />
-            <label className="menu-open-button" htmlFor="menu-open">
-              <img
-                src={gotIdea}
-                style={{ width: '28px;', height: '28px' }}
-                alt=""
-                onClick={() => console.log('dad')}
-                ref={menuModal}
+    <>
+      {menuActive && (
+        <ModalBackgroundOutEvent
+          onClick={() => {
+            menuModal.current.click();
+          }}></ModalBackgroundOutEvent>
+      )}
+      <div className="voiceChatMiddle">
+        <div className="wrapper">
+          <div className="profileWrapper">
+            <nav className="menu">
+              <input
+                type="checkbox"
+                className="menu-open"
+                name="menu-open"
+                id="menu-open"
+                onClick={() => {
+                  setMenuActive(!menuActive);
+                }}
               />
-            </label>
+              <label className="menu-open-button" htmlFor="menu-open">
+                <img
+                  src={gotIdea}
+                  style={{ width: '28px;', height: '28px' }}
+                  alt=""
+                  ref={menuModal}
+                />
+              </label>
 
-            {session === undefined ? (
+              {session === undefined ? (
+                <a className="menu-item">
+                  <img
+                    style={{ width: '40px;', height: '40px' }}
+                    src={green}
+                    alt=""
+                    onClick={() => {
+                      window.alert('음성채팅이 시작됩니다.');
+                      joinSession();
+                    }}
+                  />
+                </a>
+              ) : (
+                <a className="menu-item">
+                  <img
+                    style={{ width: '40px;', height: '40px' }}
+                    src={red}
+                    alt=""
+                    onClick={leaveSession}
+                  />
+                </a>
+              )}
+
               <a className="menu-item">
                 <img
-                  style={{ width: '40px;', height: '40px' }}
-                  src={green}
+                  style={{ width: '25px;', height: '25px' }}
+                  src={sound ? unvolume : volume}
                   alt=""
                   onClick={() => {
-                    window.alert('음성채팅이 시작됩니다.');
-                    joinSession();
+                    if (typeof publisher == 'undefined') {
+                      window.alert('음성채팅중이 아닙니다.');
+                    } else {
+                      soundControl();
+                    }
                   }}
                 />
               </a>
-            ) : (
               <a className="menu-item">
                 <img
                   style={{ width: '40px;', height: '40px' }}
-                  src={red}
+                  src={mute ? unvoice : voice}
                   alt=""
-                  onClick={leaveSession}
+                  onClick={() => {
+                    console.log('mute');
+                    console.log(typeof publisher);
+                    if (typeof publisher == 'undefined') {
+                      window.alert('음성채팅중이 아닙니다.');
+                    } else {
+                      if (mute === false) {
+                        dispatcher(setVoiceStateInfoModal({ value: true }));
+                        dispatcher(
+                          setVoiceStateInfoText({
+                            value: '마이크 사용을 중지합니다.',
+                          }),
+                        );
+                      } else {
+                        console.log('테스트트트트트트트트ㅡㅌ');
+                        dispatcher(setVoiceStateInfoModal({ value: true }));
+                        dispatcher(
+                          setVoiceStateInfoText({
+                            value: '마이크를 사용합니다.',
+                          }),
+                        );
+                      }
+                      publisher.publishAudio(mute);
+                      setMute(!mute);
+                    }
+                    // target.subscribeToAudio(mute);
+                  }}
                 />
               </a>
-            )}
+              <a className="menu-item">
+                <img
+                  style={{ width: '25px;', height: '25px' }}
+                  src={point}
+                  alt=""
+                  onClick={() => {
+                    menuModal.current.click();
+                    dispatcher(setPointOpen({ value: 'true' }));
+                  }}
+                />
+              </a>
+            </nav>
+            <Scrollbar
+              style={{ width: '330px', height: '330px' }}
+              className="voiceChatMiddleScroll"
+              noScrollX={true}
+              maximalThumbYSize={95}>
+              {session !== undefined ? (
+                <div id="session">
+                  <div id="session-header"></div>
 
-            <a className="menu-item">
-              <img
-                style={{ width: '25px;', height: '25px' }}
-                src={sound ? unvolume : volume}
-                alt=""
-                onClick={() => {
-                  if (typeof publisher == 'undefined') {
-                    window.alert('음성채팅중이 아닙니다.');
-                  } else {
-                    soundControl();
-                  }
-                }}
-              />
-            </a>
-            <a className="menu-item">
-              <img
-                style={{ width: '40px;', height: '40px' }}
-                src={mute ? unvoice : voice}
-                alt=""
-                onClick={() => {
-                  console.log('mute');
-                  console.log(typeof publisher);
-                  if (typeof publisher == 'undefined') {
-                    window.alert('음성채팅중이 아닙니다.');
-                  } else {
-                    if (mute === false) {
-                      dispatcher(setVoiceStateInfoModal({ value: true }));
-                      dispatcher(
-                        setVoiceStateInfoText({
-                          value: '마이크 사용을 중지합니다.',
-                        }),
-                      );
-                    } else {
-                      console.log('테스트트트트트트트트ㅡㅌ');
-                      dispatcher(setVoiceStateInfoModal({ value: true }));
-                      dispatcher(
-                        setVoiceStateInfoText({
-                          value: '마이크를 사용합니다.',
-                        }),
-                      );
-                    }
-                    publisher.publishAudio(mute);
-                    setMute(!mute);
-                  }
-                  // target.subscribeToAudio(mute);
-                }}
-              />
-            </a>
-            <a className="menu-item">
-              <img
-                style={{ width: '25px;', height: '25px' }}
-                src={point}
-                alt=""
-                onClick={() => {
-                  menuModal.current.click();
-                  dispatcher(setPointOpen({ value: 'true' }));
-                }}
-              />
-            </a>
-          </nav>
-          <Scrollbar
-            style={{ width: '330px', height: '330px' }}
-            className="voiceChatMiddleScroll"
-            noScrollX={true}
-            maximalThumbYSize={95}>
-            {session !== undefined ? (
-              <div id="session">
-                <div id="session-header"></div>
-
-                {mainStreamManager !== undefined ? (
-                  <div id="main-video" className="col-md-6">
-                    {/* <div>mainStreamManager</div> */}
-                    {/* <UserVideoComponent
+                  {mainStreamManager !== undefined ? (
+                    <div id="main-video" className="col-md-6">
+                      {/* <div>mainStreamManager</div> */}
+                      {/* <UserVideoComponent
                   streamManager={this.state.mainStreamManager}
                 /> */}
-                    {/* <input
+                      {/* <input
                   className="btn btn-large btn-success"
                   type="button"
                   id="buttonSwitchCamera"
                   onClick={this.switchCamera}
                   value="Switch Camera"
                 /> */}
-                  </div>
-                ) : null}
-                <div id="video-container" className="hi">
-                  <div
-                    className="stream-container"
-                    onClick={() => handleMainVideoStream(publisher)}>
-                    <UserAudioComponent streamManager={publisher} idx={18} />
-                  </div>
-                  {/* {publisher !== undefined ? (
+                    </div>
+                  ) : null}
+                  <div id="video-container" className="hi">
+                    <div
+                      className="stream-container"
+                      onClick={() => handleMainVideoStream(publisher)}>
+                      <UserAudioComponent streamManager={publisher} idx={18} />
+                    </div>
+                    {/* {publisher !== undefined ? (
                     <div
                       className="stream-container"
                       onClick={() => handleMainVideoStream(publisher)}>
                       <UserAudioComponent streamManager={publisher} idx={18} />
                     </div>
                   ) : null} */}
-                  {subscribers.map((sub: any, i: any) => {
-                    if (i < 9) {
-                      return (
-                        <div key={i} onClick={() => handleMainVideoStream(sub)}>
-                          {/* <div>ssss</div> */}
-                          <UserAudioComponent streamManager={sub} idx={i} />
-                        </div>
-                      );
-                    } else {
-                      return null;
-                    }
-                  })}
+                    {subscribers.map((sub: any, i: any) => {
+                      if (i < 9) {
+                        return (
+                          <div
+                            key={i}
+                            onClick={() => handleMainVideoStream(sub)}>
+                            {/* <div>ssss</div> */}
+                            <UserAudioComponent streamManager={sub} idx={i} />
+                          </div>
+                        );
+                      } else {
+                        return null;
+                      }
+                    })}
+                  </div>
                 </div>
-              </div>
-            ) : null}
-          </Scrollbar>
+              ) : null}
+            </Scrollbar>
 
-          {/* <img
+            {/* <img
             className="mute"
             alt=""
             src={mute ? muteIcon : unmuteIcon}
@@ -524,9 +545,10 @@ const ChatMiddle = () => {
               }
               // target.subscribeToAudio(mute);
             }}></img> */}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
