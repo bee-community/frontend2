@@ -52,13 +52,9 @@ const VoiceFadeOutModal = () => {
 
   useEffect(() => {
     console.log('hhhhhhhhhhhhhhh');
-    fadeOutEffect();
     setCount(1);
     fadeOutRef.current.style.opacity = 1;
-
-    return () => {
-      dispatcher(setVoiceStateInfoModal({ value: false }));
-    };
+    fadeOutEffect();
   }, [voiceStateInfoText]);
 
   return (

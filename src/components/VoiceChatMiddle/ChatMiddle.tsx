@@ -124,6 +124,7 @@ const ChatMiddle = () => {
     window.addEventListener('beforeunload', alertUser);
     return () => {
       window.removeEventListener('beforeunload', alertUser);
+      dispatcher(setVoiceStateInfoModal({ value: false }));
       console.log('탈출');
       console.log(session);
       if (session) {
@@ -427,6 +428,7 @@ const ChatMiddle = () => {
                         }),
                       );
                     } else {
+                      console.log('테스트트트트트트트트ㅡㅌ');
                       dispatcher(setVoiceStateInfoModal({ value: true }));
                       dispatcher(
                         setVoiceStateInfoText({
