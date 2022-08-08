@@ -31,6 +31,7 @@ import { changeUserDataMessage } from '../../slice/userDataSlice';
 import fetcher from '../../utils/fetcher';
 import '../ChatBox/ChatWraper.css';
 import './MobileChatChat.css';
+import VoiceFadeOutModal from './VoiceFadeOutModal';
 import './drawer.css';
 import { ChatBox, Container } from './styles';
 
@@ -122,7 +123,9 @@ const Chat = () => {
   const indexChat = useSelector((store: any) => store.indexChat);
   const chatColor = useSelector((store: any) => store.chatColor);
   const pointOpen = useSelector((store: any) => store.pointOpen);
-
+  const voiceStateInfoModal = useSelector(
+    (store: any) => store.pointOpen.voiceStateInfoModal,
+  );
   const dispatcher = useDispatch();
   const chatUrl = '/api/v1/webrtc/chat/channels/partiDESC/0';
   const myChatUrl = '/api/v1/webrtc/chat/mychannel/partiDESC/0';
@@ -400,6 +403,7 @@ const Chat = () => {
                 src={hamBurger}
               />
             </div>
+            {voiceStateInfoModal && <VoiceFadeOutModal></VoiceFadeOutModal>}
             <ChatMiddle></ChatMiddle>
 
             <VoiceChatZZone></VoiceChatZZone>
