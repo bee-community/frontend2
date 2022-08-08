@@ -9,6 +9,8 @@ const initialState = {
   createPointModalExcept: false,
   desktopBottomDrawerOpen: false,
   usePointExcept: false,
+  voiceStateInfoModal: false,
+  voiceStateInfoText: '',
 };
 
 const pointModalSlice = createSlice({
@@ -47,6 +49,14 @@ const pointModalSlice = createSlice({
       console.log(payload.value);
       state.usePointExcept = payload.value;
     },
+    setVoiceStateInfoModal: (state, { payload }) => {
+      console.log(payload.value);
+      state.voiceStateInfoModal = payload.value;
+    },
+    setVoiceStateInfoText: (state, { payload }) => {
+      console.log(payload.value);
+      state.voiceStateInfoText = payload.value;
+    },
   },
 });
 
@@ -59,5 +69,7 @@ export const {
   setCreatePointModalExcept,
   setDesktopBottomDrawerOpen,
   setUsePointExcept,
+  setVoiceStateInfoModal,
+  setVoiceStateInfoText,
 } = pointModalSlice.actions;
 export default pointModalSlice.reducer;

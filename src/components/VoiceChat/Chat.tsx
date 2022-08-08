@@ -29,6 +29,7 @@ import { changeUserDataMessage } from '../../slice/userDataSlice';
 import fetcher from '../../utils/fetcher';
 import '../ChatChat/drawer.css';
 import './VoiceChat.css';
+import VoiceFadeOutModal from './VoiceFadeOutModal';
 import { ChatBoxVoice, Container } from './styles';
 
 // interface Props {
@@ -45,6 +46,9 @@ const Chat = () => {
   const indexChat = useSelector((store: any) => store.indexChat);
   const chatColor = useSelector((store: any) => store.chatColor);
   const pointOpen = useSelector((store: any) => store.pointOpen);
+  const voiceStateInfoModal = useSelector(
+    (store: any) => store.pointOpen.voiceStateInfoModal,
+  );
   const openViduSession = useSelector(
     (store: any) => store.openViduSessionCheck,
   );
@@ -367,6 +371,8 @@ const Chat = () => {
                 src={hamBurger}
               />
             </div>
+            {voiceStateInfoModal && <VoiceFadeOutModal></VoiceFadeOutModal>}
+
             <ChatMiddle></ChatMiddle>
 
             <VoiceChatZZone></VoiceChatZZone>

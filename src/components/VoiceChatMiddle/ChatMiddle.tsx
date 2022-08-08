@@ -17,7 +17,11 @@ import {
   setSessionCheck,
   setViduVoiceToken,
 } from 'slice/openViduSessionCheckSlice';
-import { setPointOpen } from 'slice/pointModal';
+import {
+  setPointOpen,
+  setVoiceStateInfoModal,
+  setVoiceStateInfoText,
+} from 'slice/pointModal';
 
 import axios from '../../chatApi';
 import ChatContext from '../../context/ChatContext';
@@ -304,6 +308,13 @@ const ChatMiddle = () => {
   // console.log(subscribers);
   const soundControl = useCallback(() => {
     subscribers.map((el: any) => el.subscribeToAudio(sound));
+    if (sound === false) {
+      dispatcher(setVoiceStateInfoModal({ value: true }));
+      dispatcher(setVoiceStateInfoText({ value: '스피커 사용을 중지합니다.' }));
+    } else {
+      dispatcher(setVoiceStateInfoModal({ value: true }));
+      dispatcher(setVoiceStateInfoText({ value: '스피커를 사용합니다.' }));
+    }
     setSound(!sound);
   }, [sound, subscribers]);
   // console.log();
@@ -357,7 +368,13 @@ const ChatMiddle = () => {
                 style={{ width: '25px;', height: '25px' }}
                 src={sound ? unvolume : volume}
                 alt=""
-                onClick={soundControl}
+                onClick={() => {
+                  if (typeof publisher == 'undefined') {
+                    window.alert('음성채팅중이 아닙니다.');
+                  } else {
+                    soundControl();
+                  }
+                }}
               />
             </a>
             <a className="menu-item">
@@ -371,6 +388,21 @@ const ChatMiddle = () => {
                   if (typeof publisher == 'undefined') {
                     window.alert('음성채팅중이 아닙니다.');
                   } else {
+                    if (mute === false) {
+                      dispatcher(setVoiceStateInfoModal({ value: true }));
+                      dispatcher(
+                        setVoiceStateInfoText({
+                          value: '마이크 사용을 중지합니다.',
+                        }),
+                      );
+                    } else {
+                      dispatcher(setVoiceStateInfoModal({ value: true }));
+                      dispatcher(
+                        setVoiceStateInfoText({
+                          value: '마이크를 사용합니다.',
+                        }),
+                      );
+                    }
                     publisher.publishAudio(mute);
                     setMute(!mute);
                   }
