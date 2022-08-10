@@ -236,17 +236,14 @@ const Chat = () => {
 
   const ExitClick = () => {
     if (client) {
-      var exitMessage = {
-        type: 'EXIT',
-        channelId: channelInfo.id,
-        senderName: userData.username,
+      let exitMessage = {
         message: '',
       };
       client.send(
         '/pub/chat/room',
         {
+          type: 'EXIT',
           jwt: jwt,
-
           channelId: channelInfo.id,
         },
         JSON.stringify(exitMessage),

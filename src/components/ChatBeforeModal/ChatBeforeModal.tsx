@@ -99,8 +99,6 @@ const ChatBeforeModal: VFC<Props> = ({
   const userJoinExcept = () => {
     console.log('재입장');
     let chatMessage = {
-      type: 'REENTER',
-      channelId: sendChannelInfo.id,
       message: '',
     };
     stompClient.send(

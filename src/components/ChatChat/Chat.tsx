@@ -187,20 +187,14 @@ const Chat = () => {
     // setChat('');
     if (client) {
       var exitMessage = {
-        type: 'EXIT',
-        channelId: channelInfo.id,
-        senderName: userData.username,
         message: '',
       };
-      // console.log(exitMessage);
-      // console.log(jwt);
       client.send(
         '/pub/chat/room',
         {
           jwt: jwt,
-          // username: 'user',
-          // username: userData.username,
           channelId: channelInfo.id,
+          type: 'EXIT',
         },
         JSON.stringify(exitMessage),
       );

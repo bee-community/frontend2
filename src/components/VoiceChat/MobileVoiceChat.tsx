@@ -199,11 +199,7 @@ const Chat = () => {
       // }
       // setChat('');
       if (client) {
-        chat?.trim();
-        var chatMessage = {
-          type: 'CHAT',
-          channelId: channelInfo.id,
-          senderName: userData.username,
+        let chatMessage = {
           message: chat?.trim(),
         };
         // console.log(chatMessage);
@@ -212,9 +208,8 @@ const Chat = () => {
           '/pub/chat/room',
           {
             jwt: jwt,
-            // username: 'user',
+            type: 'CHAT',
             channelId: channelInfo.id,
-            username: userData.username,
           },
           JSON.stringify(chatMessage),
         );
@@ -259,17 +254,14 @@ const Chat = () => {
 
   const ExitClick = () => {
     if (client) {
-      var exitMessage = {
-        type: 'EXIT',
-        channelId: channelInfo.id,
-        senderName: userData.username,
+      let exitMessage = {
         message: '',
       };
       client.send(
         '/pub/chat/room',
         {
           jwt: jwt,
-
+          type: 'EXIT',
           channelId: channelInfo.id,
         },
         JSON.stringify(exitMessage),
