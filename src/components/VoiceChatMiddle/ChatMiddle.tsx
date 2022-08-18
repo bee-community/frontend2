@@ -100,18 +100,6 @@ const ChatMiddle = () => {
     }
   }, [target, session, voiceToken]);
 
-  // const onbeforeunload = (e: any) => {
-  //   window.alert('time');
-  //   console.log('ttt*************************');
-  //   leaveSession();
-  // };
-
-  // useEffect(() => {
-  //   window.addEventListener('beforeunload', onbeforeunload);
-  //   return () => {
-  //     window.removeEventListener('beforeunload', onbeforeunload);
-  //   };
-  // }, []);
   const emergencyLeaveSession = () => {
     axios
       .post('/api/v1/webrtc/voice/remove-user', {
@@ -145,25 +133,6 @@ const ChatMiddle = () => {
     };
   }, [session]);
 
-  // useEffect(() => {
-  //   return () => {
-  //     console.log('이거거거거걱거거거');
-  //     if (session) {
-  //       session.disconnect();
-  //       axios
-  //         .post('/api/v1/webrtc/voice/remove-user', {
-  //           sessionName: channelInfo.id,
-  //           email: 'ksw',
-  //           token: voiceToken,
-  //         })
-  //         .then((response: any) => {
-  //           console.log('TOKEN', response);
-  //         })
-  //         .catch();
-  //     }
-  //   };
-  // }, []);
-
   useEffect(() => {
     console.log('사람');
     console.log(subscribers);
@@ -186,77 +155,6 @@ const ChatMiddle = () => {
       console.log(subscriberss);
       setSubscribers([...subscriberss]);
     }
-  };
-
-  const createSession = (sessionId: any) => {
-    return new Promise((resolve, reject) => {
-      var data = JSON.stringify({ customSessionId: sessionId });
-      console.log(data);
-      axios
-        .post(OPENVIDU_SERVER_URL + '/openvidu/api/sessions', data, {
-          headers: {
-            Authorization:
-              'Basic ' + btoa('OPENVIDUAPP:' + OPENVIDU_SERVER_SECRET),
-            'Content-Type': 'application/json',
-          },
-        })
-        .then((response: any) => {
-          console.log('CREATE SESION', response);
-          resolve(response.data.id);
-        })
-        .catch(response => {
-          var error = Object.assign({}, response);
-          if (error?.response?.status === 409) {
-            resolve(sessionId);
-          } else {
-            console.log(error);
-            console.warn(
-              'No connection to OpenVidu Server. This may be a certificate error at ' +
-                OPENVIDU_SERVER_URL,
-            );
-            if (
-              window.confirm(
-                'No connection to OpenVidu Server. This may be a certificate error at "' +
-                  OPENVIDU_SERVER_URL +
-                  '"\n\nClick OK to navigate and accept it. ' +
-                  'If no certificate warning is shown, then check that your OpenVidu Server is up and running at "' +
-                  OPENVIDU_SERVER_URL +
-                  '"',
-              )
-            ) {
-              window.location.assign(
-                OPENVIDU_SERVER_URL + '/accept-certificate',
-              );
-            }
-          }
-        });
-    });
-  };
-
-  const createToken = (sessionId: any) => {
-    return new Promise((resolve, reject) => {
-      var data = {};
-      axios
-        .post(
-          OPENVIDU_SERVER_URL +
-            '/openvidu/api/sessions/' +
-            sessionId +
-            '/connection',
-          data,
-          {
-            headers: {
-              Authorization:
-                'Basic ' + btoa('OPENVIDUAPP:' + OPENVIDU_SERVER_SECRET),
-              'Content-Type': 'application/json',
-            },
-          },
-        )
-        .then((response: any) => {
-          console.log('TOKEN', response);
-          resolve(response.data.token);
-        })
-        .catch(error => reject(error));
-    });
   };
 
   const getToken = useCallback(() => {

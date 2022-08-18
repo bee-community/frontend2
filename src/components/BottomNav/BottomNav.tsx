@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import activechat from '../../assets/chatImages/activechat.png';
 import activehome from '../../assets/chatImages/activehome.png';
@@ -13,6 +14,22 @@ import './BottomNav.css';
 
 const BottomNav = () => {
   const [page, setPage] = useState('home');
+  const path = useLocation().pathname;
+  console.log(path);
+  useEffect(() => {
+    switch (path) {
+      case '/':
+        setPage('home');
+        break;
+      case '/chat':
+        setPage('chat');
+        break;
+      case '/mypage':
+        setPage('mypage');
+        break;
+    }
+  }, [path]);
+
   return (
     <>
       <nav className="bottomNavWrapper">
