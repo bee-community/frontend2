@@ -1,7 +1,6 @@
 import API from 'api';
 import Button from 'components/atoms/Button';
 import { useAuthDispatch } from 'context/Auth';
-import { login } from 'context/Auth/actions';
 import { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -12,7 +11,6 @@ function LogIn() {
   const [password, setPassword] = useState(undefined);
 
   const authDispatch = useAuthDispatch();
-  // const auth = useAuthState();
 
   const [accessToken, setAccessToken] = useState('');
   const [tokenType, setTokenType] = useState('');
@@ -57,13 +55,24 @@ function LogIn() {
               }
             });
 
-            authDispatch(
-              login({
+            authDispatch({
+              type: 'LOGIN',
+              payload: {
                 username: email,
                 access_token: accessToken,
                 token_type: tokenType,
-              }),
-            );
+              },
+            });
+
+            const params2 = {
+              headers: {
+                'Content-Type': 'multipart/form-data',
+              },
+            };
+
+            API('get', '/auth/token', params2).then(response2 => {
+              console.log(response2);
+            });
           })
           .catch(error => {
             console.log(error);
