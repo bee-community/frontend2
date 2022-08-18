@@ -1,23 +1,19 @@
-import API from 'api';
 import Button from 'components/atoms/Button';
-import { useAuthDispatch } from 'context/Auth';
+import useUserActions from 'hooks/useUserActions';
 import { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { LogInWrap, LoginForm, Title } from './styles';
 
 function LogIn() {
+  const userActions = useUserActions();
+
   const [email, setEmail] = useState(undefined);
-  const [password, setPassword] = useState(undefined);
-
-  const authDispatch = useAuthDispatch();
-
-  const [accessToken, setAccessToken] = useState('');
-  const [tokenType, setTokenType] = useState('');
-
   const onChangeEmail = useCallback(e => {
     setEmail(e.target.value);
   }, []);
+
+  const [password, setPassword] = useState(undefined);
   const onChangePassword = useCallback(e => {
     setPassword(e.target.value);
   }, []);
@@ -26,61 +22,10 @@ function LogIn() {
     e => {
       e.preventDefault();
       if (email && password) {
-        console.log('서버로 로그인하기');
-        const form = new FormData();
-        form.append('username', email);
-        form.append('password', password);
-
-        const params = {
-          form,
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        };
-
-        API('post', '/auth/token', params)
-          .then(response => {
-            console.log(response);
-
-            const jsonString = JSON.stringify(response.data, [
-              'access_token',
-              'token_type',
-            ]);
-            JSON.parse(jsonString, (key, value) => {
-              if (key === 'access_token') {
-                setAccessToken(value);
-              }
-              if (key === 'token_type') {
-                setTokenType(value);
-              }
-            });
-
-            authDispatch({
-              type: 'LOGIN',
-              payload: {
-                username: email,
-                access_token: accessToken,
-                token_type: tokenType,
-              },
-            });
-
-            const params2 = {
-              headers: {
-                'Content-Type': 'multipart/form-data',
-              },
-            };
-
-            API('get', '/auth/token', params2).then(response2 => {
-              console.log(response2);
-            });
-          })
-          .catch(error => {
-            console.log(error);
-          })
-          .finally(() => {});
+        userActions.login({ email, password });
       }
     },
-    [email, password, accessToken, authDispatch, tokenType],
+    [userActions],
   );
 
   return (

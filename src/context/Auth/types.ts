@@ -3,9 +3,9 @@ export type LoginAction = {
   payload: UserToken;
 };
 
-export type SignUpAction = {
-  type: 'SIGNUP';
-  payload: UserToken;
+export type UserAction = {
+  type: 'GET_USER';
+  payload: UserInfo;
 };
 
 export type UserToken = {
