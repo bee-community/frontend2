@@ -8,6 +8,11 @@ export const ChatBox = styled.div`
   overflow-x: hidden;
   position: relative;
   overflow-y: hidden;
+  @media (max-width: ${props => props.theme.screenSize.md}) {
+    width: calc(var(--vw) * 100);
+    height: calc(var(--vh) * 100);
+    border-radius: 0px;
+  }
 `;
 
 export const ChatBoxVoice = styled.div`

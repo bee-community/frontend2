@@ -1,3 +1,5 @@
+import Test from 'components/Aside/Test';
+import BottomNav from 'components/BottomNav/BottomNav';
 import Template from 'components/Templates';
 import Article from 'pages/Article';
 import ArticlePost from 'pages/ArticlePost';
@@ -11,9 +13,12 @@ import Question from 'pages/Question';
 import Report from 'pages/Report';
 import RequestBoard from 'pages/RequestBoard';
 import SignUp from 'pages/SignUp';
+import { useSelector } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
+  const chatState = useSelector((store: any) => store.chatState.chatState);
+
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
@@ -36,7 +41,11 @@ function App() {
 
         <Route path="signup" element={<SignUp />} />
         <Route path="login" element={<LogIn />} />
+        <Route path="chat" element={<Test />} />
       </Routes>
+      {chatState !== 'chat' && chatState !== 'voicechat' && (
+        <BottomNav></BottomNav>
+      )}
     </BrowserRouter>
   );
 }

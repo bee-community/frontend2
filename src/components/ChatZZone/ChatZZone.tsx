@@ -1,4 +1,3 @@
-import axios from 'axios';
 import dayjs from 'dayjs';
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,10 +6,11 @@ import { Scrollbar } from 'react-scrollbars-custom';
 import { setLogId } from 'slice/logIdSlice';
 import makeSection from 'utils/makeSection';
 
+import axios from '../../chatApi';
 import ChatContext from '../../context/ChatContext';
 // import { JwtStateContext, DispatchContext } from '../../context/JwtContext';
 import ScrollContext from '../../context/ScrollContext';
-import './ChatChat.css';
+import './ChatZZone.css';
 
 const ChatZZone = () => {
   // const scrollBarRef = useRef<any>(null);
@@ -89,7 +89,7 @@ const ChatZZone = () => {
         let arr = chatList;
         // let arr: any = [];
         // console.log(arr);
-        // console.log(res.data);
+        console.log(res.data);
         setChatList([...arr, res.data]);
         if (logId.logId == 0) {
           return;
@@ -110,6 +110,8 @@ const ChatZZone = () => {
         console.log('가장위');
         if (logId.logId < 20) {
           let a = logId.logId + 1;
+          console.log('ttttt', a);
+
           dispatcher(setLogId({ value: a }));
         } else {
           let b = logId.logId - 20;
@@ -125,7 +127,7 @@ const ChatZZone = () => {
   // console.log(chatSections);
   // console.log(Object.entries(chatSections).length);
   return (
-    <div className="chatZZone">
+    <div className="chatZZone fix">
       {Object.entries(chatSections).length === 0 ? (
         <div className="DateWrapper">
           <div className="DateButton">{dayjs(Date()).format('YYYY-MM-DD')}</div>
@@ -257,7 +259,7 @@ const ChatZZone = () => {
               </div>
             );
           } else {
-            if (chat.chatMessage === null) {
+            if (chat.chatMessage === '') {
               return;
             }
             return (

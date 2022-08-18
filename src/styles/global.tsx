@@ -1,6 +1,13 @@
 import { css } from '@emotion/react';
 import type { SerializedStyles, Theme } from '@emotion/react';
 
+const setScreenSize = () => {
+  let vh = window.innerHeight * 0.01;
+  let vw = window.innerWidth * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+  document.documentElement.style.setProperty('--vw', `${vw}px`);
+};
+setScreenSize();
 const globalStyle = (theme: Theme): SerializedStyles => css`
   html {
     font-size: 16px;
@@ -22,6 +29,11 @@ const globalStyle = (theme: Theme): SerializedStyles => css`
     a {
       color: inherit;
       text-decoration: inherit;
+    }
+  }
+  @media (max-width: ${theme.screenSize.md}) {
+    html {
+      height: calc(var(--vh) * 100);
     }
   }
 `;

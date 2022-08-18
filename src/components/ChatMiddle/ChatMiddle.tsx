@@ -8,12 +8,12 @@ import unmuteIcon from 'assets/chatImages/unmute.png';
 import unvoice from 'assets/chatImages/unvoice.png';
 import voice from 'assets/chatImages/voice.png';
 import volume from 'assets/chatImages/volume.png';
-import axios from 'axios';
 import { OpenVidu } from 'openvidu-browser';
 import { useCallback, useEffect, useState, useContext, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPointOpen } from 'slice/pointModal';
 
+import axios from '../../chatApi';
 import ChatContext from '../../context/ChatContext';
 import UserAudioComponent from './AudioComponent';
 import './chatMiddle.css';

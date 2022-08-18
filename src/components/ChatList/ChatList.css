@@ -71,3 +71,13 @@
   background-color: rgba(0, 0, 0, 0.5);
   color: #ffffff;
 }
+
+@media (max-width: 766px) {
+  .ChatList .ScrollbarsCustom-Track.ScrollbarsCustom-TrackY {
+    background-color: transparent !important;
+  }
+
+  .ChatList .ScrollbarsCustom-Thumb.ScrollbarsCustom-ThumbY {
+    background: transparent !important;
+  }
+}

@@ -5,6 +5,12 @@ const initialState = {
   remainOpen: false,
   remainPoint: 0,
   usePoint: 0,
+  waitOpen: false,
+  createPointModalExcept: false,
+  desktopBottomDrawerOpen: false,
+  usePointExcept: false,
+  voiceStateInfoModal: false,
+  voiceStateInfoText: '',
 };
 
 const pointModalSlice = createSlice({
@@ -27,9 +33,43 @@ const pointModalSlice = createSlice({
       console.log(payload.value);
       state.usePoint = payload.value;
     },
+    setWaitOpen: (state, { payload }) => {
+      console.log(payload.value);
+      state.waitOpen = payload.value;
+    },
+    setCreatePointModalExcept: (state, { payload }) => {
+      console.log(payload.value);
+      state.createPointModalExcept = payload.value;
+    },
+    setDesktopBottomDrawerOpen: (state, { payload }) => {
+      console.log(payload.value);
+      state.desktopBottomDrawerOpen = payload.value;
+    },
+    setUsePointExcept: (state, { payload }) => {
+      console.log(payload.value);
+      state.usePointExcept = payload.value;
+    },
+    setVoiceStateInfoModal: (state, { payload }) => {
+      console.log(payload.value);
+      state.voiceStateInfoModal = payload.value;
+    },
+    setVoiceStateInfoText: (state, { payload }) => {
+      console.log(payload.value);
+      state.voiceStateInfoText = payload.value;
+    },
   },
 });
 
-export const { setPointOpen, setUsePoint, setRemainPoint, setRemainOpen } =
-  pointModalSlice.actions;
+export const {
+  setWaitOpen,
+  setPointOpen,
+  setUsePoint,
+  setRemainPoint,
+  setRemainOpen,
+  setCreatePointModalExcept,
+  setDesktopBottomDrawerOpen,
+  setUsePointExcept,
+  setVoiceStateInfoModal,
+  setVoiceStateInfoText,
+} = pointModalSlice.actions;
 export default pointModalSlice.reducer;

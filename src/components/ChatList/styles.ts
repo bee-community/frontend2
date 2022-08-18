@@ -9,6 +9,13 @@ export const ChatBox = styled.div`
   position: relative;
   overflow-x: hidden;
   overflow-y: auto;
+
+  @media (max-width: ${props => props.theme.screenSize.md}) {
+    width: 100%;
+    height: calc(var(--vh) * 100 - 180px);
+    border-radius: 15px;
+    background-color: rgb(244, 244, 244);
+  }
 `;
 
 export const Container = styled.div`

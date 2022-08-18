@@ -1,0 +1,200 @@
+.ChatBeforeModal2 .modal {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  padding: 9px 0 0;
+  background-color: rgba(17, 17, 17, 0.9);
+  position: absolute;
+  justify-content: flex-end;
+  /* align-items: flex-end; */
+  flex-direction: column;
+  top: 0px;
+  z-index: 100;
+  left: 0px;
+  /* color: wheat; */
+}
+.ChatBeforeModal2 .closeButtonWrapper {
+  top: 15px;
+  left: 280px;
+  width: 30px;
+  height: 30px;
+}
+
+.ChatBeforeModal2 .closeButton {
+  cursor: pointer;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 20px;
+  left: calc(100vw - 10px);
+}
+
+.ChatBeforeModal2 .yellowButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  /* margin: 36px 20px 19px 0; */
+  margin-bottom: 19px;
+  /* padding: 9px; */
+  /* padding: 8px 80px 10px 1px; */
+  border-radius: 5px;
+  background-color: #ffe576;
+  font-size: 20px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 600;
+  z-index: 100;
+  cursor: pointer;
+}
+
+.ChatBeforeModal2 .modalTag {
+  margin-left: 24px;
+  color: #ffe576;
+  font-size: 14px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 500;
+  max-width: 180px;
+  margin-bottom: 5px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ChatBeforeModal2 .modalTitle {
+  margin-left: 24px;
+  color: #ffffff;
+  font-size: 18px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 500;
+  margin-bottom: 7px;
+  max-width: 180px;
+  z-index: 100;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ChatBeforeModal2 .modalTimeLimit {
+  display: flex;
+  margin-left: 24px;
+  color: #eeeeee;
+  font-size: 10px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 100;
+  margin-bottom: 7px;
+  z-index: 100;
+}
+
+.ChatBeforeModal2 .modalTimeLimit > img {
+  width: 10.6px;
+  height: 10.6px;
+  margin-bottom: 1px;
+}
+
+.ChatBeforeModal2 .imgWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ChatBeforeModal2 .modalTimeLimit > span:nth-child(1) {
+  margin-left: 24px;
+  color: #eeeeee;
+  font-size: 10px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 100;
+}
+
+.ChatBeforeModal2 .modalDate {
+  margin-left: 24px;
+  color: #ffffff;
+  font-size: 12px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 100;
+  z-index: 100;
+}
+
+.ChatBeforeModal2 .modalDate > span:nth-child(1) {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 600;
+}
+
+.ChatBeforeModal2 .modalDate > span:nth-child(2) {
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #eeeeee;
+  font-weight: 100;
+}
+.ChatBeforeModal2 .textArea {
+  margin-bottom: 40px;
+  z-index: 100;
+}
+
+.ChatBeforeModal2 .modalBee {
+  position: absolute;
+  top: 130px;
+  left: 176px;
+  width: 143px;
+  height: 205px;
+}
+
+@media (max-width: 766px) {
+  .ChatBeforeModal2 .modal {
+    width: calc(var(--vw) * 100);
+    height: calc(var(--vh) * 100);
+    border-radius: 0px;
+    align-items: center;
+  }
+  .ChatBeforeModal2 .closeButton {
+    cursor: pointer;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 15px;
+    left: calc(var(--vw) * 100 - 35px);
+  }
+  .ChatBeforeModal2 .textArea {
+    position: absolute;
+    width: calc(var(--vw) * 100);
+
+    top: calc(var(--vh) * 30);
+    left: 0;
+    z-index: 100;
+  }
+  .ChatBeforeModal2 .modalTag {
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .ChatBeforeModal2 .modalTitle {
+    max-width: calc(var(--vw) * 100);
+    font-size: 22px;
+    font-weight: 700;
+    text-overflow: clip;
+  }
+  .ChatBeforeModal2 .modalTimeLimit {
+    font-size: 12px;
+  }
+  .ChatBeforeModal2 .modalDate {
+    margin-top: 5px;
+    font-size: 12px;
+  }
+
+  .ChatBeforeModal2 .modalBee {
+    position: absolute;
+
+    z-index: 100;
+    top: calc(var(--vh) * 48);
+    left: calc(var(--vw) * 32);
+    width: calc(var(--vw) * 70);
+    height: calc(var(--vh) * 50);
+  }
+  .ChatBeforeModal2 .yellowButton {
+    padding: 12px calc(var(--vw) * 30);
+    font-size: 16px;
+    position: absolute;
+    top: calc(var(--vh) * 48 + var(--vh) * 42);
+    left: calc(var(--vh) * 3.5);
+    border-radius: 10px;
+    margin-bottom: 30px;
+    z-index: 1000;
+  }
+}

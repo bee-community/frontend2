@@ -2,6 +2,7 @@ import addButton from 'assets/chatImages/addbutton2.png';
 import Chat from 'components/ChatChat/Chat';
 import ChatList from 'components/ChatList/ChatList';
 import CreateChannel from 'components/CreateChannel/CreateChannel';
+import CreateChannelExceptModal from 'components/CreateChannel/CreateChannelExceptModal';
 import MyChatList from 'components/MyChatList/MyChatList';
 import VoiceChat from 'components/VoiceChat/Chat';
 import React, { useEffect, useState, useCallback, useContext } from 'react';
@@ -36,6 +37,10 @@ function Aside() {
   // const { JWTtoken, publicChats } = useSelector((store: any) => store);
   const chatColor = useSelector((store: any) => store.chatColor);
   const chatState = useSelector((store: any) => store.chatState);
+  const CreateChannelExceptModalOpen = useSelector(
+    (store: any) => store.pointOpen.createPointModalExcept,
+  );
+
   const dispatcher = useDispatch();
 
   // const chatUrl = '/api/v1/webrtc/channels/0';
@@ -142,10 +147,6 @@ function Aside() {
     <AsideWrap>
       <Bio>
         <span>채팅</span>
-        {/* <a href="/mypage">
-          <img src={mypageButton} />
-          <div>마이페이지</div>
-        </a> */}
         <img
           alt="closeButton"
           role="presentation"
@@ -156,6 +157,9 @@ function Aside() {
       <CreateChannel
         show={showCreateChannel}
         onCloseModal={onCloseModal}></CreateChannel>
+      {CreateChannelExceptModalOpen && (
+        <CreateChannelExceptModal></CreateChannelExceptModal>
+      )}
       <Box>
         <ChatButton
           onClick={() => {

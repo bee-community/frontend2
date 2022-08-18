@@ -1,5 +1,4 @@
-import axios from 'axios';
-
+import axios from '../chatApi';
 import { ChannelResponse } from '../typings/db';
 
 const fetcher = (url: string, token: string) =>

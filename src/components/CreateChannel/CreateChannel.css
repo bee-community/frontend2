@@ -285,3 +285,100 @@
   margin-left: 10px;
   color: #ffe576;
 }
+
+@media (max-width: 766px) {
+  .createChannel .modal {
+    width: 90vw;
+    height: calc(var(--vh) * 100);
+    border-radius: 0px;
+  }
+  .createChannel .closeButton {
+    cursor: pointer;
+    position: absolute;
+    top: 30px;
+    width: 20px;
+    height: 20px;
+    left: calc(100vw - 10px);
+    margin: 0 !important;
+  }
+  .mobile {
+    width: 90vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .createChannel .entry2 {
+    height: 25px;
+    position: absolute;
+    width: 160px;
+    top: 30px;
+    left: 100px;
+  }
+
+  .createChannel .entry:nth-child(1) {
+    left: 0px;
+    top: 0px;
+  }
+}
+
+.scrollLock {
+  overflow: hidden;
+}
+
+.radio {
+  display: flex;
+  align-items: center;
+}
+.custom-radio-btn {
+  --size: 18px;
+  min-width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  cursor: pointer;
+  color: white;
+  /* changes from the video   */
+  font-size: 16px;
+  font-weight: 500;
+  position: relative;
+  padding-left: var(--size);
+  margin-right: 40px;
+}
+.custom-radio-btn .label {
+  padding-left: 17px;
+}
+.custom-radio-btn input {
+  display: none;
+}
+.custom-radio-btn .checkmark {
+  --gap: 3px;
+  --border: 2px;
+  --check-color: #ffe576;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  display: inline-block;
+  transition: opacity 0.3s ease;
+  /* changes from the video  */
+
+  border: var(--border) solid white;
+  padding: var(--gap);
+  position: absolute;
+  top: -4px;
+  left: 0;
+}
+.custom-radio-btn input:checked ~ .checkmark {
+  /* changes from the video  */
+
+  /*  content box origin will make sure the bg-image only stays inside content area in between padding  */
+  background-origin: content-box;
+  background-repeat: no-repeat;
+  background-image: radial-gradient(
+    circle at center,
+    var(--check-color)
+      /* the size of the check mark is determined by subtracting from the size of the circle
+     the border(both sides) and the gap(both sides) than dividing it by 2 to get the radius of the circle        */
+      calc((var(--size) - (var(--border)) - (var(--gap))) / 2),
+    rgba(255, 255, 255, 0) 0
+  );
+}

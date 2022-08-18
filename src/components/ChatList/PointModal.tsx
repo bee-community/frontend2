@@ -1,5 +1,4 @@
 import xButton from 'assets/chatImages/xbutton.png';
-import axios from 'axios';
 import ChatContext from 'context/ChatContext';
 import React, { useCallback, useContext, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,9 +7,21 @@ import {
   setRemainPoint,
   setUsePoint,
   setRemainOpen,
+  setCreatePointModalExcept,
+  setUsePointExcept,
 } from 'slice/pointModal';
+import styled from 'styled-components';
 
+import axios from '../../chatApi';
 import './pointModal.css';
+
+export const ModalBackground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+`;
 
 const PointModal = () => {
   const { channelInfo } = useContext<any>(ChatContext);
@@ -21,7 +32,6 @@ const PointModal = () => {
     setTTL(e.target.value);
   };
   const getPoint = useCallback(() => {
-    console.log('sibal');
     axios
       .get(`/api/v1/webrtc/chat/point/${channelInfo.id}`, {
         headers: {
@@ -55,19 +65,25 @@ const PointModal = () => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       .then(res => {
         console.log(res);
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-      .finally(() => {
         dispatcher(setUsePoint({ value: Number(TTL) * 100 }));
         dispatcher(setPointOpen({ value: false }));
         getPoint();
-      });
+      })
+      .catch(function (error) {
+        console.log(error);
+        if (error.response.status === 409) {
+          dispatcher(setUsePointExcept({ value: true }));
+        }
+      })
+      .finally(() => {});
   }, [TTL]);
 
   return (
     <div className="PointModal">
+      <ModalBackground
+        onClick={() => {
+          dispatcher(setPointOpen({ value: false }));
+        }}></ModalBackground>
       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
       <label className="showOverlay" htmlFor="check"></label>
       <input id="check" className="check" type="checkbox" />
@@ -76,7 +92,7 @@ const PointModal = () => {
           <img style="width: 40px; height: 40px" src="./fanfare.png" />
         </div> */}
         <div className="hhh">채팅방 시간연장</div>
-        <div className="closeButtonWrapper">
+        {/* <div className="closeButtonWrapper">
           <img
             alt="closeButton"
             role="presentation"
@@ -86,7 +102,7 @@ const PointModal = () => {
               dispatcher(setPointOpen({ value: false }));
             }}
             src={xButton}></img>
-        </div>
+        </div> */}
         <div className="container">
           <input
             type="radio"
@@ -114,7 +130,9 @@ const PointModal = () => {
             <div className="circle"></div>
             <div className="entry-label">
               1시간
-              <span className="point">200 Point</span>
+              <span style={{ marginLeft: '32px' }} className="point">
+                200 Point
+              </span>
             </div>
           </label>
           <input

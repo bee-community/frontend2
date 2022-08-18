@@ -1,3 +1,4 @@
+import ChatBeforeModal2 from 'components/ChatBeforeModal2/ChatBeforeModal2';
 import ChatBeforeModal from 'components/ChatBeforeModal/ChatBeforeModal';
 import ChatRoomMy from 'components/ChatRoomMy/ChatRoomMy';
 import React, { useCallback, useState } from 'react';
@@ -7,8 +8,8 @@ import { useDispatch } from 'react-redux';
 import { setIndexChat } from 'slice/indexChatSlice';
 
 import { Channel } from '../../typings/db';
-import './ChatList.css';
-import { ChatBox, Container } from './styles';
+import '../ChatList/ChatList.css';
+import { ChatBox, Container } from '../ChatList/styles';
 
 const MyList = () => {
   const dispatcher = useDispatch();
@@ -51,6 +52,10 @@ const MyList = () => {
             show={showChatBeforeModal}
             onCloseModal={onCloseModal}></ChatBeforeModal>
         </ChatBox>
+        <ChatBeforeModal2
+          sendChannelInfo={sendChannelInfo}
+          show={showChatBeforeModal}
+          onCloseModal={onCloseModal}></ChatBeforeModal2>
       </Container>
     </div>
   );

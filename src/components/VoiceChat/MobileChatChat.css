@@ -1,0 +1,362 @@
+.Chat.track-vertical {
+  top: 0px;
+  width: 50px;
+  bottom: 16px;
+  right: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.111);
+}
+.Chat.track-vertical .thumb-vertical {
+  position: relative;
+  display: block;
+  width: 90%;
+  cursor: pointer;
+  border-radius: inherit;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.Chat.track-horizontal {
+  position: absolute;
+  height: 6px;
+  right: 2px;
+  bottom: 2px;
+  left: 2px;
+  border-radius: 3px;
+}
+.Chat.track-horizontal .thumb-horizontal {
+  position: relative;
+  display: block;
+  height: 50%;
+  cursor: pointer;
+  border-radius: inherit;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.Chat.view {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  overflow: scroll;
+  margin-right: -15px;
+  margin-bottom: -17px !important;
+}
+
+.chatBBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.backSpace {
+  width: 7px;
+  height: 17px;
+  margin-top: 20px;
+  margin-left: 15px;
+}
+
+.chatHeader {
+  height: 63px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  /* border-bottom: solid 0.5px; */
+}
+
+.middle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.chatTitle {
+  font-size: 15px;
+  font-weight: 700;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.chatTag {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: #5206b9;
+}
+
+.hamBurger {
+  margin-top: 20px;
+  margin-right: 20px;
+  width: 17px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.chatMiddle {
+  width: 100%;
+  height: 54px;
+  background-color: #f4f4f4;
+}
+
+.chatZZone {
+  height: 328px;
+  width: 100%;
+}
+
+.chatInput {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 58px;
+}
+
+.plusButton {
+  margin-left: 10px;
+  width: 24px;
+  height: 24px;
+  /* margin: 8.5px 7.1px 8.2px 0;
+    object-fit: contain; */
+}
+
+.iinput {
+  display: flex;
+  align-items: center;
+  width: 220px;
+  height: 38px;
+  background-color: #f4f4f4;
+  border-radius: 40px;
+}
+
+.submit {
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  width: 47px;
+  height: 38px;
+  border-radius: 22px;
+  background-color: #ffe576;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 600;
+}
+
+.drawerWrapper {
+  padding: 10px 15px 0px 15px;
+}
+
+.drawerWrapper .top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.drawerWrapper .setting {
+  width: 18px;
+  height: 18px;
+}
+
+.drawerWrapper .tag {
+  margin-top: 10px;
+  margin-left: 0px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #5206b9;
+}
+
+.drawerWrapper .title {
+  margin-top: 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.drawerWrapper .third {
+  display: flex;
+  margin-top: 5px;
+  margin-left: 0px;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-family: NotoSansCJKKR;
+  color: #656363;
+}
+
+.drawerWrapper .time {
+  margin-top: 1px;
+  width: 12px;
+  height: 12px;
+}
+
+.drawerWrapper .myIcon {
+  display: flex;
+  position: relative;
+}
+.drawerWrapper .chatImgIcon {
+  width: 27px;
+  height: 26px;
+  margin: 0px 5px 0px 0px;
+
+  padding: 8px 7px 1px 3px;
+  background-color: #ffe576;
+  border-radius: 100%;
+}
+
+.drawerWrapper .chatContent {
+  align-self: center;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 400;
+  max-width: 210px;
+  font-size: 14px;
+}
+
+.drawerWrapper .cuteCircle {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 8px;
+  height: 8px;
+  margin: 0px 5px 0px 0px;
+  padding: 5px;
+  background-color: #111111;
+  color: #ffe576;
+  font-size: 8px;
+  line-height: 0px;
+  border-radius: 100%;
+  top: 20px;
+  left: 22px;
+}
+
+.drawerWrapper .line {
+  width: 100%;
+  height: 0;
+  margin: 11px 3px 13px 0px;
+  border: solid 1px #ddd;
+}
+
+.drawerWrapper .friend {
+  font-weight: bold;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.drawerWrapper .myIcon {
+  display: flex;
+  position: relative;
+}
+
+.drawerWrapper .friendIcon {
+  display: flex;
+  position: relative;
+  margin-top: 5px;
+}
+.drawerWrapper .chatImgIcon {
+  width: 27px;
+  height: 26px;
+  margin: 0px 5px 0px 0px;
+
+  padding: 8px 7px 1px 3px;
+  background-color: #ffe576;
+  border-radius: 100%;
+}
+
+.drawerWrapper .chatContent {
+  align-self: center;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 400;
+  max-width: 210px;
+  font-size: 14px;
+}
+
+.drawerWrapper .exit {
+  z-index: 999;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 457px;
+  left: auto;
+  position: fixed;
+  width: 90%;
+  height: 40px;
+  margin: 0 0 0 0px;
+  padding: 2px 0 0 0px;
+  border-radius: 20px;
+  background-color: #eee;
+  border: 0;
+}
+.mobileChat .xbutton {
+  width: 15px;
+  height: 15px;
+}
+.drawerWrapper .exitWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.drawerWrapper .trick {
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 466px;
+  left: auto;
+  position: fixed;
+  width: 90%;
+  height: 41px;
+  margin: 0 0 0 0px;
+  padding: 2px 0 0 0px;
+  background-color: white;
+}
+
+.mobileChat .ScrollbarsCustom-Track.ScrollbarsCustom-TrackY {
+  background-color: white !important;
+  width: 5px !important;
+  right: 6px !important;
+  /* left: 320px !important; */
+  /* height: 100% !important; */
+}
+
+.mobileChat .ScrollbarsCustom-Thumb.ScrollbarsCustom-ThumbY {
+  background: #dddddd !important;
+  /* height: 95px !important; */
+}
+
+@media (max-width: 766px) {
+  .mobileChat .ScrollbarsCustom-Track.ScrollbarsCustom-TrackY {
+    background-color: transparent !important;
+    width: 5px !important;
+    right: 6px !important;
+    /* left: 320px !important; */
+    /* height: 100% !important; */
+  }
+
+  .mobileChat .ScrollbarsCustom {
+    height: 95% !important;
+  }
+
+  .mobileChat .ScrollbarsCustom-Thumb.ScrollbarsCustom-ThumbY {
+    background: transparent !important;
+    /* height: 95px !important; */
+  }
+  .mobileChat .chatZZone {
+    height: calc(var(--vh) * 100 - var(--stretch));
+    width: 100%;
+    transition: 0.5s;
+  }
+  .mobileChat .ScrollbarsCustom-Wrapper {
+    width: 100%;
+  }
+  .mobileChat .iinput {
+    width: calc(var(--vw) * 70);
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  .mobileChat .submit {
+    border-radius: 10px;
+    color: black;
+  }
+  .mobileChat .chatHeader {
+    padding-top: 7px;
+    border-bottom: solid 1px #f4f4f4;
+  }
+}

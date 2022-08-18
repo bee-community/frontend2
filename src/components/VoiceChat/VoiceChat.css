@@ -320,3 +320,12 @@
   background: #dddddd !important;
   /* height: 95px !important; */
 }
+
+@media (max-width: 766px) {
+  .drawerWrapper .exit {
+    top: calc(var(--vh) * 92);
+  }
+  .drawerWrapper .trick {
+    top: calc(var(--vh) * 92);
+  }
+}

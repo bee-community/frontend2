@@ -66,6 +66,11 @@ const OuterCircle = styled.div`
   background-color: white;
   border-radius: 20px;
   box-shadow: 3px 3px 0 0 rgb(0 0 0 / 14%);
+  @media (max-width: 776px) {
+    width: calc(var(--vw) * 24);
+    height: 105px;
+    margin: calc(var(--vh) * 3) calc(var(--vw) * 9) 5px 0px;
+  }
 `;
 
 const InnerCircle = styled.div`
@@ -85,6 +90,10 @@ const Test = styled.img`
   height: 60px;
   background-color: #ffe576;
   border-radius: 25px;
+  @media (max-width: 776px) {
+    width: calc(var(--vw) * 17);
+    height: 60px;
+  }
 `;
 function UserAudioComponent(props: any) {
   console.log('유저 비디오 프롭스', props);

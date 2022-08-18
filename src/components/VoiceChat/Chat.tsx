@@ -3,7 +3,6 @@ import hamBurger from 'assets/chatImages/hamburger.png';
 import setting from 'assets/chatImages/setting.png';
 import timeIcon from 'assets/chatImages/timeIcon.png';
 import xbutton from 'assets/chatImages/xbutton_gray.png';
-import axios from 'axios';
 import ChatWraper from 'components/ChatBox/ChatWraper';
 import ChatEndModal from 'components/ChatEndModal/ChatEndModal';
 import PointModal from 'components/ChatList/PointModal';
@@ -21,14 +20,16 @@ import { setChatState } from 'slice/chatStateSlice';
 import { setLogId } from 'slice/logIdSlice';
 import useSWR from 'swr';
 
+import axios from '../../chatApi';
 import ChatContext from '../../context/ChatContext';
 // import JwtContext from '../../context/JwtContext';
 import useInput from '../../hooks/useInput';
 import { resetPublicChats } from '../../slice/publicChats';
 import { changeUserDataMessage } from '../../slice/userDataSlice';
 import fetcher from '../../utils/fetcher';
-import './ChatChat.css';
-import './drawer.css';
+import '../ChatChat/drawer.css';
+import './VoiceChat.css';
+import VoiceFadeOutModal from './VoiceFadeOutModal';
 import { ChatBoxVoice, Container } from './styles';
 
 // interface Props {
@@ -45,12 +46,15 @@ const Chat = () => {
   const indexChat = useSelector((store: any) => store.indexChat);
   const chatColor = useSelector((store: any) => store.chatColor);
   const pointOpen = useSelector((store: any) => store.pointOpen);
+  const voiceStateInfoModal = useSelector(
+    (store: any) => store.pointOpen.voiceStateInfoModal,
+  );
   const openViduSession = useSelector(
     (store: any) => store.openViduSessionCheck,
   );
   const dispatcher = useDispatch();
-  const chatUrl = '/api/v1/webrtc/chat/channels/0';
-  const myChatUrl = '/api/v1/webrtc/chat/mychannel/0';
+  const chatUrl = '/api/v1/webrtc/chat/channels/partiDESC/0';
+  const myChatUrl = '/api/v1/webrtc/chat/mychannel/partiDESC/0';
   const { data: Data, revalidate }: any = useSWR(
     chatColor.chatColor == 'chatList' ? chatUrl : myChatUrl,
     url => fetcher(url, JWTtoken.JWTtoken),
@@ -121,11 +125,7 @@ const Chat = () => {
       // }
       // setChat('');
       if (client) {
-        chat?.trim();
-        var chatMessage = {
-          type: 'CHAT',
-          channelId: channelInfo.id,
-          senderName: userData.username,
+        let chatMessage = {
           message: chat?.trim(),
         };
         // console.log(chatMessage);
@@ -134,9 +134,8 @@ const Chat = () => {
           '/pub/chat/room',
           {
             jwt: jwt,
-            // username: 'user',
+            type: 'CHAT',
             channelId: channelInfo.id,
-            username: userData.username,
           },
           JSON.stringify(chatMessage),
         );
@@ -167,28 +166,28 @@ const Chat = () => {
     [chat],
   );
 
-  const leaveSession = () => {
-    try {
-      if (openViduSession.sessionCheck) {
-        openViduSession.sessionCheck.disconnect();
-        console.log('보내나');
-        axios
-          .post('/api/v1/webrtc/voice/remove-user', {
-            sessionName: channelInfo.id,
-            email: 'ksw',
-            token: openViduSession.voiceToken,
-          })
-          .then((response: any) => {
-            console.log('TOKEN', response);
-          })
-          .catch((err: any) => {
-            console.log(err);
-          });
-      }
-    } catch (err) {
-      console.log('error');
-    }
-  };
+  // const leaveSession = () => {
+  //   try {
+  //     if (openViduSession.sessionCheck) {
+  //       openViduSession.sessionCheck.disconnect();
+  //       console.log('보내나');
+  //       axios
+  //         .post('/api/v1/webrtc/voice/remove-user', {
+  //           sessionName: channelInfo.id,
+  //           email: 'ksw',
+  //           token: openViduSession.voiceToken,
+  //         })
+  //         .then((response: any) => {
+  //           console.log('TOKEN', response);
+  //         })
+  //         .catch((err: any) => {
+  //           console.log(err);
+  //         });
+  //     }
+  //   } catch (err) {
+  //     console.log('error');
+  //   }
+  // };
   const socketDisconnect = () => {
     console.log('종료');
     happy.unsubscribe();
@@ -202,25 +201,19 @@ const Chat = () => {
 
   const ExitClick = () => {
     if (client) {
-      var exitMessage = {
-        type: 'EXIT',
-        channelId: channelInfo.id,
-        senderName: userData.username,
+      let exitMessage = {
         message: '',
       };
-      // console.log(exitMessage);
-      // console.log(jwt);
       client.send(
         '/pub/chat/room',
         {
           jwt: jwt,
-          // username: 'user',
-          // username: userData.username,
+          type: 'EXIT',
           channelId: channelInfo.id,
         },
         JSON.stringify(exitMessage),
       );
-      leaveSession();
+      // leaveSession();
       socketDisconnect();
       if (chatColor.chatColor == 'chatList') {
         dispatcher(setChatState({ value: 'chatList' }));
@@ -335,7 +328,7 @@ const Chat = () => {
               <div
                 style={{ cursor: 'pointer' }}
                 onClick={() => {
-                  leaveSession();
+                  // leaveSession();
                   socketDisconnect();
                   if (chatColor.chatColor == 'chatList') {
                     dispatcher(setChatState({ value: 'chatList' }));
@@ -367,6 +360,8 @@ const Chat = () => {
                 src={hamBurger}
               />
             </div>
+            {voiceStateInfoModal && <VoiceFadeOutModal></VoiceFadeOutModal>}
+
             <ChatMiddle></ChatMiddle>
 
             <VoiceChatZZone></VoiceChatZZone>

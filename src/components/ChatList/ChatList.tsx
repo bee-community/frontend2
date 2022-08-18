@@ -1,3 +1,4 @@
+import ChatBeforeModal2 from 'components/ChatBeforeModal2/ChatBeforeModal2';
 import ChatBeforeModal from 'components/ChatBeforeModal/ChatBeforeModal';
 import ChatRoom from 'components/ChatRoom/ChatRoom';
 import React, { useCallback, useState, useEffect } from 'react';
@@ -58,6 +59,16 @@ const ChatList = () => {
     softRemover(); // 해당 컴포넌트가 나타나면 함수가 바로실행됨.
   }, [softRemover]);
 
+  const setScreenSize = () => {
+    let vh = window.innerHeight * 0.01;
+    console.log(vh);
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  };
+
+  useEffect(() => {
+    setScreenSize();
+  }, []);
+
   return (
     <div className="ChatList">
       <Container>
@@ -83,6 +94,10 @@ const ChatList = () => {
             onCloseModal={onCloseModal}></ChatBeforeModal>
         </ChatBox>
       </Container>
+      <ChatBeforeModal2
+        sendChannelInfo={sendChannelInfo}
+        show={showChatBeforeModal}
+        onCloseModal={onCloseModal}></ChatBeforeModal2>
     </div>
   );
 };

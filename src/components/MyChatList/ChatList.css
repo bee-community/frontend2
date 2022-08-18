@@ -61,3 +61,13 @@
   height: 200px;
   top: 285px;
 }
+
+@media (max-width: 766px) {
+  .ChatList .ScrollbarsCustom-Track.ScrollbarsCustom-TrackY {
+    background-color: transparent !important;
+  }
+
+  .ChatList .ScrollbarsCustom-Thumb.ScrollbarsCustom-ThumbY {
+    background: transparent !important;
+  }
+}

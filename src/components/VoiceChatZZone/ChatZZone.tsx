@@ -1,4 +1,3 @@
-import axios from 'axios';
 import dayjs from 'dayjs';
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,6 +6,7 @@ import { Scrollbar } from 'react-scrollbars-custom';
 import { setLogId } from 'slice/logIdSlice';
 import makeSection from 'utils/makeSection';
 
+import axios from '../../chatApi';
 import ChatContext from '../../context/ChatContext';
 // import { JwtStateContext, DispatchContext } from '../../context/JwtContext';
 import ScrollContext from '../../context/ScrollContext';
@@ -134,7 +134,7 @@ const ChatZZone = () => {
         <></>
       )}
       <Scrollbar
-        style={{ width: '330px', height: '100px' }}
+        className="voiceChatStyle"
         noScrollX={true}
         maximalThumbYSize={95}
         ref={scrollBarRef}
@@ -262,7 +262,7 @@ const ChatZZone = () => {
               </div>
             );
           } else {
-            if (chat.chatMessage === null) {
+            if (chat.chatMessage === '') {
               return;
             }
             return (

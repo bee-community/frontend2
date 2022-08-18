@@ -1,7 +1,6 @@
 import timeIcon from 'assets/chatImages/chat_time_white.png';
 import cuteBee from 'assets/chatImages/removebee.png';
 import xButton from 'assets/chatImages/xbutton.png';
-import axios from 'axios';
 import React, { useEffect, VFC, useState, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setChatState } from 'slice/chatStateSlice';
@@ -11,6 +10,7 @@ import { setLogId } from 'slice/logIdSlice';
 import SockJS from 'sockjs-client';
 import { over } from 'stompjs';
 
+import axios from '../../chatApi';
 // import { history } from 'utils/history';
 // import fetcher2 from 'utils/fetcher2';
 import ChatContext from '../../context/ChatContext';
@@ -30,7 +30,7 @@ interface Props {
   show: boolean;
   onCloseModal: () => void;
 }
-const socketURL = 'http://sagang3.duckdns.org:81/ws-stomp';
+const socketURL = 'https://sagang3.duckdns.org:9443/ws-stomp';
 var stompClient: any = null;
 let trick = '';
 let avoid = false;
@@ -82,16 +82,13 @@ const ChatBeforeModal: VFC<Props> = ({
   };
 
   const userJoin = () => {
-    var chatMessage = {
-      type: 'ENTER',
-      channelId: sendChannelInfo.id,
-      message: 'message',
+    let chatMessage = {
+      message: '',
     };
     stompClient.send(
       '/pub/chat/room',
       {
         jwt: trick,
-        // jwt: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjUxNTE0NjY3LCJpYXQiOjE2NTE0OTY2Njd9.I3Wlq_f7elhOsJ9wP07-YCRba9ITlyI7BbQyqXWjmB5ClkQ5iqOsNdNUqpX2BG2BgCrHwvsujA6O15ojMmAI2Q',
         channelId: sendChannelInfo.id,
         type: 'ENTER',
       },
@@ -101,9 +98,8 @@ const ChatBeforeModal: VFC<Props> = ({
 
   const userJoinExcept = () => {
     console.log('재입장');
-    var chatMessage = {
-      type: 'REENTER',
-      channelId: sendChannelInfo.id,
+    let chatMessage = {
+      message: '',
     };
     stompClient.send(
       '/pub/chat/room',
@@ -118,7 +114,7 @@ const ChatBeforeModal: VFC<Props> = ({
 
   const onMessageReceivedExcept = (payload: any) => {
     var payloadData = JSON.parse(payload.body);
-    // console.log(payloadData.users);
+    console.log(payloadData);
     dispatcher(setUserEnterNumber({ value: payloadData.users }));
     // console.log(payload);
     switch (payloadData.type) {
@@ -142,8 +138,8 @@ const ChatBeforeModal: VFC<Props> = ({
         break;
       case 'CHAT':
         // console.log('2222222222222');'
-        // console.log(payloadData);
-        payloadData['sendTime'] = Date();
+        console.log(payloadData);
+        // payloadData['sendTime'] = Date();
         // console.log(payloadData);
         dispatcher(pushPublicChats({ value: payloadData }));
 
@@ -163,7 +159,7 @@ const ChatBeforeModal: VFC<Props> = ({
     var payloadData = JSON.parse(payload.body);
     // console.log(payloadData.users);
     dispatcher(setUserEnterNumber({ value: payloadData.users }));
-
+    console.log(payloadData);
     // console.log(payload);
     switch (payloadData.type) {
       case 'RENEWAL':
@@ -186,13 +182,9 @@ const ChatBeforeModal: VFC<Props> = ({
       case 'CHAT':
         // console.log('2222222222222');'
         // console.log(payloadData);
-        payloadData['sendTime'] = Date();
+        // payloadData['sendTime'] = Date();
         // console.log(payloadData);
         dispatcher(pushPublicChats({ value: payloadData }));
-
-        // dispatcher(setPublicChats({ value: publicChats.chat }));
-        // console.log('스크롤아래');
-        // scrollBarRef.current.scrollToBottom();
         break;
       case 'CLOSE':
         // console.log('2222222222222');
@@ -219,15 +211,6 @@ const ChatBeforeModal: VFC<Props> = ({
     // console.log(error);
     switch (error.type) {
       case 'ALREADY_USER_IN_CHANNEL':
-        // console.log('beHappy');
-        // if (stompClient !== null) {
-        //   const headers = {
-        //     // disconnect에 쓰이는 headers
-        //   };
-        //   stompClient.disconnect(function () {
-        //     // disconnect 후 실행하는 곳
-        //   }, headers);
-        // }
         break;
     }
   };
@@ -259,18 +242,8 @@ const ChatBeforeModal: VFC<Props> = ({
     // console.log(error);
     switch (error.type) {
       case 'ALREADY_USER_IN_CHANNEL':
-        // console.log('beHappy');
         connect_except();
         reEnter = error.idx + 1;
-        // console.log(reEnter);
-        // if (stompClient !== null) {
-        //   const headers = {
-        //     // disconnect에 쓰이는 headers
-        //   };
-        //   stompClient.disconnect(function () {
-        //     // disconnect 후 실행하는 곳
-        //   }, headers);
-        // }
         break;
     }
   };
@@ -287,47 +260,23 @@ const ChatBeforeModal: VFC<Props> = ({
   };
 
   const connect = async () => {
-    // dispatch({ value: 'dada', type: 'CHANGE' });
-
-    // setJwt('2222test');
-    // setJwt(
-    //   'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjUxNTE0NjY3LCJpYXQiOjE2NTE0OTY2Njd9.I3Wlq_f7elhOsJ9wP07-YCRba9ITlyI7BbQyqXWjmB5ClkQ5iqOsNdNUqpX2BG2BgCrHwvsujA6O15ojMmAI2Q',
-    // );
-    // setTest('hello');
-    // console.log(testName);
-    // try {
-    //   await axios.post('/api/v1/webrtc/register', {
-    //     // nickname: 'user',
-    //     email: testName,
-    //     password: 'user',
-    //   });
-    // } catch (err) {
-    //   console.log(err);
-    // }
     try {
-      var ress: any = await axios.post('/api/v1/webrtc/chat/authenticate', {
-        // nickname: 'user',
-        email: testName,
-        password: 'user',
-      });
-      dispatch({ value: ress.data.jwttoken, type: 'CHANGE' });
-      // setJwt(ress.data.twttoken);
-      // trick = ress.data.jwttoken;
+      // var ress: any = await axios.post('/api/v1/webrtc/chat/authenticate', {
+      //   // nickname: 'user',
+      //   email: testName,
+      //   password: 'user',
+      // });
+      // console.log(ress.data.jwttoken);
 
       trick = JWTtoken.JWTtoken;
-      // console.log(trick);
-      // setTestName(ress.data.jwttoken);
-      //1 setJwt('test');
-      // console.log('type', typeof res.data.jwttoken);
+      dispatch({ value: trick, type: 'CHANGE' });
+
       let Sock = new SockJS(socketURL);
       stompClient = over(Sock);
       setClient(stompClient);
       stompClient.connect(
         {
-          channelId: sendChannelInfo.id,
           jwt: trick,
-          // jwt: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjUxNTE0NjY3LCJpYXQiOjE2NTE0OTY2Njd9.I3Wlq_f7elhOsJ9wP07-YCRba9ITlyI7BbQyqXWjmB5ClkQ5iqOsNdNUqpX2BG2BgCrHwvsujA6O15ojMmAI2Q',
-          // username: 'user',
         },
         onConnected,
         onError,
@@ -335,93 +284,27 @@ const ChatBeforeModal: VFC<Props> = ({
     } catch (err) {
       console.log(err);
     } finally {
-      if (sendChannelInfo.channelType === 'chat') {
+      if (sendChannelInfo.channelType === 'TEXT') {
         dispatcher(setChatState({ value: 'chat' }));
-      } else if (sendChannelInfo.channelType === 'voice') {
+      } else if (sendChannelInfo.channelType === 'VOIP') {
         dispatcher(setChatState({ value: 'voicechat' }));
       }
     }
   };
 
-  // console.log('jwt : ', jwt);
-
-  // useEffect(() => {
-  //   // console.log('count-------------------');
-  //   console.log(jwt);
-  //   if (!jwt) {
-  //     // console.log('hhap');
-  //     console.log(jwt);
-  //     return;
-  //   }
-  //   // console.log('bbbbbobbbbbbb');
-  //   let Sock = new SockJS('http://localhost:8080/ws-stomp');
-  //   stompClient = over(Sock);
-  //   setClient(stompClient);
-  //   stompClient.connect(
-  //     {
-  //       jwt,
-  //       // jwt: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjUxNTE0NjY3LCJpYXQiOjE2NTE0OTY2Njd9.I3Wlq_f7elhOsJ9wP07-YCRba9ITlyI7BbQyqXWjmB5ClkQ5iqOsNdNUqpX2BG2BgCrHwvsujA6O15ojMmAI2Q',
-  //       // username: 'user',
-  //       username: testName,
-  //     },
-  //     onConnected,
-  //     onError,
-  //   );
-  // }, [trick]);
-  // useEffect(() => {
-  //   console.log(test);
-  //   console.log('teststetstststsrtste');
-  // }, [test]);
   useEffect(() => {
-    // console.log(userData);
-
     secondsToTime(sendChannelInfo.timeToLive);
     renderHash(sendChannelInfo.channelHashTags);
     setChannelInfo(sendChannelInfo);
-    // const DDD = axios
-    //   .get<ChannelResponse>('http://192.168.0.39:8080/api/v1/webrtc/channels')
-    //   .then(res => {
-    //     // console.log(Data.channels);
-    //     // // Data.channels.map(v => {
-    //     // //   console.log(v);
-    //     // // });
-    //     // Data.channels.map(v => {
-    //     //   console.log(v);
-    //     // });
-    //     console.log(`dddd:`);
-    //   });
-
-    // axios
-    //   .post(
-    //     `http://192.168.0.39:8080/api/v1/webrtc/channel/enter/3657abe2-3975-43dd-880d-1ad4525e3149`,
-    //     { id: 1 },
-    //   )
-    //   .then(res => {
-    //     // if (res.status === 200) {
-    //     //   if (res.data[0].type === 'SUCCESS') {
-    //     //     setCurrentUser({
-    //     //       userId: res.data[0].userId,
-    //     //       userName: res.data[0].userName,
-    //     //     });
-    //     //     connect({
-    //     //       userId: res.data[0].userId,
-    //     //       userName: res.data[0].userName,
-    //     //     });
-    //     //   } else {
-    //     //     router.back();
-    //     //   }
-    //     // }
-    //     console.log(res);
-    //   })
-    //   .catch(function (error) {
-    //     // handle error
-    //     console.log(error);
-    //   });
-    // return () => disconnect();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sendChannelInfo, userData]);
   // console.log(sendChannelInfo);
-
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      '--deskTopBottomDrawer',
+      `385px`,
+    );
+  }, []);
   const onChangeTestName = (e: any) => {
     // console.log(testName);
 
@@ -434,9 +317,13 @@ const ChatBeforeModal: VFC<Props> = ({
   if (!show) {
     return null;
   }
+
+  if (screen.width < 776) {
+    return null;
+  }
   return (
     <div className="ChatBeforeModal">
-      <div className="modal">
+      <div className="modal ">
         <div className="closeButtonWrapper">
           <img
             alt="closeButton"

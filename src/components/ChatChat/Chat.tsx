@@ -2,6 +2,7 @@ import backSpace from 'assets/chatImages/backspace.png';
 import hamBurger from 'assets/chatImages/hamburger.png';
 import setting from 'assets/chatImages/setting.png';
 import timeIcon from 'assets/chatImages/timeIcon.png';
+import xButton2 from 'assets/chatImages/xbutton.png';
 import xbutton from 'assets/chatImages/xbutton_gray.png';
 import ChatWraper from 'components/ChatBox/ChatWraper';
 import ChatEndModal from 'components/ChatEndModal/ChatEndModal';
@@ -18,6 +19,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Scrollbar } from 'react-scrollbars-custom';
 import { setChatState } from 'slice/chatStateSlice';
 import { setLogId } from 'slice/logIdSlice';
+import {
+  setDesktopBottomDrawerOpen,
+  setUsePointExcept,
+  setWaitOpen,
+} from 'slice/pointModal';
 import useSWR from 'swr';
 
 import ChatContext from '../../context/ChatContext';
@@ -28,7 +34,13 @@ import { changeUserDataMessage } from '../../slice/userDataSlice';
 import fetcher from '../../utils/fetcher';
 import './ChatChat.css';
 import './drawer.css';
-import { ChatBox, Container } from './styles';
+import {
+  ChatBox,
+  Container,
+  ModalBackground,
+  PPointModal2,
+  ModalBackgroundOutEvent,
+} from './styles';
 
 // interface Props {
 //   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -44,9 +56,15 @@ const Chat = () => {
   const indexChat = useSelector((store: any) => store.indexChat);
   const chatColor = useSelector((store: any) => store.chatColor);
   const pointOpen = useSelector((store: any) => store.pointOpen);
+  const desktopBottomDrawerOpen = useSelector(
+    (store: any) => store.pointOpen.desktopBottomDrawerOpen,
+  );
+  const usePointExcept = useSelector(
+    (store: any) => store.pointOpen.usePointExcept,
+  );
   const dispatcher = useDispatch();
-  const chatUrl = '/api/v1/webrtc/chat/channels/0';
-  const myChatUrl = '/api/v1/webrtc/chat/mychannel/0';
+  const chatUrl = '/api/v1/webrtc/chat/channels/partiDESC/0';
+  const myChatUrl = '/api/v1/webrtc/chat/mychannel/partiDESC/0';
   const { data: Data, revalidate }: any = useSWR(
     chatColor.chatColor == 'chatList' ? chatUrl : myChatUrl,
     url => fetcher(url, JWTtoken.JWTtoken),
@@ -118,10 +136,7 @@ const Chat = () => {
       // setChat('');
       if (client) {
         chat?.trim();
-        var chatMessage = {
-          type: 'CHAT',
-          channelId: channelInfo.id,
-          senderName: userData.username,
+        let chatMessage = {
           message: chat?.trim(),
         };
         // console.log(chatMessage);
@@ -130,9 +145,8 @@ const Chat = () => {
           '/pub/chat/room',
           {
             jwt: jwt,
-            // username: 'user',
+            type: 'CHAT',
             channelId: channelInfo.id,
-            username: userData.username,
           },
           JSON.stringify(chatMessage),
         );
@@ -140,24 +154,7 @@ const Chat = () => {
         // setUserData({ ...userData, message: '' });
         dispatcher(changeUserDataMessage({ message: '' }));
       }
-      // mutateChat(prevChatData => {
-      //   prevChatData?.[0].logs.unshift({
-      //     id: chatLogData?.[0].logs[0].id + 1,
-      //     // id: -2,
-      //     type: 'CHAT',
-      //     message: chat?.trim(),
-      //     name: userData.username,
-      //     sendTime: new Date(),
-      //   });
-      //   return prevChatData;
-      // }, false).then(() => {
-      //   console.log(chatLogData);
-      //   console.log('스크롤아래');
-      //   scrollBarRef.current.scrollToBottom();
-      //   // revalidate();
-      // });
       setChat('');
-      // console.log(publicChats);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [chat],
@@ -190,20 +187,14 @@ const Chat = () => {
     // setChat('');
     if (client) {
       var exitMessage = {
-        type: 'EXIT',
-        channelId: channelInfo.id,
-        senderName: userData.username,
         message: '',
       };
-      // console.log(exitMessage);
-      // console.log(jwt);
       client.send(
         '/pub/chat/room',
         {
           jwt: jwt,
-          // username: 'user',
-          // username: userData.username,
           channelId: channelInfo.id,
+          type: 'EXIT',
         },
         JSON.stringify(exitMessage),
       );
@@ -242,13 +233,33 @@ const Chat = () => {
   //   return unlistenHistoryEvent;
   // }, []);
   return (
-    <div className="chat">
+    <div className="chat chatchat">
       <Container>
         <ChatBox>
+          {desktopBottomDrawerOpen && (
+            <ModalBackground
+              onClick={() => {
+                dispatcher(setDesktopBottomDrawerOpen({ value: false }));
+                document.documentElement.style.setProperty(
+                  '--deskTopBottomDrawer',
+                  `385px`,
+                );
+                document.documentElement.style.setProperty(
+                  '--deskTopBottomDrawerZindex',
+                  `0`,
+                );
+              }}></ModalBackground>
+          )}
           <Drawer
             open={isOpen}
             overlayOpacity={0.7}
-            onClose={toggleDrawer}
+            onClose={() => {
+              document.documentElement.style.setProperty(
+                '--deskTopBottomDrawerZindex',
+                `0`,
+              );
+              toggleDrawer();
+            }}
             direction="right"
             className="bla bla bla"
             style={{ height: '509px' }}>
@@ -265,7 +276,13 @@ const Chat = () => {
                     className="xbutton"
                     alt="toggleButton"
                     role="presentation"
-                    onClick={toggleDrawer}
+                    onClick={() => {
+                      document.documentElement.style.setProperty(
+                        '--deskTopBottomDrawerZindex',
+                        `0`,
+                      );
+                      toggleDrawer();
+                    }}
                     src={xbutton}
                   />
                 </div>
@@ -354,7 +371,7 @@ const Chat = () => {
                 src={hamBurger}
               />
             </div>
-            <ChatMiddle></ChatMiddle>
+            {/* <ChatMiddle></ChatMiddle> */}
 
             <ChatZZone></ChatZZone>
 
@@ -366,6 +383,52 @@ const Chat = () => {
           <ChatEndModal></ChatEndModal>
           {pointOpen.pointOpen && <PointModal></PointModal>}
           {pointOpen.remainOpen && <RemainPoint></RemainPoint>}
+          {pointOpen.waitOpen && (
+            <>
+              <ModalBackgroundOutEvent
+                onClick={() => {
+                  dispatcher(setWaitOpen({ value: false }));
+                }}></ModalBackgroundOutEvent>
+              <PPointModal2>
+                <div className="yellowArea">잠깐!</div>
+                <div
+                  onClick={() => {
+                    dispatcher(setWaitOpen({ value: false }));
+                  }}>
+                  <img src={xButton2} alt=""></img>
+                </div>
+                <div className="textArea">
+                  <div>
+                    <span style={{ color: 'white' }}>개발중인 기능입니다.</span>
+                  </div>
+                </div>
+              </PPointModal2>
+            </>
+          )}
+          {usePointExcept && (
+            <>
+              <ModalBackgroundOutEvent
+                onClick={() => {
+                  dispatcher(setUsePointExcept({ value: false }));
+                }}></ModalBackgroundOutEvent>
+              <PPointModal2>
+                <div className="yellowArea">잠깐!</div>
+                <div
+                  onClick={() => {
+                    dispatcher(setUsePointExcept({ value: false }));
+                  }}>
+                  <img src={xButton2} alt=""></img>
+                </div>
+                <div className="textArea">
+                  <div>
+                    <span style={{ color: 'white' }}>
+                      남은 포인트를 확인해주세요.
+                    </span>
+                  </div>
+                </div>
+              </PPointModal2>
+            </>
+          )}
         </ChatBox>
       </Container>
     </div>

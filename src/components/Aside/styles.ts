@@ -5,16 +5,26 @@ export const AsideWrap = styled.aside`
   height: calc(100vh - 140px);
   background-color: ${props => props.theme.background.gray};
   border-radius: 0 40px 40px 0;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   padding: 20px;
   display: flex;
   flex-direction: column;
   ::-webkit-scrollbar {
     display: none;
   }
+
   @media (max-width: ${props => props.theme.screenSize.lg}) {
     display: none;
     height: auto;
+    overflow-y: none;
+  }
+  @media (max-width: ${props => props.theme.screenSize.md}) {
+    display: block;
+    height: calc(var(--vh) * 100);
+    border-radius: 0;
+    overflow: hidden;
+    padding-bottom: 0px;
+    -webkit-tap-highlight-color: transparent;
   }
 `;
 export const Bio = styled.div`
@@ -127,7 +137,6 @@ export const Box = styled.div`
   // align-items: center;
   height: 40px;
   background-color: white;
-
   & > span:nth-child(1) {
     flex: 6;
     display: flex;
@@ -145,6 +154,10 @@ export const Box = styled.div`
     height: 40px;
     cursor: pointer;
     align-items: center;
+  }
+  @media (max-width: ${props => props.theme.screenSize.md}) {
+    width: calc(var(--vw) * 82);
+    margin-left: calc(var(--vw) * 3.5);
   }
 `;
 
@@ -227,12 +240,13 @@ export const Input = styled.input`
 
 export const Button = styled.button`
   margin-bottom: 12px;
-  margin-top: 42px;
+  margin-top: 25px;
   width: 100%;
   max-width: 100%;
   background-color: #ffe576;
   border: none;
   font-size: 18px;
+  color: black;
   font-weight: 900;
   height: 44px;
   min-width: 96px;
@@ -267,6 +281,8 @@ export const ChatButton = styled.button<{
   align-items: center;
   border-radius: 44px;
   height: 40px;
+  width: 150px;
+  color: black;
   font-size: 14px;
   font-weight: ${(props: any) => props.fontWeight};
   background-color: ${(props: any) => props.backgroundColor};
