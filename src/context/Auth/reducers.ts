@@ -1,8 +1,8 @@
 import React from 'react';
 
-import type { AuthAction, userInfo } from './types';
+import type { AuthAction, UserToken, UserInfo } from './types';
 
-export const reducer: React.Reducer<{ user?: userInfo }, AuthAction> = (
+export const reducer: React.Reducer<UserToken | UserInfo | {}, AuthAction> = (
   state,
   action,
 ) => {

@@ -1,10 +1,11 @@
-import React, { useReducer } from 'react';
+import * as React from 'react';
+import { useReducer, useContext, createContext } from 'react';
 
 import { reducer } from './reducers';
 import { AuthAction } from './types';
 
-const AuthContext = React.createContext({});
-const DispatchContext = React.createContext<React.Dispatch<AuthAction>>(() => {
+const AuthContext = createContext({});
+const DispatchContext = createContext<React.Dispatch<AuthAction>>(() => {
   throw new Error();
 });
 
@@ -21,11 +22,11 @@ export const AuthProvider: React.FC = ({ children }) => {
 };
 
 export const useAuthState = () => {
-  const state = React.useContext(AuthContext);
+  const state = useContext(AuthContext);
   return state;
 };
 
 export const useAuthDispatch = () => {
-  const dispatch = React.useContext(DispatchContext);
+  const dispatch = useContext(DispatchContext);
   return dispatch;
 };
