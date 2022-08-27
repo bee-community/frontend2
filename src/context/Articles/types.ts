@@ -1,3 +1,5 @@
+import { ArticleType } from 'context/Article/types';
+
 export type ArticlesAction = {
   type: 'GET_ARTICLES';
   payload: {
@@ -5,16 +7,4 @@ export type ArticlesAction = {
     name: string;
     articles: ArticleType[];
   };
-};
-
-export type ArticleType = {
-  id: string;
-  title: string;
-  content: string;
-  summary: string;
-  board_id: string;
-  view_count: number;
-  is_announcement: boolean;
-  like_count: number;
-  tags: string[];
 };

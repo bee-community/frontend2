@@ -1,13 +1,14 @@
-import request from 'api';
-import { useArticlesDispatch } from 'context/Articles';
-import { ArticlesAction, ArticleType } from 'context/Articles/types';
+import API from 'api';
+import { ArticleType, useArticleDispatch } from 'context/Article';
+import { useArticlesDispatch, ArticlesAction } from 'context/Articles';
 
 function useArticleActions() {
   const articlesDispatch = useArticlesDispatch();
+  const articleDispatch = useArticleDispatch();
 
   function getArticles(board_name?: string) {
     if (board_name) {
-      request<ArticlesAction['payload']>('GET', `/boards/${board_name}`, {
+      API<ArticlesAction['payload']>('GET', `/boards/${board_name}`, {
         board_id_or_path: board_name,
       })
         .then(response => {
@@ -22,7 +23,7 @@ function useArticleActions() {
         })
         .catch(error => console.error(error));
     } else {
-      request<ArticleType[]>('GET', `/articles`, {
+      API<ArticleType[]>('GET', `/articles`, {
         offset: 0,
         limit: 100,
       })
@@ -38,9 +39,23 @@ function useArticleActions() {
         .catch(error => console.error(error));
     }
   }
+  function getArticleById(article_id: string) {
+    API<ArticleType>('GET', `/articles/${article_id}`)
+      .then(response => {
+        articleDispatch({
+          type: 'GET_ARTICLE',
+          payload: response.data,
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      })
+      .finally(() => {});
+  }
 
   return {
     getArticles,
+    getArticleById,
   };
 }
 

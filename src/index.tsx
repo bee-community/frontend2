@@ -1,5 +1,6 @@
 import { Global, ThemeProvider } from '@emotion/react';
 import theme from 'assets/theme';
+import { ArticleProvider } from 'context/Article';
 import { ArticlesProvider } from 'context/Articles';
 import { AuthProvider } from 'context/Auth';
 import { BoardProvider } from 'context/Board';
@@ -15,19 +16,21 @@ import { store } from './store';
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
+    <Global styles={styles} />
     <AuthProvider>
       <BoardProvider>
         <ArticlesProvider>
-          <Global styles={styles} />
-          <ChatProvider>
-            <JwtProvider>
-              <ScrollProvider>
-                <Provider store={store}>
-                  <App />
-                </Provider>
-              </ScrollProvider>
-            </JwtProvider>
-          </ChatProvider>
+          <ArticleProvider>
+            <ChatProvider>
+              <JwtProvider>
+                <ScrollProvider>
+                  <Provider store={store}>
+                    <App />
+                  </Provider>
+                </ScrollProvider>
+              </JwtProvider>
+            </ChatProvider>
+          </ArticleProvider>
         </ArticlesProvider>
       </BoardProvider>
     </AuthProvider>
