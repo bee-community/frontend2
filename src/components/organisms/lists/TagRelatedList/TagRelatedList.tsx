@@ -1,10 +1,12 @@
 import ArticleBox from 'components/molecules/boxes/ArticleBox';
-import { ArticleType } from 'context/Articles';
+import { ArticleType } from 'context/Article';
 import * as React from 'react';
 
 import { StyledTagRelatedList } from './styles';
 
 interface TagRelatedListProps {
+  id?: string;
+  name: string;
   articles: ArticleType[];
 }
 

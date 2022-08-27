@@ -1,7 +1,7 @@
 import testImg from 'assets/images/banners/main-banner.png';
 import comment from 'assets/images/icons/comment.png';
 import heartUnfilled from 'assets/images/icons/heart-unfilled.png';
-import { ArticleType } from 'context/Articles';
+import { ArticleType } from 'context/Article';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
