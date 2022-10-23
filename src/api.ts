@@ -1,7 +1,7 @@
 import axios, { Method, AxiosResponse } from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://35.225.199.175',
+  baseURL: 'http://honeybees.community',
 });
 
 const request = <T>(

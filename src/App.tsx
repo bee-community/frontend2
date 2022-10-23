@@ -15,7 +15,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="frontend">
       <Routes>
         <Route path="/" element={<Template />}>
           <Route index element={<Main />} />

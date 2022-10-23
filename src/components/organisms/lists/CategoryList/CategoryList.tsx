@@ -9,7 +9,7 @@ import { StyledCategoryList } from './styles';
 function CategoryList(props: { categories: BoardInfo[] }) {
   const categories = props.categories;
   const [isOpened, setIsOpened] = useState(false);
-
+  console.log(categories);
   return (
     <StyledCategoryList isOpened={isOpened}>
       <div className="title">
