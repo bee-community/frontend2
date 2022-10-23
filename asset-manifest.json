@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "http://honeybeeant.iptime.org/static/css/main.062f1812.chunk.css",
+    "main.js": "http://honeybeeant.iptime.org/static/js/main.a1383e87.chunk.js",
+    "main.js.map": "http://honeybeeant.iptime.org/static/js/main.a1383e87.chunk.js.map",
+    "runtime-main.js": "http://honeybeeant.iptime.org/static/js/runtime-main.b7703587.js",
+    "runtime-main.js.map": "http://honeybeeant.iptime.org/static/js/runtime-main.b7703587.js.map",
+    "static/css/2.ed2c5a1c.chunk.css": "http://honeybeeant.iptime.org/static/css/2.ed2c5a1c.chunk.css",
+    "static/js/2.fa85ca1b.chunk.js": "http://honeybeeant.iptime.org/static/js/2.fa85ca1b.chunk.js",
+    "static/js/2.fa85ca1b.chunk.js.map": "http://honeybeeant.iptime.org/static/js/2.fa85ca1b.chunk.js.map",
+    "index.html": "http://honeybeeant.iptime.org/index.html",
+    "static/css/2.ed2c5a1c.chunk.css.map": "http://honeybeeant.iptime.org/static/css/2.ed2c5a1c.chunk.css.map",
+    "static/css/main.062f1812.chunk.css.map": "http://honeybeeant.iptime.org/static/css/main.062f1812.chunk.css.map",
+    "static/js/2.fa85ca1b.chunk.js.LICENSE.txt": "http://honeybeeant.iptime.org/static/js/2.fa85ca1b.chunk.js.LICENSE.txt",
+    "static/media/bg9.f668dec2.png": "http://honeybeeant.iptime.org/static/media/bg9.f668dec2.png",
+    "static/media/main-banner-mobile.fadf2ed9.png": "http://honeybeeant.iptime.org/static/media/main-banner-mobile.fadf2ed9.png",
+    "static/media/main-banner.4aeb128e.png": "http://honeybeeant.iptime.org/static/media/main-banner.4aeb128e.png",
+    "static/media/unVolume.db6753de.png": "http://honeybeeant.iptime.org/static/media/unVolume.db6753de.png",
+    "static/media/unvoice.4d1dbad1.png": "http://honeybeeant.iptime.org/static/media/unvoice.4d1dbad1.png",
+    "static/media/voice.71c57374.png": "http://honeybeeant.iptime.org/static/media/voice.71c57374.png",
+    "static/media/volume.a6e8c171.png": "http://honeybeeant.iptime.org/static/media/volume.a6e8c171.png",
+    "static/media/xbutton_gray.3722bf3f.png": "http://honeybeeant.iptime.org/static/media/xbutton_gray.3722bf3f.png",
+    "static/media/xx.0f9ab5bb.png": "http://honeybeeant.iptime.org/static/media/xx.0f9ab5bb.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b7703587.js",
+    "static/css/2.ed2c5a1c.chunk.css",
+    "static/js/2.fa85ca1b.chunk.js",
+    "static/css/main.062f1812.chunk.css",
+    "static/js/main.a1383e87.chunk.js"
+  ]
+}
