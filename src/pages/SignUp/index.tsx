@@ -40,12 +40,14 @@ function SignUp() {
       e.preventDefault();
       if (!mismatchError && email && password) {
         console.log('서버로 회원가입하기');
+        console.log(email, password);
         API('post', '/users', {
-          username: email,
-          password: password,
+          email,
+          password,
+          birthdate: '2022-10-29',
+          phone_number: 'string',
         })
           .then(response => {
-            console.log(response);
             navigate('/login', { replace: true });
           })
           .catch(error => {
