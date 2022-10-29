@@ -1,4 +1,5 @@
 import API from 'api';
+import axios from 'axios';
 import Button from 'components/atoms/Button';
 import { useAuthDispatch } from 'context/Auth';
 import { login } from 'context/Auth/actions';
@@ -30,18 +31,17 @@ function LogIn() {
       e.preventDefault();
       if (email && password) {
         console.log('서버로 로그인하기');
-        const form = new FormData();
-        form.append('username', email);
-        form.append('password', password);
 
-        const params = {
-          form,
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        };
+        const params = new URLSearchParams();
+        params.append('username', email);
+        params.append('password', password);
 
-        API('post', '/auth/token', params)
+        axios
+          .post('http://honeybees.community/auth/token', params, {
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+          })
           .then(response => {
             console.log(response);
 
