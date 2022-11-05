@@ -4,13 +4,15 @@ import Button from 'components/atoms/Button';
 import { useAuthDispatch } from 'context/Auth';
 import { login } from 'context/Auth/actions';
 import { useCallback, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { LogInWrap, LoginForm, Title } from './styles';
 
 function LogIn() {
   const [email, setEmail] = useState(undefined);
   const [password, setPassword] = useState(undefined);
+
+  const navigate = useNavigate();
 
   const authDispatch = useAuthDispatch();
   // const auth = useAuthState();
@@ -65,6 +67,7 @@ function LogIn() {
                 token_type: tokenType,
               }),
             );
+            navigate('/');
           })
           .catch(error => {
             console.log(error);
