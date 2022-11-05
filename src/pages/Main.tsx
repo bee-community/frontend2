@@ -9,9 +9,9 @@ function Main() {
   const boardActions = useBoardActions();
   const boards = useBoardState();
 
-  useEffect(() => {
-    boardActions.getBoards();
-  }, [boardActions]);
+  // useEffect(() => {
+  //   boardActions.getBoards();
+  // }, [boardActions]);
 
   const [dummyArticles] = useState([
     {

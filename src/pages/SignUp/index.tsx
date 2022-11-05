@@ -1,6 +1,6 @@
-import API from 'api';
 import { Table } from 'components/Table';
 import Button from 'components/atoms/Button';
+import API from 'mainAPI';
 import { TableTitle } from 'pages/EditPrivacy/styles';
 import { Title } from 'pages/LogIn/styles';
 import { Form } from 'pages/Question/styles';
@@ -41,7 +41,7 @@ function SignUp() {
       if (!mismatchError && email && password) {
         console.log('서버로 회원가입하기');
         console.log(email, password);
-        API('post', '/users', {
+        API.post('/users', {
           email,
           password,
           birthdate: '2022-10-29',
