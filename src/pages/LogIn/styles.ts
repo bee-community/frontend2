@@ -36,7 +36,7 @@ export const Title = styled.div`
   }
 `;
 
-export const LoginForm = styled.section`
+export const LoginForm = styled.form`
   width: 40vw;
   min-width: 300px;
   max-width: 400px;
