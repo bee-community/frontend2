@@ -4,9 +4,9 @@ export type LoginAction = {
 };
 
 export type userInfo = {
-  username: string;
-  access_token: string;
-  token_type: string;
+  userEmail: string;
+  accessToken: string;
+  tokenType: string;
 };
 
 export type AuthAction = LoginAction;
