@@ -1,27 +1,26 @@
-import API from 'api';
 import axios from 'axios';
 import Button from 'components/atoms/Button';
-import { useAuthDispatch } from 'context/Auth';
+import { useAuthDispatch, useAuthState } from 'context/Auth';
 import { login } from 'context/Auth/actions';
-import { useCallback, useState } from 'react';
+import API from 'mainAPI';
+import { useCallback, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { LogInWrap, LoginForm, Title } from './styles';
 
 function LogIn() {
-  const [email, setEmail] = useState(undefined);
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState(undefined);
-
-  const navigate = useNavigate();
 
   const authDispatch = useAuthDispatch();
   // const auth = useAuthState();
+
+  let navigate = useNavigate();
 
   const [accessToken, setAccessToken] = useState('');
   const [tokenType, setTokenType] = useState('');
 
   const onChangeEmail = useCallback(e => {
-    console.log(e.target.value);
     setEmail(e.target.value);
   }, []);
   const onChangePassword = useCallback(e => {
@@ -38,15 +37,12 @@ function LogIn() {
         params.append('username', email);
         params.append('password', password);
 
-        axios
-          .post('http://honeybees.community/auth/token', params, {
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
-            },
-          })
+        API.post('/auth/token', params, {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        })
           .then(response => {
-            console.log(response);
-
             const jsonString = JSON.stringify(response.data, [
               'access_token',
               'token_type',
@@ -59,14 +55,6 @@ function LogIn() {
                 setTokenType(value);
               }
             });
-
-            authDispatch(
-              login({
-                username: email,
-                access_token: accessToken,
-                token_type: tokenType,
-              }),
-            );
             navigate('/');
           })
           .catch(error => {
@@ -77,6 +65,17 @@ function LogIn() {
     },
     [email, password, accessToken, authDispatch, tokenType],
   );
+
+  useEffect(() => {
+    authDispatch(
+      login({
+        userEmail: email,
+        accessToken: accessToken,
+        tokenType: tokenType,
+      }),
+    );
+    return () => {};
+  }, [email, accessToken, tokenType]);
 
   return (
     <LogInWrap>
