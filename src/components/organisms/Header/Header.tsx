@@ -2,12 +2,16 @@ import profile from 'assets/images/icons/profile.png';
 import logo from 'assets/images/logos/logo.png';
 import Button from 'components/atoms/Button';
 import NoticeBar from 'components/atoms/NoticeBar';
-import React from 'react';
+import useUserInfo from 'hooks/useUserInfo';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { HeaderWrap, Logo, Bio } from './styles';
 
 function Header() {
+  const userInfo = useSelector((store: any) => store.userInfo);
+  console.log(userInfo);
   return (
     <HeaderWrap>
       <Link to="/">
@@ -17,7 +21,7 @@ function Header() {
       <Link to="./mypage">
         {localStorage.getItem('access_token') ? (
           <Bio>
-            <span>닉네임</span>
+            <span>{userInfo.nickname}</span>
             <img src={profile} alt="profile" />
           </Bio>
         ) : (

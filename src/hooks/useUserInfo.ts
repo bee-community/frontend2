@@ -1,8 +1,11 @@
 import { useAuthState } from 'context/Auth';
 import API from 'mainAPI';
+import { useDispatch } from 'react-redux';
+import { setUserInfo } from 'slice/userInfo';
 
 const useUserInfo = () => {
   const auth = useAuthState();
+  const dispatch = useDispatch();
   if (auth.isNewEnter && !localStorage.getItem('access_token')) {
   } else {
     if (localStorage.getItem('access_token')) {
@@ -14,6 +17,7 @@ const useUserInfo = () => {
       })
         .then(response => {
           console.log(response.data);
+          dispatch(setUserInfo({ value: response.data }));
         })
         .catch(error => {
           console.log(error);

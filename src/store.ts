@@ -5,6 +5,7 @@ import clientSlice from 'slice/clientSlice';
 import indexChatSlice from 'slice/indexChatSlice';
 import openViduSessionCheckReducer from 'slice/openViduSessionCheckSlice';
 import pointModalReducer from 'slice/pointModal';
+import userInfoReducer from 'slice/userInfo';
 
 import chatColor from './slice/chatColorSlice';
 import chatCountReducer from './slice/chatCountSlice';
@@ -35,5 +36,6 @@ export const store = configureStore({
     openViduSessionCheck: openViduSessionCheckReducer,
     dataList: chatDataListSlice,
     needScroll: chatMobileScroll,
+    userInfo: userInfoReducer,
   },
 });
