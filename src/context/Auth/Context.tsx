@@ -4,6 +4,7 @@ import { reducer } from './reducers';
 import { AuthAction, userInfo } from './types';
 
 const initState: userInfo = {
+  isNewEnter: true,
   userEmail: '',
   accessToken: '',
   tokenType: '',

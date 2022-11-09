@@ -4,6 +4,7 @@ export type LoginAction = {
 };
 
 export type userInfo = {
+  isNewEnter: boolean;
   userEmail: string;
   accessToken: string;
   tokenType: string;

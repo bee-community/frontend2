@@ -50,6 +50,7 @@ function LogIn() {
             JSON.parse(jsonString, (key, value) => {
               if (key === 'access_token') {
                 setAccessToken(value);
+                localStorage.setItem('access_token', value);
               }
               if (key === 'token_type') {
                 setTokenType(value);
@@ -69,6 +70,7 @@ function LogIn() {
   useEffect(() => {
     authDispatch(
       login({
+        isNewEnter: false,
         userEmail: email,
         accessToken: accessToken,
         tokenType: tokenType,
