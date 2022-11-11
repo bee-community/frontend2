@@ -10,16 +10,19 @@ import smile from 'assets/images/icons/smile.png';
 import time from 'assets/images/icons/time.png';
 import { ShadowBox } from 'components/ShadowBox';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { NickName, Box, MyPageCategory, CustomerService, Edit } from './styles';
 
 function Mypage() {
+  const userInfo = useSelector((store: any) => store.userInfo);
+
   return (
     <>
       <ShadowBox>
         <NickName>
-          <div className="updatedNickName">닉네임</div>
+          <div className="updatedNickName">{userInfo.nickname}</div>
           <div className="remainTimeWrap">
             <img src={time} alt="time" />
             <span>

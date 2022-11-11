@@ -16,6 +16,7 @@ const useUserInfo = () => {
         },
       })
         .then(response => {
+          console.log(response);
           console.log(response.data);
           dispatch(setUserInfo({ value: response.data }));
         })
