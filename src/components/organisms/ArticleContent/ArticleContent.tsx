@@ -16,7 +16,7 @@ function ArticleContent(props: ArticleContentProps) {
 
   return (
     <StyledArticleContent>
-      <ArticleTitleContainer />
+      <ArticleTitleContainer article={article} />
       <section className="article-content">{article.content}</section>
       <TagRecommendList tags={recommendedTags} />
       <ArticleFeedbackContainer />
