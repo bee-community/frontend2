@@ -7,7 +7,6 @@ export const InputPhoto = styled.div`
   min-width: 90px;
   max-width: 200px;
   justify-content: space-between;
-  height: 110px;
 
   label > button {
     width: 100%;
