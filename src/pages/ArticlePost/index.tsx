@@ -1,13 +1,22 @@
-import API from 'api';
 import { ShadowBox } from 'components/ShadowBox';
 import { Table } from 'components/Table';
 import Button from 'components/atoms/Button';
+import API from 'mainAPI';
 import { Form, Title } from 'pages/Question/styles';
 import { useCallback, useState } from 'react';
+import { useQuery } from 'react-query';
 
 import { InputPhoto } from './styles';
 
 const ArticlePost = () => {
+  const { data, isLoading, error } = useQuery(
+    ['todos'],
+    () => API.get(`/boards`),
+    {
+      staleTime: 10000,
+    },
+  );
+  console.log(data);
   const [title, setTitle] = useState(undefined);
   const [content, setContent] = useState(undefined);
   const [board, setBoard] = useState('');
@@ -40,14 +49,14 @@ const ArticlePost = () => {
           },
         };
 
-        API('post', '/articles', params)
-          .then(reponse => {
-            console.log(reponse);
-          })
-          .catch(error => {
-            console.log(error);
-          })
-          .finally(() => {});
+        // API('post', '/articles', params)
+        //   .then(reponse => {
+        //     console.log(reponse);
+        //   })
+        //   .catch(error => {
+        //     console.log(error);
+        //   })
+        //   .finally(() => {});
       } else {
         console.log('타이틀과 컨텐츠를 모두 입력해주세요~');
       }
@@ -154,7 +163,7 @@ const ArticlePost = () => {
                   <input
                     type="file"
                     id="post-input-file-3"
-                    style={{ display: 'none' }}
+                    // style={{ display: 'none' }}
                   />
                 </InputPhoto>
               </td>
@@ -167,7 +176,7 @@ const ArticlePost = () => {
             css={{
               padding: '15px 68px',
             }}>
-            문의하기
+            글쓰기
           </Button>
         </Form>
       </ShadowBox>
