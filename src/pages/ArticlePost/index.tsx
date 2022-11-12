@@ -3,10 +3,11 @@ import { Table } from 'components/Table';
 import Button from 'components/atoms/Button';
 import API from 'mainAPI';
 import { Form, Title } from 'pages/Question/styles';
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useRef, useEffect } from 'react';
 import { useQuery } from 'react-query';
 
-import { InputPhoto } from './styles';
+import imageAdd from '../../assets/images/icons/imageAdd.png';
+import { InputPhoto, Image, AddImageIcon } from './styles';
 
 const ArticlePost = () => {
   const { data, isLoading, error } = useQuery(
@@ -16,11 +17,11 @@ const ArticlePost = () => {
       staleTime: 10000,
     },
   );
-  console.log(data);
   const [title, setTitle] = useState(undefined);
   const [content, setContent] = useState(undefined);
   const [board, setBoard] = useState('');
-
+  const imageInput = useRef<HTMLInputElement | null>(null);
+  const [images, setImages] = useState<FileList[]>();
   const onChangeTitle = useCallback(e => {
     setTitle(e.target.value);
   }, []);
@@ -62,6 +63,22 @@ const ArticlePost = () => {
       }
     },
     [title, content, board],
+  );
+
+  const onClickImageUpload = useCallback(() => {
+    if (!imageInput.current) return;
+    imageInput.current.click();
+  }, [imageInput.current]);
+
+  const onChangeImages = useCallback(
+    e => {
+      if (!images) {
+        setImages([e.target.files]);
+        return;
+      }
+      setImages([...images, e.target.files]);
+    },
+    [images],
   );
 
   return (
@@ -135,36 +152,29 @@ const ArticlePost = () => {
               <th scope="row">사진</th>
               <td>
                 <InputPhoto>
-                  <label
-                    className="input-file-button"
-                    htmlFor="post-input-file-1">
-                    <button className="button-in-table">가져오기</button>
-                  </label>
                   <input
                     type="file"
-                    id="post-input-file-1"
+                    id="file-input"
+                    accept="image/png, image/jpeg, image/gif, image/jpg"
                     style={{ display: 'none' }}
+                    ref={imageInput}
+                    onChange={onChangeImages}
+                    multiple // multiple 설정을 하면 같은 사진을 중복하여 올릴 수 없다.
                   />
-                  <label
-                    className="input-file-button"
-                    htmlFor="post-input-file-2">
-                    <button className="button-in-table">가져오기</button>
-                  </label>
-                  <input
-                    type="file"
-                    id="post-input-file-2"
-                    style={{ display: 'none' }}
-                  />
-                  <label
-                    className="input-file-button"
-                    htmlFor="post-input-file-3">
-                    <button className="button-in-table">가져오기</button>
-                  </label>
-                  <input
-                    type="file"
-                    id="post-input-file-3"
-                    // style={{ display: 'none' }}
-                  />
+                  {images?.map((v, index) => {
+                    return (
+                      <Image key={index}>
+                        <img
+                          style={{ width: '100%', height: '100%' }}
+                          src={URL.createObjectURL(v[0])}
+                          alt="사용자가 추가한 사진"
+                        />
+                      </Image>
+                    );
+                  })}
+                  <Image onClick={onClickImageUpload}>
+                    <AddImageIcon src={imageAdd} alt="사진추가이미지" />
+                  </Image>
                 </InputPhoto>
               </td>
             </tr>
