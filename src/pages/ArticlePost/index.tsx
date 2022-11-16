@@ -72,6 +72,7 @@ const ArticlePost = () => {
 
   const onChangeImages = useCallback(
     e => {
+      console.log(e);
       if (!images) {
         setImages([e.target.files]);
         return;
@@ -162,6 +163,7 @@ const ArticlePost = () => {
                     multiple // multiple 설정을 하면 같은 사진을 중복하여 올릴 수 없다.
                   />
                   {images?.map((v, index) => {
+                    if (v[0] === undefined) return;
                     return (
                       <Image key={index}>
                         <img
