@@ -62,6 +62,10 @@ export const RequestInfo = styled.div`
 export const CommentsWrap = styled.details<{ isDetailsOpen: boolean }>`
   width: 100%;
   /* ${props => props.isDetailsOpen && 'background-color: #f9f9f9;'} */
+
+  .arrow-down-button {
+    ${props => !props.isDetailsOpen && 'height: 18px'}
+  }
 `;
 
 export const CommentsOpenButton = styled.summary`
@@ -70,8 +74,11 @@ export const CommentsOpenButton = styled.summary`
   font-weight: 500;
   color: #777;
   margin-bottom: 10px;
+  height: 25px;
+  display: flex;
 
   img {
+    align-self: center;
     width: 11px;
     margin-bottom: 2px;
     margin-left: 10px;

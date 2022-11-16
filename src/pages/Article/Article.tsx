@@ -108,10 +108,13 @@ function Article() {
         recommendedTags={recommendedTags}
       />
       {/* <article>댓글 기능 개발중</article> */}
-      <CommentsWrap open isDetailsOpen={true}>
+      <CommentsWrap open isDetailsOpen={isDetailsOpen}>
         <CommentsOpenButton>
           <span>댓글</span>
-          <span className="arrow-down-button">
+          <span
+            style={{ display: 'flex' }}
+            onClick={() => setIsDetailsOpen(prev => !prev)}
+            className="arrow-down-button">
             {isDetailsOpen ? (
               <img src={arrowUp} alt="up" />
             ) : (
