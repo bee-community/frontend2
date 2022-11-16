@@ -1,5 +1,6 @@
 import arrowDown from 'assets/images/icons/arrow-down.png';
 import arrowUp from 'assets/images/icons/arrow-up.png';
+import enter from 'assets/images/icons/enter.png';
 import heart from 'assets/images/icons/heart-unfilled.png';
 import theme from 'assets/theme';
 import Button from 'components/atoms/Button';
@@ -146,7 +147,7 @@ function Article() {
           </Comment>
           <Reply>
             <div className="nickname-wrap">
-              {/* <img src="" alt="profile" /> */}
+              <img src={enter} alt="enter" />
               <span className="nickname">닉네임</span>
             </div>
             <div className="reply-wrap">
@@ -162,7 +163,7 @@ function Article() {
           </Reply>
           <Reply>
             <div className="nickname-wrap">
-              {/* <img src="" alt="profile" /> */}
+              <img src={enter} alt="enter" />
               <span className="nickname">닉네임</span>
             </div>
             <div className="reply-wrap">
@@ -177,7 +178,7 @@ function Article() {
             </div>
           </Reply>
           <ReplyPostInput>
-            {/* <img src="" alt="enroll" /> */}
+            <img src={enter} alt="enter" />
             <div className="input-wrap">
               <input type="text" placeholder="내용이 있습니다." />
               <Button
