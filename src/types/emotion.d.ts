@@ -12,6 +12,7 @@ type ScreenSize = {
   lg: string;
   xl: string;
   xxl: string;
+  xxxl: string;
 };
 
 type FontSize = {
