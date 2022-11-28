@@ -2,14 +2,14 @@ import BannerBox from 'components/molecules/boxes/BannerBox';
 import BestArticleList from 'components/organisms/lists/BestArticleList';
 import CategoryList from 'components/organisms/lists/CategoryList';
 import { useBoardState } from 'context/Board';
-import { useBoards } from 'hooks/queries/requests';
+import { useArticles, useBoards } from 'hooks/queries/requests';
 import useBoardActions from 'hooks/useBoardActions';
 import { useState, useEffect } from 'react';
 
 function Main() {
   const boardActions = useBoardActions();
   // const boards = useBoardState();
-
+  const articles = useArticles();
   const boards = useBoards();
   // useEffect(() => {
 
@@ -122,12 +122,12 @@ function Main() {
       <BestArticleList
         title="오늘의 게시글"
         subTitle="Today New!"
-        articles={dummyArticles}
+        articles={articles}
       />
       <BestArticleList
         title="이번주의 베스트 게시글"
         subTitle="Weekly New!"
-        articles={dummyArticles}
+        articles={articles}
       />
     </>
   );

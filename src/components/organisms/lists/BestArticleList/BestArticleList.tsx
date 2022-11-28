@@ -8,7 +8,7 @@ import * as React from 'react';
 import { StyledBestArticleList } from './styles';
 
 export interface BestArticleListProps extends TitleContainerProps {
-  articles: ArticleType[];
+  articles: ArticleType[] | undefined;
 }
 
 function BestArticleList(props: BestArticleListProps) {
@@ -16,7 +16,7 @@ function BestArticleList(props: BestArticleListProps) {
     <StyledBestArticleList>
       <Title title={props.title} subTitle={props.subTitle} />
       <div className="article-container-wrap">
-        {props.articles.map((article, index) => {
+        {props.articles?.map((article, index) => {
           return <ArticleBox key={index} article={article} />;
         })}
       </div>
