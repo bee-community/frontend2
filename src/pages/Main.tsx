@@ -2,14 +2,17 @@ import BannerBox from 'components/molecules/boxes/BannerBox';
 import BestArticleList from 'components/organisms/lists/BestArticleList';
 import CategoryList from 'components/organisms/lists/CategoryList';
 import { useBoardState } from 'context/Board';
+import { useBoards } from 'hooks/queries/requests';
 import useBoardActions from 'hooks/useBoardActions';
 import { useState, useEffect } from 'react';
 
 function Main() {
   const boardActions = useBoardActions();
-  const boards = useBoardState();
+  // const boards = useBoardState();
 
+  const boards = useBoards();
   // useEffect(() => {
+
   //   boardActions.getBoards();
   // }, [boardActions]);
 

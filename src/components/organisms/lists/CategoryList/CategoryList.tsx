@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 import { StyledCategoryList } from './styles';
 
-function CategoryList(props: { categories: BoardInfo[] }) {
+function CategoryList(props: { categories: BoardInfo[] | undefined }) {
   const categories = props.categories;
   const [isOpened, setIsOpened] = useState(false);
 
@@ -25,7 +25,7 @@ function CategoryList(props: { categories: BoardInfo[] }) {
         </Button>
       </div>
       <div className="category-list">
-        {categories.map((category, index) => {
+        {categories?.map((category, index) => {
           return (
             <IconWithLinkContainer
               key={index}
