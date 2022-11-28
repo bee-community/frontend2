@@ -13,6 +13,18 @@ import styles from 'styles';
 import App from './App';
 import { store } from './store';
 
+console.log(process.env.REACT_APP_MSW);
+
+if (process.env.REACT_APP_MSW === 'development') {
+  const { worker } = require('./mocks/browser');
+  worker.start({
+    serviceWorker: {
+      // Points to the custom location of the Service Worker file.
+      url: '/ant_community_frontend_dev3/mockServiceWorker.js',
+    },
+  });
+}
+
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <AuthProvider>
