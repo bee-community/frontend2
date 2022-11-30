@@ -23,3 +23,12 @@ export const useArticles = (): ArticleType[] | undefined => {
   );
   return res?.data;
 };
+
+export const useSpecificBoardArticles = (
+  board: string | undefined,
+): ArticleType[] | undefined => {
+  const { data: res } = useQuery('specificBoardArticles', () =>
+    axios.get(`${REQUEST_URL}/boards/${board}`),
+  );
+  return res?.data;
+};
