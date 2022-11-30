@@ -13,7 +13,7 @@ function BoardArticleList(props: any) {
         <img src={arrowDown} alt="﹀" />
       </div>
       <div className="board-article-list-wrap">
-        {props.articles.map((article: ArticleType, index: number) => {
+        {props.articles?.map((article: ArticleType, index: number) => {
           return <ArticleBox key={index} article={article} />;
         })}
       </div>
