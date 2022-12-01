@@ -11,21 +11,21 @@ if (process.env.REACT_APP_MSW === 'development') {
   REQUEST_URL = 'http://honeybees.community';
 }
 
-export const useBoards = (): BoardInfo[] => {
+export const useGetBoards = (): BoardInfo[] => {
   const { data: res } = useQuery('boards', () =>
     axios.get(`${REQUEST_URL}/boards`),
   );
   return res?.data ?? [];
 };
 
-export const useArticles = (): ArticleType[] => {
+export const useGetArticles = (): ArticleType[] => {
   const { data: res } = useQuery('articles', () =>
     axios.get(`${REQUEST_URL}/articles`),
   );
   return res?.data ?? [];
 };
 
-export const useSpecificBoardArticles = (
+export const useGetSpecificBoardArticles = (
   board_path?: string,
 ): ArticleType[] => {
   const { data: res } = useQuery('specificBoardArticles', () =>

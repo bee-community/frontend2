@@ -1,7 +1,7 @@
 import { ShadowBox } from 'components/ShadowBox';
 import { Table } from 'components/Table';
 import Button from 'components/atoms/Button';
-import { useBoards } from 'hooks/queries/requests';
+import { useGetBoards } from 'hooks/queries/requests';
 import API from 'mainAPI';
 import { Form, Title } from 'pages/Question/styles';
 import { useCallback, useState, useRef, useEffect } from 'react';
@@ -11,7 +11,7 @@ import imageAdd from '../../assets/images/icons/imageAdd.png';
 import { InputPhoto, Image, AddImageIcon } from './styles';
 
 const ArticlePost = () => {
-  const boards = useBoards();
+  const boards = useGetBoards();
   console.log(boards);
   const [title, setTitle] = useState(undefined);
   const [content, setContent] = useState(undefined);
