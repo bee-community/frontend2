@@ -10,7 +10,7 @@ import { Link, useParams } from 'react-router-dom';
 import { StyledBoardTitleContainer, DropDownMenu } from './styles';
 
 interface BoardTitleContainerProps {
-  title: string;
+  title?: string;
 }
 
 function BoardTitleContainer(props: BoardTitleContainerProps) {
