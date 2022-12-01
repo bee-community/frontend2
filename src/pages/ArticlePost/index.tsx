@@ -1,6 +1,7 @@
 import { ShadowBox } from 'components/ShadowBox';
 import { Table } from 'components/Table';
 import Button from 'components/atoms/Button';
+import { useBoards } from 'hooks/queries/requests';
 import API from 'mainAPI';
 import { Form, Title } from 'pages/Question/styles';
 import { useCallback, useState, useRef, useEffect } from 'react';
@@ -10,13 +11,8 @@ import imageAdd from '../../assets/images/icons/imageAdd.png';
 import { InputPhoto, Image, AddImageIcon } from './styles';
 
 const ArticlePost = () => {
-  const { data, isLoading, error } = useQuery(
-    ['todos'],
-    () => API.get(`/boards`),
-    {
-      staleTime: 10000,
-    },
-  );
+  const boards = useBoards();
+  console.log(boards);
   const [title, setTitle] = useState(undefined);
   const [content, setContent] = useState(undefined);
   const [board, setBoard] = useState('');
@@ -132,9 +128,11 @@ const ArticlePost = () => {
                   <option value="" disabled selected>
                     게시판 선택
                   </option>
-                  <option value="게시판1">게시판1</option>
-                  <option value="게사판2">게시판2</option>
-                  <option value="게시판3">게시판3</option>
+                  {boards.map(element => (
+                    <option key={element.id} value={element.name}>
+                      {element.name}
+                    </option>
+                  ))}
                 </select>
               </td>
             </tr>
