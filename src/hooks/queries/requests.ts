@@ -1,5 +1,6 @@
+import { getSpecificBoardArticles } from 'apis/requests';
 import axios from 'axios';
-import { ArticleType } from 'context/Articles';
+import { ArticleType, SpecificBoardArticlesType } from 'context/Articles';
 import { BoardInfo } from 'context/Board/types';
 import { useQuery } from 'react-query';
 
@@ -10,25 +11,25 @@ if (process.env.REACT_APP_MSW === 'development') {
   REQUEST_URL = 'http://honeybees.community';
 }
 
-export const useBoards = (): BoardInfo[] | undefined => {
+export const useBoards = (): BoardInfo[] => {
   const { data: res } = useQuery('boards', () =>
     axios.get(`${REQUEST_URL}/boards`),
   );
-  return res?.data;
+  return res?.data ?? [];
 };
 
-export const useArticles = (): ArticleType[] | undefined => {
+export const useArticles = (): ArticleType[] => {
   const { data: res } = useQuery('articles', () =>
     axios.get(`${REQUEST_URL}/articles`),
   );
-  return res?.data;
+  return res?.data ?? [];
 };
 
 export const useSpecificBoardArticles = (
-  board: string | undefined,
-): ArticleType[] | undefined => {
+  board_path?: string,
+): ArticleType[] => {
   const { data: res } = useQuery('specificBoardArticles', () =>
-    axios.get(`${REQUEST_URL}/boards/${board}`),
+    getSpecificBoardArticles(REQUEST_URL, board_path),
   );
-  return res?.data;
+  return res?.articles ?? [];
 };
