@@ -3,10 +3,8 @@ import { Table } from 'components/Table';
 import Button from 'components/atoms/Button';
 import { useCreateArticle } from 'hooks/business/article';
 import { useGetBoards } from 'hooks/queries/requests';
-import API from 'mainAPI';
 import { Form, Title } from 'pages/Question/styles';
-import { useCallback, useState, useRef, useEffect } from 'react';
-import { useQuery } from 'react-query';
+import { useCallback, useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
 import imageAdd from '../../assets/images/icons/imageAdd.png';
@@ -44,19 +42,22 @@ const ArticlePost = () => {
     e => {
       e.preventDefault();
       console.log(boardPath);
-      createArticle({
-        title: title,
-        content: content,
-        summary: 'string',
-        board_id: boardId,
-        board_path: boardPath,
-        tags: [],
-        poll: {
-          title: 'string',
-          is_multiple: false,
-          contents: [],
+      createArticle(
+        {
+          title: title,
+          content: content,
+          summary: 'string',
+          board_id: boardId,
+          board_path: boardPath,
+          tags: [],
+          poll: {
+            title: 'string',
+            is_multiple: false,
+            contents: [],
+          },
         },
-      });
+        boardPath,
+      );
     },
     [title, content, boardId, boardPath],
   );
