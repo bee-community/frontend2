@@ -1,8 +1,9 @@
+import { createArticle } from 'apis/article';
 import { getSpecificBoardArticles } from 'apis/requests';
 import axios from 'axios';
-import { ArticleType, SpecificBoardArticlesType } from 'context/Articles';
+import { ArticleType } from 'context/Articles';
 import { BoardInfo } from 'context/Board/types';
-import { useQuery } from 'react-query';
+import { useQuery, useMutation, useQueryClient } from 'react-query';
 
 let REQUEST_URL = '';
 if (process.env.REACT_APP_MSW === 'development') {
@@ -32,4 +33,21 @@ export const useGetSpecificBoardArticles = (
     getSpecificBoardArticles(REQUEST_URL, board_path),
   );
   return res?.articles ?? [];
+};
+
+export const useCreateAriticleMutation = () => {
+  const queryClient = useQueryClient();
+  // const { showLoading, hideLoading } = useLoading();
+
+  return useMutation(createArticle, {
+    onSuccess() {
+      queryClient.invalidateQueries('specificBoardArticles');
+    },
+    onMutate() {
+      // showLoading();
+    },
+    onSettled() {
+      // hideLoading();
+    },
+  });
 };
