@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import boardDataSlice from 'redux/boardDataSlice';
 import chatDataListSlice from 'slice/chatDataListSlice';
 import chatMobileScroll from 'slice/chatMobileScroll';
 import clientSlice from 'slice/clientSlice';
@@ -37,5 +38,6 @@ export const store = configureStore({
     dataList: chatDataListSlice,
     needScroll: chatMobileScroll,
     userInfo: userInfoReducer,
+    boardData: boardDataSlice,
   },
 });
