@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const StyledIconWithLinkContainer = styled.div`
-  > a {
+  > div {
     display: grid;
     grid-template-rows: repaet(2, 1fr);
     justify-items: center;

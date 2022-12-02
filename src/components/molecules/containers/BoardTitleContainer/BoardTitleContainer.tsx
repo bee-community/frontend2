@@ -19,6 +19,7 @@ function BoardTitleContainer(props: BoardTitleContainerProps) {
   const boardActions = useBoardActions();
   const boards = useBoardState();
   const navigate = useNavigate();
+
   useEffect(() => {
     if (boards.length === 0) {
       boardActions.getBoards();

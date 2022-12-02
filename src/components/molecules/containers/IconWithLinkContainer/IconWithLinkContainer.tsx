@@ -7,7 +7,9 @@ import talk from 'assets/images/categoryIcons/talk.png';
 import worknet from 'assets/images/categoryIcons/worknet.png';
 import Button from 'components/atoms/Button';
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { NavigateFunction } from 'react-router/index.d';
+import { setBeforeBoard } from 'redux/beforeBoardSlice';
 
 import { StyledIconWithLinkContainer } from './styles';
 
@@ -30,19 +32,36 @@ const categoryIcons = {
 
 interface IconWithLinkContainerProps {
   name: string;
+  id: string;
   link: string;
   icon: string;
+  navigate: NavigateFunction;
 }
 
 function IconWithLinkContainer(props: IconWithLinkContainerProps) {
+  const dispatch = useDispatch();
+
   return (
     <StyledIconWithLinkContainer>
-      <Link to={props.link}>
-        <Button buttonType="iconButton" color="yellow" radius="circle">
+      <div>
+        <Button
+          onClick={() => {
+            props.navigate(props.link);
+            dispatch(
+              setBeforeBoard({
+                id: props.id,
+                path: props.icon,
+                name: props.name,
+              }),
+            );
+          }}
+          buttonType="iconButton"
+          color="yellow"
+          radius="circle">
           <img src={categoryIcons[props.icon]} alt="categoryIcon" />
         </Button>
         <span>{props.name}</span>
-      </Link>
+      </div>
     </StyledIconWithLinkContainer>
   );
 }

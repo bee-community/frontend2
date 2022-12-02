@@ -3,10 +3,12 @@ import IconWithLinkContainer from 'components/molecules/containers/IconWithLinkC
 import { BoardInfo } from 'context/Board/types';
 import * as React from 'react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 import { StyledCategoryList } from './styles';
 
-function CategoryList(props: { categories: BoardInfo[] | undefined }) {
+function CategoryList(props: { categories: BoardInfo[] }) {
+  const navigate = useNavigate();
   const categories = props.categories;
   const [isOpened, setIsOpened] = useState(false);
 
@@ -30,8 +32,10 @@ function CategoryList(props: { categories: BoardInfo[] | undefined }) {
             <IconWithLinkContainer
               key={index}
               name={category.name}
+              id={category.id}
               icon={category.path}
               link={`board/${category.path}`}
+              navigate={navigate}
             />
           );
         })}
