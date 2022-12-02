@@ -1,23 +1,31 @@
 import { ShadowBox } from 'components/ShadowBox';
 import { Table } from 'components/Table';
 import Button from 'components/atoms/Button';
+import { useCreateArticle } from 'hooks/business/article';
 import { useGetBoards } from 'hooks/queries/requests';
 import API from 'mainAPI';
 import { Form, Title } from 'pages/Question/styles';
 import { useCallback, useState, useRef, useEffect } from 'react';
 import { useQuery } from 'react-query';
+import { useSelector } from 'react-redux';
 
 import imageAdd from '../../assets/images/icons/imageAdd.png';
 import { InputPhoto, Image, AddImageIcon } from './styles';
 
 const ArticlePost = () => {
-  const boards = useGetBoards();
-  console.log(boards);
-  const [title, setTitle] = useState(undefined);
-  const [content, setContent] = useState(undefined);
-  const [board, setBoard] = useState('');
+  const beforeBoard = useSelector((store: any) => store.boardData);
+  const isBeforeBoardExist = !!beforeBoard.id;
+  const boards = useGetBoards().filter(
+    element => element.id !== beforeBoard.id,
+  ); // 이전에 특정 게시판에서 글쓰기 버튼을 눌러 넘어온 경우 select 태그의 option이 중복되는 것을 막기위해 filter를 사용하였습니다.
+  const { createArticle } = useCreateArticle();
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const [boardId, setBoardId] = useState(beforeBoard.id);
+  const [boardPath, setBoardPath] = useState(beforeBoard.path);
   const imageInput = useRef<HTMLInputElement | null>(null);
   const [images, setImages] = useState<FileList[]>();
+
   const onChangeTitle = useCallback(e => {
     setTitle(e.target.value);
   }, []);
@@ -27,38 +35,30 @@ const ArticlePost = () => {
   }, []);
 
   const onChangeBoard = useCallback(e => {
-    setBoard(e.target.value);
+    const board = JSON.parse(e.target.value);
+    setBoardPath(board.path);
+    setBoardId(board.id);
   }, []);
 
   const onSubmit = useCallback(
     e => {
       e.preventDefault();
-      console.log(title, content, board);
-
-      if (title && content) {
-        console.log('create article');
-        const params = {
-          title: title,
-          content: content,
-          board_id: '7cdbf3a6-42b2-4c9f-9440-c3f34b6cbeeb',
-          headers: {
-            Authorization: `Bearer token`,
-          },
-        };
-
-        // API('post', '/articles', params)
-        //   .then(reponse => {
-        //     console.log(reponse);
-        //   })
-        //   .catch(error => {
-        //     console.log(error);
-        //   })
-        //   .finally(() => {});
-      } else {
-        console.log('타이틀과 컨텐츠를 모두 입력해주세요~');
-      }
+      console.log(boardPath);
+      createArticle({
+        title: title,
+        content: content,
+        summary: 'string',
+        board_id: boardId,
+        board_path: boardPath,
+        tags: [],
+        poll: {
+          title: 'string',
+          is_multiple: false,
+          contents: [],
+        },
+      });
     },
-    [title, content, board],
+    [title, content, boardId, boardPath],
   );
 
   const onClickImageUpload = useCallback(() => {
@@ -122,14 +122,16 @@ const ArticlePost = () => {
                 <select
                   id="board"
                   onChange={onChangeBoard}
-                  value={board}
                   name="category"
                   required>
-                  <option value="" disabled selected>
-                    게시판 선택
-                  </option>
+                  {isBeforeBoardExist ? (
+                    <option value={beforeBoard.name}>{beforeBoard.name}</option>
+                  ) : (
+                    <option value="">게시판 선택</option>
+                  )}
+
                   {boards.map(element => (
-                    <option key={element.id} value={element.name}>
+                    <option key={element.id} value={JSON.stringify(element)}>
                       {element.name}
                     </option>
                   ))}
