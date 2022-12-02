@@ -3,12 +3,12 @@ import styled from '@emotion/styled';
 export const StyledBoardTitleContainer = styled.article`
   display: grid;
   position: relative;
-  grid-template-columns: 74px 1fr 120px;
+  grid-template-columns: 74px 1fr 215px;
   align-items: center;
   grid-gap: 12px;
 
   @media (max-width: ${props => props.theme.screenSize.xl}) {
-    grid-template-columns: 74px 1fr 100px;
+    grid-template-columns: 74px 1fr 175px;
   }
 
   .board-icon {
