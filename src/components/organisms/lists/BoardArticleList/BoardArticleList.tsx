@@ -1,11 +1,11 @@
 import arrowDown from 'assets/images/icons/arrow-down.png';
 import ArticleBox from 'components/molecules/boxes/ArticleBox';
-import { ArticleType } from 'context/Articles';
 import * as React from 'react';
+import { ArticleType } from 'types/article/remote';
 
 import { StyledBoardArticleList } from './styles';
 
-function BoardArticleList(props: any) {
+function BoardArticleList(props: { articles: ArticleType[] }) {
   return (
     <StyledBoardArticleList>
       <div className="board-article-order-select-wrap">
