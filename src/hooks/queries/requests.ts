@@ -28,11 +28,11 @@ export const useGetArticles = (): ArticleType[] => {
 
 export const useGetSpecificBoardArticles = (
   board_path?: string,
-): ArticleType[] => {
-  const { data: res } = useQuery('specificBoardArticles', () =>
+): { data: ArticleType[]; isFetching: boolean } => {
+  const { data: res, isFetching } = useQuery(['specificBoardArticles'], () =>
     getSpecificBoardArticles(REQUEST_URL, board_path),
   );
-  return res?.articles ?? [];
+  return { data: res?.articles.reverse() ?? [], isFetching };
 };
 
 export const useCreateAriticleMutation = () => {
