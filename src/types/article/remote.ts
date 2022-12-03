@@ -53,3 +53,8 @@ export type ArticleDetailType = {
   updated_at: string;
   comments: any[];
 };
+
+export interface CreateCommentRequest {
+  content: string;
+  parent_id?: string;
+}

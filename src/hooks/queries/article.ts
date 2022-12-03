@@ -1,5 +1,6 @@
+import { createComment } from 'apis/article';
 import axios from 'axios';
-import { useQuery } from 'react-query';
+import { useQuery, useQueryClient, useMutation } from 'react-query';
 import { ArticleDetailType } from 'types/article/remote';
 
 let REQUEST_URL = '';
@@ -16,4 +17,16 @@ export const useGetArticleDetail = (
     axios.get<ArticleDetailType>(`${REQUEST_URL}/articles/${articleId}`),
   );
   return res?.data;
+};
+
+export const useCreateCommentMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation(createComment, {
+    onSuccess() {
+      queryClient.invalidateQueries('articleDetail');
+    },
+    onMutate() {},
+    onSettled() {},
+  });
 };
