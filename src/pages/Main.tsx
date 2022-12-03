@@ -4,7 +4,7 @@ import CategoryList from 'components/organisms/lists/CategoryList';
 import { useGetArticles, useGetBoards } from 'hooks/queries/requests';
 
 function Main() {
-  const articles = useGetArticles();
+  const articles = useGetArticles().slice(0, 4);
   const boards = useGetBoards();
 
   return (
