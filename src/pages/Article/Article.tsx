@@ -3,6 +3,7 @@ import arrowUp from 'assets/images/icons/arrow-up.png';
 import enter from 'assets/images/icons/enter.png';
 import heart from 'assets/images/icons/heart-unfilled.png';
 import theme from 'assets/theme';
+import ArticleComment from 'components/Article/ArticleComment';
 import Button from 'components/atoms/Button';
 import ArticleContent from 'components/organisms/ArticleContent';
 import TagRelatedList from 'components/organisms/lists/TagRelatedList';
@@ -15,9 +16,6 @@ import {
   CommentsWrap,
   CommentsOpenButton,
   Comments,
-  Comment,
-  Reply,
-  ReplyPostInput,
   CommentPostInput,
 } from './styles';
 
@@ -104,80 +102,12 @@ function Article() {
         </CommentsOpenButton>
         <Comments>
           {article.comments?.map(element => (
-            <Comment key={element.id}>
-              <div className="comment-info">
-                <span className="nick-name">닉네임</span>
-                <span className="date">2022.03.12 10:00</span>
-              </div>
-              <div className="comment">{element.content}</div>
-              <div className="comment-response">
-                <img src={heart} alt="comment" />
-                <span>23</span>
-                <Button
-                  buttonType="outlined"
-                  radius="round"
-                  color="black"
-                  css={{
-                    padding: '3px 15px 2px',
-                    border: 'solid 1px #707070',
-                    color: '#777',
-                    fontSize: theme.fontSize[12],
-                    marginLeft: '5px',
-                    cursor: 'pointer',
-                  }}>
-                  답글
-                </Button>
-              </div>
-            </Comment>
+            <ArticleComment
+              key={element.id}
+              element={element}
+              articleId={articleId}></ArticleComment>
           ))}
 
-          {/* <Reply>
-            <div className="nickname-wrap">
-              <img src={enter} alt="enter" />
-              <span className="nickname">닉네임</span>
-            </div>
-            <div className="reply-wrap">
-              <div className="reply">
-                이 중요한 게시판이 없네요!이 중요한 게시판이 없네요!이 중요한
-                게시판이 없네요!이 중요한 게시판이 없네
-              </div>
-              <div className="reply-response">
-                <img src={heart} alt="heart" />
-                <span className="like-count">23</span>
-              </div>
-            </div>
-          </Reply>
-          <Reply>
-            <div className="nickname-wrap">
-              <img src={enter} alt="enter" />
-              <span className="nickname">닉네임</span>
-            </div>
-            <div className="reply-wrap">
-              <div className="reply">
-                이 중요한 게시판이 없네요!이 중요한 게시판이 없네요!이 중요한
-                게시판이 없네요!이 중요한 게시판이 없네
-              </div>
-              <div className="reply-response">
-                <img src={heart} alt="reply" />
-                <span className="like-count">23</span>
-              </div>
-            </div>
-          </Reply>
-          <ReplyPostInput>
-            <img src={enter} alt="enter" />
-            <div className="input-wrap">
-              <input type="text" placeholder="내용이 있습니다." />
-              <Button
-                buttonType="contained"
-                color="yellow"
-                radius="square"
-                css={{
-                  marginLeft: '14px',
-                }}>
-                등록
-              </Button>
-            </div>
-          </ReplyPostInput> */}
           <form onSubmit={onSubmit}>
             <CommentPostInput>
               <div className="input-wrap">
