@@ -6,9 +6,9 @@ import theme from 'assets/theme';
 import Button from 'components/atoms/Button';
 import ArticleContent from 'components/organisms/ArticleContent';
 import TagRelatedList from 'components/organisms/lists/TagRelatedList';
+import { useCreateComment } from 'hooks/business/article';
 import { useGetArticleDetail } from 'hooks/queries/article';
-import * as React from 'react';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useParams } from 'react-router';
 
 import {
@@ -22,10 +22,11 @@ import {
 } from './styles';
 
 function Article() {
-  let { articleId } = useParams();
+  const { articleId } = useParams();
   const [isDetailsOpen, setIsDetailsOpen] = useState(true);
+  const [comment, setComment] = useState('');
   const article = useGetArticleDetail(articleId);
-
+  const { createComment } = useCreateComment();
   const [dummyTagRelatedArticles] = useState([
     {
       id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
@@ -63,6 +64,25 @@ function Article() {
     '꿀팁',
   ];
 
+  const onChangeContent = useCallback(e => {
+    setComment(e.target.value);
+  }, []);
+
+  const onSubmit = useCallback(
+    e => {
+      e.preventDefault();
+      if (!articleId) return;
+      createComment({
+        body: {
+          content: comment,
+        },
+        articleId: articleId,
+      });
+      setComment('');
+    },
+    [articleId, comment],
+  );
+
   if (!article) return null;
   return (
     <>
@@ -83,32 +103,35 @@ function Article() {
           </span>
         </CommentsOpenButton>
         <Comments>
-          <Comment>
-            <div className="comment-info">
-              <span className="nick-name">닉네임</span>
-              <span className="date">2022.03.12 10:00</span>
-            </div>
-            <div className="comment">이 중요한 게시판이 없네요!</div>
-            <div className="comment-response">
-              <img src={heart} alt="comment" />
-              <span>23</span>
-              <Button
-                buttonType="outlined"
-                radius="round"
-                color="black"
-                css={{
-                  padding: '3px 15px 2px',
-                  border: 'solid 1px #707070',
-                  color: '#777',
-                  fontSize: theme.fontSize[12],
-                  marginLeft: '5px',
-                  cursor: 'pointer',
-                }}>
-                답글
-              </Button>
-            </div>
-          </Comment>
-          <Reply>
+          {article.comments?.map(element => (
+            <Comment key={element.id}>
+              <div className="comment-info">
+                <span className="nick-name">닉네임</span>
+                <span className="date">2022.03.12 10:00</span>
+              </div>
+              <div className="comment">{element.content}</div>
+              <div className="comment-response">
+                <img src={heart} alt="comment" />
+                <span>23</span>
+                <Button
+                  buttonType="outlined"
+                  radius="round"
+                  color="black"
+                  css={{
+                    padding: '3px 15px 2px',
+                    border: 'solid 1px #707070',
+                    color: '#777',
+                    fontSize: theme.fontSize[12],
+                    marginLeft: '5px',
+                    cursor: 'pointer',
+                  }}>
+                  답글
+                </Button>
+              </div>
+            </Comment>
+          ))}
+
+          {/* <Reply>
             <div className="nickname-wrap">
               <img src={enter} alt="enter" />
               <span className="nickname">닉네임</span>
@@ -154,46 +177,28 @@ function Article() {
                 등록
               </Button>
             </div>
-          </ReplyPostInput>
-          <Comment>
-            <div className="comment-info">
-              <span className="nick-name">닉네임</span>
-              <span className="date">2022.03.12 10:00</span>
-            </div>
-            <div className="comment">이 중요한 게시판이 없네요!</div>
-            <div className="comment-response">
-              <img src={heart} alt="heart" />
-              <span>23</span>
-              <Button
-                buttonType="outlined"
-                radius="round"
-                color="black"
-                css={{
-                  padding: '3px 15px 2px',
-                  border: 'solid 1px #707070',
-                  color: '#777',
-                  fontSize: theme.fontSize[12],
-                  marginLeft: '5px',
-                  cursor: 'pointer',
-                }}>
-                답글
-              </Button>
-            </div>
-          </Comment>
-          <CommentPostInput>
-            <div className="input-wrap">
-              <input type="text" placeholder="내용이 있습니다." />
-              <Button
-                buttonType="contained"
-                color="yellow"
-                radius="square"
-                css={{
-                  marginLeft: '14px',
-                }}>
-                등록
-              </Button>
-            </div>
-          </CommentPostInput>
+          </ReplyPostInput> */}
+          <form onSubmit={onSubmit}>
+            <CommentPostInput>
+              <div className="input-wrap">
+                <input
+                  value={comment}
+                  onChange={onChangeContent}
+                  type="text"
+                  placeholder="내용을 입력해주세요."
+                />
+                <Button
+                  buttonType="contained"
+                  color="yellow"
+                  radius="square"
+                  css={{
+                    marginLeft: '14px',
+                  }}>
+                  등록
+                </Button>
+              </div>
+            </CommentPostInput>
+          </form>
         </Comments>
       </CommentsWrap>
       <TagRelatedList articles={dummyTagRelatedArticles} />
