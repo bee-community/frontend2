@@ -2,7 +2,7 @@ const screenSize = {
   sm: '360px',
   md: '766px',
   lg: '1024px',
-  xl: '1440px',
+  xl: '1400px',
   xxl: '1920px',
   xxxl: '2560px',
 };
