@@ -5,7 +5,10 @@ import { ArticleType } from 'types/article/remote';
 
 import { StyledBoardArticleList } from './styles';
 
-function BoardArticleList(props: { articles: ArticleType[] }) {
+function BoardArticleList(props: {
+  articles: ArticleType[];
+  isFetching: boolean;
+}) {
   return (
     <StyledBoardArticleList>
       <div className="board-article-order-select-wrap">
@@ -13,9 +16,13 @@ function BoardArticleList(props: { articles: ArticleType[] }) {
         <img src={arrowDown} alt="﹀" />
       </div>
       <div className="board-article-list-wrap">
-        {props.articles?.map((article: ArticleType, index: number) => {
-          return <ArticleBox key={index} article={article} />;
-        })}
+        {props.isFetching
+          ? Array.from({ length: 16 }).map((element, index) => {
+              return <ArticleBox.Skeleton key={index} />;
+            })
+          : props.articles?.map((article: ArticleType, index: number) => {
+              return <ArticleBox key={index} article={article} />;
+            })}
       </div>
     </StyledBoardArticleList>
   );

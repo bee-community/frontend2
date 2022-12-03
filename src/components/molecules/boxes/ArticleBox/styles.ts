@@ -1,3 +1,4 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 export const StyledArticleBox = styled.div`
@@ -46,6 +47,49 @@ export const StyledArticleBox = styled.div`
   }
   .date {
     color: #aaa;
+    margin-bottom: 5px;
+  }
+`;
+
+const loading = css`
+  border-radius: 20px;
+  background-image: linear-gradient(
+    90deg,
+    #e0e0e0 0px,
+    #ededed 30px,
+    #e0e0e0 60px
+  );
+  animation: refresh 2s infinite ease-out;
+
+  @keyframes refresh {
+    0% {
+      background-position: calc(-100px);
+    }
+    40%,
+    100% {
+      background-position: 320px;
+    }
+  }
+`;
+
+export const StyledLoadingArticleBox = styled.div`
+  font-family: NotoSansCJKKR;
+  font-size: ${props => props.theme.fontSize[14]};
+
+  .img {
+    height: 10vw;
+    width: 100%;
+    margin-bottom: 12px;
+    ${loading}
+    @media (max-width: ${props => props.theme.screenSize.md}) {
+      height: 20vw;
+    }
+  }
+
+  .title {
+    width: 100px;
+    height: 16px;
+    ${loading}
     margin-bottom: 5px;
   }
 `;
