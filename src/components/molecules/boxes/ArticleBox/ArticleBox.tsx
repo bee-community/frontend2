@@ -5,7 +5,7 @@ import { ArticleType } from 'context/Articles';
 import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 
-import { StyledArticleBox } from './styles';
+import { StyledArticleBox, StyledLoadingArticleBox } from './styles';
 
 function ArticleBox(props: { article: ArticleType }) {
   const {
@@ -40,3 +40,12 @@ function ArticleBox(props: { article: ArticleType }) {
 }
 
 export default ArticleBox;
+
+ArticleBox.Skeleton = function Skeleton() {
+  return (
+    <StyledLoadingArticleBox>
+      <div className="img" />
+      <div className="title"></div>
+    </StyledLoadingArticleBox>
+  );
+};
