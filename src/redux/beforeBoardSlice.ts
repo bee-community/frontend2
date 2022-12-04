@@ -14,8 +14,12 @@ const beforeBoardSlice = createSlice({
       state = { ...state, ...payload };
       return state;
     },
+    resetBeforeBoard: state => {
+      state = initialState;
+      return state;
+    },
   },
 });
 
-export const { setBeforeBoard } = beforeBoardSlice.actions;
+export const { setBeforeBoard, resetBeforeBoard } = beforeBoardSlice.actions;
 export default beforeBoardSlice.reducer;
