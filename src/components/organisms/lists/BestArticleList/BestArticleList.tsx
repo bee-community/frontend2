@@ -14,7 +14,11 @@ export interface BestArticleListProps extends TitleContainerProps {
 function BestArticleList(props: BestArticleListProps) {
   return (
     <StyledBestArticleList>
-      <Title title={props.title} subTitle={props.subTitle} />
+      <Title
+        title={props.title}
+        subTitle={props.subTitle}
+        navigate={props.navigate}
+      />
       <div className="article-container-wrap">
         {props.articles?.map((article, index) => {
           return <ArticleBox key={index} article={article} />;

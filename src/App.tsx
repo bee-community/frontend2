@@ -13,6 +13,7 @@ import Question from 'pages/Question';
 import Report from 'pages/Report';
 import RequestBoard from 'pages/RequestBoard';
 import SignUp from 'pages/SignUp';
+import Today from 'pages/Today';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { useSelector } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -33,6 +34,7 @@ function App() {
 
             <Route path="article/post" element={<ArticlePost />} />
             <Route path="article/:articleId" element={<Article />} />
+            <Route path="articles/:type" element={<Today />} />
 
             <Route path="mypage" element={<Mypage />} />
             <Route path="mypage/edit-privacy" element={<EditPrivacy />} />
