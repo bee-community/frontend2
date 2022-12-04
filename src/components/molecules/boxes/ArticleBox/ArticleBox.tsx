@@ -18,8 +18,10 @@ function ArticleBox(props: { article: ArticleType }) {
     is_announcement,
     like_count,
     updated_at,
+    poll,
     tags,
   } = props.article;
+  const commentCount = poll.contents.length;
   return (
     <StyledArticleBox>
       <Link to={`/article/${id}`}>
@@ -30,6 +32,7 @@ function ArticleBox(props: { article: ArticleType }) {
           <img src={heartUnfilled} alt="하트" />
           <span>{like_count}</span>
           <img src={comment} alt="코멘트" />
+          <span>{commentCount}</span>
           <span>{view_count}</span>
         </div>
 
