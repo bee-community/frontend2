@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 export const StyledArticleBox = styled.div`
   font-family: NotoSansCJKKR;
-  font-size: ${props => props.theme.fontSize[14]};
+  font-size: ${props => props.theme.fontSize[12]};
 
   & > a > img {
     height: 10vw;
@@ -47,6 +47,7 @@ export const StyledArticleBox = styled.div`
   }
   .date {
     color: #aaa;
+    margin-top: 6px;
     margin-bottom: 5px;
   }
 `;
