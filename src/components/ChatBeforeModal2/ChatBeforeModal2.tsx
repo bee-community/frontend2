@@ -30,7 +30,7 @@ interface Props {
   show: boolean;
   onCloseModal: () => void;
 }
-const socketURL = 'https://sagang3.duckdns.org:9443/ws-stomp';
+const socketURL = 'http://honeybees.community:8080/ws-stomp';
 
 var stompClient: any = null;
 let trick = '';

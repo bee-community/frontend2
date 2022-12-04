@@ -30,7 +30,7 @@ interface Props {
   show: boolean;
   onCloseModal: () => void;
 }
-const socketURL = 'https://sagang3.duckdns.org:9443/ws-stomp';
+const socketURL = 'http://honeybees.community:8080/ws-stomp';
 var stompClient: any = null;
 let trick = '';
 let avoid = false;
@@ -59,26 +59,20 @@ const ChatBeforeModal: VFC<Props> = ({
     let day = 0;
     var hour = Math.floor(seconds / 3600);
     var min = Math.floor((seconds % 3600) / 60);
-    // var sec = seconds % 60;
     while (hour > 24) {
       hour -= 24;
       day += 1;
     }
-    // return `${day}일 ${hour}시간 ${min}분 후 종료`;
     let str = `${day}일 ${hour}시간 ${min}분 후 종료`;
-    // setLivetime(str);
     dispatcher(setLiveTime({ value: str }));
   };
 
   const renderHash = (ob: HashTag[]) => {
     let hash = '';
-    // console.log(ob);
     ob.forEach(element => {
       hash += '#' + element.hashTag.tagName + ' ';
     });
-    // console.log(hash);
     setHash(hash);
-    // console.log(hash1);
   };
 
   const userJoin = () => {
@@ -142,13 +136,8 @@ const ChatBeforeModal: VFC<Props> = ({
         // payloadData['sendTime'] = Date();
         // console.log(payloadData);
         dispatcher(pushPublicChats({ value: payloadData }));
-
-        // dispatcher(setPublicChats({ value: publicChats.chat }));
-        // console.log('스크롤아래');
-        // scrollBarRef.current.scrollToBottom();
         break;
       case 'CLOSE':
-        // console.log('2222222222222');
         console.log('testCLose');
         dispatcher(setEndTTL({ value: true }));
         break;
@@ -209,6 +198,8 @@ const ChatBeforeModal: VFC<Props> = ({
     // console.log('on Error');
     let error = JSON.parse(err.body);
     // console.log(error);
+    console.log(error.type);
+
     switch (error.type) {
       case 'ALREADY_USER_IN_CHANNEL':
         break;
@@ -223,8 +214,6 @@ const ChatBeforeModal: VFC<Props> = ({
       {
         channelId: sendChannelInfo.id,
         jwt: trick,
-        // jwt: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjUxNTE0NjY3LCJpYXQiOjE2NTE0OTY2Njd9.I3Wlq_f7elhOsJ9wP07-YCRba9ITlyI7BbQyqXWjmB5ClkQ5iqOsNdNUqpX2BG2BgCrHwvsujA6O15ojMmAI2Q',
-        // username: 'user',
       },
       onConnectedExcept,
       onErrorExcept,
@@ -232,14 +221,11 @@ const ChatBeforeModal: VFC<Props> = ({
   };
 
   const onError = (err: any) => {
-    // console.log('on Error');
     if (err.body === undefined) {
       return;
     }
-    // console.log(err.body);
     let error = JSON.parse(err.body);
 
-    // console.log(error);
     switch (error.type) {
       case 'ALREADY_USER_IN_CHANNEL':
         connect_except();
@@ -261,13 +247,6 @@ const ChatBeforeModal: VFC<Props> = ({
 
   const connect = async () => {
     try {
-      // var ress: any = await axios.post('/api/v1/webrtc/chat/authenticate', {
-      //   // nickname: 'user',
-      //   email: testName,
-      //   password: 'user',
-      // });
-      // console.log(ress.data.jwttoken);
-
       trick = JWTtoken.JWTtoken;
       dispatch({ value: trick, type: 'CHANGE' });
 

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://sagang3.duckdns.org:9443',
+  baseURL: 'http://honeybees.community:8080',
 });
 
 export default api;

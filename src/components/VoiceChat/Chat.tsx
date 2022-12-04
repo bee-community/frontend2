@@ -59,7 +59,7 @@ const Chat = () => {
     chatColor.chatColor == 'chatList' ? chatUrl : myChatUrl,
     url => fetcher(url, JWTtoken.JWTtoken),
     {
-      dedupingInterval: 60000,
+      dedupingInterval: 6000000,
     },
   );
 
