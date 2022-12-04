@@ -46,7 +46,9 @@ function ArticleBox(props: { article: ArticleType }) {
           <span>{view_count}</span>
         </div>
 
-        <div className="date">{dayjs(updated_at).format('YYYY.MM.DD')}</div>
+        <div className="date">
+          {dayjs(updated_at).format('YYYY.MM.DD HH:mm')}
+        </div>
       </Link>
     </StyledArticleBox>
   );
