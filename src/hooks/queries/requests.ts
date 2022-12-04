@@ -19,17 +19,20 @@ export const useGetBoards = (): BoardInfo[] => {
   return res?.data ?? [];
 };
 
-export const useGetArticles = (): ArticleType[] => {
-  const { data: res } = useQuery('articles', () =>
+export const useGetArticles = (): {
+  data: ArticleType[];
+  isFetching: boolean;
+} => {
+  const { data: res, isFetching } = useQuery('articles', () =>
     axios.get(`${REQUEST_URL}/articles`),
   );
-  return res?.data ?? [];
+  return { data: res?.data ?? [], isFetching };
 };
 
 export const useGetSpecificBoardArticles = (
   board_path?: string,
 ): { data: ArticleType[]; isFetching: boolean } => {
-  const { data: res, isFetching } = useQuery(['specificBoardArticles'], () =>
+  const { data: res, isFetching } = useQuery('specificBoardArticles', () =>
     getSpecificBoardArticles(REQUEST_URL, board_path),
   );
   return { data: res?.articles.reverse() ?? [], isFetching };
