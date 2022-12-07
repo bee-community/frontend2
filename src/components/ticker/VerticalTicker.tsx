@@ -5,6 +5,8 @@ import { animate } from './animate';
 import { useElementSize } from './useElementSize';
 
 export const VerticalTicker: React.FC<TickerProps> = ({
+  up,
+  down,
   children,
   duration,
   easing,
@@ -12,11 +14,11 @@ export const VerticalTicker: React.FC<TickerProps> = ({
   reverse = false,
 }) => {
   const track1 = useRef<HTMLDivElement>(null);
-  const track2 = useRef<HTMLDivElement>(null);
-  const track3 = useRef<any>(null);
-  const track4 = useRef<any>(null);
-  const track5 = useRef<any>(null);
-  const track6 = useRef<any>(null);
+  // const track2 = useRef<HTMLDivElement>(null);
+  // const track3 = useRef<any>(null);
+  // const track4 = useRef<any>(null);
+  const track5 = up;
+  const track6 = down;
   const options = useMemo<KeyframeAnimationOptions>(
     () => ({
       duration,
@@ -41,36 +43,36 @@ export const VerticalTicker: React.FC<TickerProps> = ({
 
     const height = trackHeight;
     const track1El = track1.current;
-    const track2El = track2.current;
-    const track3El = track3.current;
-    const track4El = track4.current;
+    // const track2El = track2.current;
+    // const track3El = track3.current;
+    // const track4El = track4.current;
     const track5El = track5.current;
     const track6El = track6.current;
     const endController = new AbortController();
     let stopController = new AbortController();
     let playController = new AbortController();
 
-    track3El.addEventListener('mouseover', () => {
-      stopController.abort();
-    });
-    track3El.addEventListener('mouseleave', () => {
-      playController.abort();
-    });
+    // track3El.addEventListener('mouseover', () => {
+    //   stopController.abort();
+    // });
+    // track3El.addEventListener('mouseleave', () => {
+    //   playController.abort();
+    // });
 
     async function toggle(): Promise<void> {
       const zeroToMinusOne = [
         { transform: 'translateY(0px)' },
-        { transform: `translateY(${-20}px)` },
+        { transform: `translateY(${-18.5}px)` },
       ];
 
       const oneToZero = [
-        { transform: `translateY(${-20}px)` },
-        { transform: `translateY(${-40}px)` },
+        { transform: `translateY(${-18.5}px)` },
+        { transform: `translateY(${-38.5}px)` },
       ];
 
       const oneToZero2 = [
-        { transform: `translateY(${-40}px)` },
-        { transform: `translateY(${-60}px)` },
+        { transform: `translateY(${-38.5}px)` },
+        { transform: `translateY(${-58.5}px)` },
       ];
 
       const minusOneToMinusTwo = [
@@ -89,7 +91,6 @@ export const VerticalTicker: React.FC<TickerProps> = ({
             endController.signal,
             stopController.signal,
             playController.signal,
-            track4El,
             track5El,
             track6El,
             index,
@@ -125,29 +126,29 @@ export const VerticalTicker: React.FC<TickerProps> = ({
 
     return () => {
       endController.abort();
-      track3El.removeEventListener('click', () => {
-        stopController.abort();
-      });
-      track3El.removeEventListener('mouseleave', () => {
-        playController.abort();
-      });
+      // track3El.removeEventListener('click', () => {
+      //   stopController.abort();
+      // });
+      // track3El.removeEventListener('mouseleave', () => {
+      //   playController.abort();
+      // });
     };
   }, [trackHeight, options]);
 
   return (
-    <div style={{ display: 'flex' }}>
+    <>
       <div
         style={{
           overflow: 'hidden',
-          height: '100%',
+          flex: '1',
+          height: '20px',
         }}>
         <div ref={track1}>{children}</div>
-        {/* <div ref={track2}>{children}</div> */}
       </div>
-      <button ref={track3}>stop</button>
+      {/* <button ref={track3}>stop</button>
       <button ref={track4}>test</button>
       <button ref={track5}>up</button>
-      <button ref={track6}>down</button>
-    </div>
+      <button ref={track6}>down</button> */}
+    </>
   );
 };

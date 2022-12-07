@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { VerticalTicker } from 'components/Ticker/VerticalTicker';
 
 export const NoticeBarWrap = styled.article`
   width: 75%;
@@ -34,4 +35,9 @@ export const ButtonWrap = styled.div`
   & > img {
     width: 10px;
   }
+`;
+
+export const Ticker = styled(VerticalTicker)`
+  height: 20px;
+  display: flex;
 `;

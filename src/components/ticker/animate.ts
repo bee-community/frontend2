@@ -5,7 +5,6 @@ export function animate(
   endSignal: AbortSignal,
   stopSignal: AbortSignal,
   playSignal: AbortSignal,
-  track4: HTMLElement,
   track5: HTMLElement,
   track6: HTMLElement,
   index: number,
@@ -64,13 +63,13 @@ export function animate(
       stopSignal.removeEventListener('abort', stopOnAbort);
       playSignal.removeEventListener('abort', playOnAbort);
       animation.removeEventListener('finish', () => onFinish(newIndex - 1));
-      track4.removeEventListener('mouseover', () => {
-        animation.pause();
-      });
+      // track4.removeEventListener('mouseover', () => {
+      //   animation.pause();
+      // });
 
-      track4.removeEventListener('mouseleave', () => {
-        animation.play();
-      });
+      // track4.removeEventListener('mouseleave', () => {
+      //   animation.play();
+      // });
 
       track5.removeEventListener('click', () => {
         // 얻어걸렸는데 transelate는 현재위치에서 이동이 되나?
@@ -94,9 +93,9 @@ export function animate(
     stopSignal.addEventListener('abort', stopOnAbort);
     playSignal.addEventListener('abort', playOnAbort);
     animation.addEventListener('finish', () => onFinish(newIndex + 1)); // 애니메이션이 끝나면 발생하는 이벤트
-    track4.addEventListener('mouseover', () => {
-      animation.pause();
-    });
+    // track4.addEventListener('mouseover', () => {
+    //   animation.pause();
+    // });
 
     track5.addEventListener('click', () => {
       // 얻어걸렸는데 transelate는 현재위치에서 이동이 되나?
@@ -113,8 +112,8 @@ export function animate(
     });
     track6.addEventListener('click', track6Event);
 
-    track4.addEventListener('mouseleave', () => {
-      animation.play();
-    });
+    // track4.addEventListener('mouseleave', () => {
+    //   animation.play();
+    // });
   });
 }
