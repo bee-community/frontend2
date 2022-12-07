@@ -51,6 +51,8 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': ['warn'],
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': ['warn'],
   },
 
   parser: '@typescript-eslint/parser',
