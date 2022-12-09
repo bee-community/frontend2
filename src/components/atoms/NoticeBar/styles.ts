@@ -21,8 +21,12 @@ export const NoticeBarWrap = styled.article`
 
   @media (max-width: ${props => props.theme.screenSize.lg}) {
     background-color: rgb(255, 242, 187);
-    padding: 7px 15px;
+    padding: 7px 20px;
     justify-self: start;
+
+    .notice-contents {
+      height: 20px;
+    }
   }
 `;
 
@@ -33,6 +37,7 @@ export const ButtonWrap = styled.div`
   height: 20px;
 
   & > img {
+    cursor: pointer;
     width: 10px;
   }
 `;
