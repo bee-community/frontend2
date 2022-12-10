@@ -140,7 +140,7 @@ export const Reply = styled.div`
   align-items: flex-start;
   padding: 10px 10px 0px 10px;
   border-bottom: solid 1px #ddd;
-
+  word-break: break-all;
   & > .nickname-wrap {
     display: flex;
     flex-direction: row;
