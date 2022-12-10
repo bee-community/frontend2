@@ -66,7 +66,12 @@ const ArticleComment = ({ element, articleId }: any) => {
             <Reply key={index}>
               <div className="nickname-wrap">
                 <img src={enter} alt="enter" />
-                <span className="nickname">닉네임</span>
+                <div>
+                  <span className="nickname">{reply.author}</span>
+                  <div className="date">
+                    {dayjs(reply.createAt).format('YYYY.MM.DD HH:mm')}
+                  </div>
+                </div>
               </div>
               <div className="reply-wrap">
                 <div className="reply">{reply.content}</div>
