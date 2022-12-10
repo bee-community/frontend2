@@ -15,23 +15,23 @@ interface BoardTitleContainerProps {
 }
 
 function BoardTitleContainer(props: BoardTitleContainerProps) {
-  const { boardName } = useParams();
   const [isOpen, setIsOpen] = useState(false);
   const boardActions = useBoardActions();
   const boards = useBoardState();
+  const boardName = boards.filter(board => board.path === props.title)[0]?.name;
   const navigate = useNavigate();
   useEffect(() => {
     if (boards.length === 0) {
       boardActions.getBoards();
     }
-  }, [boardActions, boards, boardName]);
+  }, [boardActions, boards]);
 
   return (
     <StyledBoardTitleContainer>
       <Button buttonType="iconButton" color="yellow" radius="circle">
         <img className="board-icon" src={officeIcon} alt="회사 게시판" />
       </Button>
-      <div className="board-name">{props.title}</div>
+      <div className="board-name">{boardName}</div>
       <div style={{ display: 'flex' }}>
         <Button
           css={{ display: 'flex', marginRight: '10px' }}
