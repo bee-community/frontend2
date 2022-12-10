@@ -45,6 +45,7 @@ function BoardTitleContainer(props: BoardTitleContainerProps) {
           buttonType="buttonWithIcon"
           color="black"
           radius="round"
+          css={{ width: '120px' }}
           onClick={() => {
             setIsOpen(isOpen => !isOpen);
           }}>
