@@ -5,12 +5,13 @@ import { useBoardState } from 'context/Board';
 import useBoardActions from 'hooks/useBoardActions';
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { StyledBoardTitleContainer, DropDownMenu } from './styles';
 
 interface BoardTitleContainerProps {
   title?: string;
+  refreshBoardArticles?: (board_path: string) => void;
 }
 
 function BoardTitleContainer(props: BoardTitleContainerProps) {
@@ -19,7 +20,6 @@ function BoardTitleContainer(props: BoardTitleContainerProps) {
   const boardActions = useBoardActions();
   const boards = useBoardState();
   const navigate = useNavigate();
-
   useEffect(() => {
     if (boards.length === 0) {
       boardActions.getBoards();
@@ -65,15 +65,19 @@ function BoardTitleContainer(props: BoardTitleContainerProps) {
       <DropDownMenu isOpen={isOpen}>
         {boards.map(board => (
           <li key={board.id}>
-            <Link to={board.path}>
-              <Button
-                buttonType="contained"
-                radius="round"
-                color="black"
-                css={{ fontWeight: 'normal' }}>
-                {board.name}
-              </Button>
-            </Link>
+            <Button
+              buttonType="contained"
+              radius="round"
+              color="black"
+              onClick={() => {
+                setIsOpen(isOpen => !isOpen);
+                if (props.refreshBoardArticles)
+                  props.refreshBoardArticles(board.path);
+                navigate(board.path);
+              }}
+              css={{ fontWeight: 'normal' }}>
+              {board.name}
+            </Button>
           </li>
         ))}
       </DropDownMenu>

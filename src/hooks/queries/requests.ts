@@ -31,11 +31,26 @@ export const useGetArticles = (): {
 
 export const useGetSpecificBoardArticles = (
   board_path?: string,
-): { data: ArticleType[]; isFetching: boolean } => {
-  const { data: res, isFetching } = useQuery('specificBoardArticles', () =>
-    getSpecificBoardArticles(REQUEST_URL, board_path),
+): {
+  data: ArticleType[];
+  isFetching: boolean;
+  refreshBoardArticles: (board_path: string) => void;
+} => {
+  const queryClient = useQueryClient();
+  const { data: res, isFetching } = useQuery(
+    ['specificBoardArticles', board_path],
+    () => getSpecificBoardArticles(REQUEST_URL, board_path),
   );
-  return { data: res?.articles.reverse() ?? [], isFetching };
+
+  const refreshBoardArticles = (board_path: string) => {
+    queryClient.invalidateQueries(['specificBoardArticles', board_path]);
+  };
+
+  return {
+    data: res?.articles.reverse() ?? [],
+    isFetching,
+    refreshBoardArticles,
+  };
 };
 
 export const useCreateAriticleMutation = () => {
