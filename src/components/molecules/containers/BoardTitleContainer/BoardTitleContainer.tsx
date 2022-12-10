@@ -24,7 +24,6 @@ function BoardTitleContainer(props: BoardTitleContainerProps) {
     if (boards.length === 0) {
       boardActions.getBoards();
     }
-    setIsOpen(false);
   }, [boardActions, boards, boardName]);
 
   return (
@@ -47,13 +46,17 @@ function BoardTitleContainer(props: BoardTitleContainerProps) {
           color="black"
           radius="round"
           onClick={() => {
-            setIsOpen(!isOpen);
+            setIsOpen(isOpen => !isOpen);
           }}>
           <span>카테고리</span>
           <img
             className="button-with-icon-image"
             src={arrowDownYellowIcon}
-            style={isOpen ? { transform: 'rotate(180deg)' } : {}}
+            style={
+              isOpen
+                ? { transform: 'rotate(180deg)', transition: '0.3s all ease' }
+                : { marginBottom: '4px', transition: '0.3s all ease' }
+            }
             alt={isOpen ? '︿' : '﹀'}
           />
         </Button>
