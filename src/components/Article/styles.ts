@@ -157,6 +157,14 @@ export const Reply = styled.div`
       font-family: NotoSansCJKKR;
       font-weight: 500;
     }
+
+    .date {
+      margin-top: 5px;
+      margin-bottom: 5px;
+      font-family: NotoSansCJKKR;
+      font-size: ${props => props.theme.fontSize[12]};
+      color: #777;
+    }
   }
 
   & > .reply-wrap {
