@@ -93,7 +93,7 @@ export const Comment = styled.div`
   margin-bottom: 5px;
   border-bottom: solid 1px #ddd;
   padding: 10px 0;
-
+  word-break: break-all;
   .comment-info {
     margin-bottom: 5px;
 
