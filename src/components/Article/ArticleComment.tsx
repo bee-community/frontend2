@@ -2,6 +2,7 @@ import enter from 'assets/images/icons/enter.png';
 import heart from 'assets/images/icons/heart-unfilled.png';
 import theme from 'assets/theme';
 import Button from 'components/atoms/Button';
+import dayjs from 'dayjs';
 import { useCreateComment } from 'hooks/business/article';
 import { useState, useCallback } from 'react';
 
@@ -12,7 +13,7 @@ const ArticleComment = ({ element, articleId }: any) => {
   const [comment, setComment] = useState('');
   const commentId = element.id;
   const { createComment } = useCreateComment();
-
+  console.log(element);
   const onChangeContent = useCallback(e => {
     setComment(e.target.value);
   }, []);
@@ -36,8 +37,10 @@ const ArticleComment = ({ element, articleId }: any) => {
     <>
       <Comment key={element.id}>
         <div className="comment-info">
-          <span className="nick-name">닉네임</span>
-          <span className="date">2022.03.12 10:00</span>
+          <span className="nick-name">{element.author}</span>
+          <span className="date">
+            {dayjs(element.createAt).format('YYYY.MM.DD HH:mm')}
+          </span>
         </div>
         <div className="comment">{element.content}</div>
         <div className="comment-response">
