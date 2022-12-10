@@ -3,17 +3,21 @@ import IconWithLinkContainer from 'components/molecules/containers/IconWithLinkC
 import { BoardInfo } from 'context/Board/types';
 import * as React from 'react';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { setCategoryToggle } from 'redux/openStateSlice';
 
 import { StyledCategoryList } from './styles';
 
 function CategoryList(props: { categories: BoardInfo[] }) {
   const navigate = useNavigate();
   const categories = props.categories;
-  const [isOpened, setIsOpened] = useState(false);
+  const { isCategoryOpen } = useSelector((store: any) => store.openState);
+  const dispatch = useDispatch();
+  // const [isOpened, setIsOpened] = useState(false);
 
   return (
-    <StyledCategoryList isOpened={isOpened}>
+    <StyledCategoryList isOpened={isCategoryOpen}>
       <div className="title">
         <div>카테고리</div>
         <Button
@@ -21,7 +25,7 @@ function CategoryList(props: { categories: BoardInfo[] }) {
           color="black"
           radius="round"
           onClick={() => {
-            setIsOpened(!isOpened);
+            dispatch(setCategoryToggle());
           }}>
           전체보기
         </Button>

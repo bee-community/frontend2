@@ -5,7 +5,9 @@ import { useBoardState } from 'context/Board';
 import useBoardActions from 'hooks/useBoardActions';
 import * as React from 'react';
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
+import { setCategoryOpen } from 'redux/openStateSlice';
 
 import { StyledBoardTitleContainer, DropDownMenu } from './styles';
 
@@ -20,6 +22,7 @@ function BoardTitleContainer(props: BoardTitleContainerProps) {
   const boards = useBoardState();
   const boardName = boards.filter(board => board.path === props.title)[0]?.name;
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   useEffect(() => {
     if (boards.length === 0) {
       boardActions.getBoards();
@@ -63,7 +66,7 @@ function BoardTitleContainer(props: BoardTitleContainerProps) {
         </Button>
       </div>
       <DropDownMenu isOpen={isOpen}>
-        {boards.map(board => (
+        {boards.slice(0, 9).map(board => (
           <li key={board.id}>
             <Button
               buttonType="contained"
@@ -80,6 +83,18 @@ function BoardTitleContainer(props: BoardTitleContainerProps) {
             </Button>
           </li>
         ))}
+        <Button
+          buttonType="contained"
+          radius="round"
+          color="purple"
+          onClick={() => {
+            setIsOpen(isOpen => !isOpen);
+            dispatch(setCategoryOpen());
+            navigate('/');
+          }}
+          css={{ fontWeight: 'normal', width: '120px' }}>
+          더보기
+        </Button>
       </DropDownMenu>
     </StyledBoardTitleContainer>
   );
