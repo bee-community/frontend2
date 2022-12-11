@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { useGetUserSelf } from 'hooks/queries/requests';
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import Scrollbars from 'react-custom-scrollbars';
@@ -26,6 +27,8 @@ const ChatZZone = () => {
   const publicChats = useSelector((store: any) => store.publicChats);
   const logId = useSelector((store: any) => store.logId);
   const dispatcher = useDispatch();
+  const userSelf = useGetUserSelf();
+  console.log(userSelf);
   // const userData = useSelector((store: any) => store.userData);
   // const JWTtoken = useSelector((store: any) => store.JWTtoken);
   // const publicChats = useSelector((store: any) => store.publicChats);
@@ -106,6 +109,7 @@ const ChatZZone = () => {
   const onScroll = useCallback(
     value => {
       // console.log(value.scrollTop);
+
       if (value.scrollTop === 0 && !isReachingEnd) {
         console.log('가장위');
         if (logId.logId < 20) {
@@ -149,8 +153,10 @@ const ChatZZone = () => {
                 // console.log(chat);
                 // console.log(userData);
                 // console.log(dayjs(chat.sendTime).format('A HH:mm'));
+                console.log(chat.senderEmail);
+                console.log(userSelf.userEmail);
                 if (chat.type === 'CHAT') {
-                  return chat.senderEmail === userData.userEmail ? (
+                  return chat.senderEmail === userSelf.userEmail ? (
                     <div className="mySendChat" key={chat.id}>
                       <div className="chatSendTime">
                         {dayjs(chat.sendTime).format('A HH:mm')}
@@ -238,8 +244,10 @@ const ChatZZone = () => {
           // console.log(chat);
           // // console.log(chat);
           // console.log(userData);
+          console.log(chat.senderEmail);
+          console.log(userSelf.userEmail);
           if (chat.type === 'CHAT') {
-            return chat.senderEmail === userData.userEmail ? (
+            return chat.senderEmail === userSelf.userEmail ? (
               <div className="mySendChat" key={chat.id}>
                 <div className="chatSendTime">
                   {dayjs(chat.sendTime).format('A HH:mm')}

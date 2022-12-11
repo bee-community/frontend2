@@ -133,7 +133,7 @@ const Chat = () => {
     chatColor.chatColor == 'chatList' ? chatUrl : myChatUrl,
     url => fetcher(url, JWTtoken.JWTtoken),
     {
-      dedupingInterval: 6000000,
+      dedupingInterval: 6000000000000,
     },
   );
 

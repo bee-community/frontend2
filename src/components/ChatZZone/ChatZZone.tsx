@@ -105,8 +105,7 @@ const ChatZZone = () => {
   }, []);
   const onScroll = useCallback(
     value => {
-      // console.log(value.scrollTop);
-      if (value.scrollTop === 0 && !isReachingEnd) {
+      if (value.scrollTop === 0) {
         console.log('가장위');
         if (logId.logId < 20) {
           let a = logId.logId + 1;

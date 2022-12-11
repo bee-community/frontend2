@@ -66,6 +66,7 @@ const ChatMiddle = () => {
   const [voiceToken, setVoiceToken] = useState('');
   const [menuActive, setMenuActive] = useState(false);
   const menuModal = useRef<any>();
+  const JWTtoken = useSelector((store: any) => store.JWTtoken);
   const leaveSession = useCallback(() => {
     console.log(session);
     if (target) {
@@ -76,11 +77,18 @@ const ChatMiddle = () => {
         session.disconnect();
         console.log('보내나');
         axios
-          .post('/api/v1/webrtc/voice/remove-user', {
-            sessionName: channelInfo.id,
-            email: 'ksw',
-            token: voiceToken,
-          })
+          .post(
+            '/api/v1/webrtc/voice/remove-user',
+            {
+              channelId: channelInfo.id,
+              token: voiceToken,
+            },
+            {
+              headers: {
+                Authorization: 'jwt ' + JWTtoken.JWTtoken,
+              },
+            },
+          )
           .then((response: any) => {
             console.log('TOKEN', response);
           })
@@ -104,7 +112,7 @@ const ChatMiddle = () => {
     axios
       .post('/api/v1/webrtc/voice/remove-user', {
         sessionName: window.localStorage.getItem('voiceSessionId'),
-        email: 'ksw',
+        email: 'ksw3',
         token: window.localStorage.getItem('voiceToken'),
       })
       .then((response: any) => {
@@ -161,10 +169,18 @@ const ChatMiddle = () => {
     // return createSession(mySessionId).then(sessionId => createToken(sessionId));
     return new Promise((resolve, reject) => {
       axios
-        .post('/api/v1/webrtc/voice/get-token', {
-          sessionName: channelInfo.id,
-          email: 'ksw',
-        })
+        .post(
+          '/api/v1/webrtc/voice/get-token',
+          {
+            channelId: channelInfo.id,
+            // email: 'ksw',
+          },
+          {
+            headers: {
+              Authorization: 'jwt ' + JWTtoken.JWTtoken,
+            },
+          },
+        )
         .then((response: any) => {
           console.log('TOKEN', response);
           resolve(response.data.token);
@@ -212,7 +228,7 @@ const ChatMiddle = () => {
         console.log(mySession);
         mySession
           // .connect(tt, { clientData: nickname })
-          .connect(tt, { clientData: 'ksw' })
+          .connect(tt, { clientData: 'ksw3' })
           .then(async () => {
             window.localStorage.setItem('voiceToken', tt);
             window.localStorage.setItem('voiceSessionId', channelInfo.id);

@@ -5,6 +5,8 @@ import axios from 'axios';
 import { ArticleType } from 'context/Articles';
 import { BoardInfo } from 'context/Board/types';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
+import { useDispatch } from 'react-redux';
+import { getUser } from 'redux/userSlice';
 
 let REQUEST_URL = '';
 if (process.env.REACT_APP_MSW === 'development') {
@@ -14,9 +16,12 @@ if (process.env.REACT_APP_MSW === 'development') {
 }
 
 export const useGetUserSelf = (): any => {
+  const dispatch = useDispatch();
+
   const { data: res } = useQuery(['userSelf'], () =>
     client.get(`${REQUEST_URL}/users/self`),
   );
+  dispatch(getUser({ value: res?.data }));
   return res?.data ?? [];
 };
 

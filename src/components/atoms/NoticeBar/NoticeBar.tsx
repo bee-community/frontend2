@@ -1,6 +1,5 @@
 import arror_down from 'assets/images/icons/arrow-down.png';
 import arror_up from 'assets/images/icons/arrow-up.png';
-import { VerticalTicker } from 'components/Ticker/VerticalTicker';
 import { useRef } from 'react';
 
 import { NoticeBarWrap, ButtonWrap, Ticker } from './styles';

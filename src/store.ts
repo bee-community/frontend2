@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import beforeBoardSlice from 'redux/beforeBoardSlice';
 import openStateSlice from 'redux/openStateSlice';
+import userSlice from 'redux/userSlice';
 import chatDataListSlice from 'slice/chatDataListSlice';
 import chatMobileScroll from 'slice/chatMobileScroll';
 import clientSlice from 'slice/clientSlice';
@@ -41,5 +42,6 @@ export const store = configureStore({
     userInfo: userInfoReducer,
     boardData: beforeBoardSlice,
     openState: openStateSlice,
+    user: userSlice,
   },
 });

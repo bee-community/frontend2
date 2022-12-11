@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   username: '',
-  userEmail: '',
+  userEmail: 'user1@example.com',
   receivername: '',
   connected: false,
   message: '',

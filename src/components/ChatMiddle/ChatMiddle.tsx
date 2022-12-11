@@ -55,7 +55,7 @@ const ChatMiddle = () => {
         axios
           .post('/api/v1/webrtc/voice/remove-user', {
             sessionName: channelInfo.id,
-            email: 'ksw',
+            email: 'ksw3',
             token: voiceToken,
           })
           .then((response: any) => {
@@ -90,7 +90,7 @@ const ChatMiddle = () => {
         axios
           .post('/api/v1/webrtc/voice/remove-user', {
             sessionName: channelInfo.id,
-            email: 'ksw',
+            email: 'ksw3',
             token: voiceToken,
           })
           .then((response: any) => {
@@ -207,7 +207,7 @@ const ChatMiddle = () => {
       axios
         .post('/api/v1/webrtc/voice/get-token', {
           sessionName: channelInfo.id,
-          email: 'ksw',
+          email: 'ksw3',
         })
         .then((response: any) => {
           console.log('TOKEN', response);

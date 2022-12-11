@@ -36,8 +36,8 @@ const ChatBeforeModal: VFC<Props> = ({
 
   const { setClient, setChannelInfo, setHappy } = useContext<any>(ChatContext);
   const dispatch = useContext(DispatchContext);
-  const userData = useSelector((store: any) => store.user);
-  const JWTtoken = useSelector((store: any) => store.JWTtoken);
+  const user = useSelector((store: any) => store.user);
+  const { JWTtoken } = useSelector((store: any) => store.JWTtoken);
   const liveTime = useSelector((store: any) => store.liveTime);
   const dispatcher = useDispatch();
 
@@ -59,6 +59,32 @@ const ChatBeforeModal: VFC<Props> = ({
       hash += '#' + element.hashTag.tagName + ' ';
     });
     setHash(hash);
+  };
+
+  const connect = async () => {
+    try {
+      trick = JWTtoken;
+      dispatch({ value: trick, type: 'CHANGE' });
+
+      let Sock = new SockJS(socketURL);
+      stompClient = over(Sock);
+      setClient(stompClient);
+      stompClient.connect(
+        {
+          jwt: trick,
+        },
+        onConnected,
+        onError,
+      );
+    } catch (err) {
+      console.log(err);
+    } finally {
+      if (sendChannelInfo.channelType === 'TEXT') {
+        dispatcher(setChatState({ value: 'chat' }));
+      } else if (sendChannelInfo.channelType === 'VOIP') {
+        dispatcher(setChatState({ value: 'voicechat' }));
+      }
+    }
   };
 
   const userJoin = () => {
@@ -100,7 +126,7 @@ const ChatBeforeModal: VFC<Props> = ({
       case 'RENEWAL':
         // 뒤로가기를 하고 재입장을 하는 경우 이전 챗로그를 불러오지 못하여
         // 추가하였습니다.
-        if (userData.email === payloadData.senderEmail) {
+        if (user.email === payloadData.senderEmail) {
           avoid = false;
         }
         if (!avoid) {
@@ -129,7 +155,7 @@ const ChatBeforeModal: VFC<Props> = ({
         payloadData['sendTime'] = Date();
         // 뒤로가기를 하고 재입장을 하는 경우 이전 챗로그를 불러오지 못하여
         // 추가하였습니다.
-        if (userData.email === payloadData.senderEmail) {
+        if (user.email === payloadData.senderEmail) {
           avoid = false;
         }
         if (!avoid) {
@@ -205,38 +231,13 @@ const ChatBeforeModal: VFC<Props> = ({
     userJoin();
   };
 
-  const connect = async () => {
-    try {
-      trick = JWTtoken.JWTtoken;
-      dispatch({ value: trick, type: 'CHANGE' });
-
-      let Sock = new SockJS(socketURL);
-      stompClient = over(Sock);
-      setClient(stompClient);
-      stompClient.connect(
-        {
-          jwt: trick,
-        },
-        onConnected,
-        onError,
-      );
-    } catch (err) {
-      console.log(err);
-    } finally {
-      if (sendChannelInfo.channelType === 'TEXT') {
-        dispatcher(setChatState({ value: 'chat' }));
-      } else if (sendChannelInfo.channelType === 'VOIP') {
-        dispatcher(setChatState({ value: 'voicechat' }));
-      }
-    }
-  };
-
   useEffect(() => {
     secondsToTime(sendChannelInfo.timeToLive);
     renderHash(sendChannelInfo.channelHashTags);
     setChannelInfo(sendChannelInfo);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sendChannelInfo, userData]);
+  }, [sendChannelInfo, user]);
+
   useEffect(() => {
     document.documentElement.style.setProperty(
       '--deskTopBottomDrawer',
