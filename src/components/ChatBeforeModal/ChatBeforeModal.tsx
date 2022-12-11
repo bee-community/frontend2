@@ -32,7 +32,8 @@ const ChatBeforeModal: VFC<Props> = ({
 }) => {
   const [hash1, setHash] = useState('');
 
-  const { setClient, setChannelInfo, setHappy } = useContext<any>(ChatContext);
+  const { setClient, setChannelInfo, setStompSubscribe } =
+    useContext<any>(ChatContext);
   const user = useSelector((store: any) => store.user);
   const { JWTtoken } = useSelector((store: any) => store.JWTtoken);
   const liveTime = useSelector((store: any) => store.liveTime);
@@ -58,9 +59,9 @@ const ChatBeforeModal: VFC<Props> = ({
     setHash(hash);
   };
 
-  const connect = async () => {
+  const enterChatRoom = async () => {
     try {
-      let Sock = new SockJS(socketURL);
+      const Sock = new SockJS(socketURL);
       stompClient = over(Sock);
       setClient(stompClient);
       stompClient.connect(
@@ -73,11 +74,10 @@ const ChatBeforeModal: VFC<Props> = ({
     } catch (err) {
       console.log(err);
     } finally {
-      if (sendChannelInfo.channelType === 'TEXT') {
+      if (sendChannelInfo.channelType === 'TEXT')
         dispatcher(setChatState({ value: 'chat' }));
-      } else if (sendChannelInfo.channelType === 'VOIP') {
+      if (sendChannelInfo.channelType === 'VOIP')
         dispatcher(setChatState({ value: 'voicechat' }));
-      }
     }
   };
 
@@ -169,7 +169,7 @@ const ChatBeforeModal: VFC<Props> = ({
     }
   };
   const onConnectedExcept = () => {
-    setHappy(
+    setStompSubscribe(
       stompClient.subscribe(
         '/sub/chat/room/' + sendChannelInfo.id,
         onMessageReceivedExcept,
@@ -216,7 +216,7 @@ const ChatBeforeModal: VFC<Props> = ({
   };
 
   const onConnected = () => {
-    setHappy(
+    setStompSubscribe(
       stompClient.subscribe(
         '/sub/chat/room/' + sendChannelInfo.id,
         onMessageReceived,
@@ -271,7 +271,7 @@ const ChatBeforeModal: VFC<Props> = ({
             <span>{`/${sendChannelInfo.limitParticipants}`}</span>
           </div>
         </div>
-        <div className="yellowButton" onClick={connect}>
+        <div className="yellowButton" onClick={enterChatRoom}>
           채팅방 참여하기
         </div>
       </div>

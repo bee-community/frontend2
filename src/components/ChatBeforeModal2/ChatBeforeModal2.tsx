@@ -39,7 +39,8 @@ const ChatBeforeModal: VFC<Props> = ({
   const [testName, setTestName] = useState('');
 
   // const [test, setTest] = useState('');
-  const { setClient, setChannelInfo, setHappy } = useContext<any>(ChatContext);
+  const { setClient, setChannelInfo, setStompSubscribe } =
+    useContext<any>(ChatContext);
   // const { scrollBarRef } = useContext<any>(ScrollContext);
 
   // const jwt = useContext(JwtStateContext);
@@ -194,7 +195,7 @@ const ChatBeforeModal: VFC<Props> = ({
   const onConnectedExcept = () => {
     // setUserData({ ...userData, connected: true });
     dispatcher(changeUserDataConnected({ connected: true }));
-    setHappy(
+    setStompSubscribe(
       stompClient.subscribe(
         '/sub/chat/room/' + sendChannelInfo.id,
         onMessageReceivedExcept,
@@ -267,7 +268,7 @@ const ChatBeforeModal: VFC<Props> = ({
 
   const onConnected = () => {
     dispatcher(changeUserDataConnected({ connected: true }));
-    setHappy(
+    setStompSubscribe(
       stompClient.subscribe(
         '/sub/chat/room/' + sendChannelInfo.id,
         onMessageReceived,

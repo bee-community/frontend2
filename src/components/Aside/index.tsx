@@ -33,7 +33,7 @@ import './test.css';
 
 function Aside() {
   // dummy popular Article
-  const { client, happy, setChatList } = useContext<any>(ChatContext);
+  const { client, stompSubscribe, setChatList } = useContext<any>(ChatContext);
   // const { JWTtoken, publicChats } = useSelector((store: any) => store);
   const chatColor = useSelector((store: any) => store.chatColor);
   const chatState = useSelector((store: any) => store.chatState);
@@ -54,8 +54,8 @@ function Aside() {
   // );
 
   useEffect(() => {
-    if (Object.keys(happy).length > 0) {
-      happy.unsubscribe();
+    if (Object.keys(stompSubscribe).length > 0) {
+      stompSubscribe.unsubscribe();
     }
     if (Object.keys(client).length > 0) {
       client.disconnect();

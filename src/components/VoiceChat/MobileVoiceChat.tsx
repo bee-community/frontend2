@@ -114,7 +114,7 @@ const PPointModal = styled.div`
 //   toggleDrawer: (e: any) => void;
 // }
 const Chat = () => {
-  const { client, channelInfo, happy, setChatList } =
+  const { client, channelInfo, stompSubscribe, setChatList } =
     useContext<any>(ChatContext);
 
   const userData = useSelector((store: any) => store.userData);
@@ -240,11 +240,11 @@ const Chat = () => {
     [chat],
   );
   const socketDisconnect = () => {
-    console.log(happy);
+    console.log(stompSubscribe);
     console.log(client);
     console.log('종료');
-    happy.unsubscribe();
-    // console.log(happy);
+    stompSubscribe.unsubscribe();
+    // console.log(stompSubscribe);
     // console.log(client);
     client.disconnect();
     dispatcher(resetPublicChats());

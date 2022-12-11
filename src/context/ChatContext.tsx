@@ -4,7 +4,7 @@ const ChatContext = createContext({});
 
 export const ChatProvider: FC = ({ children }) => {
   const [client, setClient] = useState({});
-  const [happy, setHappy] = useState({});
+  const [stompSubscribe, setStompSubscribe] = useState({});
 
   const scrollBarRef = useRef<any>(null);
   const [channelInfo, setChannelInfo] = useState({});
@@ -17,8 +17,8 @@ export const ChatProvider: FC = ({ children }) => {
       value={{
         client,
         setClient,
-        happy,
-        setHappy,
+        stompSubscribe,
+        setStompSubscribe,
         scrollBarRef,
         channelInfo,
         setChannelInfo,

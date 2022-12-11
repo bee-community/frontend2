@@ -40,7 +40,7 @@ import {
 } from './styles';
 
 const Chat = () => {
-  const { client, channelInfo, happy, setChatList } =
+  const { client, channelInfo, stompSubscribe, setChatList } =
     useContext<any>(ChatContext);
 
   const userData = useSelector((store: any) => store.userData);
@@ -122,7 +122,7 @@ const Chat = () => {
   );
   const socketDisconnect = () => {
     console.log('종료');
-    happy.unsubscribe();
+    stompSubscribe.unsubscribe();
     client.disconnect();
     dispatcher(resetPublicChats());
     dispatcher(setLogId({ value: 0 }));
