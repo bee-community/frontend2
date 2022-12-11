@@ -26,14 +26,10 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
   const [chatType, setChatType] = useState('TEXT');
   const onChangeRadio = (e: any) => {
     setChatType(e.target.value);
-    console.log(e.target.value);
   };
 
   const onKeyKey = (e: any) => {
-    // console.log(e.key);
-    // console.log(e.keyCode);
     if (e.key === 'Enter' && e.keyCode === 13) {
-      // setName(e.target.value);
       setNewHash('');
       setTags([...tags, e.target.value]);
     } else if (newHash == '' && e.key == 'Backspace') {
@@ -41,10 +37,7 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
       setTags([...tags.slice(0, size - 1)]);
     }
   };
-  console.log(tags);
   const deleteClick = (index: number) => {
-    // console.log(index);
-    // console.log('click delete');
     setTags([...tags.slice(0, index), ...tags.slice(index + 1)]);
   };
 
@@ -80,7 +73,6 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
         })
         .catch(function (error) {
           // handle error
-          console.log(error);
           if (error.response.status === 409) {
             dispatcher(setCreatePointModalExcept({ value: true }));
           }
@@ -88,53 +80,10 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
         .finally(() => {
           // console.log(chatType);
         });
-      // if (!newUrl || !newUrl.trim()) return;
-      // console.log(newWorkspace)
-      // console.log(newUrl)
-      // axios
-      //     .post(ㄴ
-      //         '/api/workspaces',
-
-      //         {
-      //             workspace: newWorkspace,
-      //         },
-      //         {
-      //             // 로그인된 상태인 것을 쿠키로 백에 전달
-      //             withCredentials: true,
-      //         },
-      //     )
-      //     .then(() => {
-      //         revalidate();
-      //         setShowCreateWorkspaceModal(false);
-      //         // state 값 초기화
-      //         setNewWorkspace('');
-      //         setNewUrl('');
-      //     })
-      //     .catch((error) => {
-      //         console.dir(error);
-      //         toast.error(error.response?.data, { position: 'bottom-center' });
-      //     });
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [newWorkspace, newHash, chatType],
   );
-
-  useEffect(() => {
-    // console.log('wwww');
-    // const DDD = axios
-    //   .get<ChannelResponse>('http://192.168.0.39:8080/api/v1/webrtc/channels')
-    //   .then(res => {
-    //     // console.log(Data.channels);
-    //     // // Data.channels.map(v => {
-    //     // //   console.log(v);
-    //     // // });
-    //     // Data.channels.map(v => {
-    //     //   console.log(v);
-    //     // });
-    //     // console.log(`dddd:`);
-    //   });
-    // return () => disconnect();
-  }, []);
 
   const setScreenSize = () => {
     let vh = window.innerHeight * 0.01;
@@ -257,45 +206,6 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
                   className="checkmark"></span>
               </label>
             </div>
-            {/* <input
-              onChange={onChangeRadio}
-              value="chat"
-              type="radio"
-              className="hidden"
-              id="input1"
-              name="inputs"
-            />
-            <label className="entry" htmlFor="input1">
-              <div
-                style={{
-                  borderColor: chatType === 'chat' ? '#ffe576' : 'white',
-                }}
-                className="circle"></div>
-              <div className="entry-label">문자</div>
-            </label>
-            <input
-              onChange={onChangeRadio}
-              value="VOIP"
-              type="radio"
-              className="hidden"
-              id="input2"
-              name="inputs"
-            />
-            <label className="entry2" htmlFor="input2">
-              <div
-                style={{
-                  borderColor: chatType === 'chat' ? 'white' : '#ffe576',
-                }}
-                className="circle"></div>
-              <div className="entry-label2">음성</div>
-            </label>
-
-            <div
-              style={{
-                transform:
-                  chatType === 'chat' ? 'translateX(0px)' : 'translateX(100px)',
-              }}
-              className="highlight"></div> */}
           </Label2>
           <Button onClick={onCreateWorkspace}>채팅방 생성!</Button>
         </div>

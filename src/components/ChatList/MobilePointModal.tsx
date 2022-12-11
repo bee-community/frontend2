@@ -21,7 +21,6 @@ const PointModal = () => {
   const dispatcher = useDispatch();
   const onChangeRadio = (e: any) => {
     setTTL(e.target.value);
-    console.log(e.target.value);
   };
   const getPoint = useCallback(() => {
     axios
@@ -34,9 +33,7 @@ const PointModal = () => {
       .then((res: any) => {
         dispatcher(setRemainPoint({ value: res.data.point }));
       })
-      .catch(function (error) {
-        console.log(error);
-      })
+      .catch(function (error) {})
       .finally(function () {
         dispatcher(setRemainOpen({ value: true }));
       });
@@ -55,12 +52,8 @@ const PointModal = () => {
         },
       )
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      .then(res => {
-        console.log(res);
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
+      .then(res => {})
+      .catch(function (error) {})
       .finally(() => {
         dispatcher(setUsePoint({ value: Number(TTL) * 100 }));
         dispatcher(setPointOpen({ value: false }));

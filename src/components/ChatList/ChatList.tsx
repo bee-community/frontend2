@@ -28,7 +28,6 @@ const ChatList = () => {
   const [sendChannelInfo, setSendChannelInfo] = useState<Channel>(ab);
   const onClickChatBeforeModal = useCallback(
     (channel: Channel, i: number) => {
-      console.log(channel);
       setShowChatBeforeModal(true);
       setSendChannelInfo(channel);
       dispatcher(setIndexChat({ value: i }));
@@ -61,7 +60,6 @@ const ChatList = () => {
 
   const setScreenSize = () => {
     let vh = window.innerHeight * 0.01;
-    console.log(vh);
     document.documentElement.style.setProperty('--vh', `${vh}px`);
   };
 

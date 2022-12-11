@@ -57,7 +57,6 @@ function Aside() {
   );
   const onChangeText = (e: any) => {
     setText(e.target.value);
-    console.log(e.code);
   };
 
   // const chatUrl = '/api/v1/webrtc/channels/0';
@@ -79,7 +78,6 @@ function Aside() {
     }
 
     setChatList([]);
-    console.log('색깔변경');
     dispatcher(resetPublicChats());
     dispatcher(setLogId({ value: 0 }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -180,11 +178,9 @@ function Aside() {
     return () => body.classList.remove('scrollLock');
   }, []);
   useEffect(() => {
-    console.log('nedhello');
     window.scrollTo(0, 0);
   }, [needScroll]);
   const hashTagSearch = useCallback(hash => {
-    console.log(hash);
     axios
       .get(`/api/v1/webrtc/chat/hashtag/${hash}/partiDESC/0`, {
         headers: {
@@ -192,7 +188,6 @@ function Aside() {
         },
       })
       .then((res: any) => {
-        console.log(res.data);
         dispatcher(setDataList2({ value: res.data.channels }));
         dispatcher(setMyDataList({ value: res.data.channels }));
         // setDataList(res.data.channels);

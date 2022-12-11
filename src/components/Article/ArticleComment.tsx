@@ -13,7 +13,6 @@ const ArticleComment = ({ element, articleId }: any) => {
   const [comment, setComment] = useState('');
   const commentId = element.id;
   const { createComment } = useCreateComment();
-  console.log(element);
   const onChangeContent = useCallback(e => {
     setComment(e.target.value);
   }, []);

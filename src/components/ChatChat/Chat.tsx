@@ -228,7 +228,6 @@ const Chat = () => {
   //       listenBackEvent();
   //     }
   //   });
-  console.log(pointOpen);
 
   //   return unlistenHistoryEvent;
   // }, []);

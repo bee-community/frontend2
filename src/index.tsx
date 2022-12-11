@@ -13,8 +13,6 @@ import styles from 'styles';
 import App from './App';
 import { store } from './store';
 
-console.log(process.env.REACT_APP_MSW);
-
 if (process.env.REACT_APP_MSW === 'development') {
   const { worker } = require('./mocks/browser');
   worker.start({

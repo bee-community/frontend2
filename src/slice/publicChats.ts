@@ -9,15 +9,11 @@ const publicChatsSlice = createSlice({
   initialState,
   reducers: {
     setPublicChats: (state, { payload }) => {
-      console.log(payload);
       state.chat = [...payload.value];
-      console.log(state.chat);
     },
     pushPublicChats: (state, { payload }) => {
-      console.log(payload.value);
       state.chat = [...state.chat, payload.value];
       //   state.chat = state.chat.push(payload.value);
-      console.log(state.chat);
     },
     resetPublicChats: state => {
       state.chat = [];

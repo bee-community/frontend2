@@ -15,7 +15,6 @@ import './BottomNav.css';
 const BottomNav = () => {
   const [page, setPage] = useState('home');
   const path = useLocation().pathname;
-  console.log(path);
   useEffect(() => {
     switch (path) {
       case '/':

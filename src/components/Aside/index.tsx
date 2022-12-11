@@ -62,7 +62,6 @@ function Aside() {
     }
 
     setChatList([]);
-    console.log('색깔변경');
     dispatcher(resetPublicChats());
     dispatcher(setLogId({ value: 0 }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -166,7 +165,6 @@ function Aside() {
             dispatcher(setChatColor({ value: 'chatList' }));
             dispatcher(setChatState({ value: 'chatList' }));
             // chatGetType = 'chatList';
-            console.log('dad');
             // revalidate();
           }}
           backgroundColor={
@@ -179,7 +177,6 @@ function Aside() {
           onClick={() => {
             dispatcher(setChatColor({ value: 'myList' }));
             dispatcher(setChatState({ value: 'myList' }));
-            console.log('dad2');
             // revalidate();
           }}
           backgroundColor={
