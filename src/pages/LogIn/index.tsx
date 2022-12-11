@@ -4,14 +4,16 @@ import { useAuthDispatch, useAuthState } from 'context/Auth';
 import { login } from 'context/Auth/actions';
 import API from 'mainAPI';
 import { useCallback, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { setJWTToken } from 'slice/tokenSilice';
 
 import { LogInWrap, LoginForm, Title } from './styles';
 
 function LogIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState(undefined);
-
+  const dispatch = useDispatch();
   const authDispatch = useAuthDispatch();
   // const auth = useAuthState();
 
@@ -51,6 +53,7 @@ function LogIn() {
               if (key === 'access_token') {
                 setAccessToken(value);
                 localStorage.setItem('access_token', value);
+                dispatch(setJWTToken({ value }));
               }
               if (key === 'token_type') {
                 setTokenType(value);
