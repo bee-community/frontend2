@@ -41,7 +41,6 @@ const ArticlePost = () => {
   const onSubmit = useCallback(
     e => {
       e.preventDefault();
-      console.log(boardPath);
       createArticle(
         {
           title: title,
@@ -95,6 +94,7 @@ const ArticlePost = () => {
                   name="title"
                   type="text"
                   maxLength={20}
+                  required
                   value={title}
                   onChange={onChangeTitle}
                   placeholder="제목을 입력해주세요."
@@ -110,6 +110,7 @@ const ArticlePost = () => {
                   id="content"
                   name="content"
                   value={content}
+                  required
                   onChange={onChangeContent}
                   placeholder="문의할 내용을 입력해주세요."
                 />
@@ -146,6 +147,7 @@ const ArticlePost = () => {
               <td className="border-bottom">
                 <input
                   type="text"
+                  required
                   placeholder="#ENTP  추가하실 태그를 적어주세요"
                 />
               </td>
