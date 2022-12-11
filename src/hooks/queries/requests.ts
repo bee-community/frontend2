@@ -1,3 +1,4 @@
+import { client } from 'apis';
 import { createArticle } from 'apis/article';
 import { getSpecificBoardArticles } from 'apis/requests';
 import axios from 'axios';
@@ -11,6 +12,13 @@ if (process.env.REACT_APP_MSW === 'development') {
 } else {
   REQUEST_URL = 'http://honeybees.community';
 }
+
+export const useGetUserSelf = (): any => {
+  const { data: res } = useQuery(['userSelf'], () =>
+    client.get(`${REQUEST_URL}/users/self`),
+  );
+  return res?.data ?? [];
+};
 
 export const useGetBoards = (): BoardInfo[] => {
   const { data: res } = useQuery('boards', () =>

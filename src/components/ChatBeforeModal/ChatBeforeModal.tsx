@@ -1,6 +1,7 @@
 import timeIcon from 'assets/chatImages/chat_time_white.png';
 import cuteBee from 'assets/chatImages/removebee.png';
 import xButton from 'assets/chatImages/xbutton.png';
+import { useGetUserSelf } from 'hooks/queries/requests';
 import React, { useEffect, VFC, useState, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setChatState } from 'slice/chatStateSlice';
@@ -43,16 +44,13 @@ const ChatBeforeModal: VFC<Props> = ({
   const [hash1, setHash] = useState('');
   const [testName, setTestName] = useState('');
 
-  // const [test, setTest] = useState('');
   const { setClient, setChannelInfo, setHappy } = useContext<any>(ChatContext);
-  // const { scrollBarRef } = useContext<any>(ScrollContext);
-
-  // const jwt = useContext(JwtStateContext);
+  console.log(sendChannelInfo);
   const dispatch = useContext(DispatchContext);
   const userData = useSelector((store: any) => store.userData);
   const JWTtoken = useSelector((store: any) => store.JWTtoken);
-  // const publicChats = useSelector((store: any) => store.publicChats);
   const liveTime = useSelector((store: any) => store.liveTime);
+  const userSelf = useGetUserSelf();
   const dispatcher = useDispatch();
 
   const secondsToTime = (seconds: number) => {
@@ -117,7 +115,9 @@ const ChatBeforeModal: VFC<Props> = ({
         // console.log(payloadData);
         // 뒤로가기를 하고 재입장을 하는 경우 이전 챗로그를 불러오지 못하여
         // 추가하였습니다.
-        if (userData.userEmail === payloadData.senderEmail) {
+        console.log(userData);
+        console.log(payloadData.senderEmail);
+        if (userSelf.email === payloadData.senderEmail) {
           avoid = false;
         }
         if (!avoid) {
@@ -156,7 +156,7 @@ const ChatBeforeModal: VFC<Props> = ({
         // console.log(payloadData);
         // 뒤로가기를 하고 재입장을 하는 경우 이전 챗로그를 불러오지 못하여
         // 추가하였습니다.
-        if (userData.userEmail === payloadData.senderEmail) {
+        if (userSelf.email === payloadData.senderEmail) {
           avoid = false;
         }
         if (!avoid) {
@@ -284,14 +284,6 @@ const ChatBeforeModal: VFC<Props> = ({
       `385px`,
     );
   }, []);
-  const onChangeTestName = (e: any) => {
-    // console.log(testName);
-
-    const { value } = e.target;
-    setTestName(value);
-    // setUserData({ ...userData, userEmail: value });
-    dispatcher(changeUserDataEmail({ userEmail: value }));
-  };
 
   if (!show) {
     return null;
@@ -312,7 +304,6 @@ const ChatBeforeModal: VFC<Props> = ({
             onClick={onCloseModal}></img>
         </div>
         <div className="textArea">
-          <input value={testName} onChange={onChangeTestName}></input>
           <div className="modalTag">{hash1}</div>
           <div className="modalTitle">{sendChannelInfo.channelName}</div>
           <div className="modalTimeLimit">
