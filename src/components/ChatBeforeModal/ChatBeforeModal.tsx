@@ -11,7 +11,6 @@ import SockJS from 'sockjs-client';
 import { over } from 'stompjs';
 
 import ChatContext from '../../context/ChatContext';
-import { DispatchContext } from '../../context/JwtContext';
 import { pushPublicChats } from '../../slice/publicChats';
 import { setUserEnterNumber } from '../../slice/userEnterNumberSlice';
 import { Channel, HashTag } from '../../typings/db';
@@ -24,7 +23,6 @@ interface Props {
 }
 const socketURL = 'http://honeybees.community:8080/ws-stomp';
 var stompClient: any = null;
-let trick = '';
 let avoid = false;
 let reEnter = 0;
 const ChatBeforeModal: VFC<Props> = ({
@@ -35,7 +33,6 @@ const ChatBeforeModal: VFC<Props> = ({
   const [hash1, setHash] = useState('');
 
   const { setClient, setChannelInfo, setHappy } = useContext<any>(ChatContext);
-  const dispatch = useContext(DispatchContext);
   const user = useSelector((store: any) => store.user);
   const { JWTtoken } = useSelector((store: any) => store.JWTtoken);
   const liveTime = useSelector((store: any) => store.liveTime);
@@ -63,15 +60,12 @@ const ChatBeforeModal: VFC<Props> = ({
 
   const connect = async () => {
     try {
-      trick = JWTtoken;
-      dispatch({ value: trick, type: 'CHANGE' });
-
       let Sock = new SockJS(socketURL);
       stompClient = over(Sock);
       setClient(stompClient);
       stompClient.connect(
         {
-          jwt: trick,
+          jwt: JWTtoken,
         },
         onConnected,
         onError,
@@ -94,7 +88,7 @@ const ChatBeforeModal: VFC<Props> = ({
     stompClient.send(
       '/pub/chat/room',
       {
-        jwt: trick,
+        jwt: JWTtoken,
         channelId: sendChannelInfo.id,
         type: 'ENTER',
       },
@@ -110,7 +104,7 @@ const ChatBeforeModal: VFC<Props> = ({
     stompClient.send(
       '/pub/chat/room',
       {
-        jwt: trick,
+        jwt: JWTtoken,
         channelId: sendChannelInfo.id,
         type: 'REENTER',
       },
@@ -200,7 +194,7 @@ const ChatBeforeModal: VFC<Props> = ({
     stompClient.connect(
       {
         channelId: sendChannelInfo.id,
-        jwt: trick,
+        jwt: JWTtoken,
       },
       onConnectedExcept,
       onErrorExcept,

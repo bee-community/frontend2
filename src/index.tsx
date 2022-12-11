@@ -4,7 +4,6 @@ import { ArticlesProvider } from 'context/Articles';
 import { AuthProvider } from 'context/Auth';
 import { BoardProvider } from 'context/Board';
 import { ChatProvider } from 'context/ChatContext';
-import { JwtProvider } from 'context/JwtContext';
 import { ScrollProvider } from 'context/ScrollContext';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -30,13 +29,11 @@ ReactDOM.render(
         <ArticlesProvider>
           <Global styles={styles} />
           <ChatProvider>
-            <JwtProvider>
-              <ScrollProvider>
-                <Provider store={store}>
-                  <App />
-                </Provider>
-              </ScrollProvider>
-            </JwtProvider>
+            <ScrollProvider>
+              <Provider store={store}>
+                <App />
+              </Provider>
+            </ScrollProvider>
           </ChatProvider>
         </ArticlesProvider>
       </BoardProvider>

@@ -10,12 +10,7 @@ import { setLogId } from 'slice/logIdSlice';
 import SockJS from 'sockjs-client';
 import { over } from 'stompjs';
 
-import axios from '../../chatApi';
-// import { history } from 'utils/history';
-// import fetcher2 from 'utils/fetcher2';
 import ChatContext from '../../context/ChatContext';
-import { DispatchContext } from '../../context/JwtContext';
-// import JwtContext from '../../context/JwtContext';
 import { pushPublicChats } from '../../slice/publicChats';
 import {
   changeUserDataEmail,
@@ -33,7 +28,6 @@ interface Props {
 const socketURL = 'http://honeybees.community:8080/ws-stomp';
 
 var stompClient: any = null;
-let trick = '';
 let avoid = false;
 let reEnter = 0;
 const ChatBeforeModal: VFC<Props> = ({
@@ -49,9 +43,8 @@ const ChatBeforeModal: VFC<Props> = ({
   // const { scrollBarRef } = useContext<any>(ScrollContext);
 
   // const jwt = useContext(JwtStateContext);
-  const dispatch = useContext(DispatchContext);
   const userData = useSelector((store: any) => store.userData);
-  const JWTtoken = useSelector((store: any) => store.JWTtoken);
+  const { JWTtoken } = useSelector((store: any) => store.JWTtoken);
   // const publicChats = useSelector((store: any) => store.publicChats);
   const liveTime = useSelector((store: any) => store.liveTime);
   const dispatcher = useDispatch();
@@ -89,7 +82,7 @@ const ChatBeforeModal: VFC<Props> = ({
     stompClient.send(
       '/pub/chat/room',
       {
-        jwt: trick,
+        jwt: JWTtoken,
         channelId: sendChannelInfo.id,
         type: 'ENTER',
       },
@@ -105,7 +98,7 @@ const ChatBeforeModal: VFC<Props> = ({
     stompClient.send(
       '/pub/chat/room',
       {
-        jwt: trick,
+        jwt: JWTtoken,
         channelId: sendChannelInfo.id,
         type: 'REENTER',
       },
@@ -236,7 +229,7 @@ const ChatBeforeModal: VFC<Props> = ({
     stompClient.connect(
       {
         channelId: sendChannelInfo.id,
-        jwt: trick,
+        jwt: JWTtoken,
         // jwt: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjUxNTE0NjY3LCJpYXQiOjE2NTE0OTY2Njd9.I3Wlq_f7elhOsJ9wP07-YCRba9ITlyI7BbQyqXWjmB5ClkQ5iqOsNdNUqpX2BG2BgCrHwvsujA6O15ojMmAI2Q',
         // username: 'user',
       },
@@ -309,21 +302,13 @@ const ChatBeforeModal: VFC<Props> = ({
       // });
       // console.log(ress.data.jwttoken);
 
-      trick = JWTtoken.JWTtoken;
-      dispatch({ value: trick, type: 'CHANGE' });
-
-      trick = JWTtoken.JWTtoken;
-      // console.log(trick);
-      // setTestName(ress.data.jwttoken);
-      //1 setJwt('test');
-      // console.log('type', typeof res.data.jwttoken);
       let Sock = new SockJS(socketURL);
       stompClient = over(Sock);
       setClient(stompClient);
       stompClient.connect(
         {
           channelId: sendChannelInfo.id,
-          jwt: trick,
+          jwt: JWTtoken,
           // jwt: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjUxNTE0NjY3LCJpYXQiOjE2NTE0OTY2Njd9.I3Wlq_f7elhOsJ9wP07-YCRba9ITlyI7BbQyqXWjmB5ClkQ5iqOsNdNUqpX2BG2BgCrHwvsujA6O15ojMmAI2Q',
           // username: 'user',
         },
@@ -365,7 +350,7 @@ const ChatBeforeModal: VFC<Props> = ({
   //     onConnected,
   //     onError,
   //   );
-  // }, [trick]);
+  // }, [JWTtoken]);
   // useEffect(() => {
   //   console.log(test);
   //   console.log('teststetstststsrtste');

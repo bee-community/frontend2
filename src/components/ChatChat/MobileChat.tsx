@@ -6,12 +6,8 @@ import xbutton from 'assets/chatImages/xbutton_gray.png';
 import ChatWraper from 'components/ChatBox/MobileWrapper';
 import ChatEndModal from 'components/ChatEndModal/ChatEndModal';
 import PointModal from 'components/ChatList/MobilePointModal';
-import RemainPoint from 'components/ChatList/RemainPoint';
-import ChatMiddle from 'components/ChatMiddle/ChatMiddle';
 import ChatZZone from 'components/ChatZZone/ChatZZone';
-import { JwtStateContext } from 'context/JwtContext';
 import React, { useCallback, useContext, useEffect, useState } from 'react';
-// import { Scrollbars } from 'react-custom-scrollbars';
 import Drawer from 'react-modern-drawer';
 import 'react-modern-drawer/dist/index.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,7 +19,6 @@ import styled from 'styled-components';
 import useSWR from 'swr';
 
 import ChatContext from '../../context/ChatContext';
-// import JwtContext from '../../context/JwtContext';
 import useInput from '../../hooks/useInput';
 import { resetPublicChats } from '../../slice/publicChats';
 import { changeUserDataMessage } from '../../slice/userDataSlice';
@@ -107,16 +102,12 @@ const PPointModal = styled.div`
   }
 `;
 
-// interface Props {
-//   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-//   toggleDrawer: (e: any) => void;
-// }
 const Chat = () => {
   const { client, channelInfo, happy, setChatList } =
     useContext<any>(ChatContext);
 
   const userData = useSelector((store: any) => store.userData);
-  const JWTtoken = useSelector((store: any) => store.JWTtoken);
+  const { JWTtoken } = useSelector((store: any) => store.JWTtoken);
   const userChatName = useSelector((store: any) => store.userEnterNumber);
   const indexChat = useSelector((store: any) => store.indexChat);
   const chatColor = useSelector((store: any) => store.chatColor);
@@ -127,7 +118,7 @@ const Chat = () => {
   const myChatUrl = '/api/v1/webrtc/chat/mychannel/partiDESC/0';
   const { data: Data, revalidate }: any = useSWR(
     chatColor.chatColor == 'chatList' ? chatUrl : myChatUrl,
-    url => fetcher(url, JWTtoken.JWTtoken),
+    url => fetcher(url, JWTtoken),
     {
       dedupingInterval: 6000000000000,
     },
@@ -141,11 +132,7 @@ const Chat = () => {
   };
 
   useEffect(() => {
-    // if (typeof Data?.channels[indexChat]?.timeToLive == 'undefined') {
-    // } else {
     setChatTime(Data?.channels[indexChat.indexChat]?.timeToLive);
-    // }
-    // console.log(typeof Data?.channels[indexChat]?.timeToLive);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [Data]);
   const secondsToTime = (seconds: number | undefined) => {
@@ -155,79 +142,50 @@ const Chat = () => {
     let day = 0;
     var hour = Math.floor(seconds / 3600);
     var min = Math.floor((seconds % 3600) / 60);
-    // var sec = seconds % 60;
     while (hour > 24) {
       hour -= 24;
       day += 1;
     }
     return `${day}일 ${hour}시간 ${min}분 후 종료`;
   };
-  // console.log(userChatName);
-  // userChatName.map((user: any, index: number) => console.log(user));
-  // const { jwt, setJwt } = useContext<any>(ChatContext);
-  const jwt = useContext(JwtStateContext);
-  // 챗 데이터를 가져다옴
-  // const { data: chatData, mutate: mutateChat, revalidate } = useSWR<IDM[]>(
-  //   (index) => `/api/workspaces/${workspace}/dms/${id}/chats?perPage=20&page=${index + 1}`,
-  //   fetcher,
-  // );
-  // const { jwt, setJwt } = useContext<any>(JwtContext);
+
   useEffect(() => {
     console.log('화이팅');
   }, [pointOpen]);
   const onSubmitForm = useCallback(
     e => {
-      // console.log(chat);
       if (chat === '') {
         return;
       }
       e.preventDefault();
-      // if (chat?.trim()) {
-      //   axios
-      //     .post(`api`, {
-      //       content: chat,
-      //     })
-      //     .then(() => {
-      //       // revalidate()
-      //       setChat('');
-      //     })
-      //     .catch(console.error);
-      // }
-      // setChat('');
+
       if (client) {
         chat?.trim();
         var chatMessage = {
           message: chat?.trim(),
         };
-        // console.log(chatMessage);
-        // console.log(jwt);
+
         client.send(
           '/pub/chat/room',
           {
-            jwt: jwt,
-            // username: 'user',
+            jwt: JWTtoken,
             channelId: channelInfo.id,
             type: 'CHAT',
           },
           JSON.stringify(chatMessage),
         );
 
-        // setUserData({ ...userData, message: '' });
         dispatcher(changeUserDataMessage({ message: '' }));
       }
       setChat('');
-      // console.log(publicChats);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [chat],
   );
   const socketDisconnect = () => {
-    console.log(happy);
-    console.log(client);
     console.log('종료');
     happy.unsubscribe();
-    // console.log(happy);
-    // console.log(client);
+
     client.disconnect();
     dispatcher(resetPublicChats());
     dispatcher(setLogId({ value: 0 }));
@@ -243,13 +201,12 @@ const Chat = () => {
         '/pub/chat/room',
         {
           type: 'EXIT',
-          jwt: jwt,
+          jwt: JWTtoken,
           channelId: channelInfo.id,
         },
         JSON.stringify(exitMessage),
       );
 
-      // navigate('/chat/chatList');
       socketDisconnect();
       if (chatColor.chatColor == 'chatList') {
         dispatcher(setChatState({ value: 'chatList' }));
@@ -262,8 +219,6 @@ const Chat = () => {
 
   console.log(pointOpen);
 
-  //   return unlistenHistoryEvent;
-  // }, []);
   return (
     <div className="mobileChat">
       <Container>
