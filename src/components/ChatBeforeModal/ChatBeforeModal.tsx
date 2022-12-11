@@ -1,8 +1,7 @@
 import timeIcon from 'assets/chatImages/chat_time_white.png';
 import cuteBee from 'assets/chatImages/removebee.png';
 import xButton from 'assets/chatImages/xbutton.png';
-import { useGetUserSelf } from 'hooks/queries/requests';
-import React, { useEffect, VFC, useState, useContext } from 'react';
+import { useEffect, VFC, useState, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setChatState } from 'slice/chatStateSlice';
 import { setEndTTL } from 'slice/endTTLSlice';
@@ -11,17 +10,9 @@ import { setLogId } from 'slice/logIdSlice';
 import SockJS from 'sockjs-client';
 import { over } from 'stompjs';
 
-import axios from '../../chatApi';
-// import { history } from 'utils/history';
-// import fetcher2 from 'utils/fetcher2';
 import ChatContext from '../../context/ChatContext';
 import { DispatchContext } from '../../context/JwtContext';
-// import JwtContext from '../../context/JwtContext';
 import { pushPublicChats } from '../../slice/publicChats';
-import {
-  changeUserDataEmail,
-  changeUserDataConnected,
-} from '../../slice/userDataSlice';
 import { setUserEnterNumber } from '../../slice/userEnterNumberSlice';
 import { Channel, HashTag } from '../../typings/db';
 import './ChatBeforeModal.css';
@@ -42,15 +33,12 @@ const ChatBeforeModal: VFC<Props> = ({
   onCloseModal,
 }) => {
   const [hash1, setHash] = useState('');
-  const [testName, setTestName] = useState('');
 
   const { setClient, setChannelInfo, setHappy } = useContext<any>(ChatContext);
-  console.log(sendChannelInfo);
   const dispatch = useContext(DispatchContext);
-  const userData = useSelector((store: any) => store.userData);
+  const userData = useSelector((store: any) => store.user);
   const JWTtoken = useSelector((store: any) => store.JWTtoken);
   const liveTime = useSelector((store: any) => store.liveTime);
-  const userSelf = useGetUserSelf();
   const dispatcher = useDispatch();
 
   const secondsToTime = (seconds: number) => {
@@ -108,33 +96,21 @@ const ChatBeforeModal: VFC<Props> = ({
     var payloadData = JSON.parse(payload.body);
     console.log(payloadData);
     dispatcher(setUserEnterNumber({ value: payloadData.users }));
-    // console.log(payload);
     switch (payloadData.type) {
       case 'RENEWAL':
-        // payloadData['sendTime'] = Date();
-        // console.log(payloadData);
         // 뒤로가기를 하고 재입장을 하는 경우 이전 챗로그를 불러오지 못하여
         // 추가하였습니다.
-        console.log(userData);
-        console.log(payloadData.senderEmail);
-        if (userSelf.email === payloadData.senderEmail) {
+        if (userData.email === payloadData.senderEmail) {
           avoid = false;
         }
         if (!avoid) {
-          // console.log('이거이거 고쳐야해');
           dispatcher(setLogId({ value: reEnter }));
           avoid = true;
         }
-        // console.log(publicChats);
-        // publicChats.push(payloadData);
         dispatcher(pushPublicChats({ value: payloadData }));
-        // dispatcher(setPublicChats({ value: publicChats.chat }));
         break;
       case 'CHAT':
-        // console.log('2222222222222');'
         console.log(payloadData);
-        // payloadData['sendTime'] = Date();
-        // console.log(payloadData);
         dispatcher(pushPublicChats({ value: payloadData }));
         break;
       case 'CLOSE':
@@ -146,58 +122,43 @@ const ChatBeforeModal: VFC<Props> = ({
 
   const onMessageReceived = (payload: any) => {
     var payloadData = JSON.parse(payload.body);
-    // console.log(payloadData.users);
     dispatcher(setUserEnterNumber({ value: payloadData.users }));
     console.log(payloadData);
-    // console.log(payload);
     switch (payloadData.type) {
       case 'RENEWAL':
         payloadData['sendTime'] = Date();
-        // console.log(payloadData);
         // 뒤로가기를 하고 재입장을 하는 경우 이전 챗로그를 불러오지 못하여
         // 추가하였습니다.
-        if (userSelf.email === payloadData.senderEmail) {
+        if (userData.email === payloadData.senderEmail) {
           avoid = false;
         }
         if (!avoid) {
-          // console.log('이거이거 고쳐야해');
           dispatcher(setLogId({ value: payloadData.logId }));
 
           avoid = true;
         }
         dispatcher(pushPublicChats({ value: payloadData }));
-        // dispatcher(setPublicChats({ value: publicChats.chat }));
         break;
       case 'CHAT':
-        // console.log('2222222222222');'
-        // console.log(payloadData);
-        // payloadData['sendTime'] = Date();
-        // console.log(payloadData);
         dispatcher(pushPublicChats({ value: payloadData }));
         break;
       case 'CLOSE':
-        // console.log('2222222222222');
         console.log('testCLose');
         dispatcher(setEndTTL({ value: true }));
         break;
     }
   };
   const onConnectedExcept = () => {
-    // setUserData({ ...userData, connected: true });
-    dispatcher(changeUserDataConnected({ connected: true }));
     setHappy(
       stompClient.subscribe(
         '/sub/chat/room/' + sendChannelInfo.id,
         onMessageReceivedExcept,
       ),
     );
-    // console.log(happy);
     userJoinExcept();
   };
   const onErrorExcept = (err: any) => {
-    // console.log('on Error');
     let error = JSON.parse(err.body);
-    // console.log(error);
     console.log(error.type);
 
     switch (error.type) {
@@ -235,7 +196,6 @@ const ChatBeforeModal: VFC<Props> = ({
   };
 
   const onConnected = () => {
-    dispatcher(changeUserDataConnected({ connected: true }));
     setHappy(
       stompClient.subscribe(
         '/sub/chat/room/' + sendChannelInfo.id,
@@ -277,7 +237,6 @@ const ChatBeforeModal: VFC<Props> = ({
     setChannelInfo(sendChannelInfo);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sendChannelInfo, userData]);
-  // console.log(sendChannelInfo);
   useEffect(() => {
     document.documentElement.style.setProperty(
       '--deskTopBottomDrawer',
