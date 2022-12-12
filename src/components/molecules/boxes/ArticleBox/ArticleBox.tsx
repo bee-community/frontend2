@@ -9,19 +9,8 @@ import { Link } from 'react-router-dom';
 import { StyledArticleBox, StyledLoadingArticleBox } from './styles';
 
 function ArticleBox(props: { article: ArticleType }) {
-  const {
-    id,
-    title,
-    content,
-    summary,
-    board_id,
-    view_count,
-    is_announcement,
-    like_count,
-    updated_at,
-    poll,
-    tags,
-  } = props.article;
+  const { id, title, content, summary, board_id, view_count, is_announcement, like_count, updated_at, poll, tags } =
+    props.article;
   const commentCount = poll.contents.length;
   return (
     <StyledArticleBox>
@@ -37,8 +26,7 @@ function ArticleBox(props: { article: ArticleType }) {
           <img
             style={{
               marginRight: '2px',
-              filter:
-                'invert(41%) sepia(100%) saturate(0%) hue-rotate(48deg) brightness(99%) contrast(86%)',
+              filter: 'invert(41%) sepia(100%) saturate(0%) hue-rotate(48deg) brightness(99%) contrast(86%)',
             }}
             src={view}
             alt="조회수"
@@ -46,9 +34,7 @@ function ArticleBox(props: { article: ArticleType }) {
           <span>{view_count}</span>
         </div>
 
-        <div className="date">
-          {dayjs(updated_at).format('YYYY.MM.DD HH:mm')}
-        </div>
+        <div className="date">{dayjs(updated_at).format('YYYY.MM.DD HH:mm')}</div>
       </Link>
     </StyledArticleBox>
   );

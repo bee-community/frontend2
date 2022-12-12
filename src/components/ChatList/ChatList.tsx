@@ -14,8 +14,7 @@ import { ChatBox, Container } from './styles';
 
 const ChatList = () => {
   const dispatcher = useDispatch();
-  const res = useGetUserSelf();
-  console.log('&#^@^#@^&#^@^# ', res);
+  useGetUserSelf();
   const ab: Channel = {
     channelHashTags: [{ id: 4, hashTag: { id: 1, tagName: 'hello' } }],
     channelName: '정현님짱',
