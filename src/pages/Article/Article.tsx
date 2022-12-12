@@ -12,12 +12,7 @@ import { useGetArticleDetail } from 'hooks/queries/article';
 import { useState, useCallback } from 'react';
 import { useParams } from 'react-router';
 
-import {
-  CommentsWrap,
-  CommentsOpenButton,
-  Comments,
-  CommentPostInput,
-} from './styles';
+import { CommentsWrap, CommentsOpenButton, Comments, CommentPostInput } from './styles';
 
 function Article() {
   const { articleId } = useParams();
@@ -52,15 +47,7 @@ function Article() {
     },
   ]);
 
-  const recommendedTags = [
-    '꿀팁',
-    '꿀팁',
-    '꿀팁',
-    '꿀팁',
-    '꿀팁',
-    '꿀팁',
-    '꿀팁',
-  ];
+  const recommendedTags = ['꿀팁', '꿀팁', '꿀팁', '꿀팁', '꿀팁', '꿀팁', '꿀팁'];
 
   const onChangeContent = useCallback(e => {
     setComment(e.target.value);
@@ -93,30 +80,18 @@ function Article() {
             style={{ display: 'flex' }}
             onClick={() => setIsDetailsOpen(prev => !prev)}
             className="arrow-down-button">
-            {isDetailsOpen ? (
-              <img src={arrowUp} alt="up" />
-            ) : (
-              <img src={arrowDown} alt="down" />
-            )}
+            {isDetailsOpen ? <img src={arrowUp} alt="up" /> : <img src={arrowDown} alt="down" />}
           </span>
         </CommentsOpenButton>
         <Comments>
           {article.comments?.map(element => (
-            <ArticleComment
-              key={element.id}
-              element={element}
-              articleId={articleId}></ArticleComment>
+            <ArticleComment key={element.id} element={element} articleId={articleId}></ArticleComment>
           ))}
 
           <form onSubmit={onSubmit}>
             <CommentPostInput>
               <div className="input-wrap">
-                <input
-                  value={comment}
-                  onChange={onChangeContent}
-                  type="text"
-                  placeholder="내용을 입력해주세요."
-                />
+                <input value={comment} onChange={onChangeContent} type="text" placeholder="내용을 입력해주세요." />
                 <Button
                   buttonType="contained"
                   color="yellow"

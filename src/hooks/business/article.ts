@@ -1,19 +1,14 @@
-import { useCreateCommentMutation } from 'hooks/queries/article';
+import { useCreateCommentMutation, useLikeMutation } from 'hooks/queries/article';
 import { useCreateAriticleMutation } from 'hooks/queries/requests';
+import { useQueryClient } from 'react-query';
 import { useNavigate } from 'react-router';
-import {
-  CreateArticleRequest,
-  CreateCommentRequest,
-} from 'types/article/remote';
+import { CreateArticleRequest, CreateCommentRequest } from 'types/article/remote';
 
 export const useCreateArticle = () => {
   const createArticleMutate = useCreateAriticleMutation();
   const navigate = useNavigate();
 
-  const createArticle = async (
-    body: CreateArticleRequest,
-    boardPath: string,
-  ) => {
+  const createArticle = async (body: CreateArticleRequest, boardPath: string) => {
     await createArticleMutate.mutateAsync(body, {
       onSuccess() {
         navigate(`/board/${boardPath}`);
@@ -27,13 +22,7 @@ export const useCreateArticle = () => {
 export const useCreateComment = () => {
   const createArticleMutate = useCreateCommentMutation();
 
-  const createComment = async ({
-    body,
-    articleId,
-  }: {
-    body: CreateCommentRequest;
-    articleId: string;
-  }) => {
+  const createComment = async ({ body, articleId }: { body: CreateCommentRequest; articleId: string }) => {
     await createArticleMutate.mutateAsync(
       { body, articleId },
       {
@@ -43,4 +32,20 @@ export const useCreateComment = () => {
   };
 
   return { createComment };
+};
+
+export const useLikeRequest = () => {
+  const createArticleMutate = useLikeMutation();
+  const queryClient = useQueryClient();
+  console.log('test');
+  const createLikeRequest = async (articleId: string) => {
+    await createArticleMutate.mutateAsync(articleId, {
+      onSuccess() {
+        console.log('실행');
+        queryClient.invalidateQueries(['articleDetail', articleId]);
+      },
+    });
+  };
+
+  return { createLikeRequest };
 };

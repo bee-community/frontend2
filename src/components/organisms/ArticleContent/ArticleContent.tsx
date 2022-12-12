@@ -13,7 +13,7 @@ interface ArticleContentProps {
 
 function ArticleContent(props: ArticleContentProps) {
   const { article, recommendedTags } = props;
-
+  console.log(article);
   return (
     <StyledArticleContent>
       <ArticleTitleContainer article={article} />
@@ -30,7 +30,7 @@ function ArticleContent(props: ArticleContentProps) {
       /> */}
       <section className="article-content">{article.content}</section>
       <TagRecommendList tags={recommendedTags} />
-      <ArticleFeedbackContainer />
+      <ArticleFeedbackContainer articleId={article.id} />
     </StyledArticleContent>
   );
 }

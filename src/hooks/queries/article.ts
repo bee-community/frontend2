@@ -1,4 +1,4 @@
-import { createComment } from 'apis/article';
+import { createComment, createLikeRequest } from 'apis/article';
 import axios from 'axios';
 import { useQuery, useQueryClient, useMutation } from 'react-query';
 import { ArticleDetailType } from 'types/article/remote';
@@ -12,7 +12,7 @@ if (process.env.REACT_APP_MSW === 'development') {
 
 export const useGetArticleDetail = (articleId?: string): ArticleDetailType | undefined => {
   const { data: res } = useQuery(
-    'articleDetail',
+    ['articleDetail', articleId],
     () => axios.get<ArticleDetailType>(`${REQUEST_URL}/articles/${articleId}`),
     { refetchOnWindowFocus: false },
   );
@@ -26,6 +26,14 @@ export const useCreateCommentMutation = () => {
     onSuccess() {
       queryClient.invalidateQueries('articleDetail');
     },
+    onMutate() {},
+    onSettled() {},
+  });
+};
+
+export const useLikeMutation = () => {
+  return useMutation(createLikeRequest, {
+    onSuccess() {},
     onMutate() {},
     onSettled() {},
   });
