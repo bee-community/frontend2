@@ -10,8 +10,7 @@ import { Outlet } from 'react-router';
 import { StyledTemplate, StyledMain, Main, StyledAside } from './styles';
 
 function Template() {
-  const userInfo = useUserInfo();
-  console.log(userInfo);
+  useUserInfo();
   return (
     <StyledTemplate>
       <Header />

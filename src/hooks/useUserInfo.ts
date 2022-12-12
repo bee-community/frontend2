@@ -18,8 +18,6 @@ const useUserInfo = () => {
         },
       })
         .then(response => {
-          console.log(response);
-          console.log(response.data);
           dispatch(setUserInfo({ value: response.data }));
         })
         .catch(error => {
@@ -32,9 +30,7 @@ const useUserInfo = () => {
           Authorization: `${auth.tokenType} ${auth.accessToken}`,
         },
       })
-        .then(response => {
-          console.log(response.data);
-        })
+        .then(response => {})
         .catch(error => {
           console.log(error);
         })

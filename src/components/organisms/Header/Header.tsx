@@ -11,7 +11,6 @@ import { HeaderWrap, Logo, Bio } from './styles';
 
 function Header() {
   const userInfo = useSelector((store: any) => store.userInfo);
-  console.log(userInfo);
   return (
     <HeaderWrap>
       <Link to="/">
