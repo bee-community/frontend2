@@ -13,9 +13,7 @@ import { InputPhoto, Image, AddImageIcon } from './styles';
 const ArticlePost = () => {
   const beforeBoard = useSelector((store: any) => store.boardData);
   const isBeforeBoardExist = !!beforeBoard.id;
-  const boards = useGetBoards().filter(
-    element => element.id !== beforeBoard.id,
-  ); // 이전에 특정 게시판에서 글쓰기 버튼을 눌러 넘어온 경우 select 태그의 option이 중복되는 것을 막기위해 filter를 사용하였습니다.
+  const boards = useGetBoards().filter(element => element.id !== beforeBoard.id); // 이전에 특정 게시판에서 글쓰기 버튼을 눌러 넘어온 경우 select 태그의 option이 중복되는 것을 막기위해 filter를 사용하였습니다.
   const { createArticle } = useCreateArticle();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -121,11 +119,7 @@ const ArticlePost = () => {
                 게시판
               </th>
               <td className="border-bottom">
-                <select
-                  id="board"
-                  onChange={onChangeBoard}
-                  name="category"
-                  required>
+                <select id="board" onChange={onChangeBoard} name="category" required>
                   {isBeforeBoardExist ? (
                     <option value={beforeBoard.name}>{beforeBoard.name}</option>
                   ) : (
@@ -145,11 +139,7 @@ const ArticlePost = () => {
                 태그
               </th>
               <td className="border-bottom">
-                <input
-                  type="text"
-                  required
-                  placeholder="#ENTP  추가하실 태그를 적어주세요"
-                />
+                <input type="text" required placeholder="#ENTP  추가하실 태그를 적어주세요" />
               </td>
             </tr>
             <tr>

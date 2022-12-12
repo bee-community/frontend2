@@ -18,17 +18,13 @@ if (process.env.REACT_APP_MSW === 'development') {
 export const useGetUserSelf = (): any => {
   const dispatch = useDispatch();
 
-  const { data: res } = useQuery(['userSelf'], () =>
-    client.get(`${REQUEST_URL}/users/self`),
-  );
+  const { data: res } = useQuery(['userSelf'], () => client.get(`${REQUEST_URL}/users/self`));
   dispatch(getUser({ value: res?.data }));
   return res?.data ?? [];
 };
 
 export const useGetBoards = (): BoardInfo[] => {
-  const { data: res } = useQuery('boards', () =>
-    axios.get(`${REQUEST_URL}/boards`),
-  );
+  const { data: res } = useQuery('boards', () => axios.get(`${REQUEST_URL}/boards`));
   return res?.data ?? [];
 };
 
@@ -36,9 +32,7 @@ export const useGetArticles = (): {
   data: ArticleType[];
   isFetching: boolean;
 } => {
-  const { data: res, isFetching } = useQuery('articles', () =>
-    axios.get(`${REQUEST_URL}/articles`),
-  );
+  const { data: res, isFetching } = useQuery('articles', () => axios.get(`${REQUEST_URL}/articles`));
   return { data: res?.data ?? [], isFetching };
 };
 
@@ -50,9 +44,8 @@ export const useGetSpecificBoardArticles = (
   refreshBoardArticles: (board_path: string) => void;
 } => {
   const queryClient = useQueryClient();
-  const { data: res, isFetching } = useQuery(
-    ['specificBoardArticles', board_path],
-    () => getSpecificBoardArticles(REQUEST_URL, board_path),
+  const { data: res, isFetching } = useQuery(['specificBoardArticles', board_path], () =>
+    getSpecificBoardArticles(REQUEST_URL, board_path),
   );
 
   const refreshBoardArticles = (board_path: string) => {

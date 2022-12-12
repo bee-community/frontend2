@@ -14,7 +14,8 @@ import { ChatBox, Container } from './styles';
 
 const ChatList = () => {
   const dispatcher = useDispatch();
-  useGetUserSelf();
+  const res = useGetUserSelf();
+  console.log('&#^@^#@^&#^@^# ', res);
   const ab: Channel = {
     channelHashTags: [{ id: 4, hashTag: { id: 1, tagName: 'hello' } }],
     channelName: '정현님짱',
@@ -25,8 +26,7 @@ const ChatList = () => {
     timeToLive: 86400,
     channelType: 'chat',
   };
-  const [showChatBeforeModal, setShowChatBeforeModal] =
-    useState<boolean>(false);
+  const [showChatBeforeModal, setShowChatBeforeModal] = useState<boolean>(false);
   const [sendChannelInfo, setSendChannelInfo] = useState<Channel>(ab);
   const onClickChatBeforeModal = useCallback(
     (channel: Channel, i: number) => {

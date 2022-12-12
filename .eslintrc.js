@@ -21,10 +21,7 @@ module.exports = {
     'global-require': 'off',
     'react-hooks/rules-of-hooks': 'error', // chechs rules of hooks
     'react-hooks/exhaustive-deps': 'warn', // dependency 관련 에러는 경고(노란줄)로 바꿈
-    'react/jsx-filename-extension': [
-      1,
-      { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
-    ], // js도 확장자 가능하게끔 설정
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }], // js도 확장자 가능하게끔 설정
     'prettier/prettier': 'error', // eslint-plugin-prettier의 룰을 활성화
     'arrow-body-style': 'off', // eslint-plugin-prettier와 충돌하는 ESLint 코어 룰을 비활성화
     'prefer-arrow-callback': 'off', // eslint-plugin-prettier와 충돌하는 ESLint 코어 룰을 비활성화

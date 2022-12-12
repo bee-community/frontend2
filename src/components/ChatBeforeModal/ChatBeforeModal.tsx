@@ -26,15 +26,10 @@ const socketURL = 'http://honeybees.community:8080/ws-stomp';
 var stompClient: any = null;
 let avoid = false;
 let reEnter = 0;
-const ChatBeforeModal: VFC<Props> = ({
-  sendChannelInfo,
-  show,
-  onCloseModal,
-}) => {
+const ChatBeforeModal: VFC<Props> = ({ sendChannelInfo, show, onCloseModal }) => {
   const [hash1, setHash] = useState('');
 
-  const { setClient, setChannelInfo, setStompSubscribe } =
-    useContext<any>(ChatContext);
+  const { setClient, setChannelInfo, setStompSubscribe } = useContext<any>(ChatContext);
   const user = useSelector((store: any) => store.user);
   const { JWTtoken } = useSelector((store: any) => store.JWTtoken);
   const liveTime = useSelector((store: any) => store.liveTime);
@@ -74,39 +69,32 @@ const ChatBeforeModal: VFC<Props> = ({
       );
     } catch (err) {
     } finally {
-      if (sendChannelInfo.channelType === 'TEXT')
-        dispatch(setChatState({ value: 'chat' }));
-      if (sendChannelInfo.channelType === 'VOIP')
-        dispatch(setChatState({ value: 'voicechat' }));
+      if (sendChannelInfo.channelType === 'TEXT') dispatch(setChatState({ value: 'chat' }));
+      if (sendChannelInfo.channelType === 'VOIP') dispatch(setChatState({ value: 'voicechat' }));
     }
   };
 
   const onConnected = () => {
-    setStompSubscribe(
-      stompClient.subscribe(
-        '/sub/chat/room/' + sendChannelInfo.id,
-        onMessageReceived,
-      ),
-    );
+    setStompSubscribe(stompClient.subscribe('/sub/chat/room/' + sendChannelInfo.id, onMessageReceived));
     userJoin();
   };
 
   const onMessageReceived = (payload: any) => {
     var payloadData = JSON.parse(payload.body);
-    console.log('onMessageReceived');
+    console.log('************** onMessageReceived');
     dispatch(setUserEnterNumber({ value: payloadData.users }));
     switch (payloadData.type) {
       case 'RENEWAL':
         payloadData['sendTime'] = Date();
         // 뒤로가기를 하고 재입장을 하는 경우 이전 챗로그를 불러오지 못하여
         // 추가하였습니다.
-        if (user.email === payloadData.senderEmail) {
-          avoid = false;
-        }
-        if (!avoid) {
-          dispatch(setLogId({ value: payloadData.logId }));
-          avoid = true;
-        }
+        // if (user.email === payloadData.senderEmail) {
+        //   avoid = false;
+        // }
+        // if (!avoid) {
+        //   avoid = true;
+        // }
+        dispatch(setLogId({ value: payloadData.logId }));
         dispatch(pushPublicChats({ value: payloadData }));
         break;
       case 'CHAT':
@@ -120,7 +108,7 @@ const ChatBeforeModal: VFC<Props> = ({
 
   const userJoin = () => {
     console.log('userJoin');
-    let chatMessage = {
+    const chatMessage = {
       message: '',
     };
     stompClient.send(
@@ -135,6 +123,7 @@ const ChatBeforeModal: VFC<Props> = ({
   };
 
   const onError = (err: any) => {
+    console.log('************** onError');
     if (err.body === undefined) {
       return;
     }
@@ -142,13 +131,14 @@ const ChatBeforeModal: VFC<Props> = ({
 
     switch (error.type) {
       case 'ALREADY_USER_IN_CHANNEL':
-        connect_except();
+        connectReEnter();
         reEnter = error.idx + 1;
         break;
     }
   };
 
-  const connect_except = async () => {
+  const connectReEnter = async () => {
+    console.log('************** connectReEnter');
     let Sock = new SockJS(socketURL);
     stompClient = over(Sock);
     setClient(stompClient);
@@ -157,57 +147,20 @@ const ChatBeforeModal: VFC<Props> = ({
         channelId: sendChannelInfo.id,
         jwt: JWTtoken,
       },
-      onConnectedExcept,
-      onErrorExcept,
+      onConnectedReEnter,
+      onErrorReEnter,
     );
   };
 
-  const onConnectedExcept = () => {
-    setStompSubscribe(
-      stompClient.subscribe(
-        '/sub/chat/room/' + sendChannelInfo.id,
-        onMessageReceivedExcept,
-      ),
-    );
+  const onConnectedReEnter = () => {
+    console.log('************** onConnectedReEnter');
+
+    setStompSubscribe(stompClient.subscribe('/sub/chat/room/' + sendChannelInfo.id, onMessageReceivedReEnter));
     userJoinExcept();
   };
 
-  const onMessageReceivedExcept = (payload: any) => {
-    var payloadData = JSON.parse(payload.body);
-    dispatch(setUserEnterNumber({ value: payloadData.users }));
-    switch (payloadData.type) {
-      case 'RENEWAL':
-        // 뒤로가기를 하고 재입장을 하는 경우 이전 챗로그를 불러오지 못하여
-        // 추가하였습니다.
-        if (user.email === payloadData.senderEmail) {
-          avoid = false;
-        }
-        if (!avoid) {
-          dispatch(setLogId({ value: reEnter }));
-          avoid = true;
-        }
-        dispatch(pushPublicChats({ value: payloadData }));
-        break;
-      case 'CHAT':
-        dispatch(pushPublicChats({ value: payloadData }));
-        break;
-      case 'CLOSE':
-        dispatch(setEndTTL({ value: true }));
-        break;
-    }
-  };
-
-  const onErrorExcept = (err: any) => {
-    let error = JSON.parse(err.body);
-
-    switch (error.type) {
-      case 'ALREADY_USER_IN_CHANNEL':
-        break;
-    }
-  };
-
   const userJoinExcept = () => {
-    let chatMessage = {
+    const chatMessage = {
       message: '',
     };
     stompClient.send(
@@ -221,6 +174,47 @@ const ChatBeforeModal: VFC<Props> = ({
     );
   };
 
+  const onMessageReceivedReEnter = (payload: any) => {
+    console.log('************** onMessageReceivedReEnter');
+
+    let payloadData = JSON.parse(payload.body);
+    console.log(payloadData);
+    dispatch(setUserEnterNumber({ value: payloadData.users }));
+    switch (payloadData.type) {
+      case 'RENEWAL':
+        // 뒤로가기를 하고 재입장을 하는 경우 이전 챗로그를 불러오지 못하여
+        // 추가하였습니다.
+        // if (user.email === payloadData.senderEmail) {
+        //   avoid = false;
+        // }
+        // if (!avoid) {
+        //   dispatch(setLogId({ value: reEnter }));
+        //   avoid = true;
+        // }
+        dispatch(setLogId({ value: reEnter }));
+        // avoid = true;
+        dispatch(pushPublicChats({ value: payloadData }));
+        break;
+      case 'CHAT':
+        dispatch(pushPublicChats({ value: payloadData }));
+        break;
+      case 'CLOSE':
+        dispatch(setEndTTL({ value: true }));
+        break;
+    }
+  };
+
+  const onErrorReEnter = (err: any) => {
+    console.log('************** onErrorReEnter');
+
+    const error = JSON.parse(err.body);
+
+    switch (error.type) {
+      case 'ALREADY_USER_IN_CHANNEL':
+        break;
+    }
+  };
+
   useEffect(() => {
     secondsToTime(sendChannelInfo.timeToLive);
     renderHash(sendChannelInfo.channelHashTags);
@@ -229,10 +223,7 @@ const ChatBeforeModal: VFC<Props> = ({
   }, [sendChannelInfo, user]);
 
   useEffect(() => {
-    document.documentElement.style.setProperty(
-      '--deskTopBottomDrawer',
-      `385px`,
-    );
+    document.documentElement.style.setProperty('--deskTopBottomDrawer', `385px`);
   }, []);
 
   if (!show) {
@@ -246,12 +237,7 @@ const ChatBeforeModal: VFC<Props> = ({
     <div className="ChatBeforeModal">
       <div className="modal ">
         <div className="closeButtonWrapper">
-          <img
-            alt="closeButton"
-            role="presentation"
-            className="closeButton"
-            src={xButton}
-            onClick={onCloseModal}></img>
+          <img alt="closeButton" role="presentation" className="closeButton" src={xButton} onClick={onCloseModal}></img>
         </div>
         <div className="textArea">
           <div className="modalTag">{hash1}</div>
@@ -271,11 +257,7 @@ const ChatBeforeModal: VFC<Props> = ({
           채팅방 참여하기
         </div>
       </div>
-      <img
-        alt="BeeImage"
-        role="presentation"
-        className="modalBee"
-        src={cuteBee}></img>
+      <img alt="BeeImage" role="presentation" className="modalBee" src={cuteBee}></img>
     </div>
   );
 };
