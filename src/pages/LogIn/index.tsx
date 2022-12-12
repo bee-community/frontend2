@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { client } from 'apis';
 import Button from 'components/atoms/Button';
 import { useAuthDispatch, useAuthState } from 'context/Auth';
 import { login } from 'context/Auth/actions';
@@ -21,7 +21,6 @@ function LogIn() {
 
   const [accessToken, setAccessToken] = useState('');
   const [tokenType, setTokenType] = useState('');
-
   const onChangeEmail = useCallback(e => {
     setEmail(e.target.value);
   }, []);
@@ -45,15 +44,15 @@ function LogIn() {
           },
         })
           .then(response => {
-            const jsonString = JSON.stringify(response.data, [
-              'access_token',
-              'token_type',
-            ]);
+            const jsonString = JSON.stringify(response.data, ['access_token', 'token_type']);
             JSON.parse(jsonString, (key, value) => {
               if (key === 'access_token') {
                 setAccessToken(value);
                 localStorage.setItem('access_token', value);
                 dispatch(setJWTToken({ value }));
+                if (client.defaults.headers != null) {
+                  client.defaults.headers['Authorization'] = `Bearer ${localStorage.getItem('access_token')}`;
+                }
               }
               if (key === 'token_type') {
                 setTokenType(value);
@@ -90,14 +89,7 @@ function LogIn() {
         <span id="bee">BEE</span>
       </Title>
       <LoginForm onSubmit={onSubmit}>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="아이디"
-          value={email}
-          onChange={onChangeEmail}
-        />
+        <input type="email" id="email" name="email" placeholder="아이디" value={email} onChange={onChangeEmail} />
         <input
           type="password"
           id="password"
