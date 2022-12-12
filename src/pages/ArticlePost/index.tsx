@@ -38,6 +38,10 @@ const ArticlePost = () => {
 
   const onSubmit = useCallback(
     e => {
+      console.log(e);
+      if (e.code === 'Enter') {
+        console.log('test');
+      }
       e.preventDefault();
       createArticle(
         {
@@ -76,6 +80,13 @@ const ArticlePost = () => {
     [images],
   );
 
+  const handleKeyDown = (e: any) => {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      if (e.target.id === 'tag') console.log('ss');
+    }
+    if (e.keyCode === 32) console.log('space');
+  };
   return (
     <>
       <Title>글쓰기</Title>
@@ -96,6 +107,7 @@ const ArticlePost = () => {
                   value={title}
                   onChange={onChangeTitle}
                   placeholder="제목을 입력해주세요."
+                  onKeyDown={handleKeyDown}
                 />
               </td>
             </tr>
@@ -110,6 +122,7 @@ const ArticlePost = () => {
                   value={content}
                   required
                   onChange={onChangeContent}
+                  onKeyDown={handleKeyDown}
                   placeholder="문의할 내용을 입력해주세요."
                 />
               </td>
@@ -139,7 +152,13 @@ const ArticlePost = () => {
                 태그
               </th>
               <td className="border-bottom">
-                <input type="text" required placeholder="#ENTP  추가하실 태그를 적어주세요" />
+                <input
+                  id="tag"
+                  type="text"
+                  onKeyDown={handleKeyDown}
+                  required
+                  placeholder="#ENTP  추가하실 태그를 적어주세요"
+                />
               </td>
             </tr>
             <tr>

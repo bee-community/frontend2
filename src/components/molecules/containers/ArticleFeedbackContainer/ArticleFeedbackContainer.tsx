@@ -20,7 +20,7 @@ function ArticleFeedbackContainer(props: { articleId: string }) {
         onClick={likeRequest}
         css={{
           boxShadow: '0 0 6px 0 rgba(0, 0, 0, 0.16)',
-          backgroundColor: '#fff',
+          backgroundColor: '#ffe576',
           border: 'none',
           padding: '10px 30px',
         }}>
