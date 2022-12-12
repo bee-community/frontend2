@@ -1,6 +1,7 @@
 import ChatBeforeModal2 from 'components/ChatBeforeModal2/ChatBeforeModal2';
 import ChatBeforeModal from 'components/ChatBeforeModal/ChatBeforeModal';
 import ChatRoom from 'components/ChatRoom/ChatRoom';
+import { useGetUserSelf } from 'hooks/queries/requests';
 import React, { useCallback, useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 // import CustomScroll from 'react-custom-scroll';
@@ -13,6 +14,7 @@ import { ChatBox, Container } from './styles';
 
 const ChatList = () => {
   const dispatcher = useDispatch();
+  useGetUserSelf();
   const ab: Channel = {
     channelHashTags: [{ id: 4, hashTag: { id: 1, tagName: 'hello' } }],
     channelName: '정현님짱',
