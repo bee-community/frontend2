@@ -145,6 +145,7 @@ textarea:focus {
 }
 
 .chatZZone .counterpartChat .details .chatContent {
+  width: fit-content;
   background: #ffe576;
   color: black;
   border-radius: 0px 14px 14px 14px;
