@@ -17,11 +17,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Scrollbar } from 'react-scrollbars-custom';
 import { setChatState } from 'slice/chatStateSlice';
 import { setLogId } from 'slice/logIdSlice';
-import {
-  setDesktopBottomDrawerOpen,
-  setUsePointExcept,
-  setWaitOpen,
-} from 'slice/pointModal';
+import { setDesktopBottomDrawerOpen, setUsePointExcept, setWaitOpen } from 'slice/pointModal';
 import useSWR from 'swr';
 
 import ChatContext from '../../context/ChatContext';
@@ -31,30 +27,19 @@ import { changeUserDataMessage } from '../../slice/userDataSlice';
 import fetcher from '../../utils/fetcher';
 import './ChatChat.css';
 import './drawer.css';
-import {
-  ChatBox,
-  Container,
-  ModalBackground,
-  PPointModal2,
-  ModalBackgroundOutEvent,
-} from './styles';
+import { ChatBox, Container, ModalBackground, PPointModal2, ModalBackgroundOutEvent } from './styles';
 
 const Chat = () => {
-  const { client, channelInfo, stompSubscribe, setChatList } =
-    useContext<any>(ChatContext);
+  const { client, channelInfo, stompSubscribe, setChatList } = useContext<any>(ChatContext);
 
-  const userData = useSelector((store: any) => store.userData);
+  const user = useSelector((store: any) => store.user);
   const { JWTtoken } = useSelector((store: any) => store.JWTtoken);
   const userChatName = useSelector((store: any) => store.userEnterNumber);
   const indexChat = useSelector((store: any) => store.indexChat);
   const chatColor = useSelector((store: any) => store.chatColor);
   const pointOpen = useSelector((store: any) => store.pointOpen);
-  const desktopBottomDrawerOpen = useSelector(
-    (store: any) => store.pointOpen.desktopBottomDrawerOpen,
-  );
-  const usePointExcept = useSelector(
-    (store: any) => store.pointOpen.usePointExcept,
-  );
+  const desktopBottomDrawerOpen = useSelector((store: any) => store.pointOpen.desktopBottomDrawerOpen);
+  const usePointExcept = useSelector((store: any) => store.pointOpen.usePointExcept);
   const dispatcher = useDispatch();
   const chatUrl = '/api/v1/webrtc/chat/channels/partiDESC/0';
   const myChatUrl = '/api/v1/webrtc/chat/mychannel/partiDESC/0';
@@ -162,24 +147,15 @@ const Chat = () => {
             <ModalBackground
               onClick={() => {
                 dispatcher(setDesktopBottomDrawerOpen({ value: false }));
-                document.documentElement.style.setProperty(
-                  '--deskTopBottomDrawer',
-                  `385px`,
-                );
-                document.documentElement.style.setProperty(
-                  '--deskTopBottomDrawerZindex',
-                  `0`,
-                );
+                document.documentElement.style.setProperty('--deskTopBottomDrawer', `385px`);
+                document.documentElement.style.setProperty('--deskTopBottomDrawerZindex', `0`);
               }}></ModalBackground>
           )}
           <Drawer
             open={isOpen}
             overlayOpacity={0.7}
             onClose={() => {
-              document.documentElement.style.setProperty(
-                '--deskTopBottomDrawerZindex',
-                `0`,
-              );
+              document.documentElement.style.setProperty('--deskTopBottomDrawerZindex', `0`);
               toggleDrawer();
             }}
             direction="right"
@@ -188,21 +164,13 @@ const Chat = () => {
             <Scrollbar maximalThumbYSize={50}>
               <div className="drawerWrapper">
                 <div className="top">
-                  <img
-                    alt="settingIcon"
-                    role="presentation"
-                    className="setting"
-                    src={setting}
-                  />
+                  <img alt="settingIcon" role="presentation" className="setting" src={setting} />
                   <img
                     className="xbutton"
                     alt="toggleButton"
                     role="presentation"
                     onClick={() => {
-                      document.documentElement.style.setProperty(
-                        '--deskTopBottomDrawerZindex',
-                        `0`,
-                      );
+                      document.documentElement.style.setProperty('--deskTopBottomDrawerZindex', `0`);
                       toggleDrawer();
                     }}
                     src={xbutton}
@@ -215,31 +183,24 @@ const Chat = () => {
                 </div>
                 <div className="title">{channelInfo.channelName}</div>
                 <div className="third">
-                  <img
-                    alt="timeIcon"
-                    role="presentation"
-                    className="time"
-                    src={timeIcon}
-                  />
+                  <img alt="timeIcon" role="presentation" className="time" src={timeIcon} />
                   <span> &nbsp; {secondsToTime(chatTime)}</span>
                 </div>
                 <div className="myIcon">
                   <div className="chatImgIcon"></div>
-                  <div className="chatContent">{userData.username}</div>
+                  <div className="chatContent">{user.nickname}</div>
                   <div className="cuteCircle">나</div>
                 </div>
                 <div className="line"></div>
                 <div className="friend">{`대화상대 ${userChatName.userEnterNumber.length}/30`}</div>
-                {userChatName.userEnterNumber.map(
-                  (user: any, index: number) => {
-                    return (
-                      <div key={index} className="friendIcon">
-                        <div className="chatImgIcon"></div>
-                        <div className="chatContent">{user.nickname}</div>
-                      </div>
-                    );
-                  },
-                )}
+                {userChatName.userEnterNumber.map((user: any, index: number) => {
+                  return (
+                    <div key={index} className="friendIcon">
+                      <div className="chatImgIcon"></div>
+                      <div className="chatContent">{user.nickname}</div>
+                    </div>
+                  );
+                })}
 
                 <div className="friendIcon" style={{ height: '53px' }}>
                   {/* <div className="chatImgIcon"></div>
@@ -270,12 +231,7 @@ const Chat = () => {
                   }
                   revalidate();
                 }}>
-                <img
-                  alt="backSpaceIcon"
-                  role="presentation"
-                  className="backSpace"
-                  src={backSpace}
-                />
+                <img alt="backSpaceIcon" role="presentation" className="backSpace" src={backSpace} />
               </div>
               <div className="middle">
                 <div className="chatTitle">{channelInfo.channelName}</div>
@@ -297,10 +253,7 @@ const Chat = () => {
 
             <ChatZZone></ChatZZone>
 
-            <ChatWraper
-              chat={chat}
-              onChangeChat={onChangeChat}
-              onSubmitForm={onSubmitForm}></ChatWraper>
+            <ChatWraper chat={chat} onChangeChat={onChangeChat} onSubmitForm={onSubmitForm}></ChatWraper>
           </div>
           <ChatEndModal></ChatEndModal>
           {pointOpen.pointOpen && <PointModal></PointModal>}
@@ -343,9 +296,7 @@ const Chat = () => {
                 </div>
                 <div className="textArea">
                   <div>
-                    <span style={{ color: 'white' }}>
-                      남은 포인트를 확인해주세요.
-                    </span>
+                    <span style={{ color: 'white' }}>남은 포인트를 확인해주세요.</span>
                   </div>
                 </div>
               </PPointModal2>
