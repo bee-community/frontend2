@@ -22,6 +22,7 @@ interface Props {
   onCloseModal: () => void;
 }
 const socketURL = 'http://honeybees.community:8080/ws-stomp';
+
 var stompClient: any = null;
 let avoid = false;
 let reEnter = 0;
@@ -37,23 +38,23 @@ const ChatBeforeModal: VFC<Props> = ({
   const user = useSelector((store: any) => store.user);
   const { JWTtoken } = useSelector((store: any) => store.JWTtoken);
   const liveTime = useSelector((store: any) => store.liveTime);
-  const dispatcher = useDispatch();
+  const dispatch = useDispatch();
 
   const secondsToTime = (seconds: number) => {
     let day = 0;
-    var hour = Math.floor(seconds / 3600);
-    var min = Math.floor((seconds % 3600) / 60);
+    let hour = Math.floor(seconds / 3600);
+    let min = Math.floor((seconds % 3600) / 60);
     while (hour > 24) {
       hour -= 24;
       day += 1;
     }
-    let str = `${day}일 ${hour}시간 ${min}분 후 종료`;
-    dispatcher(setLiveTime({ value: str }));
+    const liveTimeString = `${day}일 ${hour}시간 ${min}분 후 종료`;
+    dispatch(setLiveTime({ value: liveTimeString }));
   };
 
-  const renderHash = (ob: HashTag[]) => {
+  const renderHash = (hashTagArray: HashTag[]) => {
     let hash = '';
-    ob.forEach(element => {
+    hashTagArray.forEach(element => {
       hash += '#' + element.hashTag.tagName + ' ';
     });
     setHash(hash);
@@ -72,16 +73,53 @@ const ChatBeforeModal: VFC<Props> = ({
         onError,
       );
     } catch (err) {
-      console.log(err);
     } finally {
       if (sendChannelInfo.channelType === 'TEXT')
-        dispatcher(setChatState({ value: 'chat' }));
+        dispatch(setChatState({ value: 'chat' }));
       if (sendChannelInfo.channelType === 'VOIP')
-        dispatcher(setChatState({ value: 'voicechat' }));
+        dispatch(setChatState({ value: 'voicechat' }));
+    }
+  };
+
+  const onConnected = () => {
+    setStompSubscribe(
+      stompClient.subscribe(
+        '/sub/chat/room/' + sendChannelInfo.id,
+        onMessageReceived,
+      ),
+    );
+    userJoin();
+  };
+
+  const onMessageReceived = (payload: any) => {
+    var payloadData = JSON.parse(payload.body);
+    console.log('onMessageReceived');
+    dispatch(setUserEnterNumber({ value: payloadData.users }));
+    switch (payloadData.type) {
+      case 'RENEWAL':
+        payloadData['sendTime'] = Date();
+        // 뒤로가기를 하고 재입장을 하는 경우 이전 챗로그를 불러오지 못하여
+        // 추가하였습니다.
+        if (user.email === payloadData.senderEmail) {
+          avoid = false;
+        }
+        if (!avoid) {
+          dispatch(setLogId({ value: payloadData.logId }));
+          avoid = true;
+        }
+        dispatch(pushPublicChats({ value: payloadData }));
+        break;
+      case 'CHAT':
+        dispatch(pushPublicChats({ value: payloadData }));
+        break;
+      case 'CLOSE':
+        dispatch(setEndTTL({ value: true }));
+        break;
     }
   };
 
   const userJoin = () => {
+    console.log('userJoin');
     let chatMessage = {
       message: '',
     };
@@ -96,93 +134,16 @@ const ChatBeforeModal: VFC<Props> = ({
     );
   };
 
-  const userJoinExcept = () => {
-    console.log('재입장');
-    let chatMessage = {
-      message: '',
-    };
-    stompClient.send(
-      '/pub/chat/room',
-      {
-        jwt: JWTtoken,
-        channelId: sendChannelInfo.id,
-        type: 'REENTER',
-      },
-      JSON.stringify(chatMessage),
-    );
-  };
-
-  const onMessageReceivedExcept = (payload: any) => {
-    var payloadData = JSON.parse(payload.body);
-    console.log(payloadData);
-    dispatcher(setUserEnterNumber({ value: payloadData.users }));
-    switch (payloadData.type) {
-      case 'RENEWAL':
-        // 뒤로가기를 하고 재입장을 하는 경우 이전 챗로그를 불러오지 못하여
-        // 추가하였습니다.
-        if (user.email === payloadData.senderEmail) {
-          avoid = false;
-        }
-        if (!avoid) {
-          dispatcher(setLogId({ value: reEnter }));
-          avoid = true;
-        }
-        dispatcher(pushPublicChats({ value: payloadData }));
-        break;
-      case 'CHAT':
-        console.log(payloadData);
-        dispatcher(pushPublicChats({ value: payloadData }));
-        break;
-      case 'CLOSE':
-        console.log('testCLose');
-        dispatcher(setEndTTL({ value: true }));
-        break;
+  const onError = (err: any) => {
+    if (err.body === undefined) {
+      return;
     }
-  };
-
-  const onMessageReceived = (payload: any) => {
-    var payloadData = JSON.parse(payload.body);
-    dispatcher(setUserEnterNumber({ value: payloadData.users }));
-    console.log(payloadData);
-    switch (payloadData.type) {
-      case 'RENEWAL':
-        payloadData['sendTime'] = Date();
-        // 뒤로가기를 하고 재입장을 하는 경우 이전 챗로그를 불러오지 못하여
-        // 추가하였습니다.
-        if (user.email === payloadData.senderEmail) {
-          avoid = false;
-        }
-        if (!avoid) {
-          dispatcher(setLogId({ value: payloadData.logId }));
-
-          avoid = true;
-        }
-        dispatcher(pushPublicChats({ value: payloadData }));
-        break;
-      case 'CHAT':
-        dispatcher(pushPublicChats({ value: payloadData }));
-        break;
-      case 'CLOSE':
-        console.log('testCLose');
-        dispatcher(setEndTTL({ value: true }));
-        break;
-    }
-  };
-  const onConnectedExcept = () => {
-    setStompSubscribe(
-      stompClient.subscribe(
-        '/sub/chat/room/' + sendChannelInfo.id,
-        onMessageReceivedExcept,
-      ),
-    );
-    userJoinExcept();
-  };
-  const onErrorExcept = (err: any) => {
-    let error = JSON.parse(err.body);
-    console.log(error.type);
+    const error = JSON.parse(err.body);
 
     switch (error.type) {
       case 'ALREADY_USER_IN_CHANNEL':
+        connect_except();
+        reEnter = error.idx + 1;
         break;
     }
   };
@@ -201,28 +162,63 @@ const ChatBeforeModal: VFC<Props> = ({
     );
   };
 
-  const onError = (err: any) => {
-    if (err.body === undefined) {
-      return;
-    }
-    let error = JSON.parse(err.body);
+  const onConnectedExcept = () => {
+    setStompSubscribe(
+      stompClient.subscribe(
+        '/sub/chat/room/' + sendChannelInfo.id,
+        onMessageReceivedExcept,
+      ),
+    );
+    userJoinExcept();
+  };
 
-    switch (error.type) {
-      case 'ALREADY_USER_IN_CHANNEL':
-        connect_except();
-        reEnter = error.idx + 1;
+  const onMessageReceivedExcept = (payload: any) => {
+    var payloadData = JSON.parse(payload.body);
+    dispatch(setUserEnterNumber({ value: payloadData.users }));
+    switch (payloadData.type) {
+      case 'RENEWAL':
+        // 뒤로가기를 하고 재입장을 하는 경우 이전 챗로그를 불러오지 못하여
+        // 추가하였습니다.
+        if (user.email === payloadData.senderEmail) {
+          avoid = false;
+        }
+        if (!avoid) {
+          dispatch(setLogId({ value: reEnter }));
+          avoid = true;
+        }
+        dispatch(pushPublicChats({ value: payloadData }));
+        break;
+      case 'CHAT':
+        dispatch(pushPublicChats({ value: payloadData }));
+        break;
+      case 'CLOSE':
+        dispatch(setEndTTL({ value: true }));
         break;
     }
   };
 
-  const onConnected = () => {
-    setStompSubscribe(
-      stompClient.subscribe(
-        '/sub/chat/room/' + sendChannelInfo.id,
-        onMessageReceived,
-      ),
+  const onErrorExcept = (err: any) => {
+    let error = JSON.parse(err.body);
+
+    switch (error.type) {
+      case 'ALREADY_USER_IN_CHANNEL':
+        break;
+    }
+  };
+
+  const userJoinExcept = () => {
+    let chatMessage = {
+      message: '',
+    };
+    stompClient.send(
+      '/pub/chat/room',
+      {
+        jwt: JWTtoken,
+        channelId: sendChannelInfo.id,
+        type: 'REENTER',
+      },
+      JSON.stringify(chatMessage),
     );
-    userJoin();
   };
 
   useEffect(() => {
