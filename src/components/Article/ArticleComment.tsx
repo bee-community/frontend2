@@ -37,9 +37,7 @@ const ArticleComment = ({ element, articleId }: any) => {
       <Comment key={element.id}>
         <div className="comment-info">
           <span className="nick-name">{element.author}</span>
-          <span className="date">
-            {dayjs(element.createAt).format('YYYY.MM.DD HH:mm')}
-          </span>
+          <span className="date">{dayjs(element.createAt).format('YYYY.MM.DD HH:mm')}</span>
         </div>
         <div className="comment">{element.content}</div>
         <div className="comment-response">
@@ -67,9 +65,7 @@ const ArticleComment = ({ element, articleId }: any) => {
                 <img src={enter} alt="enter" />
                 <div>
                   <span className="nickname">{reply.author}</span>
-                  <div className="date">
-                    {dayjs(reply.createAt).format('YYYY.MM.DD HH:mm')}
-                  </div>
+                  <div className="date">{dayjs(reply.createAt).format('YYYY.MM.DD HH:mm')}</div>
                 </div>
               </div>
               <div className="reply-wrap">
@@ -82,12 +78,7 @@ const ArticleComment = ({ element, articleId }: any) => {
             <ReplyPostInput>
               <img src={enter} alt="enter" />
               <div className="input-wrap">
-                <input
-                  value={comment}
-                  onChange={onChangeContent}
-                  type="text"
-                  placeholder="내용을 입력해주세요."
-                />
+                <input value={comment} onChange={onChangeContent} type="text" placeholder="내용을 입력해주세요." />
                 <Button
                   buttonType="contained"
                   color="yellow"

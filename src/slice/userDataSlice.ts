@@ -24,9 +24,5 @@ const userDataSlice = createSlice({
   },
 });
 
-export const {
-  changeUserDataEmail,
-  changeUserDataConnected,
-  changeUserDataMessage,
-} = userDataSlice.actions;
+export const { changeUserDataEmail, changeUserDataConnected, changeUserDataMessage } = userDataSlice.actions;
 export default userDataSlice.reducer;

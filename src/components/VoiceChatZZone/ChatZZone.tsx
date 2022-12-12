@@ -105,9 +105,7 @@ const ChatZZone = () => {
                 if (chat.type === 'CHAT') {
                   return chat.senderEmail === user.email ? (
                     <div className="mySendChat" key={chat.id}>
-                      <div className="chatSendTime">
-                        {dayjs(chat.sendTime).format('A HH:mm')}
-                      </div>
+                      <div className="chatSendTime">{dayjs(chat.sendTime).format('A HH:mm')}</div>
                       <div className="details">
                         <div className="chatContent">{chat.message}</div>
                       </div>
@@ -116,14 +114,10 @@ const ChatZZone = () => {
                     <div className="counterpartChat" key={chat.id}>
                       <div className="chatImgIcon"></div>
                       <div className="details">
-                        <div className="counterpartName">
-                          {chat.senderNickname}
-                        </div>
+                        <div className="counterpartName">{chat.senderNickname}</div>
                         <div className="chatContent">{chat.message}</div>
                       </div>
-                      <div className="chatArriveTime">
-                        {dayjs(chat.sendTime).format('A HH:mm')}
-                      </div>
+                      <div className="chatArriveTime">{dayjs(chat.sendTime).format('A HH:mm')}</div>
                     </div>
                   );
                 } else {
@@ -145,9 +139,7 @@ const ChatZZone = () => {
           if (chat.type === 'CHAT') {
             return chat.senderEmail === user.email ? (
               <div className="mySendChat" key={chat.id}>
-                <div className="chatSendTime">
-                  {dayjs(chat.sendTime).format('A HH:mm')}
-                </div>
+                <div className="chatSendTime">{dayjs(chat.sendTime).format('A HH:mm')}</div>
                 <div className="details">
                   <div className="chatContent">{chat.chatMessage}</div>
                 </div>
@@ -159,9 +151,7 @@ const ChatZZone = () => {
                   <div className="counterpartName">{chat.senderName}</div>
                   <div className="chatContent">{chat.chatMessage}</div>
                 </div>
-                <div className="chatArriveTime">
-                  {dayjs(chat.sendTime).format('A HH:mm')}
-                </div>
+                <div className="chatArriveTime">{dayjs(chat.sendTime).format('A HH:mm')}</div>
               </div>
             );
           } else {

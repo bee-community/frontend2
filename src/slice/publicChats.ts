@@ -21,6 +21,5 @@ const publicChatsSlice = createSlice({
   },
 });
 
-export const { setPublicChats, pushPublicChats, resetPublicChats } =
-  publicChatsSlice.actions;
+export const { setPublicChats, pushPublicChats, resetPublicChats } = publicChatsSlice.actions;
 export default publicChatsSlice.reducer;

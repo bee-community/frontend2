@@ -12,10 +12,7 @@ import { over } from 'stompjs';
 
 import ChatContext from '../../context/ChatContext';
 import { pushPublicChats } from '../../slice/publicChats';
-import {
-  changeUserDataEmail,
-  changeUserDataConnected,
-} from '../../slice/userDataSlice';
+import { changeUserDataEmail, changeUserDataConnected } from '../../slice/userDataSlice';
 import { setUserEnterNumber } from '../../slice/userEnterNumberSlice';
 import { Channel, HashTag } from '../../typings/db';
 import './ChatBeforeModal2.css';
@@ -30,17 +27,12 @@ const socketURL = 'http://honeybees.community:8080/ws-stomp';
 var stompClient: any = null;
 let avoid = false;
 let reEnter = 0;
-const ChatBeforeModal: VFC<Props> = ({
-  sendChannelInfo,
-  show,
-  onCloseModal,
-}) => {
+const ChatBeforeModal: VFC<Props> = ({ sendChannelInfo, show, onCloseModal }) => {
   const [hash1, setHash] = useState('');
   const [testName, setTestName] = useState('');
 
   // const [test, setTest] = useState('');
-  const { setClient, setChannelInfo, setStompSubscribe } =
-    useContext<any>(ChatContext);
+  const { setClient, setChannelInfo, setStompSubscribe } = useContext<any>(ChatContext);
   // const { scrollBarRef } = useContext<any>(ScrollContext);
 
   // const jwt = useContext(JwtStateContext);
@@ -195,12 +187,7 @@ const ChatBeforeModal: VFC<Props> = ({
   const onConnectedExcept = () => {
     // setUserData({ ...userData, connected: true });
     dispatcher(changeUserDataConnected({ connected: true }));
-    setStompSubscribe(
-      stompClient.subscribe(
-        '/sub/chat/room/' + sendChannelInfo.id,
-        onMessageReceivedExcept,
-      ),
-    );
+    setStompSubscribe(stompClient.subscribe('/sub/chat/room/' + sendChannelInfo.id, onMessageReceivedExcept));
     // console.log(happy);
     userJoinExcept();
   };
@@ -268,12 +255,7 @@ const ChatBeforeModal: VFC<Props> = ({
 
   const onConnected = () => {
     dispatcher(changeUserDataConnected({ connected: true }));
-    setStompSubscribe(
-      stompClient.subscribe(
-        '/sub/chat/room/' + sendChannelInfo.id,
-        onMessageReceived,
-      ),
-    );
+    setStompSubscribe(stompClient.subscribe('/sub/chat/room/' + sendChannelInfo.id, onMessageReceived));
     userJoin();
   };
 
@@ -426,18 +408,10 @@ const ChatBeforeModal: VFC<Props> = ({
     <div className="ChatBeforeModal2">
       <div className="modal ">
         <div className="closeButtonWrapper">
-          <img
-            alt="closeButton"
-            role="presentation"
-            className="closeButton"
-            src={xButton}
-            onClick={onCloseModal}></img>
+          <img alt="closeButton" role="presentation" className="closeButton" src={xButton} onClick={onCloseModal}></img>
         </div>
         <div className="textArea">
-          <input
-            style={{ fontSize: '18px' }}
-            value={testName}
-            onChange={onChangeTestName}></input>
+          <input style={{ fontSize: '18px' }} value={testName} onChange={onChangeTestName}></input>
           <div className="modalTag">{hash1}</div>
           <div className="modalTitle">{sendChannelInfo.channelName}</div>
           <div className="modalTimeLimit">
@@ -451,11 +425,7 @@ const ChatBeforeModal: VFC<Props> = ({
             <span>{`/${sendChannelInfo.limitParticipants}`}</span>
           </div>
         </div>
-        <img
-          alt="BeeImage"
-          role="presentation"
-          className="modalBee"
-          src={mobileBee}></img>
+        <img alt="BeeImage" role="presentation" className="modalBee" src={mobileBee}></img>
         <div className="centerBee">
           <div className="yellowButton" onClick={connect}>
             채팅방 참여하기

@@ -10,10 +10,7 @@ import { url } from 'inspector';
 import React, { useEffect, useState, useCallback, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setChatColor } from 'slice/chatColorSlice';
-import {
-  setDataList as setDataList2,
-  setMyDataList,
-} from 'slice/chatDataListSlice';
+import { setDataList as setDataList2, setMyDataList } from 'slice/chatDataListSlice';
 import { setChatState } from 'slice/chatStateSlice';
 import { setLogId } from 'slice/logIdSlice';
 
@@ -52,9 +49,7 @@ function Aside() {
   const JWTtoken = useSelector((store: any) => store.JWTtoken);
   const [text, setText] = useState('');
   const [selected, setSelected] = useState('참여인원수');
-  const CreateChannelExceptModalOpen = useSelector(
-    (store: any) => store.pointOpen.createPointModalExcept,
-  );
+  const CreateChannelExceptModalOpen = useSelector((store: any) => store.pointOpen.createPointModalExcept);
   const onChangeText = (e: any) => {
     setText(e.target.value);
   };
@@ -217,12 +212,8 @@ function Aside() {
         </Bio>
       )}
 
-      <CreateChannel
-        show={showCreateChannel}
-        onCloseModal={onCloseModal}></CreateChannel>
-      {CreateChannelExceptModalOpen && (
-        <CreateChannelExceptModal></CreateChannelExceptModal>
-      )}
+      <CreateChannel show={showCreateChannel} onCloseModal={onCloseModal}></CreateChannel>
+      {CreateChannelExceptModalOpen && <CreateChannelExceptModal></CreateChannelExceptModal>}
       {chatState !== 'chat' && chatState !== 'voicechat' && (
         <>
           <Box style={{ marginTop: '10px' }}>
@@ -233,9 +224,7 @@ function Aside() {
                 // chatGetType = 'chatList';
                 // revalidate();
               }}
-              backgroundColor={
-                chatColor.chatColor == 'chatList' ? '#ffe576' : 'white'
-              }
+              backgroundColor={chatColor.chatColor == 'chatList' ? '#ffe576' : 'white'}
               fontWeight={chatColor.chatColor == 'chatList' ? '700' : '400'}>
               채팅방 리스트
             </ChatButton>
@@ -245,9 +234,7 @@ function Aside() {
                 dispatcher(setChatState({ value: 'myList' }));
                 // revalidate();
               }}
-              backgroundColor={
-                chatColor.chatColor == 'myList' ? '#ffe576' : 'white'
-              }
+              backgroundColor={chatColor.chatColor == 'myList' ? '#ffe576' : 'white'}
               fontWeight={chatColor.chatColor == 'myList' ? '700' : '400'}>
               내 채팅방
             </ChatButton>

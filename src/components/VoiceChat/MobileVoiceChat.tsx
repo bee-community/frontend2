@@ -114,8 +114,7 @@ const PPointModal = styled.div`
 //   toggleDrawer: (e: any) => void;
 // }
 const Chat = () => {
-  const { client, channelInfo, stompSubscribe, setChatList } =
-    useContext<any>(ChatContext);
+  const { client, channelInfo, stompSubscribe, setChatList } = useContext<any>(ChatContext);
 
   const userData = useSelector((store: any) => store.userData);
   const JWTtoken = useSelector((store: any) => store.JWTtoken);
@@ -123,9 +122,7 @@ const Chat = () => {
   const indexChat = useSelector((store: any) => store.indexChat);
   const chatColor = useSelector((store: any) => store.chatColor);
   const pointOpen = useSelector((store: any) => store.pointOpen);
-  const voiceStateInfoModal = useSelector(
-    (store: any) => store.pointOpen.voiceStateInfoModal,
-  );
+  const voiceStateInfoModal = useSelector((store: any) => store.pointOpen.voiceStateInfoModal);
   const dispatcher = useDispatch();
   const chatUrl = '/api/v1/webrtc/chat/channels/partiDESC/0';
   const myChatUrl = '/api/v1/webrtc/chat/mychannel/partiDESC/0';
@@ -296,12 +293,7 @@ const Chat = () => {
             <Scrollbar maximalThumbYSize={50}>
               <div className="drawerWrapper">
                 <div className="top">
-                  <img
-                    alt="settingIcon"
-                    role="presentation"
-                    className="setting"
-                    src={setting}
-                  />
+                  <img alt="settingIcon" role="presentation" className="setting" src={setting} />
                   <img
                     className="xbutton"
                     alt="toggleButton"
@@ -317,12 +309,7 @@ const Chat = () => {
                 </div>
                 <div className="title">{channelInfo.channelName}</div>
                 <div className="third">
-                  <img
-                    alt="timeIcon"
-                    role="presentation"
-                    className="time"
-                    src={timeIcon}
-                  />
+                  <img alt="timeIcon" role="presentation" className="time" src={timeIcon} />
                   <span> &nbsp; {secondsToTime(chatTime)}</span>
                 </div>
                 <div className="myIcon">
@@ -332,16 +319,14 @@ const Chat = () => {
                 </div>
                 <div className="line"></div>
                 <div className="friend">{`대화상대 ${userChatName.userEnterNumber.length}/30`}</div>
-                {userChatName.userEnterNumber.map(
-                  (user: any, index: number) => {
-                    return (
-                      <div key={index} className="friendIcon">
-                        <div className="chatImgIcon"></div>
-                        <div className="chatContent">{user.nickname}</div>
-                      </div>
-                    );
-                  },
-                )}
+                {userChatName.userEnterNumber.map((user: any, index: number) => {
+                  return (
+                    <div key={index} className="friendIcon">
+                      <div className="chatImgIcon"></div>
+                      <div className="chatContent">{user.nickname}</div>
+                    </div>
+                  );
+                })}
 
                 <div className="friendIcon" style={{ height: '53px' }}>
                   {/* <div className="chatImgIcon"></div>
@@ -372,12 +357,7 @@ const Chat = () => {
                   }
                   revalidate();
                 }}>
-                <img
-                  alt="backSpaceIcon"
-                  role="presentation"
-                  className="backSpace"
-                  src={backSpace}
-                />
+                <img alt="backSpaceIcon" role="presentation" className="backSpace" src={backSpace} />
               </div>
               <div className="middle">
                 <div className="chatTitle">{channelInfo.channelName}</div>

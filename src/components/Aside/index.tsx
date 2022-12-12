@@ -13,17 +13,7 @@ import { setLogId } from 'slice/logIdSlice';
 
 import ChatContext from '../../context/ChatContext';
 import { resetPublicChats } from '../../slice/publicChats';
-import {
-  AsideWrap,
-  Bio,
-  SideListWrap,
-  SideList,
-  ButtonPurple,
-  Order,
-  ListTitle,
-  Box,
-  ChatButton,
-} from './styles';
+import { AsideWrap, Bio, SideListWrap, SideList, ButtonPurple, Order, ListTitle, Box, ChatButton } from './styles';
 import './test.css';
 
 // const CHAT_STATE_COLORS = {
@@ -37,9 +27,7 @@ function Aside() {
   // const { JWTtoken, publicChats } = useSelector((store: any) => store);
   const chatColor = useSelector((store: any) => store.chatColor);
   const chatState = useSelector((store: any) => store.chatState);
-  const CreateChannelExceptModalOpen = useSelector(
-    (store: any) => store.pointOpen.createPointModalExcept,
-  );
+  const CreateChannelExceptModalOpen = useSelector((store: any) => store.pointOpen.createPointModalExcept);
 
   const dispatcher = useDispatch();
 
@@ -146,19 +134,10 @@ function Aside() {
     <AsideWrap>
       <Bio>
         <span>채팅</span>
-        <img
-          alt="closeButton"
-          role="presentation"
-          src={addButton}
-          onClick={onClickCreateChannel}
-        />
+        <img alt="closeButton" role="presentation" src={addButton} onClick={onClickCreateChannel} />
       </Bio>
-      <CreateChannel
-        show={showCreateChannel}
-        onCloseModal={onCloseModal}></CreateChannel>
-      {CreateChannelExceptModalOpen && (
-        <CreateChannelExceptModal></CreateChannelExceptModal>
-      )}
+      <CreateChannel show={showCreateChannel} onCloseModal={onCloseModal}></CreateChannel>
+      {CreateChannelExceptModalOpen && <CreateChannelExceptModal></CreateChannelExceptModal>}
       <Box>
         <ChatButton
           onClick={() => {
@@ -167,9 +146,7 @@ function Aside() {
             // chatGetType = 'chatList';
             // revalidate();
           }}
-          backgroundColor={
-            chatColor.chatColor == 'chatList' ? '#ffe576' : 'white'
-          }
+          backgroundColor={chatColor.chatColor == 'chatList' ? '#ffe576' : 'white'}
           fontWeight={chatColor.chatColor == 'chatList' ? '700' : '400'}>
           채팅방 리스트
         </ChatButton>
@@ -179,9 +156,7 @@ function Aside() {
             dispatcher(setChatState({ value: 'myList' }));
             // revalidate();
           }}
-          backgroundColor={
-            chatColor.chatColor == 'myList' ? '#ffe576' : 'white'
-          }
+          backgroundColor={chatColor.chatColor == 'myList' ? '#ffe576' : 'white'}
           fontWeight={chatColor.chatColor == 'myList' ? '700' : '400'}>
           내 채팅방
         </ChatButton>

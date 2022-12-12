@@ -13,15 +13,8 @@ import { OpenVidu } from 'openvidu-browser';
 import { useCallback, useEffect, useState, useContext, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Scrollbar } from 'react-scrollbars-custom';
-import {
-  setSessionCheck,
-  setViduVoiceToken,
-} from 'slice/openViduSessionCheckSlice';
-import {
-  setPointOpen,
-  setVoiceStateInfoModal,
-  setVoiceStateInfoText,
-} from 'slice/pointModal';
+import { setSessionCheck, setViduVoiceToken } from 'slice/openViduSessionCheckSlice';
+import { setPointOpen, setVoiceStateInfoModal, setVoiceStateInfoText } from 'slice/pointModal';
 import styled from 'styled-components';
 
 import axios from '../../chatApi';
@@ -297,12 +290,7 @@ const ChatMiddle = () => {
                 }}
               />
               <label className="menu-open-button" htmlFor="menu-open">
-                <img
-                  src={gotIdea}
-                  style={{ width: '28px;', height: '28px' }}
-                  alt=""
-                  ref={menuModal}
-                />
+                <img src={gotIdea} style={{ width: '28px;', height: '28px' }} alt="" ref={menuModal} />
               </label>
 
               {session === undefined ? (
@@ -319,12 +307,7 @@ const ChatMiddle = () => {
                 </a>
               ) : (
                 <a className="menu-item">
-                  <img
-                    style={{ width: '40px;', height: '40px' }}
-                    src={red}
-                    alt=""
-                    onClick={leaveSession}
-                  />
+                  <img style={{ width: '40px;', height: '40px' }} src={red} alt="" onClick={leaveSession} />
                 </a>
               )}
 
@@ -413,9 +396,7 @@ const ChatMiddle = () => {
                     </div>
                   ) : null}
                   <div id="video-container" className="hi">
-                    <div
-                      className="stream-container"
-                      onClick={() => handleMainVideoStream(publisher)}>
+                    <div className="stream-container" onClick={() => handleMainVideoStream(publisher)}>
                       <UserAudioComponent streamManager={publisher} idx={18} />
                     </div>
                     {/* {publisher !== undefined ? (
@@ -428,9 +409,7 @@ const ChatMiddle = () => {
                     {subscribers.map((sub: any, i: any) => {
                       if (i < 9) {
                         return (
-                          <div
-                            key={i}
-                            onClick={() => handleMainVideoStream(sub)}>
+                          <div key={i} onClick={() => handleMainVideoStream(sub)}>
                             {/* <div>ssss</div> */}
                             <UserAudioComponent streamManager={sub} idx={i} />
                           </div>

@@ -1,11 +1,7 @@
 import BannerBox from 'components/molecules/boxes/BannerBox';
 import BestArticleList from 'components/organisms/lists/BestArticleList';
 import CategoryList from 'components/organisms/lists/CategoryList';
-import {
-  useGetArticles,
-  useGetBoards,
-  useGetUserSelf,
-} from 'hooks/queries/requests';
+import { useGetArticles, useGetBoards, useGetUserSelf } from 'hooks/queries/requests';
 
 function Main() {
   const { data } = useGetArticles();
@@ -16,18 +12,8 @@ function Main() {
     <>
       <BannerBox />
       <CategoryList categories={boards} />
-      <BestArticleList
-        title="오늘의 게시글"
-        subTitle="Today New!"
-        articles={articles}
-        navigate="today"
-      />
-      <BestArticleList
-        title="이번주의 베스트 게시글"
-        subTitle="Weekly New!"
-        articles={articles}
-        navigate="best"
-      />
+      <BestArticleList title="오늘의 게시글" subTitle="Today New!" articles={articles} navigate="today" />
+      <BestArticleList title="이번주의 베스트 게시글" subTitle="Weekly New!" articles={articles} navigate="best" />
     </>
   );
 }
