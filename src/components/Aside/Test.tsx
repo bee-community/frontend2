@@ -231,7 +231,6 @@ function Aside() {
                 dispatcher(setChatColor({ value: 'chatList' }));
                 dispatcher(setChatState({ value: 'chatList' }));
                 // chatGetType = 'chatList';
-                console.log('dad');
                 // revalidate();
               }}
               backgroundColor={
@@ -244,7 +243,6 @@ function Aside() {
               onClick={() => {
                 dispatcher(setChatColor({ value: 'myList' }));
                 dispatcher(setChatState({ value: 'myList' }));
-                console.log('dad2');
                 // revalidate();
               }}
               backgroundColor={
