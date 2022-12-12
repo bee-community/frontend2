@@ -10,11 +10,11 @@ if (process.env.REACT_APP_MSW === 'development') {
   REQUEST_URL = 'http://honeybees.community';
 }
 
-export const useGetArticleDetail = (
-  articleId?: string,
-): ArticleDetailType | undefined => {
-  const { data: res } = useQuery('articleDetail', () =>
-    axios.get<ArticleDetailType>(`${REQUEST_URL}/articles/${articleId}`),
+export const useGetArticleDetail = (articleId?: string): ArticleDetailType | undefined => {
+  const { data: res } = useQuery(
+    'articleDetail',
+    () => axios.get<ArticleDetailType>(`${REQUEST_URL}/articles/${articleId}`),
+    { refetchOnWindowFocus: false },
   );
   return res?.data;
 };

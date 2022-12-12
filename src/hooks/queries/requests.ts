@@ -44,8 +44,10 @@ export const useGetSpecificBoardArticles = (
   refreshBoardArticles: (board_path: string) => void;
 } => {
   const queryClient = useQueryClient();
-  const { data: res, isFetching } = useQuery(['specificBoardArticles', board_path], () =>
-    getSpecificBoardArticles(REQUEST_URL, board_path),
+  const { data: res, isFetching } = useQuery(
+    ['specificBoardArticles', board_path],
+    () => getSpecificBoardArticles(REQUEST_URL, board_path),
+    { refetchOnWindowFocus: false },
   );
 
   const refreshBoardArticles = (board_path: string) => {

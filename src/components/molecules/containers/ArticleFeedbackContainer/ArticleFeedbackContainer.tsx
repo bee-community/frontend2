@@ -10,6 +10,7 @@ function ArticleFeedbackContainer() {
         buttonType="outlined"
         color="black"
         radius="square"
+        onClick={() => window.confirm('이 글을 좋아요 하시겠습니까?')}
         css={{
           boxShadow: '0 0 6px 0 rgba(0, 0, 0, 0.16)',
           backgroundColor: '#fff',

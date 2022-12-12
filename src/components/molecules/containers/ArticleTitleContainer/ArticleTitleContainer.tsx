@@ -34,9 +34,7 @@ const ArticleTitleContainer: React.FC<PostsProps> = ({ article }) => {
             <span key={index}>{tag}</span>
           ))}
         </div>
-        <div className="article-date">
-          {dayjs(article.created_at).format('YYYY.MM.DD HH:mm')}
-        </div>
+        <div className="article-date">{dayjs(article.created_at).format('YYYY.MM.DD HH:mm')}</div>
       </div>
       <div className="article-feedbacks">
         <span>조회수 {article.view_count}</span>
