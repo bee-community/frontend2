@@ -21,7 +21,7 @@ const ChatZZone = () => {
   // }, []);
 
   const { channelInfo, chatList, setChatList } = useContext<any>(ChatContext);
-  const userData = useSelector((store: any) => store.userData);
+  const user = useSelector((store: any) => store.user);
   const { JWTtoken } = useSelector((store: any) => store.JWTtoken);
   const publicChats = useSelector((store: any) => store.publicChats);
   const logId = useSelector((store: any) => store.logId);
@@ -50,7 +50,8 @@ const ChatZZone = () => {
       .then((res: any) => {
         setOnce(c => c + 1);
         let chatL = res.data.logs.length;
-        if (once >= 1 && chatL < 20) {
+        if (once >= 1 && chatL < 19) {
+          console.log(chatL);
           setIsReachingEnd(true);
         }
         let arr = chatList;
@@ -69,7 +70,7 @@ const ChatZZone = () => {
   }, []);
   const onScroll = useCallback(
     value => {
-      if (value.scrollTop === 0) {
+      if (value.scrollTop === 0 && !isReachingEnd) {
         console.log('가장위');
         if (logId.logId < 20) {
           let a = logId.logId + 1;
@@ -104,7 +105,7 @@ const ChatZZone = () => {
               </div>
               {chats.reverse().map((chat: any) => {
                 if (chat.type === 'CHAT') {
-                  return chat.senderEmail === userData.userEmail ? (
+                  return chat.senderEmail === user.email ? (
                     <div className="mySendChat" key={chat.id}>
                       <div className="chatSendTime">
                         {dayjs(chat.sendTime).format('A HH:mm')}
@@ -145,7 +146,7 @@ const ChatZZone = () => {
 
         {publicChats.chat.map((chat: any) => {
           if (chat.type === 'CHAT') {
-            return chat.senderEmail === userData.userEmail ? (
+            return chat.senderEmail === user.email ? (
               <div className="mySendChat" key={chat.id}>
                 <div className="chatSendTime">
                   {dayjs(chat.sendTime).format('A HH:mm')}
