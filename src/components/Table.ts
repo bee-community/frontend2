@@ -24,6 +24,25 @@ export const Table = styled.table`
   td {
     padding: 8px 15px;
 
+    .inputWrapper {
+      display: flex;
+      font-size: 1rem;
+      width: 600px;
+      height: 1.5rem;
+      min-width: 90px;
+      padding: 7px 5px;
+      border-radius: 5px;
+      border: solid 1px #ddd;
+      overflow-x: scroll;
+    }
+    .inputWrapper::-webkit-scrollbar {
+      display: none;
+    }
+
+    .test {
+      white-space: nowrap;
+    }
+
     input {
       font-size: 1rem;
       width: 100%;
@@ -31,6 +50,31 @@ export const Table = styled.table`
       padding: 7px 5px;
       border-radius: 5px;
       border: solid 1px #ddd;
+    }
+
+    .inputWrapper input {
+      font-size: 1rem;
+      width: 100%;
+      min-width: 90px;
+      padding: 7px 5px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    .inputWrapper .tag {
+      /* height: 20px; */
+      margin: 0px;
+      padding: 0px 6px;
+      /* border: 1px solid #ccc; */
+      border-radius: 3px;
+      border: 1px solid #ffe576;
+      background: #ffe576;
+      display: flex;
+      align-items: center;
+      color: #333;
+      min-height: 24px;
+      /* box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 1px 1px #fff; */
+      cursor: default;
     }
 
     input.input-middle {

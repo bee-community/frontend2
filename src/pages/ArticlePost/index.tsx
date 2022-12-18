@@ -1,10 +1,12 @@
+import closeButton from 'assets/chatImages/xx.png';
 import { ShadowBox } from 'components/ShadowBox';
 import { Table } from 'components/Table';
 import Button from 'components/atoms/Button';
 import { useCreateArticle } from 'hooks/business/article';
 import { useGetBoards } from 'hooks/queries/requests';
+import useInput from 'hooks/useInput';
 import { Form, Title } from 'pages/Question/styles';
-import { useCallback, useState, useRef } from 'react';
+import { useCallback, useState, useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import imageAdd from '../../assets/images/icons/imageAdd.png';
@@ -21,7 +23,10 @@ const ArticlePost = () => {
   const [boardPath, setBoardPath] = useState(beforeBoard.path);
   const imageInput = useRef<HTMLInputElement | null>(null);
   const [images, setImages] = useState<FileList[]>();
-
+  const [tags, setTags] = useState<any>([]);
+  const [newHash, onChangeNewHash, setNewHash] = useInput('');
+  const hashref = useRef<HTMLInputElement>(null);
+  const hashTagInputWrapper = useRef<HTMLDivElement>(null);
   const onChangeTitle = useCallback(e => {
     setTitle(e.target.value);
   }, []);
@@ -81,12 +86,37 @@ const ArticlePost = () => {
   );
 
   const handleKeyDown = (e: any) => {
+    console.log(e.keyCode);
     if (e.keyCode === 13) {
       e.preventDefault();
-      if (e.target.id === 'tag') console.log('ss');
+      if (e.target.id === 'tag') {
+        if (newHash !== '' && e.key === 'Enter' && e.keyCode === 13) {
+          setNewHash('');
+          setTags([...tags, e.target.value]);
+        }
+      }
     }
-    if (e.keyCode === 32) console.log('space');
+    if (newHash !== '' && e.keyCode === 32) {
+      console.log('hhhh');
+      setNewHash('');
+      setTags([...tags, e.target.value]);
+    }
+    if (newHash == '' && e.key == 'Backspace') {
+      let size = tags.length;
+      setTags([...tags.slice(0, size - 1)]);
+    }
   };
+
+  const deleteClick = (index: number) => {
+    setTags([...tags.slice(0, index), ...tags.slice(index + 1)]);
+  };
+
+  useEffect(() => {
+    const hashTagInputWrapperElement = hashTagInputWrapper.current;
+    hashTagInputWrapperElement?.addEventListener('click', () => hashref.current?.focus());
+
+    return () => hashTagInputWrapperElement?.removeEventListener('click', () => hashref.current?.focus());
+  }, []);
   return (
     <>
       <Title>글쓰기</Title>
@@ -152,13 +182,41 @@ const ArticlePost = () => {
                 태그
               </th>
               <td className="border-bottom">
-                <input
-                  id="tag"
-                  type="text"
-                  onKeyDown={handleKeyDown}
-                  required
-                  placeholder="#ENTP  추가하실 태그를 적어주세요"
-                />
+                <div ref={hashTagInputWrapper} className="inputWrapper">
+                  {tags.map((tag: string, index: number) => {
+                    return (
+                      <div style={{ marginRight: '5px' }} className="tag" key={index}>
+                        <div className="test">{tag}</div>
+                        <img
+                          style={{
+                            width: '15px',
+                            height: '15px',
+                            fontSize: '16px',
+                            color: '#666',
+                            marginLeft: '5px',
+                            marginBottom: '2px',
+                          }}
+                          alt="hashTagDelete"
+                          role="presentation"
+                          onClick={() => deleteClick(index)}
+                          src={closeButton}
+                          className="material-icons"
+                        />
+                      </div>
+                    );
+                  })}
+
+                  <input
+                    id="tag"
+                    type="text"
+                    value={newHash}
+                    ref={hashref}
+                    onKeyDown={handleKeyDown}
+                    onChange={onChangeNewHash}
+                    required
+                    placeholder={tags.length > 0 ? '' : '추가하실 태그를 입력한 후 엔터를 눌러주세요.'}
+                  />
+                </div>
               </td>
             </tr>
             <tr>
