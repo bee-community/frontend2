@@ -45,7 +45,6 @@ const ArticlePost = () => {
     e => {
       console.log(e);
       if (e.code === 'Enter') {
-        console.log('test');
       }
       e.preventDefault();
       createArticle(
@@ -62,7 +61,7 @@ const ArticlePost = () => {
             contents: [],
           },
         },
-        boardPath,
+        boardId,
       );
     },
     [title, content, boardId, boardPath],
@@ -97,7 +96,6 @@ const ArticlePost = () => {
       }
     }
     if (newHash !== '' && e.keyCode === 32) {
-      console.log('hhhh');
       setNewHash('');
       setTags([...tags, e.target.value]);
     }
@@ -213,7 +211,6 @@ const ArticlePost = () => {
                     ref={hashref}
                     onKeyDown={handleKeyDown}
                     onChange={onChangeNewHash}
-                    required
                     placeholder={tags.length > 0 ? '' : '추가하실 태그를 입력한 후 엔터를 눌러주세요.'}
                   />
                 </div>

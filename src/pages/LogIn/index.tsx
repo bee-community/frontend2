@@ -1,4 +1,5 @@
 import { client } from 'apis';
+import logo from 'assets/chatImages/logo.png';
 import Button from 'components/atoms/Button';
 import { useAuthDispatch, useAuthState } from 'context/Auth';
 import { login } from 'context/Auth/actions';
@@ -84,9 +85,7 @@ function LogIn() {
   return (
     <LogInWrap>
       <Title>
-        <img src="" alt="logo" />
-        <span id="honey">HONEY</span>
-        <span id="bee">BEE</span>
+        <img style={{ marginTop: '40px', width: '300px' }} src={logo} alt="logo" />
       </Title>
       <LoginForm onSubmit={onSubmit}>
         <input type="email" id="email" name="email" placeholder="아이디" value={email} onChange={onChangeEmail} />

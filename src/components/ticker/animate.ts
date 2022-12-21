@@ -58,7 +58,6 @@ export function animate(
       });
     };
     const onFinish = (newIndex: number) => {
-      console.log('finish');
       endSignal.removeEventListener('abort', endOnAbort);
       stopSignal.removeEventListener('abort', stopOnAbort);
       playSignal.removeEventListener('abort', playOnAbort);
@@ -75,13 +74,7 @@ export function animate(
         // 얻어걸렸는데 transelate는 현재위치에서 이동이 되나?
 
         animation.pause();
-        element.animate(
-          [
-            { transform: `translateY(${-20}px)` },
-            { transform: `translateY(${-40}px)` },
-          ],
-          options,
-        );
+        element.animate([{ transform: `translateY(${-20}px)` }, { transform: `translateY(${-40}px)` }], options);
         onFinish(newIndex + 1);
       });
 
@@ -101,13 +94,7 @@ export function animate(
       // 얻어걸렸는데 transelate는 현재위치에서 이동이 되나?
 
       animation.pause();
-      element.animate(
-        [
-          { transform: `translateY(${-20}px)` },
-          { transform: `translateY(${-40}px)` },
-        ],
-        options,
-      );
+      element.animate([{ transform: `translateY(${-20}px)` }, { transform: `translateY(${-40}px)` }], options);
       onFinish(newIndex + 1);
     });
     track6.addEventListener('click', track6Event);

@@ -1,3 +1,4 @@
+import logo from 'assets/chatImages/logo.png';
 import { Table } from 'components/Table';
 import Button from 'components/atoms/Button';
 import API from 'mainAPI';
@@ -62,9 +63,7 @@ function SignUp() {
   return (
     <SignUpWrap>
       <Title>
-        <img src="" alt="logo" />
-        <span id="honey">HONEY</span>
-        <span id="bee">BEE</span>
+        <img style={{ marginTop: '40px', width: '300px' }} src={logo} alt="logo" />
       </Title>
 
       <WhiteBox>
@@ -132,22 +131,14 @@ function SignUp() {
                 학교
               </th>
               <td className="border-bottom">
-                <input
-                  className="input-middle"
-                  type="text"
-                  placeholder="부산대학교"
-                />
+                <input className="input-middle" type="text" placeholder="부산대학교" />
                 <button className="button-in-table">인증하기</button>
               </td>
             </tr>
             <tr>
               <th scope="row">회사</th>
               <td>
-                <input
-                  className="input-middle"
-                  type="text"
-                  placeholder="부산건설"
-                />
+                <input className="input-middle" type="text" placeholder="부산건설" />
                 <button className="button-in-table">인증하기</button>
               </td>
             </tr>
