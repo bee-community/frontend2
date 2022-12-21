@@ -7,7 +7,9 @@ type ColorLevel = {
 };
 
 type ScreenSize = {
-  sm: string;
+  mobileS: string;
+  mobileM: string;
+  mobileL: string;
   md: string;
   lg: string;
   xl: string;
