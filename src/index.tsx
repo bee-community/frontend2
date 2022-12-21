@@ -27,7 +27,7 @@ ReactDOM.render(
     <AuthProvider>
       <BoardProvider>
         <ArticlesProvider>
-          <Global styles={styles} />
+          <Global styles={styles(theme)} />
           <ChatProvider>
             <ScrollProvider>
               <Provider store={store}>

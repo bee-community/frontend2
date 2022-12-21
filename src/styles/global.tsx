@@ -16,9 +16,8 @@ const globalStyle = (theme: Theme): SerializedStyles => css`
   body {
     margin: 0;
     padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo',
-      Pretendard, Roboto, 'Noto Sans KR', 'Segoe UI', 'Malgun Gothic',
-      sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', Pretendard, Roboto, 'Noto Sans KR',
+      'Segoe UI', 'Malgun Gothic', sans-serif;
     background-color: ${theme.background.yellow};
     color: #111;
 

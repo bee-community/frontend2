@@ -18,7 +18,7 @@ export const ImageWrapper = styled.div`
     width: 800px;
   }
 
-  @media (max-width: ${props => props.theme.screenSize.sm}) {
+  @media (max-width: ${props => props.theme.screenSize.mobileL}) {
     width: 400px;
   }
 
@@ -38,7 +38,7 @@ export const ImageWrapper = styled.div`
       height: 180px;
     }
 
-    @media (max-width: ${props => props.theme.screenSize.sm}) {
+    @media (max-width: ${props => props.theme.screenSize.mobileL}) {
       width: 330px;
       height: 240px;
     }
