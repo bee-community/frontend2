@@ -15,6 +15,11 @@ export const HeaderWrap = styled.header`
 
   @media (max-width: ${props => props.theme.screenSize.lg}) {
     padding: 15px 0;
+    grid-template-columns: 0 1fr 200px;
+  }
+
+  @media (max-width: ${props => props.theme.screenSize.md}) {
+    padding: 15px 0;
     grid-template-columns: 0 1fr 100px;
   }
 `;
@@ -43,5 +48,13 @@ export const Bio = styled.div`
     width: 22px;
     height: 22px;
     margin-left: 8px;
+  }
+
+  @media (max-width: ${props => props.theme.screenSize.lg}) {
+    font-size: ${props => props.theme.fontSize[17]};
+  }
+
+  @media (max-width: ${props => props.theme.screenSize.md}) {
+    font-size: ${props => props.theme.fontSize[12]};
   }
 `;

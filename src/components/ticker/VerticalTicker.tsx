@@ -30,7 +30,7 @@ export const VerticalTicker: React.FC<TickerProps> = ({
     }),
     [duration, easing, delay, reverse],
   );
-  const { height: trackHeight } = useElementSize(track1);
+  const { height: trackHeight, width } = useElementSize(track1);
 
   useEffect(() => {
     // if (!trackHeight || !track1.current || !track2.current) {
@@ -60,25 +60,13 @@ export const VerticalTicker: React.FC<TickerProps> = ({
     // });
 
     async function toggle(): Promise<void> {
-      const zeroToMinusOne = [
-        { transform: 'translateY(0px)' },
-        { transform: `translateY(${-18.5}px)` },
-      ];
+      const zeroToMinusOne = [{ transform: 'translateY(0px)' }, { transform: `translateY(${-18.5}px)` }];
 
-      const oneToZero = [
-        { transform: `translateY(${-18.5}px)` },
-        { transform: `translateY(${-38.5}px)` },
-      ];
+      const oneToZero = [{ transform: `translateY(${-18.5}px)` }, { transform: `translateY(${-38.5}px)` }];
 
-      const oneToZero2 = [
-        { transform: `translateY(${-38.5}px)` },
-        { transform: `translateY(${-58.5}px)` },
-      ];
+      const oneToZero2 = [{ transform: `translateY(${-38.5}px)` }, { transform: `translateY(${-58.5}px)` }];
 
-      const minusOneToMinusTwo = [
-        { transform: `translateY(${-1 * 20}px)` },
-        { transform: `translateY(${-2 * 20}px)` },
-      ];
+      const minusOneToMinusTwo = [{ transform: `translateY(${-1 * 20}px)` }, { transform: `translateY(${-2 * 20}px)` }];
 
       const animations = [zeroToMinusOne, oneToZero, oneToZero2];
       const foo = async () => {
