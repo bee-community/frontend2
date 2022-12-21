@@ -42,5 +42,21 @@ export const StyledCategoryList = styled.article<{ isOpened: boolean }>`
         ${props => !props.isOpened && `display: none;`}
       }
     }
+
+    @media (max-width: ${props => props.theme.screenSize.mobileL}) {
+      grid-template-columns: repeat(4, 1fr);
+
+      & > div:nth-of-type(n + 5) {
+        ${props => !props.isOpened && `display: none;`}
+      }
+    }
+
+    @media (max-width: ${props => props.theme.screenSize.mobileS}) {
+      grid-template-columns: repeat(3, 1fr);
+
+      & > div:nth-of-type(n + 4) {
+        ${props => !props.isOpened && `display: none;`}
+      }
+    }
   }
 `;
