@@ -20,7 +20,7 @@ function BoardTitleContainer(props: BoardTitleContainerProps) {
   const [isOpen, setIsOpen] = useState(false);
   const boardActions = useBoardActions();
   const boards = useBoardState();
-  const boardName = boards.filter(board => board.path === props.title)[0]?.name;
+  const boardName = boards.filter(board => board.id === props.title)[0]?.name;
   const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
@@ -74,9 +74,8 @@ function BoardTitleContainer(props: BoardTitleContainerProps) {
               color="black"
               onClick={() => {
                 setIsOpen(isOpen => !isOpen);
-                if (props.refreshBoardArticles)
-                  props.refreshBoardArticles(board.path);
-                navigate(board.path);
+                if (props.refreshBoardArticles) props.refreshBoardArticles(board.id);
+                navigate(board.id);
               }}
               css={{ fontWeight: 'normal' }}>
               {board.name}

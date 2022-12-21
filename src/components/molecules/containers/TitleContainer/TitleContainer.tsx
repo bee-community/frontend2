@@ -18,8 +18,7 @@ const cleanBeforeBoard = (dispatch: any) => {
   return navigateBoardPage;
 };
 
-const navigateBoardPage = (navigate: NavigateFunction, path: string) =>
-  navigate(path);
+const navigateBoardPage = (navigate: NavigateFunction, path: string) => navigate(path);
 
 function TitleContainer(props: TitleContainerProps) {
   const title = props.title;
@@ -33,10 +32,7 @@ function TitleContainer(props: TitleContainerProps) {
         <Button
           onClick={() => {
             if (!!props.navigate) {
-              cleanBeforeBoard(dispatch)(
-                navigate,
-                `articles/${props.navigate}`,
-              );
+              cleanBeforeBoard(dispatch)(navigate, `articles/${props.navigate}`);
             }
           }}
           buttonType="contained"

@@ -38,7 +38,7 @@ function CategoryList(props: { categories: BoardInfo[] }) {
               name={category.name}
               id={category.id}
               icon={category.path}
-              link={`board/${category.path}`}
+              link={`board/${category.id}`}
               navigate={navigate}
             />
           );

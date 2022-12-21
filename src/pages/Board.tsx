@@ -5,18 +5,11 @@ import { useParams } from 'react-router';
 
 function Board() {
   const { boardName } = useParams();
-  const {
-    data: dummyArticles,
-    isFetching,
-    refreshBoardArticles,
-  } = useGetSpecificBoardArticles(boardName);
+  const { data: dummyArticles, isFetching, refreshBoardArticles } = useGetSpecificBoardArticles(boardName);
   if (!dummyArticles) return null;
   return (
     <>
-      <BoardTitleContainer
-        title={boardName}
-        refreshBoardArticles={refreshBoardArticles}
-      />
+      <BoardTitleContainer title={boardName} refreshBoardArticles={refreshBoardArticles} />
       <BoardArticleList articles={dummyArticles} isFetching={isFetching} />
     </>
   );

@@ -27,11 +27,7 @@ function Report() {
                 휴대폰번호
               </th>
               <td className="border-bottom">
-                <input
-                  className="input-middle"
-                  type="text"
-                  placeholder="010-0000-0000"
-                />
+                <input className="input-middle" type="text" placeholder="010-0000-0000" />
                 <button className="button-in-table">인증하기</button>
               </td>
             </tr>
@@ -77,17 +73,11 @@ function Report() {
             <tr>
               <th scope="row">파일첨부</th>
               <td>
-                <InputFileLabel
-                  className="input-file-button"
-                  htmlFor="input-file">
+                <InputFileLabel className="input-file-button" htmlFor="input-file">
                   <span>첨부파일 추가</span>
                   <button className="button-in-table">파일찾기</button>
                 </InputFileLabel>
-                <input
-                  type="file"
-                  id="input-file"
-                  style={{ display: 'none' }}
-                />
+                <input type="file" id="input-file" style={{ display: 'none' }} />
               </td>
             </tr>
           </Table>
