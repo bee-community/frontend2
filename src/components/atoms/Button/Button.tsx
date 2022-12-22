@@ -36,7 +36,7 @@ const StyledButton = styled.button`
   }
 
   @media (max-width: ${theme.screenSize.mobileL}) {
-    padding: 7px 16px;
+    padding: 5px 10px;
     font-size: ${theme.fontSize[11]};
   }
 

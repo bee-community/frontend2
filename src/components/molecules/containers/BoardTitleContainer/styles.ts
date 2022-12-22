@@ -12,11 +12,11 @@ export const StyledBoardTitleContainer = styled.article`
   }
 
   @media (max-width: ${props => props.theme.screenSize.mobileL}) {
-    grid-template-columns: 74px 1fr 195px;
+    grid-template-columns: 74px 1fr 145px;
   }
 
   @media (max-width: ${props => props.theme.screenSize.mobileM}) {
-    grid-template-columns: 70px 1fr 180px;
+    grid-template-columns: 70px 1fr 140px;
   }
 
   @media (max-width: ${props => props.theme.screenSize.mobileS}) {
@@ -46,35 +46,12 @@ export const StyledBoardTitleContainer = styled.article`
 export const DropDownMenu = styled.ul<{ isOpen: boolean }>`
   display: ${props => (props.isOpen ? 'block' : 'none')};
   position: absolute;
-  right: 0;
-  top: 63px;
+  top: 58px;
   margin: 0;
   padding: 0;
   z-index: 10;
   width: 120px;
 
-  @media (max-width: ${props => props.theme.screenSize.xl}) {
-    /* top: 53px; */
-    right: 15px;
-    width: 120px;
-  }
-
-  @media (max-width: ${props => props.theme.screenSize.mobileL}) {
-    right: 5px;
-    width: 120px;
-  }
-
-  @media (max-width: ${props => props.theme.screenSize.mobileM}) {
-    top: 58px;
-    right: 1px;
-    width: 120px;
-  }
-
-  @media (max-width: ${props => props.theme.screenSize.mobileS}) {
-    top: 58px;
-    right: -40px;
-    width: 120px;
-  }
   li {
     list-style-type: none;
     margin-bottom: 10px;
@@ -85,6 +62,10 @@ export const DropDownMenu = styled.ul<{ isOpen: boolean }>`
     button {
       width: 100%;
       font-size: ${props => props.theme.fontSize[12]};
+
+      @media (max-width: ${props => props.theme.screenSize.mobileL}) {
+        font-size: ${props => props.theme.fontSize[10]};
+      }
 
       @media (max-width: ${props => props.theme.screenSize.mobileM}) {
         font-size: ${props => props.theme.fontSize[10]};

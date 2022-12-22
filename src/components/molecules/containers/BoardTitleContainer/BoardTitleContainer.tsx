@@ -64,57 +64,59 @@ function BoardTitleContainer(props: BoardTitleContainerProps) {
           radius="round">
           글쓰기
         </Button>
-        <Button
-          buttonType="buttonWithIcon"
-          color="black"
-          radius="round"
-          css={buttonWidth}
-          onClick={() => {
-            setIsOpen(isOpen => !isOpen);
-          }}>
-          <span>카테고리</span>
-          <img
-            className="button-with-icon-image"
-            src={arrowDownYellowIcon}
-            style={
-              isOpen
-                ? { transform: 'rotate(180deg)', transition: '0.3s all ease' }
-                : { marginBottom: '4px', transition: '0.3s all ease' }
-            }
-            alt={isOpen ? '︿' : '﹀'}
-          />
-        </Button>
-      </div>
-      <DropDownMenu isOpen={isOpen}>
-        {boards.slice(0, 9).map(board => (
-          <li key={board.id}>
+        <div>
+          <Button
+            buttonType="buttonWithIcon"
+            color="black"
+            radius="round"
+            css={buttonWidth}
+            onClick={() => {
+              setIsOpen(isOpen => !isOpen);
+            }}>
+            <span>카테고리</span>
+            <img
+              className="button-with-icon-image"
+              src={arrowDownYellowIcon}
+              style={
+                isOpen
+                  ? { transform: 'rotate(180deg)', transition: '0.3s all ease' }
+                  : { marginBottom: '4px', transition: '0.3s all ease' }
+              }
+              alt={isOpen ? '︿' : '﹀'}
+            />
+          </Button>
+          <DropDownMenu isOpen={isOpen}>
+            {boards.slice(0, 9).map(board => (
+              <li key={board.id}>
+                <Button
+                  buttonType="contained"
+                  radius="round"
+                  color="black"
+                  onClick={() => {
+                    setIsOpen(isOpen => !isOpen);
+                    if (props.refreshBoardArticles) props.refreshBoardArticles(board.id);
+                    navigate(board.id);
+                  }}
+                  css={{ fontWeight: 'normal', ...buttonWidth }}>
+                  {board.name}
+                </Button>
+              </li>
+            ))}
             <Button
               buttonType="contained"
               radius="round"
-              color="black"
+              color="purple"
               onClick={() => {
                 setIsOpen(isOpen => !isOpen);
-                if (props.refreshBoardArticles) props.refreshBoardArticles(board.id);
-                navigate(board.id);
+                dispatch(setCategoryOpen());
+                navigate('/');
               }}
               css={{ fontWeight: 'normal', ...buttonWidth }}>
-              {board.name}
+              더보기
             </Button>
-          </li>
-        ))}
-        <Button
-          buttonType="contained"
-          radius="round"
-          color="purple"
-          onClick={() => {
-            setIsOpen(isOpen => !isOpen);
-            dispatch(setCategoryOpen());
-            navigate('/');
-          }}
-          css={{ fontWeight: 'normal', ...buttonWidth }}>
-          더보기
-        </Button>
-      </DropDownMenu>
+          </DropDownMenu>
+        </div>
+      </div>
     </StyledBoardTitleContainer>
   );
 }
