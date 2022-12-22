@@ -10,6 +10,10 @@ const screenSize = {
 };
 
 const fontSize = {
+  6: '0.425rem',
+  7: '0.485rem',
+  8: '0.525rem',
+  9: '0.585rem',
   10: '0.625rem',
   11: '0.6875rem',
   12: '0.75rem',
