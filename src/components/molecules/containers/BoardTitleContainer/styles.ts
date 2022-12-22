@@ -61,7 +61,7 @@ export const DropDownMenu = styled.ul<{ isOpen: boolean }>`
     }
     button {
       width: 100%;
-      font-size: ${props => props.theme.fontSize[12]};
+      font-size: ${props => props.theme.fontSize[15]};
 
       @media (max-width: ${props => props.theme.screenSize.mobileL}) {
         font-size: ${props => props.theme.fontSize[10]};
