@@ -1,8 +1,6 @@
 import Button from 'components/atoms/Button';
 import IconWithLinkContainer from 'components/molecules/containers/IconWithLinkContainer';
 import { BoardInfo } from 'context/Board/types';
-import * as React from 'react';
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { setCategoryToggle } from 'redux/openStateSlice';
