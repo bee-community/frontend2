@@ -31,12 +31,23 @@ const StyledButton = styled.button`
   }
 
   @media (max-width: ${theme.screenSize.xl}) {
-    padding: 5px 16px;
-    font-size: ${theme.fontSize[13]};
+    padding: 7px 16px;
+    font-size: ${theme.fontSize[14]};
   }
 
-  @media (max-width: ${theme.screenSize.md}) {
+  @media (max-width: ${theme.screenSize.mobileL}) {
+    padding: 7px 16px;
     font-size: ${theme.fontSize[11]};
+  }
+
+  @media (max-width: ${theme.screenSize.mobileM}) {
+    padding: 7px 12px;
+    font-size: ${theme.fontSize[10]};
+  }
+
+  @media (max-width: ${theme.screenSize.mobileS}) {
+    padding: 7px 12px;
+    font-size: ${theme.fontSize[8]};
   }
 `;
 

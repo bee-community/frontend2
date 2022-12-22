@@ -1,5 +1,6 @@
 import arrowDownYellowIcon from 'assets/images/icons/arrow-down-yellow.png';
 import officeIcon from 'assets/images/icons/office.png';
+import theme from 'assets/theme';
 import Button from 'components/atoms/Button';
 import { useBoardState } from 'context/Board';
 import useBoardActions from 'hooks/useBoardActions';
@@ -23,12 +24,28 @@ function BoardTitleContainer(props: BoardTitleContainerProps) {
   const boardName = boards.filter(board => board.id === props.title)[0]?.name;
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [buttonWidth, setButtonWidth] = useState(() => {
+    if (window.innerWidth <= 425) return { width: '80px' };
+    return { width: '120px' };
+  });
   useEffect(() => {
     if (boards.length === 0) {
       boardActions.getBoards();
     }
   }, [boardActions, boards]);
 
+  const resizeFunc = () => {
+    if (window.innerWidth <= 425) setButtonWidth({ width: '80px' });
+    else setButtonWidth({ width: '120px' });
+  };
+  useEffect(() => {
+    window.addEventListener('resize', resizeFunc);
+    return () => window.removeEventListener('resize', resizeFunc);
+  }, []);
+
+  useEffect(() => {
+    console.log(buttonWidth);
+  }, [buttonWidth]);
   return (
     <StyledBoardTitleContainer>
       <Button buttonType="iconButton" color="yellow" radius="circle">
@@ -37,7 +54,10 @@ function BoardTitleContainer(props: BoardTitleContainerProps) {
       <div className="board-name">{boardName}</div>
       <div style={{ display: 'flex' }}>
         <Button
-          css={{ display: 'flex', marginRight: '10px' }}
+          css={{
+            display: 'flex',
+            marginRight: '10px',
+          }}
           buttonType="buttonWithIcon"
           onClick={() => navigate('/article/post')}
           color="black"
@@ -48,7 +68,7 @@ function BoardTitleContainer(props: BoardTitleContainerProps) {
           buttonType="buttonWithIcon"
           color="black"
           radius="round"
-          css={{ width: '120px' }}
+          css={buttonWidth}
           onClick={() => {
             setIsOpen(isOpen => !isOpen);
           }}>
@@ -77,7 +97,7 @@ function BoardTitleContainer(props: BoardTitleContainerProps) {
                 if (props.refreshBoardArticles) props.refreshBoardArticles(board.id);
                 navigate(board.id);
               }}
-              css={{ fontWeight: 'normal' }}>
+              css={{ fontWeight: 'normal', ...buttonWidth }}>
               {board.name}
             </Button>
           </li>
@@ -91,7 +111,7 @@ function BoardTitleContainer(props: BoardTitleContainerProps) {
             dispatch(setCategoryOpen());
             navigate('/');
           }}
-          css={{ fontWeight: 'normal', width: '120px' }}>
+          css={{ fontWeight: 'normal', ...buttonWidth }}>
           더보기
         </Button>
       </DropDownMenu>
