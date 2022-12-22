@@ -8,7 +8,7 @@ export const StyledBoardTitleContainer = styled.article`
   grid-gap: 12px;
 
   @media (max-width: ${props => props.theme.screenSize.xl}) {
-    grid-template-columns: 74px 1fr 215px;
+    grid-template-columns: 74px 1fr 200px;
   }
 
   @media (max-width: ${props => props.theme.screenSize.mobileL}) {
