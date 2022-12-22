@@ -8,6 +8,7 @@ import EditPrivacy from 'pages/EditPrivacy';
 import FAQ from 'pages/FAQ';
 import LogIn from 'pages/LogIn';
 import Main from 'pages/Main';
+import Category from 'pages/Mobile/Category/Category';
 import Mypage from 'pages/Mypage';
 import Question from 'pages/Question';
 import Report from 'pages/Report';
@@ -47,6 +48,7 @@ function App() {
           <Route path="signup" element={<SignUp />} />
           <Route path="login" element={<LogIn />} />
           <Route path="chat" element={<Test />} />
+          <Route path="menu" element={<Category />} />
         </Routes>
         {chatState !== 'chat' && chatState !== 'voicechat' && <BottomNav></BottomNav>}
       </BrowserRouter>

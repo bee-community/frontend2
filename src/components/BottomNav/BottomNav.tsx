@@ -20,6 +20,9 @@ const BottomNav = () => {
       case '/':
         setPage('home');
         break;
+      case '/menu':
+        setPage('menu');
+        break;
       case '/chat':
         setPage('chat');
         break;
@@ -33,7 +36,7 @@ const BottomNav = () => {
     <>
       <nav className="bottomNavWrapper">
         <div>
-          <Link to="/">
+          <Link to="/menu">
             {page === 'menu' ? (
               <img className="img" src={activemenu} alt=""></img>
             ) : (
