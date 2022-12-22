@@ -13,7 +13,7 @@ export const LogInWrap = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 136px;
+    margin-bottom: 60px;
     font-size: 1rem;
   }
   .signup {
@@ -26,7 +26,7 @@ export const LogInWrap = styled.div`
 
 export const Title = styled.div`
   font-size: ${props => props.theme.fontSize[30]};
-  margin: 35px 0 120px;
+  margin: 35px 0 80px;
 
   #honey {
     font-weight: bold;
