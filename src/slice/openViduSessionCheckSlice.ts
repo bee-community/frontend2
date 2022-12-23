@@ -18,6 +18,5 @@ const openViduSessionCheckSlice = createSlice({
   },
 });
 
-export const { setSessionCheck, setViduVoiceToken } =
-  openViduSessionCheckSlice.actions;
+export const { setSessionCheck, setViduVoiceToken } = openViduSessionCheckSlice.actions;
 export default openViduSessionCheckSlice.reducer;

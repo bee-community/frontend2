@@ -51,10 +51,7 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
 
   const onScroll = useCallback(
     value => {
-      if (
-        value.scrollTop == value.contentScrollHeight - value.clientHeight &&
-        DataList2.length % 20 == 0
-      ) {
+      if (value.scrollTop == value.contentScrollHeight - value.clientHeight && DataList2.length % 20 == 0) {
         console.log('Bottom');
         axios
           .get(
@@ -69,9 +66,7 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
           .then((res: any) => {
             // console.log(res.data);
             // setDataList([...DataList, ...res.data.channels]);
-            dispatcher(
-              setDataList2({ value: [...DataList, ...res.data.channels] }),
-            );
+            dispatcher(setDataList2({ value: [...DataList, ...res.data.channels] }));
           });
         setChannelIndex(prev => prev + 1);
       }
@@ -161,10 +156,7 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
               chatType = '음성';
             }
             return (
-              <div
-                key={index}
-                className="a1"
-                onClick={() => onClickChatBeforeModal(channela, index)}>
+              <div key={index} className="a1" onClick={() => onClickChatBeforeModal(channela, index)}>
                 <div className="first">
                   <span className="tag">
                     <span className="chatTypeTag">{chatType}</span>
@@ -188,12 +180,7 @@ const ChatRoom: VFC<Props> = ({ onClickChatBeforeModal }) => {
                 </div>
                 <div className="second">{channela.channelName}</div>
                 <div className="third">
-                  <img
-                    className="imggg"
-                    alt="timeIcon"
-                    role="presentation"
-                    src={timeIcon}
-                  />
+                  <img className="imggg" alt="timeIcon" role="presentation" src={timeIcon} />
                   <span>&nbsp;{`${ttime}`}</span>
                   {/* <span> &nbsp;1일 23시간 24분 후 종료</span> */}
                 </div>

@@ -5,11 +5,7 @@ import plusButton from 'assets/chatImages/plusButton.png';
 import React, { useState, VFC } from 'react';
 import { useDispatch } from 'react-redux';
 import TextareaAutosize from 'react-textarea-autosize';
-import {
-  setDesktopBottomDrawerOpen,
-  setPointOpen,
-  setWaitOpen,
-} from 'slice/pointModal';
+import { setDesktopBottomDrawerOpen, setPointOpen, setWaitOpen } from 'slice/pointModal';
 
 import './ChatWraper.css';
 import { HideDrawer2 } from './style';
@@ -25,24 +21,12 @@ const ChatBox: VFC<Props> = ({ chat, onSubmitForm, onChangeChat }) => {
   const dispatcher = useDispatch();
 
   const setOpenDrawer = () => {
-    document.documentElement.style.setProperty(
-      '--deskTopBottomDrawer',
-      `309px`,
-    );
-    document.documentElement.style.setProperty(
-      '--deskTopBottomDrawerZindex',
-      `1001`,
-    );
+    document.documentElement.style.setProperty('--deskTopBottomDrawer', `309px`);
+    document.documentElement.style.setProperty('--deskTopBottomDrawerZindex', `1001`);
   };
   const setCloseDrawer = () => {
-    document.documentElement.style.setProperty(
-      '--deskTopBottomDrawer',
-      `385px`,
-    );
-    document.documentElement.style.setProperty(
-      '--deskTopBottomDrawerZindex',
-      `0`,
-    );
+    document.documentElement.style.setProperty('--deskTopBottomDrawer', `385px`);
+    document.documentElement.style.setProperty('--deskTopBottomDrawerZindex', `0`);
   };
   const onKeydownChat = (e: any) => {
     // console.log(e)

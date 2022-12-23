@@ -104,28 +104,14 @@ const PointModal = () => {
             src={xButton}></img>
         </div> */}
         <div className="container">
-          <input
-            type="radio"
-            className="hidden"
-            id="input1"
-            value="1"
-            name="inputs"
-            onChange={onChangeRadio}
-          />
+          <input type="radio" className="hidden" id="input1" value="1" name="inputs" onChange={onChangeRadio} />
           <label className="entry" htmlFor="input1">
             <div className="circle"></div>
             <div className="entry-label">
               30분 <span className="point1">100 Point</span>
             </div>
           </label>
-          <input
-            onChange={onChangeRadio}
-            value="2"
-            type="radio"
-            className="hidden"
-            id="input2"
-            name="inputs"
-          />
+          <input onChange={onChangeRadio} value="2" type="radio" className="hidden" id="input2" name="inputs" />
           <label className="entry" htmlFor="input2">
             <div className="circle"></div>
             <div className="entry-label">
@@ -135,14 +121,7 @@ const PointModal = () => {
               </span>
             </div>
           </label>
-          <input
-            onChange={onChangeRadio}
-            value="4"
-            type="radio"
-            className="hidden"
-            id="input3"
-            name="inputs"
-          />
+          <input onChange={onChangeRadio} value="4" type="radio" className="hidden" id="input3" name="inputs" />
           <label className="entry" htmlFor="input3">
             <div className="circle"></div>
             <div className="entry-label">
@@ -150,14 +129,7 @@ const PointModal = () => {
               <span className="point">400 Point</span>
             </div>
           </label>
-          <input
-            onChange={onChangeRadio}
-            value="8"
-            type="radio"
-            className="hidden"
-            id="input4"
-            name="inputs"
-          />
+          <input onChange={onChangeRadio} value="8" type="radio" className="hidden" id="input4" name="inputs" />
           <label className="entry" htmlFor="input4">
             <div className="circle"></div>
             <div className="entry-label">
@@ -165,14 +137,7 @@ const PointModal = () => {
               <span className="point">800 Point</span>
             </div>
           </label>
-          <input
-            onChange={onChangeRadio}
-            value="16"
-            type="radio"
-            className="hidden"
-            id="input5"
-            name="inputs"
-          />
+          <input onChange={onChangeRadio} value="16" type="radio" className="hidden" id="input5" name="inputs" />
           <label className="entry" htmlFor="input5">
             <div className="circle"></div>
             <div className="entry-label">

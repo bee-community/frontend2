@@ -8,15 +8,7 @@ import { useDispatch } from 'react-redux';
 import TextareaAutosize from 'react-textarea-autosize';
 import { setPointOpen, setWaitOpen } from 'slice/pointModal';
 
-import {
-  ModalBackground,
-  Wrapper,
-  ChatInput,
-  TextArea,
-  PlusButton,
-  SendButton,
-  HideDrawer,
-} from './style';
+import { ModalBackground, Wrapper, ChatInput, TextArea, PlusButton, SendButton, HideDrawer } from './style';
 
 interface Props {
   chat: string;
@@ -75,11 +67,7 @@ const ChatBox: VFC<Props> = ({ chat, onSubmitForm, onChangeChat }) => {
               setActive(true);
             }, 250);
           }}>
-          <PlusButton
-            alt="chatPlusButton"
-            role="presentation"
-            className="plusButton"
-            src={plusButton}></PlusButton>
+          <PlusButton alt="chatPlusButton" role="presentation" className="plusButton" src={plusButton}></PlusButton>
         </div>
         <TextArea
           minRows={2}

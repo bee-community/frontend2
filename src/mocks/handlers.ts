@@ -21,11 +21,8 @@ export const handlers = [
     return res(ctx.status(200), ctx.json(data));
   }),
 
-  rest.get(
-    'http://localhost:3000/ant_community_frontend_dev3/boards/:board',
-    (req, res, ctx) => {
-      console.log('fkaehkhgvugdbkbngjkgnkjdnljbnljnbljnbdjlnbldgnljbndlbndl');
-      return res(ctx.status(200), ctx.json(data));
-    },
-  ),
+  rest.get('http://localhost:3000/ant_community_frontend_dev3/boards/:board', (req, res, ctx) => {
+    console.log('fkaehkhgvugdbkbngjkgnkjdnljbnljnbljnbdjlnbldgnljbndlbndl');
+    return res(ctx.status(200), ctx.json(data));
+  }),
 ];

@@ -9,9 +9,7 @@ function Board() {
   if (!dummyArticles) return null;
   return (
     <>
-      <BoardTitleContainer
-        title={type === 'today' ? '오늘의 게시글' : '베스트 게시글'}
-      />
+      <BoardTitleContainer title={type === 'today' ? '오늘의 게시글' : '베스트 게시글'} />
       <BoardArticleList articles={dummyArticles} isFetching={isFetching} />
     </>
   );

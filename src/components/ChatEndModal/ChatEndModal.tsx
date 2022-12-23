@@ -37,11 +37,7 @@ const ChatEndModal: VFC = ({}) => {
           채팅방 종료하기
         </div>
       </div>
-      <img
-        alt="BeeImage"
-        role="presentation"
-        className="modalBee"
-        src={cuteBee}></img>
+      <img alt="BeeImage" role="presentation" className="modalBee" src={cuteBee}></img>
     </div>
   );
 };

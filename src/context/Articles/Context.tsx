@@ -22,9 +22,7 @@ export const ArticlesProvider: React.FC = ({ children }) => {
 
   return (
     <ArticlesContext.Provider value={state}>
-      <DispatchContext.Provider value={dispatch}>
-        {children}
-      </DispatchContext.Provider>
+      <DispatchContext.Provider value={dispatch}>{children}</DispatchContext.Provider>
     </ArticlesContext.Provider>
   );
 };

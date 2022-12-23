@@ -161,21 +161,12 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
   return (
     <div className="createChannel">
       <div className="modal">
-        <img
-          alt="closeButton"
-          role="presentation"
-          className="closeButton"
-          src={xButton}
-          onClick={onCloseModal}></img>
+        <img alt="closeButton" role="presentation" className="closeButton" src={xButton} onClick={onCloseModal}></img>
         <div className="mobile">
           <Label2 id="workspace-label">
             <div>
               <span>채팅방 이름</span>
-              {!newWorkspace && (
-                <span className="warning trickWarning">
-                  이름을 입력해주세요.
-                </span>
-              )}
+              {!newWorkspace && <span className="warning trickWarning">이름을 입력해주세요.</span>}
             </div>
             <Input
               onBlur={() => {
@@ -188,11 +179,7 @@ const CreateChannel: VFC<Props> = ({ show, onCloseModal }) => {
           <Label2 id="workspace-label">
             <div>
               <span>해쉬태그</span>
-              {tags.length === 0 && (
-                <span className="warning">
-                  태그를 작성한 후 엔터를 입력해주세요.
-                </span>
-              )}
+              {tags.length === 0 && <span className="warning">태그를 작성한 후 엔터를 입력해주세요.</span>}
             </div>
             {/* <Input
             id="workspace"

@@ -5,10 +5,7 @@ import { ArticleType } from 'types/article/remote';
 
 import { StyledBoardArticleList } from './styles';
 
-function BoardArticleList(props: {
-  articles: ArticleType[];
-  isFetching: boolean;
-}) {
+function BoardArticleList(props: { articles: ArticleType[]; isFetching: boolean }) {
   return (
     <StyledBoardArticleList>
       <div className="board-article-order-select-wrap">

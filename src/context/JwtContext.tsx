@@ -32,9 +32,7 @@ export const JwtProvider: FC = ({ children }) => {
   const [jwt, dispatch] = useReducer(reducer, '');
   return (
     <DispatchContext.Provider value={dispatch}>
-      <JwtStateContext.Provider value={jwt}>
-        {children}
-      </JwtStateContext.Provider>
+      <JwtStateContext.Provider value={jwt}>{children}</JwtStateContext.Provider>
     </DispatchContext.Provider>
   );
 };

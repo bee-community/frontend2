@@ -14,9 +14,7 @@ export const BoardProvider: React.FC = ({ children }) => {
 
   return (
     <BoardContext.Provider value={state}>
-      <DispatchContext.Provider value={dispatch}>
-        {children}
-      </DispatchContext.Provider>
+      <DispatchContext.Provider value={dispatch}>{children}</DispatchContext.Provider>
     </BoardContext.Provider>
   );
 };

@@ -29,9 +29,7 @@ function RequestBox(props: { isDetailsOpen: boolean }) {
         <BarGraphWrap>
           <RequestInfo>
             <span className="request-board-name">유머</span>
-            <span className="request-board-graph-text">
-              500명이 요청했어요!
-            </span>
+            <span className="request-board-graph-text">500명이 요청했어요!</span>
             <span className="request-board-graph-text remain">400명 남음</span>
           </RequestInfo>
           <BarGraph percent={50}>
@@ -58,11 +56,7 @@ function RequestBox(props: { isDetailsOpen: boolean }) {
         <CommentsOpenButton>
           <span>댓글</span>
           <span className="arrow-down-button">
-            {isDetailsOpen ? (
-              <img src={arrowUp} alt="up" />
-            ) : (
-              <img src={arrowDown} alt="down" />
-            )}
+            {isDetailsOpen ? <img src={arrowUp} alt="up" /> : <img src={arrowDown} alt="down" />}
           </span>
         </CommentsOpenButton>
         <Comments>
@@ -98,8 +92,7 @@ function RequestBox(props: { isDetailsOpen: boolean }) {
             </div>
             <div className="reply-wrap">
               <div className="reply">
-                이 중요한 게시판이 없네요!이 중요한 게시판이 없네요!이 중요한
-                게시판이 없네요!이 중요한 게시판이 없네
+                이 중요한 게시판이 없네요!이 중요한 게시판이 없네요!이 중요한 게시판이 없네요!이 중요한 게시판이 없네
               </div>
               <div className="reply-response">
                 <img src={heart} alt="heart" />
@@ -114,8 +107,7 @@ function RequestBox(props: { isDetailsOpen: boolean }) {
             </div>
             <div className="reply-wrap">
               <div className="reply">
-                이 중요한 게시판이 없네요!이 중요한 게시판이 없네요!이 중요한
-                게시판이 없네요!이 중요한 게시판이 없네
+                이 중요한 게시판이 없네요!이 중요한 게시판이 없네요!이 중요한 게시판이 없네요!이 중요한 게시판이 없네
               </div>
               <div className="reply-response">
                 <img src={heart} alt="reply" />

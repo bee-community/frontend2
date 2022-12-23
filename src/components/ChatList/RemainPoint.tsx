@@ -1,12 +1,6 @@
 import xButton from 'assets/chatImages/xbutton.png';
 import ChatContext from 'context/ChatContext';
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setRemainOpen } from 'slice/pointModal';
 import styled from 'styled-components';

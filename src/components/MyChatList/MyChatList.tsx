@@ -23,8 +23,7 @@ const MyList = () => {
     timeToLive: 86400,
     channelType: 'chat',
   };
-  const [showChatBeforeModal, setShowChatBeforeModal] =
-    useState<boolean>(false);
+  const [showChatBeforeModal, setShowChatBeforeModal] = useState<boolean>(false);
   const [sendChannelInfo, setSendChannelInfo] = useState<Channel>(ab);
   const onClickChatBeforeModal = useCallback(
     (channel: Channel, i: number) => {
@@ -44,8 +43,7 @@ const MyList = () => {
     <div className="ChatList">
       <Container>
         <ChatBox>
-          <ChatRoomMy
-            onClickChatBeforeModal={onClickChatBeforeModal}></ChatRoomMy>
+          <ChatRoomMy onClickChatBeforeModal={onClickChatBeforeModal}></ChatRoomMy>
 
           <ChatBeforeModal
             sendChannelInfo={sendChannelInfo}

@@ -24,12 +24,8 @@ const VoiceFadeOutModal = () => {
   const dispatcher = useDispatch();
   const fadeOutRef = useRef<any>(null);
   const [count, setCount] = useState(1);
-  const voiceStateInfoText = useSelector(
-    (store: any) => store.pointOpen.voiceStateInfoText,
-  );
-  const voiceStateInfoModal = useSelector(
-    (store: any) => store.pointOpen.voiceStateInfoModal,
-  );
+  const voiceStateInfoText = useSelector((store: any) => store.pointOpen.voiceStateInfoText);
+  const voiceStateInfoModal = useSelector((store: any) => store.pointOpen.voiceStateInfoModal);
   const fadeOutEffect = () => {
     let fadeTarget = fadeOutRef.current;
     let minusOpacity = count;
@@ -57,11 +53,7 @@ const VoiceFadeOutModal = () => {
     fadeOutEffect();
   }, [voiceStateInfoText]);
 
-  return (
-    <VoiceFadeOutModalWrapper ref={fadeOutRef}>
-      {voiceStateInfoText}
-    </VoiceFadeOutModalWrapper>
-  );
+  return <VoiceFadeOutModalWrapper ref={fadeOutRef}>{voiceStateInfoText}</VoiceFadeOutModalWrapper>;
 };
 
 export default VoiceFadeOutModal;
