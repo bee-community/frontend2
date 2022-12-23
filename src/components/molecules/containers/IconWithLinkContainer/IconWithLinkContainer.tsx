@@ -30,7 +30,7 @@ const categoryIcons = {
   review,
 } as any;
 
-interface IconWithLinkContainerProps {
+export interface IconWithLinkContainerProps {
   name: string;
   id: string;
   link: string;
