@@ -12,6 +12,7 @@ const Category = () => {
       {categories?.map((category, index) => {
         return (
           <IconWithLinkContainer
+            type="mobile"
             key={index}
             name={category.name}
             id={category.id}

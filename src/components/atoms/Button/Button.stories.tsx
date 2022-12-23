@@ -1,4 +1,5 @@
 import { Story } from '@storybook/react';
+import egogram from 'assets/images/categoryIcons/egogram.png';
 
 import Button, { buttonProps } from './Button';
 
@@ -42,7 +43,12 @@ Outlined.args = {
 export const ButtonWithIcon = Template.bind({});
 ButtonWithIcon.args = {
   buttonType: 'buttonWithIcon',
-  radius: 'round',
-  color: 'yellow',
-  children: '버튼',
+  radius: 'circle',
+  color: 'white',
+  children: (
+    <div style={{ display: 'flex', flexDirection: 'column', padding: '0px 13px' }}>
+      <img src={egogram} alt="categoryIcon" />
+      <div style={{ marginTop: '10px' }}>회사</div>
+    </div>
+  ),
 };

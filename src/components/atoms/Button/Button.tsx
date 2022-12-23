@@ -6,7 +6,7 @@ import * as React from 'react';
 export interface buttonProps {
   buttonType: 'contained' | 'outlined' | 'buttonWithIcon' | 'iconButton';
   radius: 'round' | 'square' | 'circle';
-  color: 'yellow' | 'purple' | 'black';
+  color: 'yellow' | 'purple' | 'black' | 'white';
   onClick?: MouseEventHandler<HTMLButtonElement>;
   selected?: boolean;
   children?: React.ReactNode;

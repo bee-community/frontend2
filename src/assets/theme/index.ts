@@ -69,11 +69,13 @@ const button = {
     yellow: '#ffe576',
     purple: '#5206b9',
     black: '#000000',
+    white: '#ffffff',
   },
   fontColor: {
     yellow: '#000000',
     purple: '#ffffff',
     black: '#ffe576',
+    white: '#ffffff',
   },
 };
 

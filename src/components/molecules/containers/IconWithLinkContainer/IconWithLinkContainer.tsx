@@ -31,6 +31,7 @@ const categoryIcons = {
 } as any;
 
 export interface IconWithLinkContainerProps {
+  type: 'default' | 'mobile';
   name: string;
   id: string;
   link: string;
@@ -41,29 +42,65 @@ export interface IconWithLinkContainerProps {
 function IconWithLinkContainer(props: IconWithLinkContainerProps) {
   const dispatch = useDispatch();
 
-  return (
-    <StyledIconWithLinkContainer>
-      <div>
-        <Button
-          onClick={() => {
-            props.navigate(props.link);
-            dispatch(
-              setBeforeBoard({
-                id: props.id,
-                path: props.icon,
-                name: props.name,
-              }),
-            );
-          }}
-          buttonType="iconButton"
-          color="yellow"
-          radius="circle">
-          <img src={categoryIcons[props.icon]} alt="categoryIcon" />
-        </Button>
-        <span>{props.name}</span>
-      </div>
-    </StyledIconWithLinkContainer>
-  );
+  switch (props.type) {
+    case 'default':
+      return (
+        <StyledIconWithLinkContainer>
+          <div>
+            <Button
+              onClick={() => {
+                props.navigate(props.link);
+                dispatch(
+                  setBeforeBoard({
+                    id: props.id,
+                    path: props.icon,
+                    name: props.name,
+                  }),
+                );
+              }}
+              buttonType="iconButton"
+              color="yellow"
+              radius="circle">
+              <img src={categoryIcons[props.icon]} alt="categoryIcon" />
+            </Button>
+            <span>{props.name}</span>
+          </div>
+        </StyledIconWithLinkContainer>
+      );
+
+    case 'mobile':
+      return (
+        <StyledIconWithLinkContainer>
+          <Button
+            css={{ padding: '0px', width: '90px', height: '90px' }}
+            onClick={() => {
+              props.navigate(props.link);
+              dispatch(
+                setBeforeBoard({
+                  id: props.id,
+                  path: props.icon,
+                  name: props.name,
+                }),
+              );
+            }}
+            buttonType="iconButton"
+            color="white"
+            radius="circle">
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                padding: '0px 13px',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <img style={{ width: '30px' }} src={categoryIcons[props.icon]} alt="categoryIcon" />
+              <div style={{ marginTop: '10px' }}>{props.name}</div>
+            </div>
+          </Button>
+        </StyledIconWithLinkContainer>
+      );
+  }
 }
 
 export default IconWithLinkContainer;

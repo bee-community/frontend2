@@ -32,6 +32,7 @@ function CategoryList(props: { categories: BoardInfo[] }) {
         {categories?.map((category, index) => {
           return (
             <IconWithLinkContainer
+              type="default"
               key={index}
               name={category.name}
               id={category.id}
