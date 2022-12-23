@@ -13,7 +13,7 @@ function NoticeBar() {
   return (
     <NoticeBarWrap ref={tickerRef}>
       <span>공지</span>
-      <Ticker up={upRef} down={downRef} duration={2000}>
+      <Ticker up={upRef} down={downRef} duration={5000}>
         {width && width > 350 ? (
           <>
             <div className="notice-contents">24일 후 베타버전이 출시됩니다.</div>

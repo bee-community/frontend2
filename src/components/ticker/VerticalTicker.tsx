@@ -60,11 +60,11 @@ export const VerticalTicker: React.FC<TickerProps> = ({
     // });
 
     async function toggle(): Promise<void> {
-      const zeroToMinusOne = [{ transform: 'translateY(0px)' }, { transform: `translateY(${-18.5}px)` }];
+      const zeroToMinusOne = [{ transform: 'translateY(0px)' }, { transform: `translateY(${-18}px)` }];
 
-      const oneToZero = [{ transform: `translateY(${-18.5}px)` }, { transform: `translateY(${-38.5}px)` }];
+      const oneToZero = [{ transform: `translateY(${-18}px)` }, { transform: `translateY(${-36}px)` }];
 
-      const oneToZero2 = [{ transform: `translateY(${-38.5}px)` }, { transform: `translateY(${-58.5}px)` }];
+      const oneToZero2 = [{ transform: `translateY(${-36}px)` }, { transform: `translateY(${-54}px)` }];
 
       const minusOneToMinusTwo = [{ transform: `translateY(${-1 * 20}px)` }, { transform: `translateY(${-2 * 20}px)` }];
 
