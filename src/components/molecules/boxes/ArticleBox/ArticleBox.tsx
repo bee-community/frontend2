@@ -9,9 +9,20 @@ import { Link } from 'react-router-dom';
 import { StyledArticleBox, StyledLoadingArticleBox } from './styles';
 
 function ArticleBox(props: { article: ArticleType }) {
-  const { id, title, content, summary, board_id, view_count, is_announcement, like_count, updated_at, poll, tags } =
-    props.article;
-  const commentCount = poll.contents.length;
+  const {
+    id,
+    title,
+    content,
+    summary,
+    board_id,
+    view_count,
+    is_announcement,
+    like_count,
+    updated_at,
+    poll,
+    tags,
+    comment_count,
+  } = props.article;
   return (
     <StyledArticleBox>
       <Link to={`/article/${id}`}>
@@ -22,7 +33,7 @@ function ArticleBox(props: { article: ArticleType }) {
           <img src={heartUnfilled} alt="하트" />
           <span>{like_count}</span>
           <img src={comment} alt="코멘트" />
-          <span>{commentCount}</span>
+          <span>{comment_count}</span>
           <img
             style={{
               marginRight: '2px',
