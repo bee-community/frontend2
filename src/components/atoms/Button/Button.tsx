@@ -3,7 +3,7 @@ import theme from 'assets/theme';
 import { CSSProperties, MouseEventHandler } from 'react';
 import * as React from 'react';
 
-interface buttonProps {
+export interface buttonProps {
   buttonType: 'contained' | 'outlined' | 'buttonWithIcon' | 'iconButton';
   radius: 'round' | 'square' | 'circle';
   color: 'yellow' | 'purple' | 'black';
