@@ -19,6 +19,11 @@ export const Table = styled.table`
     padding: 20px;
     background: #f4f4f4;
     vertical-align: top;
+    @media (max-width: ${props => props.theme.screenSize.mobileL}) {
+      background: white;
+      padding: 20px 0px 20px 0px;
+      font-size: 0.8675rem;
+    }
   }
 
   td {
@@ -50,6 +55,13 @@ export const Table = styled.table`
       padding: 7px 5px;
       border-radius: 5px;
       border: solid 1px #ddd;
+
+      @media (max-width: ${props => props.theme.screenSize.mobileL}) {
+        width: 90%;
+        border: none;
+        min-width: 60px;
+        font-size: 0.7rem;
+      }
     }
 
     .inputWrapper input {
@@ -80,6 +92,11 @@ export const Table = styled.table`
     input.input-middle {
       width: 50%;
       margin-right: 10px;
+
+      @media (max-width: ${props => props.theme.screenSize.mobileL}) {
+        width: 40%;
+        margin-right: 0px;
+      }
     }
 
     textarea {
@@ -129,5 +146,10 @@ export const Table = styled.table`
     border: solid 1px #111;
     background: none;
     cursor: pointer;
+
+    @media (max-width: ${props => props.theme.screenSize.mobileL}) {
+      padding: 8px 5px 7px;
+      font-size: 0.6675rem;
+    }
   }
 `;

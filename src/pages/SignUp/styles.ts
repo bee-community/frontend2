@@ -8,6 +8,10 @@ export const SignUpWrap = styled.div`
   flex-direction: column;
   background: ${props => props.theme.background.yellow};
 
+  @media (max-width: ${props => props.theme.screenSize.mobileL}) {
+    height: calc(100vh + 350px);
+  }
+
   .signupTitle {
     font-size: ${props => props.theme.fontSize[22]};
     font-weight: 600;
@@ -24,6 +28,9 @@ export const SignUpWrap = styled.div`
     font-family: NotoSansCJKKR;
     font-weight: 300;
     color: #777;
+    @media (max-width: ${props => props.theme.screenSize.mobileL}) {
+      margin-top: 15px;
+    }
   }
 `;
 
@@ -33,6 +40,10 @@ export const WhiteBox = styled.article`
   border-radius: 15px;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: ${props => props.theme.screenSize.mobileL}) {
+    margin: 0px 20px;
+  }
 `;
 
 export const Error = styled.div`
