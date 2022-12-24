@@ -1,5 +1,11 @@
 import styled from '@emotion/styled';
 
+export const MyPageWrap = styled.div`
+  @media (max-width: ${props => props.theme.screenSize.mobileL}) {
+    background-color: #f4f4f4;
+  }
+`;
+
 export const NickName = styled.div`
   .updatedNickName {
     font-family: NotoSansCJKKR;

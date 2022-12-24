@@ -5,5 +5,6 @@ export const CategoryList = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   place-items: center;
+  column-gap: 5px;
   row-gap: 20px;
 `;

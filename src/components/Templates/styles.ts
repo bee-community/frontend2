@@ -5,7 +5,6 @@ export const StyledTemplate = styled.div`
   display: grid;
   grid-template-rows: auto 1fr;
   gap: 20px;
-
   @media (max-width: ${props => props.theme.screenSize.lg}) {
     margin: 15px;
     gap: 15px;

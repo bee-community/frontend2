@@ -25,7 +25,7 @@ export const NoticeBarWrap = styled.article`
     justify-self: start;
 
     .notice-contents {
-      height: 20px;
+      height: 19px;
     }
   }
 `;

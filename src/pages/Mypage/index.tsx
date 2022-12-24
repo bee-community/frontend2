@@ -9,17 +9,35 @@ import school from 'assets/images/icons/school.png';
 import smile from 'assets/images/icons/smile.png';
 import time from 'assets/images/icons/time.png';
 import { ShadowBox } from 'components/ShadowBox';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { NickName, Box, MyPageCategory, CustomerService, Edit } from './styles';
+import { NickName, Box, MyPageCategory, CustomerService, Edit, MyPageWrap } from './styles';
 
 function Mypage() {
   const userInfo = useSelector((store: any) => store.userInfo);
+  useEffect(() => {
+    const html = document.querySelector<HTMLElement>('html');
+    const root = document.querySelector<HTMLElement>('#root');
+    if (window.innerWidth <= 425) {
+      if (html != null) html.style.backgroundColor = '#f4f4f4';
+      if (root != null) root.style.backgroundColor = '#f4f4f4';
+    }
+
+    return () => {
+      if (window.innerWidth <= 425) {
+        if (html != null) html.style.backgroundColor = 'white';
+        if (root != null) root.style.backgroundColor = 'white';
+      } else {
+        if (html != null) html.style.backgroundColor = '#ffe576';
+        if (root != null) root.style.backgroundColor = '#ffe576';
+      }
+    };
+  }, []);
 
   return (
-    <>
+    <MyPageWrap>
       <ShadowBox>
         <NickName>
           <div className="updatedNickName">{userInfo.nickname}</div>
@@ -111,7 +129,7 @@ function Mypage() {
           </div>
         </div>
       </CustomerService>
-    </>
+    </MyPageWrap>
   );
 }
 
