@@ -95,10 +95,6 @@ const ArticlePost = () => {
         }
       }
     }
-    if (newHash !== '' && e.keyCode === 32) {
-      setNewHash('');
-      setTags([...tags, e.target.value]);
-    }
     if (newHash == '' && e.key == 'Backspace') {
       let size = tags.length;
       setTags([...tags.slice(0, size - 1)]);
@@ -150,7 +146,6 @@ const ArticlePost = () => {
                   value={content}
                   required
                   onChange={onChangeContent}
-                  onKeyDown={handleKeyDown}
                   placeholder="문의할 내용을 입력해주세요."
                 />
               </td>
