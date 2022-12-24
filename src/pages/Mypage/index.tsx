@@ -40,7 +40,15 @@ function Mypage() {
     <MyPageWrap>
       <ShadowBox>
         <NickName>
-          <div className="updatedNickName">{userInfo.nickname}</div>
+          <div className="upperWrapper">
+            <div className="updatedNickName">{userInfo.nickname}</div>
+            <Edit>
+              <Link to="edit-privacy">
+                <img src={edit} alt="edit" />
+                <span> 개인정보 수정</span>
+              </Link>
+            </Edit>
+          </div>
           <div className="remainTimeWrap">
             <img src={time} alt="time" />
             <span>
@@ -48,12 +56,6 @@ function Mypage() {
             </span>
           </div>
         </NickName>
-        <Edit>
-          <Link to="edit-privacy">
-            <img src={edit} alt="edit" />
-            <span> 개인정보 수정</span>
-          </Link>
-        </Edit>
       </ShadowBox>
 
       <MyPageCategory>
