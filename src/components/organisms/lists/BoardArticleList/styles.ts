@@ -29,5 +29,9 @@ export const StyledBoardArticleList = styled.article`
     @media (max-width: ${props => props.theme.screenSize.md}) {
       grid-template-columns: repeat(1, minmax(20%, auto));
     }
+
+    @media (max-width: ${props => props.theme.screenSize.mobileL}) {
+      grid-template-columns: repeat(2, minmax(20%, auto));
+    }
   }
 `;
