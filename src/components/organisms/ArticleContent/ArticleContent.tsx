@@ -28,7 +28,16 @@ function ArticleContent(props: ArticleContentProps) {
         src={exImage}
         alt="이미지"
       /> */}
-      <section className="article-content">{article.content}</section>
+      <section className="article-content">
+        {article.content.split('\n').map((line, index) => {
+          return (
+            <span key={index}>
+              {line}
+              <br />
+            </span>
+          );
+        })}
+      </section>
       <TagRecommendList tags={recommendedTags} />
       <ArticleFeedbackContainer articleId={article.id} />
     </StyledArticleContent>
