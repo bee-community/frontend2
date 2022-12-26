@@ -156,19 +156,24 @@ const ArticlePost = () => {
           value={content}
           required
           onChange={onChangeContent}></TableTextArea>
-        <select id="board" onChange={onChangeBoard} name="category" required>
-          {isBeforeBoardExist ? (
-            <option value={beforeBoard.name}>{beforeBoard.name}</option>
-          ) : (
-            <option value="">게시판 선택</option>
-          )}
+        <div style={{ display: 'flex', borderBottom: 'solid 1px #ddd', paddingBottom: '10px' }}>
+          <div style={{ width: '35%', fontWeight: 'bold', fontSize: `${theme.fontSize[15]}`, paddingTop: '5px' }}>
+            게시판
+          </div>
+          <select id="board" onChange={onChangeBoard} name="category" required>
+            {isBeforeBoardExist ? (
+              <option value={beforeBoard.name}>{beforeBoard.name}</option>
+            ) : (
+              <option value="">게시판 선택</option>
+            )}
 
-          {boards.map(element => (
-            <option key={element.id} value={JSON.stringify(element)}>
-              {element.name}
-            </option>
-          ))}
-        </select>
+            {boards.map(element => (
+              <option key={element.id} value={JSON.stringify(element)}>
+                {element.name}
+              </option>
+            ))}
+          </select>
+        </div>
         <div style={{ display: 'flex', borderBottom: 'solid 1px #ddd', paddingBottom: '10px' }}>
           <div style={{ width: '35%', fontWeight: 'bold', fontSize: `${theme.fontSize[15]}`, paddingTop: '3px' }}>
             태그

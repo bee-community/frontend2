@@ -60,12 +60,20 @@ export const MobileShadowBox = styled.form`
   }
 
   select {
-    font-size: 1rem;
-    width: 30%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    /*화살표 배경 넣기*/
+    /* background: #fff url('../assets/images/icons/arrow-down.png') no-repeat right 12px; */
+  }
+
+  select {
+    width: 100%;
     margin-right: 10px;
-    padding: 7px 5px;
+    padding: 7px 5px 7px 10px;
     border-radius: 5px;
-    border: solid 1px #ddd;
+    border: none;
   }
   select option[value=''][disabled] {
     display: none;
@@ -74,6 +82,10 @@ export const MobileShadowBox = styled.form`
     font-family: NotoSansCJKKR;
     font-weight: 300;
     color: #777;
+  }
+
+  select:focus {
+    outline: none;
   }
 `;
 
