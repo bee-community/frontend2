@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   border-bottom: solid 1px #ddd;
   font-size: ${props => props.theme.fontSize[15]};
 
-  padding-bottom: 15px;
+  padding-bottom: 10px;
 `;
 
 export const TableHead = styled.div`

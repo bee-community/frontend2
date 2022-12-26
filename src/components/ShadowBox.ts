@@ -1,8 +1,7 @@
 import styled from '@emotion/styled';
 
 export const MobileShadowBox = styled.article`
-  margin-bottom: 35px;
-  padding: 25px 25px 30px 25px;
+  padding: 25px 25px 20px 25px;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
