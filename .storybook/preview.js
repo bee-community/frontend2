@@ -1,6 +1,7 @@
 import { store } from '../src/store';
 import { Provider } from 'react-redux';
-
+import {  ThemeProvider } from '@emotion/react';
+import theme from 'assets/theme';
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
@@ -13,8 +14,10 @@ export const parameters = {
 
 export const decorators = [
   (Story) => (
+    <ThemeProvider theme={theme}>
     <Provider store={store}>
       <Story />
     </Provider>
+    </ThemeProvider>
   ),
 ]
