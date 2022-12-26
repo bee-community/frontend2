@@ -19,6 +19,7 @@ export const TableBody = styled.textarea`
   margin-top: 10px;
   height: 20vh;
   padding: 0;
+  font-family: NotoSansCJKKR;
   &:focus {
     outline: none;
   }

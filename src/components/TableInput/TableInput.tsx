@@ -1,10 +1,10 @@
 import * as Styled from './TableInput.styles';
 
-const TableInput = ({ title, placeholder }: any) => {
+const TableInput = ({ title, placeholder, ...props }: any) => {
   return (
     <Styled.Wrapper>
       <Styled.TableHead>{title}</Styled.TableHead>
-      <Styled.TableBody placeholder={placeholder}></Styled.TableBody>
+      <Styled.TableBody placeholder={placeholder} {...props}></Styled.TableBody>
     </Styled.Wrapper>
   );
 };

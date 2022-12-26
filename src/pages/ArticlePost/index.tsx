@@ -135,11 +135,79 @@ const ArticlePost = () => {
   }, []);
   if (window.innerWidth <= 425) {
     return (
-      <MobileShadowBox>
+      <MobileShadowBox onSubmit={onSubmit}>
         <TableTitle>글쓰기</TableTitle>
-        <TableInput title="제목" placeholder="제목을 입력해주세요."></TableInput>
-        <TableTextArea title="내용" placeholder="내용을 입력해주세요."></TableTextArea>
-        <TableInput title="태그" placeholder="태그를 입력해주세요."></TableInput>
+        <TableInput
+          title="제목"
+          placeholder="제목을 입력해주세요."
+          id="title"
+          name="title"
+          type="text"
+          maxLength={20}
+          required
+          value={title}
+          onChange={onChangeTitle}
+          onKeyDown={handleKeyDown}></TableInput>
+        <TableTextArea
+          title="내용"
+          placeholder="내용을 입력해주세요."
+          id="content"
+          name="content"
+          value={content}
+          required
+          onChange={onChangeContent}></TableTextArea>
+        <select id="board" onChange={onChangeBoard} name="category" required>
+          {isBeforeBoardExist ? (
+            <option value={beforeBoard.name}>{beforeBoard.name}</option>
+          ) : (
+            <option value="">게시판 선택</option>
+          )}
+
+          {boards.map(element => (
+            <option key={element.id} value={JSON.stringify(element)}>
+              {element.name}
+            </option>
+          ))}
+        </select>
+        <div style={{ display: 'flex', borderBottom: 'solid 1px #ddd', paddingBottom: '10px' }}>
+          <div style={{ width: '35%', fontWeight: 'bold', fontSize: `${theme.fontSize[15]}`, paddingTop: '3px' }}>
+            태그
+          </div>
+          <div ref={hashTagInputWrapper} className="inputWrapper">
+            {tags.map((tag: string, index: number) => {
+              return (
+                <div style={{ marginRight: '5px' }} className="tag" key={index}>
+                  <div className="test">{tag}</div>
+                  <img
+                    style={{
+                      width: '15px',
+                      height: '15px',
+                      fontSize: '16px',
+                      color: '#666',
+                      marginLeft: '5px',
+                      marginBottom: '2px',
+                    }}
+                    alt="hashTagDelete"
+                    role="presentation"
+                    onClick={() => deleteClick(index)}
+                    src={closeButton}
+                    className="material-icons"
+                  />
+                </div>
+              );
+            })}
+
+            <input
+              id="tag"
+              type="text"
+              value={newHash}
+              ref={hashref}
+              onKeyDown={handleKeyDown}
+              onChange={onChangeNewHash}
+              placeholder={tags.length > 0 ? '' : '태그를 입력해주세요.'}
+            />
+          </div>
+        </div>
         <InputPhoto>
           <input
             type="file"

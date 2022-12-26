@@ -17,6 +17,7 @@ export const TableHead = styled.div`
 export const TableBody = styled.input`
   border: none;
   width: 100%;
+  font-family: NotoSansCJKKR;
   &:focus {
     outline: none;
   }
