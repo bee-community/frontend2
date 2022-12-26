@@ -1,6 +1,6 @@
-import * as Styled from './TableInput.styles';
+import * as Styled from './TableTextArea.styles';
 
-const TableInput = ({ title, placeholder }: any) => {
+const TableTextArea = ({ title, placeholder }: any) => {
   return (
     <Styled.Wrapper>
       <Styled.TableHead>{title}</Styled.TableHead>
@@ -9,4 +9,4 @@ const TableInput = ({ title, placeholder }: any) => {
   );
 };
 
-export default TableInput;
+export default TableTextArea;

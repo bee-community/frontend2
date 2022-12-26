@@ -1,7 +1,9 @@
 import closeButton from 'assets/chatImages/xx.png';
+import theme from 'assets/theme';
 import { ShadowBox, MobileShadowBox } from 'components/ShadowBox';
 import { Table } from 'components/Table';
 import TableInput from 'components/TableInput/TableInput';
+import TableTextArea from 'components/TableTextArea/TableTextArea';
 import Button from 'components/atoms/Button';
 import { useCreateArticle } from 'hooks/business/article';
 import { useGetBoards } from 'hooks/queries/requests';
@@ -135,8 +137,46 @@ const ArticlePost = () => {
     return (
       <MobileShadowBox>
         <TableTitle>글쓰기</TableTitle>
-        <TableInput></TableInput>
-        <TableInput></TableInput>
+        <TableInput title="제목" placeholder="제목을 입력해주세요."></TableInput>
+        <TableTextArea title="내용" placeholder="내용을 입력해주세요."></TableTextArea>
+        <TableInput title="태그" placeholder="태그를 입력해주세요."></TableInput>
+        <InputPhoto>
+          <input
+            type="file"
+            id="file-input"
+            accept="image/png, image/jpeg, image/gif, image/jpg"
+            style={{ display: 'none' }}
+            ref={imageInput}
+            onChange={onChangeImages}
+            multiple // multiple 설정을 하면 같은 사진을 중복하여 올릴 수 없다.
+          />
+          {images?.map((v, index) => {
+            if (v[0] === undefined) return;
+            return (
+              <Image key={index}>
+                <img
+                  style={{ width: '100%', height: '100%' }}
+                  src={URL.createObjectURL(v[0])}
+                  alt="사용자가 추가한 사진"
+                />
+              </Image>
+            );
+          })}
+          <Image onClick={onClickImageUpload}>
+            <AddImageIcon src={imageAdd} alt="사진추가이미지" />
+          </Image>
+        </InputPhoto>
+        <Button
+          buttonType="contained"
+          color="yellow"
+          radius="round"
+          css={{
+            fontSize: `${theme.fontSize[15]}`,
+            padding: '15px 68px',
+            borderRadius: '10px',
+          }}>
+          글쓰기
+        </Button>
       </MobileShadowBox>
     );
   }
