@@ -65,7 +65,7 @@ export const MobileShadowBox = styled.form`
     appearance: none;
 
     /*화살표 배경 넣기*/
-    /* background: #fff url('../assets/images/icons/arrow-down.png') no-repeat right 12px; */
+    background: #fff url('../assets/images/icons/arrow-down.png') no-repeat right 12px;
   }
 
   select {

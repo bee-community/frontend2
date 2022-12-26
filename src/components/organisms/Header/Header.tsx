@@ -11,8 +11,10 @@ import { HeaderWrap, Logo, Bio } from './styles';
 
 function Header() {
   const userInfo = useSelector((store: any) => store.userInfo);
+  const { articleOpen } = useSelector((store: any) => store.openState);
+
   return (
-    <HeaderWrap>
+    <HeaderWrap articleOpen={articleOpen}>
       <Link to="/">
         <Logo src={logo} />
       </Link>

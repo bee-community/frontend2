@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 // NOTE: Header
-export const HeaderWrap = styled.header`
+export const HeaderWrap = styled.header<{ articleOpen: boolean }>`
   display: grid;
   grid-template-columns: 239px 1fr 370px;
   align-items: center;
@@ -21,6 +21,10 @@ export const HeaderWrap = styled.header`
   @media (max-width: ${props => props.theme.screenSize.md}) {
     padding: 15px 0;
     grid-template-columns: 0 1fr 100px;
+  }
+
+  @media (max-width: ${props => props.theme.screenSize.mobileL}) {
+    margin: ${props => (props.articleOpen ? `15px 15px 0px 15px` : `0px`)};
   }
 `;
 

@@ -1,6 +1,9 @@
 import styled from '@emotion/styled';
 
-export const StyledArticleContent = styled.article`
+export const StyledArticleContent = styled.article<{ articleOpen: boolean }>`
+  @media (max-width: ${props => props.theme.screenSize.mobileL}) {
+    margin: ${props => (props.articleOpen ? `0px 15px` : `0px`)};
+  }
   .article-content {
     margin-bottom: 30px;
     font-family: NotoSansCJKKR;

@@ -1,18 +1,18 @@
-import axios from 'axios';
 import Aside from 'components/Aside';
 import Header from 'components/organisms/Header';
-import { useAuthState } from 'context/Auth';
 import useUserInfo from 'hooks/useUserInfo';
-import API from 'mainAPI';
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router';
 
 import { StyledTemplate, StyledMain, Main, StyledAside } from './styles';
 
 function Template() {
   useUserInfo();
+  const { articleOpen } = useSelector((store: any) => store.openState);
+
   return (
-    <StyledTemplate>
+    <StyledTemplate articleOpen={articleOpen}>
       <Header />
       <StyledMain>
         <Main>

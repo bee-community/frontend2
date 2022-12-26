@@ -9,8 +9,10 @@ import ArticleContent from 'components/organisms/ArticleContent';
 import TagRelatedList from 'components/organisms/lists/TagRelatedList';
 import { useCreateComment } from 'hooks/business/article';
 import { useGetArticleDetail } from 'hooks/queries/article';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
+import { setArticleToggle } from 'redux/openStateSlice';
 
 import { CommentsWrap, CommentsOpenButton, Comments, CommentPostInput } from './styles';
 
@@ -20,7 +22,32 @@ function Article() {
   const [comment, setComment] = useState('');
   const article = useGetArticleDetail(articleId);
   const { createComment } = useCreateComment();
+  const dispatch = useDispatch();
   const [dummyTagRelatedArticles] = useState([
+    {
+      id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+      title: 'string',
+      content: 'string',
+      summary: 'string',
+      board_id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+      view_count: 0,
+      is_announcement: true,
+      like_count: 0,
+      tags: ['꿀팁', '꿀팁', '꿀팁', '꿀팁'],
+      poll: {
+        id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        title: 'string',
+        is_multiple: false,
+        contents: [
+          {
+            id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+            content: 'string',
+          },
+        ],
+      },
+      created_at: '2022-11-11T15:24:14.019Z',
+      updated_at: '2022-11-11T15:24:14.019Z',
+    },
     {
       id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
       title: 'string',
@@ -67,12 +94,19 @@ function Article() {
     },
     [articleId, comment],
   );
+  useEffect(() => {
+    dispatch(setArticleToggle());
+    return () => {
+      dispatch(setArticleToggle());
+    };
+  }, []);
 
   if (!article) return null;
   return (
     <>
       <ArticleContent article={article} recommendedTags={recommendedTags} />
       {/* <article>댓글 기능 개발중</article> */}
+
       <CommentsWrap open isDetailsOpen={isDetailsOpen}>
         <CommentsOpenButton>
           <span>댓글</span>

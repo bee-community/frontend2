@@ -1,12 +1,17 @@
 import styled from '@emotion/styled';
 
-export const StyledTemplate = styled.div`
+export const StyledTemplate = styled.div<{ articleOpen: boolean }>`
   margin: 20px 40px 0;
   display: grid;
   grid-template-rows: auto 1fr;
   gap: 20px;
   @media (max-width: ${props => props.theme.screenSize.lg}) {
     margin: 15px;
+    gap: 15px;
+  }
+
+  @media (max-width: ${props => props.theme.screenSize.mobileL}) {
+    margin: ${props => (props.articleOpen ? `0px` : `15px`)};
     gap: 15px;
   }
 `;
@@ -16,7 +21,6 @@ export const StyledMain = styled.div`
   border-radius: 40px;
   display: grid;
   grid-template-columns: 1fr 370px;
-
   @media (max-width: ${props => props.theme.screenSize.lg}) {
     grid-template-columns: 1fr;
   }

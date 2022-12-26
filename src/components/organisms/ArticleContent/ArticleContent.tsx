@@ -1,6 +1,7 @@
 import exImage from 'assets/images/banners/main-banner-mobile.png';
 import ArticleFeedbackContainer from 'components/molecules/containers/ArticleFeedbackContainer';
 import ArticleTitleContainer from 'components/molecules/containers/ArticleTitleContainer';
+import { useSelector } from 'react-redux';
 import { ArticleDetailType } from 'types/article/remote';
 
 import TagRecommendList from '../lists/TagRecommendList';
@@ -13,9 +14,9 @@ interface ArticleContentProps {
 
 function ArticleContent(props: ArticleContentProps) {
   const { article, recommendedTags } = props;
-  console.log(article);
+  const { articleOpen } = useSelector((store: any) => store.openState);
   return (
-    <StyledArticleContent>
+    <StyledArticleContent articleOpen={articleOpen}>
       <ArticleTitleContainer article={article} />
       {/* <ImageWrapper>
         <img src={exImage} alt="이미지" />
