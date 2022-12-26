@@ -20,6 +20,9 @@ export const StyledMain = styled.div`
   @media (max-width: ${props => props.theme.screenSize.lg}) {
     grid-template-columns: 1fr;
   }
+  @media (max-width: ${props => props.theme.screenSize.mobileL}) {
+    border-radius: 15px;
+  }
 `;
 
 export const Main = styled.main`

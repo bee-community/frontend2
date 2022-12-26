@@ -10,6 +10,10 @@ export const Title = styled.article`
     margin: 5px;
     margin-bottom: 30px;
   }
+
+  @media (max-width: ${props => props.theme.screenSize.mobileL}) {
+    font-size: ${props => props.theme.fontSize[22]};
+  }
 `;
 
 export const Form = styled.form`

@@ -1,6 +1,7 @@
 import closeButton from 'assets/chatImages/xx.png';
-import { ShadowBox } from 'components/ShadowBox';
+import { ShadowBox, MobileShadowBox } from 'components/ShadowBox';
 import { Table } from 'components/Table';
+import TableInput from 'components/TableInput/TableInput';
 import Button from 'components/atoms/Button';
 import { useCreateArticle } from 'hooks/business/article';
 import { useGetBoards } from 'hooks/queries/requests';
@@ -10,7 +11,7 @@ import { useCallback, useState, useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import imageAdd from '../../assets/images/icons/imageAdd.png';
-import { InputPhoto, Image, AddImageIcon } from './styles';
+import { InputPhoto, Image, AddImageIcon, TableTitle } from './styles';
 
 const ArticlePost = () => {
   const beforeBoard = useSelector((store: any) => store.boardData);
@@ -111,6 +112,34 @@ const ArticlePost = () => {
 
     return () => hashTagInputWrapperElement?.removeEventListener('click', () => hashref.current?.focus());
   }, []);
+
+  useEffect(() => {
+    const html = document.querySelector<HTMLElement>('html');
+    const root = document.querySelector<HTMLElement>('#root');
+    if (window.innerWidth <= 425) {
+      if (html != null) html.style.backgroundColor = '#f4f4f4';
+      if (root != null) root.style.backgroundColor = '#f4f4f4';
+    }
+
+    return () => {
+      if (window.innerWidth <= 425) {
+        if (html != null) html.style.backgroundColor = 'white';
+        if (root != null) root.style.backgroundColor = 'white';
+      } else {
+        if (html != null) html.style.backgroundColor = '#ffe576';
+        if (root != null) root.style.backgroundColor = '#ffe576';
+      }
+    };
+  }, []);
+  if (window.innerWidth <= 425) {
+    return (
+      <MobileShadowBox>
+        <TableTitle>글쓰기</TableTitle>
+        <TableInput></TableInput>
+        <TableInput></TableInput>
+      </MobileShadowBox>
+    );
+  }
   return (
     <>
       <Title>글쓰기</Title>

@@ -1,5 +1,14 @@
 import styled from '@emotion/styled';
 
+export const MobileShadowBox = styled.article`
+  margin-bottom: 35px;
+  padding: 25px 25px 30px 25px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+`;
+
 export const ShadowBox = styled.article`
   margin: 30px;
   margin-bottom: 35px;
