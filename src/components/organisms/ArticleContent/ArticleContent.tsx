@@ -1,3 +1,5 @@
+import Flicking from '@egjs/react-flicking';
+import '@egjs/react-flicking/dist/flicking.css';
 import exImage from 'assets/images/banners/main-banner-mobile.png';
 import ArticleFeedbackContainer from 'components/molecules/containers/ArticleFeedbackContainer';
 import ArticleTitleContainer from 'components/molecules/containers/ArticleTitleContainer';
@@ -5,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { ArticleDetailType } from 'types/article/remote';
 
 import TagRecommendList from '../lists/TagRecommendList';
-import { StyledArticleContent } from './styles';
+import { StyledArticleContent, FlickingWrapper, FlickingImg } from './styles';
 
 interface ArticleContentProps {
   article: ArticleDetailType;
@@ -18,6 +20,19 @@ function ArticleContent(props: ArticleContentProps) {
   return (
     <StyledArticleContent articleOpen={articleOpen}>
       <ArticleTitleContainer article={article} />
+      {window.innerWidth <= 425 ? (
+        <FlickingWrapper>
+          <Flicking>
+            <FlickingImg src={exImage} alt="이미지" />
+            <FlickingImg src={exImage} alt="이미지" />
+            <FlickingImg src={exImage} alt="이미지" />
+            <FlickingImg src={exImage} alt="이미지" />
+          </Flicking>
+        </FlickingWrapper>
+      ) : (
+        <></>
+      )}
+
       {/* <ImageWrapper>
         <img src={exImage} alt="이미지" />
         <img src={exImage} alt="이미지" />

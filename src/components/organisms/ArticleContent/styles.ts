@@ -12,6 +12,15 @@ export const StyledArticleContent = styled.article<{ articleOpen: boolean }>`
   }
 `;
 
+export const FlickingWrapper = styled.div`
+  width: 100%;
+  height: 300px;
+`;
+
+export const FlickingImg = styled.img`
+  width: 100%;
+  height: 300px;
+`;
 export const ImageWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
