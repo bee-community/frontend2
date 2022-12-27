@@ -88,6 +88,12 @@ export const CommentsOpenButton = styled.summary`
       margin-bottom: 10px;
     }
   }
+
+  & > span:nth-child(1) {
+    @media (max-width: ${props => props.theme.screenSize.mobileL}) {
+      margin-left: 15px;
+    }
+  }
 `;
 
 export const Comments = styled.div`
