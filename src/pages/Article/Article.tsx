@@ -74,7 +74,7 @@ function Article() {
     },
   ]);
 
-  const recommendedTags = ['꿀팁', '꿀팁', '꿀팁', '꿀팁', '꿀팁', '꿀팁', '꿀팁'];
+  const recommendedTags = ['꿀팁1', '꿀팁2', '꿀팁3', '꿀팁4', '꿀팁5', '꿀팁6', '꿀팁7'];
 
   const onChangeContent = useCallback(e => {
     setComment(e.target.value);

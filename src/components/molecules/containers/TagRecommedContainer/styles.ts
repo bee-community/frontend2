@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 
 export const StyledTagRecommedContainer = styled.div`
   display: flex;
-  flex-direction: row;
   align-items: center;
   font-family: NotoSansCJKKR;
   font-weight: bold;
