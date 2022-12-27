@@ -21,10 +21,17 @@ const ArticleTitleContainer: React.FC<PostsProps> = ({ article }) => {
         buttonType="contained"
         color="yellow"
         radius="square"
-        css={{
-          backgroundColor: 'rgba(255, 229, 118, 0.5)',
-          fontSize: '1.5rem',
-        }}>
+        css={
+          window.innerWidth <= 425
+            ? {
+                backgroundColor: 'rgba(255, 229, 118, 0.5)',
+                fontSize: '1rem',
+              }
+            : {
+                backgroundColor: 'rgba(255, 229, 118, 0.5)',
+                fontSize: '1.5rem',
+              }
+        }>
         {boardName}
       </Button>
       <h2>{article.title}</h2>
