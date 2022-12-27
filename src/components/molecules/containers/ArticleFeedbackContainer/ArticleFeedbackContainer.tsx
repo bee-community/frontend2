@@ -19,7 +19,7 @@ function ArticleFeedbackContainer(props: { articleId: string }) {
         radius="square"
         onClick={likeRequest}
         css={{
-          boxShadow: '0 0 6px 0 rgba(0, 0, 0, 0.16)',
+          boxShadow: '0 0 6px 0 rgba(0, 0, 0, 0.1)',
           backgroundColor: '#ffe576',
           border: 'none',
           padding: '10px 30px',
@@ -31,7 +31,7 @@ function ArticleFeedbackContainer(props: { articleId: string }) {
         color="black"
         radius="square"
         css={{
-          boxShadow: '0 0 6px 0 rgba(0, 0, 0, 0.16)',
+          boxShadow: '0 0 6px 0 rgba(0, 0, 0, 0.1)',
           backgroundColor: '#fff',
           border: 'none',
           padding: '10px 30px',
@@ -43,7 +43,7 @@ function ArticleFeedbackContainer(props: { articleId: string }) {
         color="black"
         radius="square"
         css={{
-          boxShadow: '0 0 6px 0 rgba(0, 0, 0, 0.16)',
+          boxShadow: '0 0 6px 0 rgba(0, 0, 0, 0.1)',
           backgroundColor: '#fff',
           border: 'none',
           padding: '10px 30px',
