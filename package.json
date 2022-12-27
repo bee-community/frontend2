@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@egjs/react-flicking": "^4.10.5",
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
     "@reduxjs/toolkit": "^1.8.2",
@@ -78,6 +79,7 @@
     "@types/styled-components": "^5.1.25",
     "@typescript-eslint/eslint-plugin": "4.29.3",
     "@typescript-eslint/parser": "4.29.3",
+    "babel-loader": "8.1.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^14.0.0",
@@ -88,8 +90,7 @@
     "eslint-plugin-react": "^7.26.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-storybook": "^0.6.8",
-    "prettier": "^2.4.1",
-    "babel-loader": "8.1.0"
+    "prettier": "^2.4.1"
   },
   "eslintConfig": {
     "overrides": [
