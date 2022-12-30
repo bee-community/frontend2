@@ -8,10 +8,10 @@ import { StyledBoardArticleList } from './styles';
 function BoardArticleList(props: { articles: ArticleType[]; isFetching: boolean }) {
   return (
     <StyledBoardArticleList>
-      <div className="board-article-order-select-wrap">
+      {/* <div className="board-article-order-select-wrap">
         <span>인기순</span>
         <img src={arrowDown} alt="﹀" />
-      </div>
+      </div> */}
       <div className="board-article-list-wrap">
         {props.isFetching
           ? Array.from({ length: 16 }).map((element, index) => {
