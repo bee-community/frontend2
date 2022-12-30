@@ -84,7 +84,7 @@ function LogIn() {
 
   return (
     <LogInWrap>
-      <Title>
+      <Title onClick={() => navigate('/')}>
         <img style={{ marginTop: '40px', width: '300px' }} src={logo} alt="logo" />
       </Title>
       <LoginForm onSubmit={onSubmit}>
