@@ -1,3 +1,4 @@
+import { patchArticle } from 'apis/article';
 import closeButton from 'assets/chatImages/xx.png';
 import theme from 'assets/theme';
 import { ShadowBox, MobileShadowBox } from 'components/ShadowBox';
@@ -6,22 +7,31 @@ import TableInput from 'components/TableInput/TableInput';
 import TableTextArea from 'components/TableTextArea/TableTextArea';
 import Button from 'components/atoms/Button';
 import { useCreateArticle } from 'hooks/business/article';
+import { useGetArticleDetail } from 'hooks/queries/article';
 import { useGetBoards } from 'hooks/queries/requests';
 import useInput from 'hooks/useInput';
 import { Form, Title } from 'pages/Question/styles';
 import { useCallback, useState, useRef, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useMutation, useQueryClient } from 'react-query';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { setArticleEditClose } from 'redux/openStateSlice';
 
 import imageAdd from '../../assets/images/icons/imageAdd.png';
 import { InputPhoto, Image, AddImageIcon, TableTitle } from './styles';
 
 const ArticlePost = () => {
   const beforeBoard = useSelector((store: any) => store.boardData);
+  const { articleEdit: editOpen } = useSelector((store: any) => store.openState);
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const article = useGetArticleDetail(editOpen?.articleId);
+  const dispatch = useDispatch();
   const isBeforeBoardExist = !!beforeBoard.id;
   const boards = useGetBoards().filter(element => element.id !== beforeBoard.id); // 이전에 특정 게시판에서 글쓰기 버튼을 눌러 넘어온 경우 select 태그의 option이 중복되는 것을 막기위해 filter를 사용하였습니다.
   const { createArticle } = useCreateArticle();
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const [title, setTitle] = useState(() => (editOpen.state ? article?.title : ''));
+  const [content, setContent] = useState(() => (editOpen.state ? article?.content : ''));
   const [boardId, setBoardId] = useState(beforeBoard.id);
   const [boardPath, setBoardPath] = useState(beforeBoard.path);
   const imageInput = useRef<HTMLInputElement | null>(null);
@@ -43,6 +53,13 @@ const ArticlePost = () => {
     setBoardPath(board.path);
     setBoardId(board.id);
   }, []);
+  const patchArticleRequest = useMutation(patchArticle, {
+    onSuccess: (response: any) => {
+      queryClient.invalidateQueries('articleDetail');
+      navigate(`/board/${boardId}`);
+    },
+    onError: error => {},
+  });
 
   const onSubmit = useCallback(
     e => {
@@ -50,22 +67,30 @@ const ArticlePost = () => {
       if (e.code === 'Enter') {
       }
       e.preventDefault();
-      createArticle(
-        {
-          title: title,
-          content: content,
-          summary: 'string',
-          board_id: boardId,
-          board_path: boardPath,
-          tags: [],
-          poll: {
-            title: 'string',
-            is_multiple: false,
-            contents: [],
+      if (editOpen) {
+        console.log('patch');
+        patchArticleRequest.mutate({
+          articleId: editOpen.articleId,
+          body: { title: title, content: content, summary: 'string', board_id: boardId },
+        });
+      } else {
+        createArticle(
+          {
+            title: title,
+            content: content,
+            summary: 'string',
+            board_id: boardId,
+            board_path: boardPath,
+            tags: [],
+            poll: {
+              title: 'string',
+              is_multiple: false,
+              contents: [],
+            },
           },
-        },
-        boardId,
-      );
+          boardId,
+        );
+      }
     },
     [title, content, boardId, boardPath],
   );
@@ -112,8 +137,16 @@ const ArticlePost = () => {
     const hashTagInputWrapperElement = hashTagInputWrapper.current;
     hashTagInputWrapperElement?.addEventListener('click', () => hashref.current?.focus());
 
-    return () => hashTagInputWrapperElement?.removeEventListener('click', () => hashref.current?.focus());
+    return () => {
+      hashTagInputWrapperElement?.removeEventListener('click', () => hashref.current?.focus());
+    };
   }, []);
+
+  useEffect(() => {
+    return () => {
+      dispatch(setArticleEditClose());
+    };
+  }, [editOpen]);
 
   useEffect(() => {
     const html = document.querySelector<HTMLElement>('html');
@@ -145,7 +178,7 @@ const ArticlePost = () => {
           type="text"
           maxLength={20}
           required
-          value={title}
+          value={editOpen.state ? article?.title : title}
           onChange={onChangeTitle}
           onKeyDown={handleKeyDown}></TableInput>
         <TableTextArea
@@ -167,11 +200,12 @@ const ArticlePost = () => {
               <option value="">게시판 선택</option>
             )}
 
-            {boards.map(element => (
-              <option key={element.id} value={JSON.stringify(element)}>
-                {element.name}
-              </option>
-            ))}
+            {!editOpen &&
+              boards.map(element => (
+                <option key={element.id} value={JSON.stringify(element)}>
+                  {element.name}
+                </option>
+              ))}
           </select>
         </div>
         <div style={{ display: 'flex', borderBottom: 'solid 1px #ddd', paddingBottom: '10px' }}>
@@ -304,11 +338,12 @@ const ArticlePost = () => {
                     <option value="">게시판 선택</option>
                   )}
 
-                  {boards.map(element => (
-                    <option key={element.id} value={JSON.stringify(element)}>
-                      {element.name}
-                    </option>
-                  ))}
+                  {!editOpen &&
+                    boards.map(element => (
+                      <option key={element.id} value={JSON.stringify(element)}>
+                        {element.name}
+                      </option>
+                    ))}
                 </select>
               </td>
             </tr>

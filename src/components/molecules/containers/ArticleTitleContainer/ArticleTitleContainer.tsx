@@ -2,16 +2,22 @@ import Button from 'components/atoms/Button';
 import dayjs from 'dayjs';
 import { useGetBoards } from 'hooks/queries/requests';
 import * as React from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { setArticleEditOpen } from 'redux/openStateSlice';
 import { ArticleDetailType } from 'types/article/remote';
 
 import { StyledArticleTitleContainer } from './styles';
 
 interface PostsProps {
+  articleId?: string;
   article: ArticleDetailType;
 }
 
-const ArticleTitleContainer: React.FC<PostsProps> = ({ article }) => {
+const ArticleTitleContainer: React.FC<PostsProps> = ({ article, articleId }) => {
   const boards = useGetBoards();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { board_id: boardId } = article;
   const boardName = boards.filter(board => board.id === boardId)[0]?.name;
   const commentCount = article.comments.length;
@@ -37,7 +43,13 @@ const ArticleTitleContainer: React.FC<PostsProps> = ({ article }) => {
       <div className="titleEditDeleteWrapper">
         <h2>{article.title}</h2>
         <span>
-          <span>수정</span>
+          <span
+            onClick={() => {
+              navigate('/article/post');
+              dispatch(setArticleEditOpen({ articleId: articleId }));
+            }}>
+            수정
+          </span>
           <span>삭제</span>
         </span>
       </div>

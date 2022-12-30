@@ -10,16 +10,17 @@ import TagRecommendList from '../lists/TagRecommendList';
 import { StyledArticleContent, FlickingWrapper, FlickingImg } from './styles';
 
 interface ArticleContentProps {
+  articleId?: string;
   article: ArticleDetailType;
   recommendedTags: string[];
 }
 
 function ArticleContent(props: ArticleContentProps) {
-  const { article, recommendedTags } = props;
+  const { article, recommendedTags, articleId } = props;
   const { articleOpen } = useSelector((store: any) => store.openState);
   return (
     <StyledArticleContent articleOpen={articleOpen}>
-      <ArticleTitleContainer article={article} />
+      <ArticleTitleContainer articleId={articleId} article={article} />
       {window.innerWidth <= 425 ? (
         <FlickingWrapper>
           <Flicking>

@@ -28,11 +28,12 @@ export const StyledArticleTitleContainer = styled.section`
       margin-bottom: 10px;
       font-size: ${props => props.theme.fontSize[15]};
       color: #aaa;
-
       & > span:nth-child(1) {
         margin-right: 5px;
+        cursor: pointer;
       }
       & > span:nth-child(2) {
+        cursor: pointer;
       }
     }
   }

@@ -104,7 +104,7 @@ function Article() {
   if (!article) return null;
   return (
     <>
-      <ArticleContent article={article} recommendedTags={recommendedTags} />
+      <ArticleContent articleId={articleId} article={article} recommendedTags={recommendedTags} />
       {/* <article>댓글 기능 개발중</article> */}
 
       <CommentsWrap open isDetailsOpen={isDetailsOpen}>
