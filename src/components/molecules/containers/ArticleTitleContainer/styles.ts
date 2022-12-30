@@ -27,6 +27,10 @@ export const StyledArticleTitleContainer = styled.section`
       align-self: flex-end;
       margin-bottom: 10px;
       font-size: ${props => props.theme.fontSize[15]};
+
+      @media (max-width: ${props => props.theme.screenSize.mobileL}) {
+        font-size: ${props => props.theme.fontSize[13]};
+      }
       color: #aaa;
       & > span:nth-child(1) {
         margin-right: 5px;
