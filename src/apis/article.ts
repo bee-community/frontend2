@@ -17,6 +17,10 @@ export const patchArticle = async ({ body, articleId }: { body: CreateArticleReq
   await client.patch(`${REQUEST_URL}/articles/${articleId}`, body);
 };
 
+export const deleteArticle = async (articleId?: string) => {
+  await client.delete(`${REQUEST_URL}/articles/${articleId}`);
+};
+
 export const createComment = async ({ body, articleId }: { body: CreateCommentRequest; articleId: string }) => {
   await client.post(`${REQUEST_URL}/articles/${articleId}/comments`, body);
 };

@@ -1,7 +1,9 @@
+import { deleteArticle } from 'apis/article';
 import Button from 'components/atoms/Button';
 import dayjs from 'dayjs';
 import { useGetBoards } from 'hooks/queries/requests';
 import * as React from 'react';
+import { useMutation, useQueryClient } from 'react-query';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { setArticleEditOpen } from 'redux/openStateSlice';
@@ -18,9 +20,19 @@ const ArticleTitleContainer: React.FC<PostsProps> = ({ article, articleId }) => 
   const boards = useGetBoards();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const queryClient = useQueryClient();
   const { board_id: boardId } = article;
   const boardName = boards.filter(board => board.id === boardId)[0]?.name;
   const commentCount = article.comments.length;
+
+  const deleteArticleRequest = useMutation(deleteArticle, {
+    onSuccess: (response: any) => {
+      queryClient.invalidateQueries('articleDetail');
+      navigate(`/board/${boardId}`);
+    },
+    onError: error => {},
+  });
+
   return (
     <StyledArticleTitleContainer>
       <Button
@@ -50,7 +62,7 @@ const ArticleTitleContainer: React.FC<PostsProps> = ({ article, articleId }) => 
             }}>
             수정
           </span>
-          <span>삭제</span>
+          <span onClick={() => deleteArticleRequest.mutate(articleId)}>삭제</span>
         </span>
       </div>
       <div className="article-infomation">
