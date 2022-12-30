@@ -7,6 +7,7 @@ export const StyledArticleTitleContainer = styled.section`
   @media (max-width: ${props => props.theme.screenSize.mobileL}) {
     margin-bottom: 20px;
   }
+
   h2 {
     margin: 34px 0 10px;
     font-size: ${props => props.theme.fontSize[30]};
@@ -17,6 +18,25 @@ export const StyledArticleTitleContainer = styled.section`
       font-size: ${props => props.theme.fontSize[25]};
     }
   }
+
+  .titleEditDeleteWrapper {
+    display: flex;
+    justify-content: space-between;
+
+    & > span {
+      align-self: flex-end;
+      margin-bottom: 10px;
+      font-size: ${props => props.theme.fontSize[15]};
+      color: #aaa;
+
+      & > span:nth-child(1) {
+        margin-right: 5px;
+      }
+      & > span:nth-child(2) {
+      }
+    }
+  }
+
   .article-infomation {
     display: flex;
     flex-direction: row;

@@ -34,7 +34,13 @@ const ArticleTitleContainer: React.FC<PostsProps> = ({ article }) => {
         }>
         {boardName}
       </Button>
-      <h2>{article.title}</h2>
+      <div className="titleEditDeleteWrapper">
+        <h2>{article.title}</h2>
+        <span>
+          <span>수정</span>
+          <span>삭제</span>
+        </span>
+      </div>
       <div className="article-infomation">
         <div className="article-tags">
           {article.tags?.map((tag, index) => (
