@@ -146,7 +146,7 @@ const ArticlePost = () => {
     return () => {
       dispatch(setArticleEditClose());
     };
-  }, [editOpen]);
+  }, []);
 
   useEffect(() => {
     const html = document.querySelector<HTMLElement>('html');
@@ -200,7 +200,7 @@ const ArticlePost = () => {
               <option value="">게시판 선택</option>
             )}
 
-            {!editOpen &&
+            {!editOpen.state &&
               boards.map(element => (
                 <option key={element.id} value={JSON.stringify(element)}>
                   {element.name}
@@ -338,7 +338,7 @@ const ArticlePost = () => {
                     <option value="">게시판 선택</option>
                   )}
 
-                  {!editOpen &&
+                  {!editOpen.state &&
                     boards.map(element => (
                       <option key={element.id} value={JSON.stringify(element)}>
                         {element.name}
