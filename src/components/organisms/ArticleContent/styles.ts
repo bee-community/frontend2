@@ -8,8 +8,7 @@ export const StyledArticleContent = styled.article<{ articleOpen: boolean }>`
     margin-bottom: 30px;
     font-family: NotoSansCJKKR;
     letter-spacing: 0.64%;
-    color: #777;
-
+    line-height: ${props => props.theme.fontSize[21]};
     @media (max-width: ${props => props.theme.screenSize.mobileL}) {
       margin-top: 15px;
       margin-bottom: 30px;
