@@ -26,8 +26,8 @@ export const LogInWrap = styled.div`
 
 export const Title = styled.div`
   font-size: ${props => props.theme.fontSize[30]};
-  margin: 35px 0 80px;
-
+  margin: 15px 0 20px;
+  cursor: pointer;
   #honey {
     font-weight: bold;
   }

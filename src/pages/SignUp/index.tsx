@@ -62,8 +62,8 @@ function SignUp() {
 
   return (
     <SignUpWrap>
-      <Title>
-        <img style={{ marginTop: '40px', width: '300px' }} src={logo} alt="logo" />
+      <Title onClick={() => navigate('/')}>
+        <img style={{ marginTop: '20px', width: '300px' }} src={logo} alt="logo" />
       </Title>
 
       <WhiteBox>
