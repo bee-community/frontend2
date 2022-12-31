@@ -4,6 +4,7 @@ import { getSpecificBoardArticles } from 'apis/requests';
 import axios from 'axios';
 import { ArticleType } from 'context/Articles';
 import { BoardInfo } from 'context/Board/types';
+import { useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { useDispatch } from 'react-redux';
 import { getUser } from 'redux/userSlice';
@@ -15,12 +16,12 @@ if (process.env.REACT_APP_MSW === 'development') {
   REQUEST_URL = 'http://honeybees.community';
 }
 
-export const useGetUserSelf = (): any => {
+export const useGetUserSelf = () => {
   const dispatch = useDispatch();
-
   const { data: res } = useQuery(['userSelf'], () => client.get(`${REQUEST_URL}/users/self`));
-  dispatch(getUser({ value: res?.data }));
-  return res?.data ?? [];
+  useEffect(() => {
+    dispatch(getUser({ value: res?.data }));
+  }, [res]);
 };
 
 export const useGetBoards = (): BoardInfo[] => {
