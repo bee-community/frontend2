@@ -9,14 +9,25 @@ import school from 'assets/images/icons/school.png';
 import smile from 'assets/images/icons/smile.png';
 import time from 'assets/images/icons/time.png';
 import { ShadowBox } from 'components/ShadowBox';
+import useTimer from 'easytimer-react-hook';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { remainTimeCalc } from 'utils/remainTimeCalc';
 
 import { NickName, Box, MyPageCategory, CustomerService, Edit, MyPageWrap } from './styles';
 
 function Mypage() {
-  const userInfo = useSelector((store: any) => store.userInfo);
+  const userInfo = useSelector((store: any) => store.user);
+  const [timer, isTargetAchieved] = useTimer({
+    /* Hook configuration */
+  });
+
+  useEffect(() => {
+    const seconds = remainTimeCalc(userInfo.nickname_expire_at);
+    timer.start({ countdown: true, startValues: { seconds: 30000 } });
+  }, [userInfo]);
+
   useEffect(() => {
     const html = document.querySelector<HTMLElement>('html');
     const root = document.querySelector<HTMLElement>('#root');
@@ -52,7 +63,7 @@ function Mypage() {
           <div className="remainTimeWrap">
             <img src={time} alt="time" />
             <span>
-              닉네임 갱신까지 -<span className="remainTime">12:22:23:00</span> 남았습니다
+              닉네임 갱신까지 <span className="remainTime">{timer.getTimeValues().toString()}</span> 남았습니다
             </span>
           </div>
         </NickName>
@@ -61,7 +72,7 @@ function Mypage() {
       <MyPageCategory>
         <Box>
           <img src={point} alt="point" />
-          <div className="number">500</div>
+          <div className="number">{userInfo.points}</div>
           <div className="caption">포인트</div>
         </Box>
         <Box>
