@@ -67,7 +67,7 @@ const ArticlePost = () => {
       if (e.code === 'Enter') {
       }
       e.preventDefault();
-      if (editOpen) {
+      if (editOpen.state) {
         console.log('patch');
         patchArticleRequest.mutate({
           articleId: editOpen.articleId,
