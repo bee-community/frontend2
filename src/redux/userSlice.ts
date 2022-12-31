@@ -8,7 +8,7 @@ const initialState = {
   points: 100,
   school: null,
   company: null,
-  nickname: '그리운 공업',
+  nickname: '',
   nickname_expire_at: '2022-12-12T10:13:43.114765',
   created_at: '2022-12-11T10:13:43.126034',
   updated_at: '2022-12-11T10:13:43.126034',
