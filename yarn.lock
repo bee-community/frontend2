@@ -7673,6 +7673,11 @@ duplexify@^3.4.2, duplexify@^3.6.0:
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
 
+easytimer-react-hook@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/easytimer-react-hook/-/easytimer-react-hook-2.0.2.tgz#7eaa4053f796fef07fca80a532e0aa72e56e3e38"
+  integrity sha512-RHQyVETKlk7kyvl+bOR/G5qxaT0HknZ+l+exZHhZFg8+ZLLn2RNJwNP9UV2ozogrHUPdbonapWLbyj0VMOTo6w==
+
 easytimer.js@^4.5.4:
   version "4.5.4"
   resolved "https://registry.yarnpkg.com/easytimer.js/-/easytimer.js-4.5.4.tgz#7e8ac85cafa8b5e5a38dcffa2e4b0254c75c71fe"
