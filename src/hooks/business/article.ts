@@ -37,11 +37,9 @@ export const useCreateComment = () => {
 export const useLikeRequest = () => {
   const createArticleMutate = useLikeMutation();
   const queryClient = useQueryClient();
-  console.log('test');
   const createLikeRequest = async (articleId: string) => {
     await createArticleMutate.mutateAsync(articleId, {
       onSuccess() {
-        console.log('실행');
         queryClient.invalidateQueries(['articleDetail', articleId]);
       },
     });

@@ -28,3 +28,7 @@ export const createComment = async ({ body, articleId }: { body: CreateCommentRe
 export const createLikeRequest = async (articleId: string) => {
   await client.post(`${REQUEST_URL}/articles/${articleId}/likes`);
 };
+
+export const deleteLikeRequest = async (articleId: string) => {
+  await client.delete(`${REQUEST_URL}/articles/${articleId}/likes`);
+};

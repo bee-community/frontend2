@@ -47,6 +47,7 @@ export type ArticleDetailType = {
   view_count: number;
   is_announcement: boolean;
   like_count: number;
+  is_viewer_liked_article: boolean;
   tags: string[];
   poll: poll;
   created_at: string;

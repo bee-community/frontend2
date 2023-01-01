@@ -56,7 +56,7 @@ function ArticleContent(props: ArticleContentProps) {
         })}
       </section>
       <TagRecommendList tags={recommendedTags} />
-      <ArticleFeedbackContainer articleId={article.id} />
+      <ArticleFeedbackContainer isViewerLikedArticle={article.is_viewer_liked_article} articleId={article.id} />
     </StyledArticleContent>
   );
 }
