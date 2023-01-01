@@ -1,4 +1,4 @@
-import Test from 'components/Aside/Test';
+import Chat from 'components/Aside/Chat';
 import BottomNav from 'components/BottomNav/BottomNav';
 import Template from 'components/Templates';
 import Article from 'pages/Article/Article';
@@ -47,7 +47,7 @@ function App() {
 
           <Route path="signup" element={<SignUp />} />
           <Route path="login" element={<LogIn />} />
-          <Route path="chat" element={<Test />} />
+          <Route path="chat" element={<Chat />} />
           <Route path="menu" element={<Category />} />
         </Routes>
         {chatState !== 'chat' && chatState !== 'voicechat' && <BottomNav></BottomNav>}
