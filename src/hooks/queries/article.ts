@@ -16,7 +16,6 @@ export const useGetArticleDetail = (articleId?: string): ArticleDetailType | und
     () => client.get<ArticleDetailType>(`${REQUEST_URL}/articles/${articleId}`),
     { refetchOnWindowFocus: false },
   );
-  console.log(res?.data);
   return res?.data;
 };
 
