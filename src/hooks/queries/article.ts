@@ -1,5 +1,5 @@
+import { client } from 'apis';
 import { createComment, createLikeRequest } from 'apis/article';
-import axios from 'axios';
 import { useQuery, useQueryClient, useMutation } from 'react-query';
 import { ArticleDetailType } from 'types/article/remote';
 
@@ -13,9 +13,10 @@ if (process.env.REACT_APP_MSW === 'development') {
 export const useGetArticleDetail = (articleId?: string): ArticleDetailType | undefined => {
   const { data: res } = useQuery(
     ['articleDetail', articleId],
-    () => axios.get<ArticleDetailType>(`${REQUEST_URL}/articles/${articleId}`),
+    () => client.get<ArticleDetailType>(`${REQUEST_URL}/articles/${articleId}`),
     { refetchOnWindowFocus: false },
   );
+  console.log(res?.data);
   return res?.data;
 };
 
