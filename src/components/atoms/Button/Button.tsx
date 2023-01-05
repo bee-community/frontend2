@@ -10,7 +10,6 @@ export interface buttonProps {
   onClick?: MouseEventHandler<HTMLButtonElement>;
   selected?: boolean;
   children?: React.ReactNode;
-  css?: CSSProperties;
 }
 
 const StyledButton = styled.button`
@@ -53,7 +52,6 @@ const StyledButton = styled.button`
 
 function Button(props: buttonProps) {
   const { buttonType, radius, color } = props;
-  const css = props.css && props.css;
   const onClickEvent = props.onClick && props.onClick;
 
   let style: CSSProperties = {};
@@ -110,7 +108,6 @@ function Button(props: buttonProps) {
   }
 
   style = { ...style, borderRadius: theme.button.radius[radius] };
-  style = { ...style, ...css };
 
   return (
     <StyledButton style={style} onClick={onClickEvent}>
