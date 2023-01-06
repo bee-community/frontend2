@@ -79,6 +79,10 @@ const button = {
   },
 };
 
+const layers = {
+  dimmed: 5000,
+};
+
 const theme = {
   palette: {
     yellow,
@@ -89,6 +93,7 @@ const theme = {
   screenSize,
   fontSize,
   button,
+  layers,
 };
 
 export default theme;
