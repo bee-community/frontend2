@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
-import theme from 'assets/theme';
 import { CSSProperties, MouseEventHandler } from 'react';
 import * as React from 'react';
+import theme from 'styles/theme';
 
 export interface buttonProps {
   buttonType: 'contained' | 'outlined' | 'buttonWithIcon' | 'iconButton';
@@ -10,6 +10,7 @@ export interface buttonProps {
   onClick?: MouseEventHandler<HTMLButtonElement>;
   selected?: boolean;
   children?: React.ReactNode;
+  customCss?: CSSProperties;
 }
 
 const StyledButton = styled.button`
@@ -52,6 +53,7 @@ const StyledButton = styled.button`
 
 function Button(props: buttonProps) {
   const { buttonType, radius, color } = props;
+  const customCss = props.customCss && props.customCss;
   const onClickEvent = props.onClick && props.onClick;
 
   let style: CSSProperties = {};
@@ -108,6 +110,7 @@ function Button(props: buttonProps) {
   }
 
   style = { ...style, borderRadius: theme.button.radius[radius] };
+  style = { ...style, ...customCss };
 
   return (
     <StyledButton style={style} onClick={onClickEvent}>
