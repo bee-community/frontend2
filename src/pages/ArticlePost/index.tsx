@@ -1,6 +1,5 @@
 import { patchArticle } from 'apis/article';
 import closeButton from 'assets/chatImages/xx.png';
-import theme from 'assets/theme';
 import { ShadowBox, MobileShadowBox } from 'components/ShadowBox';
 import { Table } from 'components/Table';
 import TableInput from 'components/TableInput/TableInput';
@@ -16,6 +15,7 @@ import { useMutation, useQueryClient } from 'react-query';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { setArticleEditClose } from 'redux/openStateSlice';
+import theme from 'styles/theme';
 
 import imageAdd from '../../assets/images/icons/imageAdd.png';
 import { InputPhoto, Image, AddImageIcon, TableTitle } from './styles';

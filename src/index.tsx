@@ -1,5 +1,4 @@
 import { Global, ThemeProvider } from '@emotion/react';
-import theme from 'assets/theme';
 import { ArticlesProvider } from 'context/Articles';
 import { AuthProvider } from 'context/Auth';
 import { BoardProvider } from 'context/Board';
@@ -8,6 +7,7 @@ import { ScrollProvider } from 'context/ScrollContext';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import styles from 'styles';
+import theme from 'styles/theme';
 
 import App from './App';
 import { store } from './store';

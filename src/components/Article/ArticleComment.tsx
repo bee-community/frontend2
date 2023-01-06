@@ -1,10 +1,10 @@
 import enter from 'assets/images/icons/enter.png';
 import heart from 'assets/images/icons/heart-unfilled.png';
-import theme from 'assets/theme';
 import Button from 'components/atoms/Button';
 import dayjs from 'dayjs';
 import { useCreateComment } from 'hooks/business/article';
 import { useState, useCallback } from 'react';
+import theme from 'styles/theme';
 
 import { Comment, Reply, ReplyPostInput } from './styles';
 

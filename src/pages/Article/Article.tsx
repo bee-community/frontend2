@@ -2,7 +2,6 @@ import arrowDown from 'assets/images/icons/arrow-down.png';
 import arrowUp from 'assets/images/icons/arrow-up.png';
 import enter from 'assets/images/icons/enter.png';
 import heart from 'assets/images/icons/heart-unfilled.png';
-import theme from 'assets/theme';
 import ArticleComment from 'components/Article/ArticleComment';
 import Button from 'components/atoms/Button';
 import ArticleContent from 'components/organisms/ArticleContent';
@@ -13,6 +12,7 @@ import { useState, useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 import { setArticleToggle } from 'redux/openStateSlice';
+import theme from 'styles/theme';
 
 import { CommentsWrap, CommentsOpenButton, Comments, CommentPostInput } from './styles';
 
