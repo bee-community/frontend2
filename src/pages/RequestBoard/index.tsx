@@ -18,7 +18,7 @@ function RequestBoard() {
           buttonType="contained"
           color="yellow"
           radius="round"
-          css={{
+          customCss={{
             padding: '12px 28px 11px',
           }}>
           새로운 게시판 요청

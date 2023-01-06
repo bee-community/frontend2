@@ -42,7 +42,7 @@ function RequestBox(props: { isDetailsOpen: boolean }) {
           buttonType="outlined"
           color="yellow"
           radius="round"
-          css={{
+          customCss={{
             width: '170px',
             borderRadius: '40px',
             cursor: 'pointer',
@@ -73,7 +73,7 @@ function RequestBox(props: { isDetailsOpen: boolean }) {
                 buttonType="outlined"
                 radius="round"
                 color="black"
-                css={{
+                customCss={{
                   padding: '3px 15px 2px',
                   border: 'solid 1px #707070',
                   color: '#777',
@@ -123,7 +123,7 @@ function RequestBox(props: { isDetailsOpen: boolean }) {
                 buttonType="contained"
                 color="yellow"
                 radius="square"
-                css={{
+                customCss={{
                   marginLeft: '14px',
                 }}>
                 등록
@@ -143,7 +143,7 @@ function RequestBox(props: { isDetailsOpen: boolean }) {
                 buttonType="outlined"
                 radius="round"
                 color="black"
-                css={{
+                customCss={{
                   padding: '3px 15px 2px',
                   border: 'solid 1px #707070',
                   color: '#777',
@@ -162,7 +162,7 @@ function RequestBox(props: { isDetailsOpen: boolean }) {
                 buttonType="contained"
                 color="yellow"
                 radius="square"
-                css={{
+                customCss={{
                   marginLeft: '14px',
                 }}>
                 등록

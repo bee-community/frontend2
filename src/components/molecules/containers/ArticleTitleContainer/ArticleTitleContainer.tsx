@@ -40,7 +40,7 @@ const ArticleTitleContainer: React.FC<PostsProps> = ({ article, articleId }) => 
         buttonType="contained"
         color="yellow"
         radius="square"
-        css={
+        customCss={
           window.innerWidth <= 425
             ? {
                 backgroundColor: 'rgba(255, 229, 118, 0.5)',

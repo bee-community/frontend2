@@ -23,10 +23,18 @@ function TagRecommendList(props: TagRecommendListProps) {
               <StyledTagRecommedContainer key={index}>
                 <span>#{tag}</span>
                 <span className="tag-points">+2</span>
-                <Button buttonType="iconButton" color="yellow" radius="circle" css={{ boxShadow: 'none', padding: 0 }}>
+                <Button
+                  buttonType="iconButton"
+                  color="yellow"
+                  radius="circle"
+                  customCss={{ boxShadow: 'none', padding: 0 }}>
                   <img width="28px" src={thumbUp} alt="up" />
                 </Button>
-                <Button buttonType="iconButton" color="yellow" radius="circle" css={{ boxShadow: 'none', padding: 0 }}>
+                <Button
+                  buttonType="iconButton"
+                  color="yellow"
+                  radius="circle"
+                  customCss={{ boxShadow: 'none', padding: 0 }}>
                   <img width="28px" src={thumbDown} alt="down" />
                 </Button>
               </StyledTagRecommedContainer>

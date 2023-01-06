@@ -130,7 +130,7 @@ function Article() {
                   buttonType="contained"
                   color="yellow"
                   radius="square"
-                  css={{
+                  customCss={{
                     marginLeft: '14px',
                   }}>
                   등록

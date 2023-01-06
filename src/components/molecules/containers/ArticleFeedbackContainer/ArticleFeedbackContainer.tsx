@@ -31,7 +31,7 @@ function ArticleFeedbackContainer(props: { articleId: string; isViewerLikedArtic
         color="black"
         radius="square"
         onClick={isViewerLikedArticle ? likeDeleteRequest : likeRequest}
-        css={{
+        customCss={{
           boxShadow: '0 0 6px 0 rgba(0, 0, 0, 0.1)',
           backgroundColor: `${isViewerLikedArticle ? '#ffe576' : '#fff'}`,
           border: 'none',
@@ -43,7 +43,7 @@ function ArticleFeedbackContainer(props: { articleId: string; isViewerLikedArtic
         buttonType="outlined"
         color="black"
         radius="square"
-        css={{
+        customCss={{
           boxShadow: '0 0 6px 0 rgba(0, 0, 0, 0.1)',
           backgroundColor: '#fff',
           border: 'none',
@@ -55,7 +55,7 @@ function ArticleFeedbackContainer(props: { articleId: string; isViewerLikedArtic
         buttonType="outlined"
         color="black"
         radius="square"
-        css={{
+        customCss={{
           boxShadow: '0 0 6px 0 rgba(0, 0, 0, 0.1)',
           backgroundColor: '#fff',
           border: 'none',

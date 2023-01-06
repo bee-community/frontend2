@@ -149,7 +149,7 @@ function SignUp() {
             buttonType="contained"
             color="yellow"
             radius="round"
-            css={{
+            customCss={{
               padding: '15px 68px',
             }}>
             완료

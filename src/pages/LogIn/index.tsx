@@ -102,7 +102,7 @@ function LogIn() {
           buttonType="contained"
           color="black"
           radius="square"
-          css={{
+          customCss={{
             width: '100%',
             padding: '16px 10px 15px',
             marginBottom: '15px',

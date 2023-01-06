@@ -277,7 +277,7 @@ const ArticlePost = () => {
           buttonType="contained"
           color="yellow"
           radius="round"
-          css={{
+          customCss={{
             fontSize: `${theme.fontSize[15]}`,
             padding: '15px 68px',
             borderRadius: '10px',
@@ -424,7 +424,7 @@ const ArticlePost = () => {
             buttonType="contained"
             color="yellow"
             radius="round"
-            css={{
+            customCss={{
               padding: '15px 68px',
             }}>
             글쓰기

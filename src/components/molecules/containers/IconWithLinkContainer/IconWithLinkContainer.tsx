@@ -72,7 +72,7 @@ function IconWithLinkContainer(props: IconWithLinkContainerProps) {
       return (
         <StyledIconWithLinkContainer>
           <Button
-            css={{ padding: '0px', width: '90px', height: '90px' }}
+            customCss={{ padding: '0px', width: '90px', height: '90px' }}
             onClick={() => {
               props.navigate(props.link);
               dispatch(

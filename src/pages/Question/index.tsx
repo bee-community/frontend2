@@ -31,7 +31,7 @@ function Question() {
             buttonType="contained"
             color="yellow"
             radius="round"
-            css={{
+            customCss={{
               padding: '15px 68px',
             }}>
             문의하기

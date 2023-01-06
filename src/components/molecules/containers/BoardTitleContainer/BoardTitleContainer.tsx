@@ -54,7 +54,7 @@ function BoardTitleContainer(props: BoardTitleContainerProps) {
       <div className="board-name">{boardName}</div>
       <div style={{ display: 'flex' }}>
         <Button
-          css={{
+          customCss={{
             display: 'flex',
             marginRight: '10px',
           }}
@@ -69,7 +69,7 @@ function BoardTitleContainer(props: BoardTitleContainerProps) {
             buttonType="buttonWithIcon"
             color="black"
             radius="round"
-            css={buttonWidth}
+            customCss={buttonWidth}
             onClick={() => {
               setIsOpen(isOpen => !isOpen);
             }}>
@@ -97,7 +97,7 @@ function BoardTitleContainer(props: BoardTitleContainerProps) {
                     if (props.refreshBoardArticles) props.refreshBoardArticles(board.id);
                     navigate(board.id);
                   }}
-                  css={{ fontWeight: 'normal', ...buttonWidth }}>
+                  customCss={{ fontWeight: 'normal', ...buttonWidth }}>
                   {board.name}
                 </Button>
               </li>
@@ -111,7 +111,7 @@ function BoardTitleContainer(props: BoardTitleContainerProps) {
                 dispatch(setCategoryOpen());
                 navigate('/');
               }}
-              css={{ fontWeight: 'normal', ...buttonWidth }}>
+              customCss={{ fontWeight: 'normal', ...buttonWidth }}>
               더보기
             </Button>
           </DropDownMenu>
