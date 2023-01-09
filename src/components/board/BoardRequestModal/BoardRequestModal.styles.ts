@@ -60,22 +60,10 @@ export const TextWrapper = styled.div`
   height: 60%;
 `;
 
-export const Input = styled.input`
-  border: none;
-  background-color: #f4f4f4;
+export const InputWrapper = styled.div`
   width: 80%;
   height: 60%;
-  border-radius: 5px;
-  padding: 0% 3%;
-  &:focus {
-    outline: none;
-  }
-
-  ${({ theme }) => css`
-    @media (min-width: ${theme.screenSize.xxxl}) {
-      font-size: ${theme.fontSize[26]};
-    }
-  `}
+  margin-right: 15px;
 `;
 
 export const ExtendedSubmitButton = (theme: Theme) => css`
