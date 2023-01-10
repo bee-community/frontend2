@@ -48,7 +48,7 @@ export const Title = styled.div`
 
   ${({ theme }) => css`
     @media (min-width: ${theme.screenSize.xxxl}) {
-      font-size: ${theme.fontSize[30]};
+      font-size: ${theme.fontSize[26]};
     }
   `}
 `;
@@ -60,10 +60,9 @@ export const TextWrapper = styled.div`
   height: 60%;
 `;
 
-export const InputWrapper = styled.div`
+export const DicideSizeInput = () => css`
   width: 80%;
   height: 60%;
-  margin-right: 15px;
 `;
 
 export const ExtendedSubmitButton = (theme: Theme) => css`

@@ -14,9 +14,7 @@ const BoardRequestModal = (props: BoardRequestModalProps) => {
     <Modal closeModal={closeModal}>
       <Styled.Title>새로운 게시판 요청</Styled.Title>
       <Styled.TextWrapper>
-        <Styled.InputWrapper>
-          <Input.Gray />
-        </Styled.InputWrapper>
+        <Input.Gray customCss={Styled.DicideSizeInput} />
         <Button2 css={Styled.ExtendedSubmitButton}>요청</Button2>
       </Styled.TextWrapper>
     </Modal>

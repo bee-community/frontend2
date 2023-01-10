@@ -14,9 +14,6 @@ export const GrayInput = styled.input`
 
   background-color: #f4f4f4;
 
-  width: 100%;
-  height: 100%;
-
   padding: 0% 3%;
 
   border-radius: 5px;
