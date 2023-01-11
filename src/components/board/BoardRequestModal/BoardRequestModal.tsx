@@ -1,6 +1,6 @@
+import Button2 from 'components/@Shared/Button/Button';
 import Input from 'components/@Shared/Input';
 import Modal from 'components/@Shared/Modal';
-import Button2 from 'components/Button2';
 
 import * as Styled from './BoardRequestModal.styles';
 
