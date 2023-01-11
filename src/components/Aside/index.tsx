@@ -1,10 +1,10 @@
 import addButton from 'assets/chatImages/addbutton2.png';
-import Chat from 'components/ChatChat/Chat';
-import ChatList from 'components/ChatList/ChatList';
-import CreateChannel from 'components/CreateChannel/CreateChannel';
-import CreateChannelExceptModal from 'components/CreateChannel/CreateChannelExceptModal';
-import MyChatList from 'components/MyChatList/MyChatList';
-import VoiceChat from 'components/VoiceChat/Chat';
+import Chat from 'components/chat/ChatChat/Chat';
+import ChatList from 'components/chat/ChatList/ChatList';
+import CreateChannel from 'components/chat/CreateChannel/CreateChannel';
+import CreateChannelExceptModal from 'components/chat/CreateChannel/CreateChannelExceptModal';
+import MyChatList from 'components/chat/MyChatList/MyChatList';
+import VoiceChat from 'components/chat/VoiceChat/Chat';
 import React, { useEffect, useState, useCallback, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setChatColor } from 'slice/chatColorSlice';

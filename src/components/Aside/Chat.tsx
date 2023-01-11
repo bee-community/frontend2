@@ -1,11 +1,11 @@
 import addButton from 'assets/chatImages/addbutton2.png';
-import Chat from 'components/ChatChat/MobileChat';
-import ChatList from 'components/ChatList/ChatList';
-import CreateChannelExceptModal from 'components/CreateChannel/CreateChannelExceptModal';
 import Dropdown from 'components/Dropdown/Dropdown';
-import CreateChannel from 'components/MoblieCreateChannel/CreateChannel';
-import MyChatList from 'components/MyChatList/MyChatList';
-import VoiceChat from 'components/VoiceChat/MobileVoiceChat';
+import Chat from 'components/chat/ChatChat/MobileChat';
+import ChatList from 'components/chat/ChatList/ChatList';
+import CreateChannelExceptModal from 'components/chat/CreateChannel/CreateChannelExceptModal';
+import CreateChannel from 'components/chat/MoblieCreateChannel/CreateChannel';
+import MyChatList from 'components/chat/MyChatList/MyChatList';
+import VoiceChat from 'components/chat/VoiceChat/MobileVoiceChat';
 import { url } from 'inspector';
 import React, { useEffect, useState, useCallback, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
