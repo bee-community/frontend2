@@ -14,12 +14,7 @@ import { store } from './store';
 
 if (process.env.REACT_APP_MSW === 'development') {
   const { worker } = require('./mocks/browser');
-  worker.start({
-    serviceWorker: {
-      // Points to the custom location of the Service Worker file.
-      url: '/ant_community_frontend_dev3/mockServiceWorker.js',
-    },
-  });
+  worker.start();
 }
 
 ReactDOM.render(
