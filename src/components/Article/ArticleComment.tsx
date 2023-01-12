@@ -46,7 +46,7 @@ const ArticleComment = ({ element, articleId }: any) => {
             radius="round"
             color="black"
             onClick={() => setReplyOpen(prev => !prev)}
-            css={{
+            customCss={{
               padding: '3px 15px 2px',
               border: 'solid 1px #707070',
               color: '#777',
@@ -83,7 +83,7 @@ const ArticleComment = ({ element, articleId }: any) => {
                   buttonType="contained"
                   color="yellow"
                   radius="square"
-                  css={{
+                  customCss={{
                     marginLeft: '14px',
                   }}>
                   등록
