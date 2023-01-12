@@ -1,20 +1,21 @@
-import Article from 'pages/Article/Article';
-import ArticlePost from 'pages/ArticlePost';
-import Board from 'pages/Board';
-import EditPrivacy from 'pages/EditPrivacy';
-import FAQ from 'pages/FAQ';
-import LogIn from 'pages/LogIn';
-import Main from 'pages/Main';
-import Category from 'pages/Mobile/Category/Category';
-import Mypage from 'pages/Mypage';
-import Question from 'pages/Question';
-import Report from 'pages/Report';
-import RequestBoard from 'pages/RequestBoard';
-import SignUp from 'pages/SignUp';
-import Today from 'pages/Today';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { useSelector } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import Article from '@pages/Article/Article';
+import ArticlePost from '@pages/ArticlePost';
+import Board from '@pages/Board';
+import EditPrivacy from '@pages/EditPrivacy';
+import FAQ from '@pages/FAQ';
+import LogIn from '@pages/LogIn';
+import Main from '@pages/Main';
+import Category from '@pages/Mobile/Category/Category';
+import Mypage from '@pages/Mypage';
+import Question from '@pages/Question';
+import Report from '@pages/Report';
+import RequestBoard from '@pages/RequestBoard';
+import SignUp from '@pages/SignUp';
+import Today from '@pages/Today';
 
 import BottomNav from '@components/BottomNav/BottomNav';
 import Template from '@components/Templates';

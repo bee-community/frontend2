@@ -1,12 +1,13 @@
 import { patchArticle } from 'apis/article';
 import closeButton from 'assets/chatImages/xx.png';
-import { Form, Title } from 'pages/Question/styles';
 import { useCallback, useState, useRef, useEffect } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { setArticleEditClose } from 'redux/openStateSlice';
 import theme from 'styles/theme';
+
+import { Form, Title } from '@pages/Question/styles';
 
 import { ShadowBox, MobileShadowBox } from '@components/ShadowBox';
 import { Table } from '@components/Table';

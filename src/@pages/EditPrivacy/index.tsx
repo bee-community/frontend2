@@ -1,5 +1,6 @@
-import { Form } from 'pages/Question/styles';
 import * as React from 'react';
+
+import { Form } from '@pages/Question/styles';
 
 import { ShadowBox } from '@components/ShadowBox';
 import { Table } from '@components/Table';
