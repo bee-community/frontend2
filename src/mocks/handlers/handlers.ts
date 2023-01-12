@@ -1,7 +1,7 @@
 //src/mocks/handlers.ts
 import { rest } from 'msw';
 
-import { data, data2 } from '../fixtures/data';
+import { data, data2, data3 } from '../fixtures/data';
 
 export const handlers = [
   rest.get('http://localhost:3000/boards', (req, res, ctx) => {
@@ -28,5 +28,9 @@ export const handlers = [
 
     console.log(data2);
     return res(ctx.status(200), ctx.json(data2));
+  }),
+
+  rest.get('http://localhost:3000/articles/:articleId', (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(data3));
   }),
 ];
