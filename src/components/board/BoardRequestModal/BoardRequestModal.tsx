@@ -1,4 +1,4 @@
-import Button2 from 'components/@Shared/Button/Button';
+import Button from 'components/@Shared/Button';
 import Input from 'components/@Shared/Input';
 import Modal from 'components/@Shared/Modal';
 
@@ -15,7 +15,7 @@ const BoardRequestModal = (props: BoardRequestModalProps) => {
       <Styled.Title>새로운 게시판 요청</Styled.Title>
       <Styled.TextWrapper>
         <Input.Gray customCss={Styled.DicideSizeInput} />
-        <Button2 css={Styled.ExtendedSubmitButton}>요청</Button2>
+        <Button customCss={Styled.ExtendedSubmitButton}>요청</Button>
       </Styled.TextWrapper>
     </Modal>
   );
