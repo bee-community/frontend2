@@ -1,5 +1,6 @@
 import enter from 'assets/images/icons/enter.png';
 import heart from 'assets/images/icons/heart-unfilled.png';
+import CommentItem from 'components/@Shared/CommentItem';
 import Button from 'components/atoms/Button';
 import dayjs from 'dayjs';
 import { useCreateComment } from 'hooks/business/article';
@@ -31,32 +32,16 @@ const ArticleComment = ({ element, articleId }: any) => {
     },
     [articleId, comment, commentId],
   );
+  const onReply = useCallback(() => setReplyOpen(prev => !prev), [replyOpen]);
 
   return (
     <>
-      <Comment key={element.id}>
-        <div className="comment-info">
-          <span className="nick-name">{element.author}</span>
-          <span className="date">{dayjs(element.createAt).format('YYYY.MM.DD HH:mm')}</span>
-        </div>
-        <div className="comment">{element.content}</div>
-        <div className="comment-response">
-          <Button
-            buttonType="outlined"
-            radius="round"
-            color="black"
-            onClick={() => setReplyOpen(prev => !prev)}
-            customCss={{
-              padding: '3px 15px 2px',
-              border: 'solid 1px #707070',
-              color: '#777',
-              fontSize: theme.fontSize[12],
-              cursor: 'pointer',
-            }}>
-            답글
-          </Button>
-        </div>
-      </Comment>
+      <CommentItem
+        id={element.id}
+        author={element.author}
+        createAt={element.createAt}
+        content={element.content}
+        onClickReplyButton={onReply}></CommentItem>
       {replyOpen && (
         <>
           {element.children?.map((reply: any, index: number) => (
