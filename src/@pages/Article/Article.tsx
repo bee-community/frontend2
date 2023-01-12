@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 import { setArticleToggle } from 'redux/openStateSlice';
 
-import ArticleComment from '@components/Article/ArticleComment';
 import Button from '@components/atoms/Button';
+import Comment from '@components/comment/Comment/Comment';
 import CommentOpenButton from '@components/comment/CommentOpenButton/CommentOpenButton';
 import ArticleContent from '@components/organisms/ArticleContent';
 import TagRelatedList from '@components/organisms/lists/TagRelatedList';
@@ -102,6 +102,7 @@ function Article() {
   }, []);
 
   if (!article) return null;
+  if (!articleId) return null;
   return (
     <>
       <ArticleContent articleId={articleId} article={article} recommendedTags={recommendedTags} />
@@ -111,7 +112,7 @@ function Article() {
         <CommentOpenButton isDetailsOpen={isDetailsOpen} onClick={onDetailOpen}></CommentOpenButton>
         <Comments>
           {article.comments?.map(element => (
-            <ArticleComment key={element.id} element={element} articleId={articleId}></ArticleComment>
+            <Comment key={element.id} element={element} articleId={articleId}></Comment>
           ))}
 
           <form onSubmit={onSubmit}>
