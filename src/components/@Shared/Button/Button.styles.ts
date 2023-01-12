@@ -19,3 +19,11 @@ export const DefaultButton = styled.button`
   `}
 `;
 
+export const OutlineButton = styled.button`
+  ${Common}
+
+  ${({ theme }) => css`
+    border: solid 1px #707070;
+    color: #777;
+  `}
+`;

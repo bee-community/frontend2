@@ -12,10 +12,13 @@ const Button = (props: PropsWithChildren<ButtonProps>) => {
   return <Styled.DefaultButton css={customCss}>{children}</Styled.DefaultButton>;
 };
 
-  ${({ theme }) => css`
-    background-color: ${theme.palette.yellow[100]};
-    color: black;
-  `}
-`;
+Button.Outline = function OutlineButton(props: PropsWithChildren<ButtonProps>) {
+  const { customCss, children, onClick } = props;
+  return (
+    <Styled.OutlineButton onClick={onClick} css={customCss}>
+      {children}
+    </Styled.OutlineButton>
+  );
+};
 
 export default Button;
