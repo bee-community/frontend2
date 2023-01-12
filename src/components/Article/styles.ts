@@ -138,7 +138,7 @@ export const Reply = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  padding: 10px 10px 0px 10px;
+  padding: 10px 10px 10px 10px;
   border-bottom: solid 1px #ddd;
   word-break: break-all;
   & > .nickname-wrap {
@@ -178,6 +178,8 @@ export const Reply = styled.div`
 
     .reply {
       margin-bottom: 13px;
+      font-size: 15px;
+      color: black;
     }
     .reply-response {
       display: flex;
