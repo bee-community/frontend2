@@ -1,9 +1,10 @@
-import RequestBox from 'components/RequestBox';
-import { ShadowBox } from 'components/ShadowBox';
-import Button from 'components/atoms/Button';
-import BoardRequestModal from 'components/board/BoardRequestModal';
 import * as React from 'react';
 import { useState } from 'react';
+
+import RequestBox from '@components/RequestBox';
+import { ShadowBox } from '@components/ShadowBox';
+import Button from '@components/atoms/Button';
+import BoardRequestModal from '@components/board/BoardRequestModal';
 
 import { useModal } from '@hooks/@common/useModal';
 

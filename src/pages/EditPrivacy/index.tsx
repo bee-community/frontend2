@@ -1,8 +1,9 @@
-import { ShadowBox } from 'components/ShadowBox';
-import { Table } from 'components/Table';
-import Button from 'components/atoms/Button';
 import { Form } from 'pages/Question/styles';
 import * as React from 'react';
+
+import { ShadowBox } from '@components/ShadowBox';
+import { Table } from '@components/Table';
+import Button from '@components/atoms/Button';
 
 import { Title, TableTitle } from './styles';
 

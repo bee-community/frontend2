@@ -1,6 +1,7 @@
-import BoardTitleContainer from 'components/molecules/containers/BoardTitleContainer';
-import BoardArticleList from 'components/organisms/lists/BoardArticleList';
 import { useParams } from 'react-router';
+
+import BoardTitleContainer from '@components/molecules/containers/BoardTitleContainer';
+import BoardArticleList from '@components/organisms/lists/BoardArticleList';
 
 import { useGetArticles } from '@hooks/queries/requests';
 

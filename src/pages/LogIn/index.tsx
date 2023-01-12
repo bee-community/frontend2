@@ -1,6 +1,5 @@
 import { client } from 'apis';
 import logo from 'assets/chatImages/logo.png';
-import Button from 'components/atoms/Button';
 import { useAuthDispatch, useAuthState } from 'context/Auth';
 import { login } from 'context/Auth/actions';
 import API from 'mainAPI';
@@ -8,6 +7,8 @@ import { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { setJWTToken } from 'slice/tokenSilice';
+
+import Button from '@components/atoms/Button';
 
 import { LogInWrap, LoginForm, Title } from './styles';
 

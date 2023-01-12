@@ -1,7 +1,8 @@
 import arrowDown from 'assets/images/icons/arrow-down.png';
 import arrowUp from 'assets/images/icons/arrow-up.png';
-import { ShadowBox } from 'components/ShadowBox';
 import * as React from 'react';
+
+import { ShadowBox } from '@components/ShadowBox';
 
 import { Title, FAQBoxWrap, FAQBox, Question, Answer } from './styles';
 

@@ -8,12 +8,13 @@ import request from 'assets/images/icons/request.png';
 import school from 'assets/images/icons/school.png';
 import smile from 'assets/images/icons/smile.png';
 import time from 'assets/images/icons/time.png';
-import { ShadowBox } from 'components/ShadowBox';
 import useTimer from 'easytimer-react-hook';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { remainTimeCalc } from 'utils/remainTimeCalc';
+
+import { ShadowBox } from '@components/ShadowBox';
 
 import { NickName, Box, MyPageCategory, CustomerService, Edit, MyPageWrap } from './styles';
 

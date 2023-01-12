@@ -1,12 +1,13 @@
 import logo from 'assets/chatImages/logo.png';
-import { Table } from 'components/Table';
-import Button from 'components/atoms/Button';
 import API from 'mainAPI';
 import { TableTitle } from 'pages/EditPrivacy/styles';
 import { Title } from 'pages/LogIn/styles';
 import { Form } from 'pages/Question/styles';
 import { useCallback, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+
+import { Table } from '@components/Table';
+import Button from '@components/atoms/Button';
 
 import { SignUpWrap, WhiteBox, Error } from './styles';
 
