@@ -1,11 +1,12 @@
 import Aside from 'components/chat/Aside';
 import Header from 'components/organisms/Header';
-import { useGetUserSelf } from 'hooks/queries/requests';
-import useUserInfo from 'hooks/useUserInfo';
 import { useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router';
 import { useLocation } from 'react-router-dom';
+
+import { useGetUserSelf } from '@hooks/queries/requests';
+import useUserInfo from '@hooks/useUserInfo';
 
 import { StyledTemplate, StyledMain, Main, StyledAside } from './styles';
 

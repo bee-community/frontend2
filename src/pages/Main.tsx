@@ -1,7 +1,8 @@
 import BannerBox from 'components/molecules/boxes/BannerBox';
 import BestArticleList from 'components/organisms/lists/BestArticleList';
 import CategoryList from 'components/organisms/lists/CategoryList';
-import { useGetArticles, useGetBoards } from 'hooks/queries/requests';
+
+import { useGetArticles, useGetBoards } from '@hooks/queries/requests';
 
 function Main() {
   const { data } = useGetArticles();

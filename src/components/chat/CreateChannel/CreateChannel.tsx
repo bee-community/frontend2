@@ -2,10 +2,11 @@ import xButton from 'assets/chatImages/xbutton.png';
 import xx from 'assets/chatImages/xx.png';
 import axios from 'chatApi';
 import { Label2, Label, Input, Button } from 'components/chat/Aside/styles';
-import useInput from 'hooks/useInput';
 import React, { useEffect, VFC, useCallback, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCreatePointModalExcept } from 'slice/pointModal';
+
+import useInput from '@hooks/useInput';
 
 import './CreateChannel.css';
 

@@ -2,13 +2,14 @@ import arrowDownYellowIcon from 'assets/images/icons/arrow-down-yellow.png';
 import officeIcon from 'assets/images/icons/office.png';
 import Button from 'components/atoms/Button';
 import { useBoardState } from 'context/Board';
-import useBoardActions from 'hooks/useBoardActions';
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { setCategoryOpen } from 'redux/openStateSlice';
 import theme from 'styles/theme';
+
+import useBoardActions from '@hooks/useBoardActions';
 
 import { StyledBoardTitleContainer, DropDownMenu } from './styles';
 

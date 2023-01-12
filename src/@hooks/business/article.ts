@@ -1,8 +1,9 @@
-import { useCreateCommentMutation, useLikeMutation } from 'hooks/queries/article';
-import { useCreateAriticleMutation } from 'hooks/queries/requests';
 import { useQueryClient } from 'react-query';
 import { useNavigate } from 'react-router';
 import { CreateArticleRequest, CreateCommentRequest } from 'types/article/remote';
+
+import { useCreateCommentMutation, useLikeMutation } from '@hooks/queries/article';
+import { useCreateAriticleMutation } from '@hooks/queries/requests';
 
 export const useCreateArticle = () => {
   const createArticleMutate = useCreateAriticleMutation();

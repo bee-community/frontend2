@@ -5,10 +5,6 @@ import { Table } from 'components/Table';
 import TableInput from 'components/TableInput/TableInput';
 import TableTextArea from 'components/TableTextArea/TableTextArea';
 import Button from 'components/atoms/Button';
-import { useCreateArticle } from 'hooks/business/article';
-import { useGetArticleDetail } from 'hooks/queries/article';
-import { useGetBoards } from 'hooks/queries/requests';
-import useInput from 'hooks/useInput';
 import { Form, Title } from 'pages/Question/styles';
 import { useCallback, useState, useRef, useEffect } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
@@ -16,6 +12,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { setArticleEditClose } from 'redux/openStateSlice';
 import theme from 'styles/theme';
+
+import { useCreateArticle } from '@hooks/business/article';
+import { useGetArticleDetail } from '@hooks/queries/article';
+import { useGetBoards } from '@hooks/queries/requests';
+import useInput from '@hooks/useInput';
 
 import imageAdd from '../../assets/images/icons/imageAdd.png';
 import { InputPhoto, Image, AddImageIcon, TableTitle } from './styles';

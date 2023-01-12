@@ -24,9 +24,9 @@ import { setRemainOpen, setPointOpen, setWaitOpen } from 'slice/pointModal';
 import styled from 'styled-components';
 import useSWR from 'swr';
 
-import ChatContext from '../../../context/ChatContext';
 // import JwtContext from '../../context/JwtContext';
-import useInput from '../../../hooks/useInput';
+import useInput from '../../../@hooks/useInput';
+import ChatContext from '../../../context/ChatContext';
 import { resetPublicChats } from '../../../slice/publicChats';
 import { changeUserDataMessage } from '../../../slice/userDataSlice';
 import fetcher from '../../../utils/fetcher';

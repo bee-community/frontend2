@@ -23,7 +23,7 @@ const useUserInfo = () => {
             dispatch(setUserInfo({ value: response.data }));
           })
           .catch(error => {
-            navigate('/login');
+            // navigate('/login');
           })
           .finally(() => {});
       } else {

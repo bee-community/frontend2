@@ -1,8 +1,9 @@
 import { deleteLikeRequest } from 'apis/article';
 import Button from 'components/atoms/Button';
-import { useLikeRequest } from 'hooks/business/article';
 import { useCallback } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
+
+import { useLikeRequest } from '@hooks/business/article';
 
 import { StyledArticleFeedbackContainer } from './styles';
 

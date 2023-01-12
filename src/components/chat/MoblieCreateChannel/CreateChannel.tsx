@@ -2,11 +2,12 @@ import xButton from 'assets/chatImages/mobileXbutton.png';
 import xx from 'assets/chatImages/xx.png';
 import axios from 'chatApi';
 import { Label2, Input, Button } from 'components/chat/Aside/styles';
-import useInput from 'hooks/useInput';
 import React, { useEffect, VFC, useCallback, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setNeedScroll } from 'slice/chatMobileScroll';
 import { setCreatePointModalExcept } from 'slice/pointModal';
+
+import useInput from '@hooks/useInput';
 
 import './MobileCreateChannel.css';
 

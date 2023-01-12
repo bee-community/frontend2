@@ -3,9 +3,10 @@ import heart from 'assets/images/icons/heart-unfilled.png';
 import CommentItem from 'components/@Shared/CommentItem';
 import Button from 'components/atoms/Button';
 import dayjs from 'dayjs';
-import { useCreateComment } from 'hooks/business/article';
 import { useState, useCallback } from 'react';
 import theme from 'styles/theme';
+
+import { useCreateComment } from '@hooks/business/article';
 
 import { Comment, Reply, ReplyPostInput } from './styles';
 

@@ -6,13 +6,14 @@ import ArticleComment from 'components/Article/ArticleComment';
 import Button from 'components/atoms/Button';
 import ArticleContent from 'components/organisms/ArticleContent';
 import TagRelatedList from 'components/organisms/lists/TagRelatedList';
-import { useCreateComment } from 'hooks/business/article';
-import { useGetArticleDetail } from 'hooks/queries/article';
 import { useState, useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 import { setArticleToggle } from 'redux/openStateSlice';
 import theme from 'styles/theme';
+
+import { useCreateComment } from '@hooks/business/article';
+import { useGetArticleDetail } from '@hooks/queries/article';
 
 import { CommentsWrap, CommentsOpenButton, Comments, CommentPostInput } from './styles';
 

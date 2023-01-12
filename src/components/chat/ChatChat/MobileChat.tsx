@@ -9,7 +9,6 @@ import ChatEndModal from 'components/chat/ChatEndModal/ChatEndModal';
 import PointModal from 'components/chat/ChatList/MobilePointModal';
 import ChatZZone from 'components/chat/ChatZZone/ChatZZone';
 import ChatContext from 'context/ChatContext';
-import useInput from 'hooks/useInput';
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import Drawer from 'react-modern-drawer';
 import 'react-modern-drawer/dist/index.css';
@@ -23,6 +22,8 @@ import { changeUserDataMessage } from 'slice/userDataSlice';
 import styled from 'styled-components';
 import useSWR from 'swr';
 import fetcher from 'utils/fetcher';
+
+import useInput from '@hooks/useInput';
 
 import './MobileChatChat.css';
 import './drawer.css';

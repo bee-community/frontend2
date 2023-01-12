@@ -2,9 +2,10 @@ import RequestBox from 'components/RequestBox';
 import { ShadowBox } from 'components/ShadowBox';
 import Button from 'components/atoms/Button';
 import BoardRequestModal from 'components/board/BoardRequestModal';
-import { useModal } from 'hooks/@common/useModal';
 import * as React from 'react';
 import { useState } from 'react';
+
+import { useModal } from '@hooks/@common/useModal';
 
 import { Title, RequestBoxsWrap } from './styles';
 

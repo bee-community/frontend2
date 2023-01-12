@@ -1,13 +1,14 @@
 import { deleteArticle } from 'apis/article';
 import Button from 'components/atoms/Button';
 import dayjs from 'dayjs';
-import { useGetBoards } from 'hooks/queries/requests';
 import * as React from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { setArticleEditOpen } from 'redux/openStateSlice';
 import { ArticleDetailType } from 'types/article/remote';
+
+import { useGetBoards } from '@hooks/queries/requests';
 
 import { StyledArticleTitleContainer } from './styles';
 

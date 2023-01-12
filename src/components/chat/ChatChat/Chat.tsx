@@ -10,7 +10,6 @@ import PointModal from 'components/chat/ChatList/PointModal';
 import RemainPoint from 'components/chat/ChatList/RemainPoint';
 import ChatZZone from 'components/chat/ChatZZone/ChatZZone';
 import ChatContext from 'context/ChatContext';
-import useInput from 'hooks/useInput';
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 // import { Scrollbars } from 'react-custom-scrollbars';
 import Drawer from 'react-modern-drawer';
@@ -24,6 +23,8 @@ import { resetPublicChats } from 'slice/publicChats';
 import { changeUserDataMessage } from 'slice/userDataSlice';
 import useSWR from 'swr';
 import fetcher from 'utils/fetcher';
+
+import useInput from '@hooks/useInput';
 
 import './ChatChat.css';
 import './drawer.css';

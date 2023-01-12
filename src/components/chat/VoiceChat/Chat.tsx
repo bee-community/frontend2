@@ -10,7 +10,6 @@ import RemainPoint from 'components/chat/ChatList/RemainPoint';
 import ChatMiddle from 'components/chat/VoiceChatMiddle/ChatMiddle';
 import VoiceChatZZone from 'components/chat/VoiceChatZZone/ChatZZone';
 import ChatContext from 'context/ChatContext';
-import useInput from 'hooks/useInput';
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import Drawer from 'react-modern-drawer';
 import 'react-modern-drawer/dist/index.css';
@@ -22,6 +21,8 @@ import { resetPublicChats } from 'slice/publicChats';
 import { changeUserDataMessage } from 'slice/userDataSlice';
 import useSWR from 'swr';
 import fetcher from 'utils/fetcher';
+
+import useInput from '@hooks/useInput';
 
 import './VoiceChat.css';
 import VoiceFadeOutModal from './VoiceFadeOutModal';
