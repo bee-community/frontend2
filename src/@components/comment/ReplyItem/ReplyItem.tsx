@@ -4,6 +4,7 @@ import dayjs from 'dayjs';
 import * as Styled from './ReplyItem.styles';
 
 export interface ReplyItemProps {
+  id: string;
   author: string;
   createAt: string;
   content: string;
