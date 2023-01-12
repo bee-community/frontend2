@@ -1,4 +1,7 @@
 import addButton from 'assets/chatImages/addbutton2.png';
+import mobileCreateChannel from 'assets/chatImages/mobileCreateChannel.png';
+import searchIcon from 'assets/chatImages/searchImage.png';
+import axios from 'chatApi';
 import Dropdown from 'components/Dropdown/Dropdown';
 import Chat from 'components/chat/ChatChat/MobileChat';
 import ChatList from 'components/chat/ChatList/ChatList';
@@ -6,19 +9,15 @@ import CreateChannelExceptModal from 'components/chat/CreateChannel/CreateChanne
 import CreateChannel from 'components/chat/MoblieCreateChannel/CreateChannel';
 import MyChatList from 'components/chat/MyChatList/MyChatList';
 import VoiceChat from 'components/chat/VoiceChat/MobileVoiceChat';
-import { url } from 'inspector';
+import ChatContext from 'context/ChatContext';
 import React, { useEffect, useState, useCallback, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setChatColor } from 'slice/chatColorSlice';
 import { setDataList as setDataList2, setMyDataList } from 'slice/chatDataListSlice';
 import { setChatState } from 'slice/chatStateSlice';
 import { setLogId } from 'slice/logIdSlice';
+import { resetPublicChats } from 'slice/publicChats';
 
-import mobileCreateChannel from '../../assets/chatImages/mobileCreateChannel.png';
-import searchIcon from '../../assets/chatImages/searchImage.png';
-import axios from '../../chatApi';
-import ChatContext from '../../context/ChatContext';
-import { resetPublicChats } from '../../slice/publicChats';
 import {
   AsideWrap,
   Bio,

@@ -5,14 +5,14 @@ import CreateChannel from 'components/chat/CreateChannel/CreateChannel';
 import CreateChannelExceptModal from 'components/chat/CreateChannel/CreateChannelExceptModal';
 import MyChatList from 'components/chat/MyChatList/MyChatList';
 import VoiceChat from 'components/chat/VoiceChat/Chat';
+import ChatContext from 'context/ChatContext';
 import React, { useEffect, useState, useCallback, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setChatColor } from 'slice/chatColorSlice';
 import { setChatState } from 'slice/chatStateSlice';
 import { setLogId } from 'slice/logIdSlice';
+import { resetPublicChats } from 'slice/publicChats';
 
-import ChatContext from '../../context/ChatContext';
-import { resetPublicChats } from '../../slice/publicChats';
 import { AsideWrap, Bio, SideListWrap, SideList, ButtonPurple, Order, ListTitle, Box, ChatButton } from './styles';
 import './test.css';
 

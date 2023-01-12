@@ -1,4 +1,4 @@
-import Aside from 'components/Aside';
+import Aside from 'components/chat/Aside';
 import Header from 'components/organisms/Header';
 import { useGetUserSelf } from 'hooks/queries/requests';
 import useUserInfo from 'hooks/useUserInfo';

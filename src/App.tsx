@@ -1,6 +1,6 @@
-import Chat from 'components/Aside/Chat';
 import BottomNav from 'components/BottomNav/BottomNav';
 import Template from 'components/Templates';
+import Chat from 'components/chat/Aside/Chat';
 import Article from 'pages/Article/Article';
 import ArticlePost from 'pages/ArticlePost';
 import Board from 'pages/Board';
