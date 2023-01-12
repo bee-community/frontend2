@@ -1,11 +1,16 @@
-import { css } from '@emotion/react';
-import styled from '@emotion/styled';
+import type { SerializedStyles, Theme } from '@emotion/react';
+import { ButtonHTMLAttributes, PropsWithChildren } from 'react';
 
-const Button2 = styled.button`
-  padding: 10px;
+import * as Styled from './Button.styles';
 
-  border: none;
-  border-radius: 10px;
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  customCss?: (theme: Theme) => SerializedStyles;
+}
+
+const Button = (props: PropsWithChildren<ButtonProps>) => {
+  const { customCss, children } = props;
+  return <Styled.DefaultButton css={customCss}>{children}</Styled.DefaultButton>;
+};
 
   ${({ theme }) => css`
     background-color: ${theme.palette.yellow[100]};
@@ -13,4 +18,4 @@ const Button2 = styled.button`
   `}
 `;
 
-export default Button2;
+export default Button;
