@@ -5,10 +5,10 @@ import Button from '@components/@Shared/Button';
 import * as Styled from './CommentItem.styles';
 
 export interface CommentItemProps {
-  id: 'string';
-  author: 'string';
-  createAt: 'string';
-  content: 'string';
+  id: string;
+  author: string;
+  createAt: string;
+  content: string;
   onClickReplyButton: () => void;
 }
 
