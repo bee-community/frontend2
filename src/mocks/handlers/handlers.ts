@@ -1,10 +1,10 @@
 //src/mocks/handlers.ts
 import { rest } from 'msw';
 
-import { data } from '../fixtures/data';
+import { data, data2 } from '../fixtures/data';
 
 export const handlers = [
-  rest.get('boards', (req, res, ctx) => {
+  rest.get('http://localhost:3000/boards', (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json([
@@ -17,11 +17,16 @@ export const handlers = [
     );
   }),
 
-  rest.get('articles', (req, res, ctx) => {
+  rest.get('http://localhost:3000/articles', (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(data));
   }),
 
-  rest.get('http://localhost:3000/ant_community_frontend_dev3/boards/:board', (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(data));
+  rest.get('http://localhost:3000/boards/:board', (req, res, ctx) => {
+    const {
+      params: { couponId },
+    } = req;
+
+    console.log(data2);
+    return res(ctx.status(200), ctx.json(data2));
   }),
 ];
