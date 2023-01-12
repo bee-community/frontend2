@@ -1,22 +1,18 @@
-import arrowDown from 'assets/images/icons/arrow-down.png';
-import arrowUp from 'assets/images/icons/arrow-up.png';
-import enter from 'assets/images/icons/enter.png';
-import heart from 'assets/images/icons/heart-unfilled.png';
 import { useState, useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 import { setArticleToggle } from 'redux/openStateSlice';
-import theme from 'styles/theme';
 
 import ArticleComment from '@components/Article/ArticleComment';
 import Button from '@components/atoms/Button';
+import CommentOpenButton from '@components/comment/CommentOpenButton/CommentOpenButton';
 import ArticleContent from '@components/organisms/ArticleContent';
 import TagRelatedList from '@components/organisms/lists/TagRelatedList';
 
 import { useCreateComment } from '@hooks/business/article';
 import { useGetArticleDetail } from '@hooks/queries/article';
 
-import { CommentsWrap, CommentsOpenButton, Comments, CommentPostInput } from './styles';
+import { CommentsWrap, Comments, CommentPostInput } from './styles';
 
 function Article() {
   const { articleId } = useParams();
@@ -82,6 +78,8 @@ function Article() {
     setComment(e.target.value);
   }, []);
 
+  const onDetailOpen = useCallback(() => setIsDetailsOpen(prev => !prev), []);
+
   const onSubmit = useCallback(
     e => {
       e.preventDefault();
@@ -110,15 +108,7 @@ function Article() {
       {/* <article>댓글 기능 개발중</article> */}
 
       <CommentsWrap open isDetailsOpen={isDetailsOpen}>
-        <CommentsOpenButton>
-          <span>댓글</span>
-          <span
-            style={{ display: 'flex' }}
-            onClick={() => setIsDetailsOpen(prev => !prev)}
-            className="arrow-down-button">
-            {isDetailsOpen ? <img src={arrowUp} alt="up" /> : <img src={arrowDown} alt="down" />}
-          </span>
-        </CommentsOpenButton>
+        <CommentOpenButton isDetailsOpen={isDetailsOpen} onClick={onDetailOpen}></CommentOpenButton>
         <Comments>
           {article.comments?.map(element => (
             <ArticleComment key={element.id} element={element} articleId={articleId}></ArticleComment>

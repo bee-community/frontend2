@@ -67,35 +67,6 @@ export const CommentsWrap = styled.details<{ isDetailsOpen: boolean }>`
   }
 `;
 
-export const CommentsOpenButton = styled.summary`
-  list-style: none;
-  font-family: NotoSansCJKKR;
-  font-weight: 500;
-  color: #777;
-  margin-bottom: 10px;
-  height: 25px;
-  display: flex;
-  &::-webkit-details-marker {
-    display: none;
-  }
-  img {
-    align-self: center;
-    width: 11px;
-    margin-bottom: 2px;
-    margin-left: 10px;
-
-    @media (max-width: ${props => props.theme.screenSize.mobileL}) {
-      margin-bottom: 10px;
-    }
-  }
-
-  & > span:nth-child(1) {
-    @media (max-width: ${props => props.theme.screenSize.mobileL}) {
-      margin-left: 15px;
-    }
-  }
-`;
-
 export const Comments = styled.div`
   padding: 10px 20px 20px 20px;
   background-color: #f4f4f4;
