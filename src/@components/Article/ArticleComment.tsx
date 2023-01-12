@@ -4,8 +4,8 @@ import dayjs from 'dayjs';
 import { useState, useCallback } from 'react';
 import theme from 'styles/theme';
 
-import CommentItem from '@components/@Shared/CommentItem';
 import Button from '@components/atoms/Button';
+import CommentItem from '@components/comment/CommentItem';
 
 import { useCreateComment } from '@hooks/business/article';
 
