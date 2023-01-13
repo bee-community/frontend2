@@ -9,7 +9,7 @@ import { ArticleDetailType } from 'types/article/remote';
 
 import Button from '@components/atoms/Button';
 
-import { useGetBoards } from '@hooks/queries/requests';
+import { useGetBoards } from '@hooks/@queries/requests';
 
 import { StyledArticleTitleContainer } from './styles';
 

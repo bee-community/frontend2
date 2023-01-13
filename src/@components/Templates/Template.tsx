@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 import Aside from '@components/chat/Aside';
 import Header from '@components/organisms/Header';
 
-import { useGetUserSelf } from '@hooks/queries/requests';
+import { useGetUserSelf } from '@hooks/@queries/requests';
 import useUserInfo from '@hooks/useUserInfo';
 
 import { StyledTemplate, StyledMain, Main, StyledAside } from './styles';

@@ -9,8 +9,8 @@ import CommentOpenButton from '@components/comment/CommentOpenButton/CommentOpen
 import ArticleContent from '@components/organisms/ArticleContent';
 import TagRelatedList from '@components/organisms/lists/TagRelatedList';
 
+import { useGetArticleDetail } from '@hooks/@queries/article';
 import { useCreateComment } from '@hooks/business/article';
-import { useGetArticleDetail } from '@hooks/queries/article';
 
 import { CommentsWrap, Comments, CommentPostInput } from './styles';
 

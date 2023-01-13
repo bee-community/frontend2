@@ -15,9 +15,9 @@ import TableInput from '@components/TableInput/TableInput';
 import TableTextArea from '@components/TableTextArea/TableTextArea';
 import Button from '@components/atoms/Button';
 
+import { useGetArticleDetail } from '@hooks/@queries/article';
+import { useGetBoards } from '@hooks/@queries/requests';
 import { useCreateArticle } from '@hooks/business/article';
-import { useGetArticleDetail } from '@hooks/queries/article';
-import { useGetBoards } from '@hooks/queries/requests';
 import useInput from '@hooks/useInput';
 
 import imageAdd from '../../assets/images/icons/imageAdd.png';
