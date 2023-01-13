@@ -5,7 +5,7 @@ import theme from 'styles/theme';
 
 import Button from '@components/atoms/Button';
 import CommentItem from '@components/comment/CommentItem';
-import ReplyCreateInput from '@components/comment/ReplyCreateInput';
+import CreateInput from '@components/comment/CreateInput';
 import ReplyItem from '@components/comment/ReplyItem';
 
 import { useReplyForm } from '@hooks/ui/comment/useReplyForm';
@@ -24,12 +24,13 @@ export interface CommentProps {
   articleId: string;
 }
 const Comment = ({ element, articleId }: CommentProps) => {
+  const [isReplyOpen, setIsReplyOpen] = useState(false);
   const { id: commentId, author, createAt, content, children } = element;
+
   const {
     state: { reply },
     handler: { onChangeReply, onSubmitReplyCreateForm },
   } = useReplyForm({ commentId, articleId });
-  const [isReplyOpen, setIsReplyOpen] = useState(false);
 
   const onClickReplyButton = useCallback(() => setIsReplyOpen(prev => !prev), [isReplyOpen]);
 
@@ -52,7 +53,7 @@ const Comment = ({ element, articleId }: CommentProps) => {
               content={reply.content}
             />
           ))}
-          <ReplyCreateInput comment={reply} onChangeContent={onChangeReply}></ReplyCreateInput>
+          <CreateInput.Reply comment={reply} onChangeContent={onChangeReply}></CreateInput.Reply>
         </Styled.Form>
       )}
     </>
