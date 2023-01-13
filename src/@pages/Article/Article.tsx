@@ -1,25 +1,17 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 import { setArticleToggle } from 'redux/openStateSlice';
 
-import Button from '@components/atoms/Button';
-import Comment from '@components/comment/Comment/Comment';
-import CommentOpenButton from '@components/comment/CommentOpenButton/CommentOpenButton';
+import CommentSection from '@components/comment/CommentSection';
 import ArticleContent from '@components/organisms/ArticleContent';
 import TagRelatedList from '@components/organisms/lists/TagRelatedList';
 
 import { useGetArticleDetail } from '@hooks/@queries/article';
-import { useCreateComment } from '@hooks/business/article';
-
-import { CommentsWrap, Comments, CommentPostInput } from './styles';
 
 function Article() {
   const { articleId } = useParams();
-  const [isDetailsOpen, setIsDetailsOpen] = useState(true);
-  const [comment, setComment] = useState('');
   const article = useGetArticleDetail(articleId);
-  const { createComment } = useCreateComment();
   const dispatch = useDispatch();
   const [dummyTagRelatedArticles] = useState([
     {
@@ -74,26 +66,6 @@ function Article() {
 
   const recommendedTags = ['꿀팁1', '꿀팁2', '꿀팁3', '꿀팁4', '꿀팁5', '꿀팁6', '꿀팁7'];
 
-  const onChangeContent = useCallback(e => {
-    setComment(e.target.value);
-  }, []);
-
-  const onDetailOpen = useCallback(() => setIsDetailsOpen(prev => !prev), []);
-
-  const onSubmit = useCallback(
-    e => {
-      e.preventDefault();
-      if (!articleId) return;
-      createComment({
-        body: {
-          content: comment,
-        },
-        articleId: articleId,
-      });
-      setComment('');
-    },
-    [articleId, comment],
-  );
   useEffect(() => {
     dispatch(setArticleToggle());
     return () => {
@@ -106,33 +78,7 @@ function Article() {
   return (
     <>
       <ArticleContent articleId={articleId} article={article} recommendedTags={recommendedTags} />
-      {/* <article>댓글 기능 개발중</article> */}
-
-      <CommentsWrap open isDetailsOpen={isDetailsOpen}>
-        <CommentOpenButton isDetailsOpen={isDetailsOpen} onClick={onDetailOpen}></CommentOpenButton>
-        <Comments>
-          {article.comments?.map(element => (
-            <Comment key={element.id} element={element} articleId={articleId}></Comment>
-          ))}
-
-          <form onSubmit={onSubmit}>
-            <CommentPostInput>
-              <div className="input-wrap">
-                <input value={comment} onChange={onChangeContent} type="text" placeholder="내용을 입력해주세요." />
-                <Button
-                  buttonType="contained"
-                  color="yellow"
-                  radius="square"
-                  customCss={{
-                    marginLeft: '14px',
-                  }}>
-                  등록
-                </Button>
-              </div>
-            </CommentPostInput>
-          </form>
-        </Comments>
-      </CommentsWrap>
+      <CommentSection article={article} articleId={articleId} />
       <TagRelatedList articles={dummyTagRelatedArticles} />
     </>
   );
