@@ -1,4 +1,4 @@
-import { FormEventHandler, useState, useCallback } from 'react';
+import { FormEventHandler, ChangeEventHandler, useState, useCallback } from 'react';
 
 import { useCreateComment } from '@hooks/business/article';
 
@@ -9,7 +9,7 @@ interface useReplyFromProps {
 export const useReplyForm = (props: useReplyFromProps) => {
   const { commentId, articleId } = props;
   const [reply, setReply] = useState('');
-  const onChangeReply = useCallback(e => {
+  const onChangeReply: ChangeEventHandler<HTMLInputElement> = useCallback(e => {
     setReply(e.target.value);
   }, []);
 
