@@ -13,7 +13,11 @@ const CommentOpenButton = (props: CommentOpenButtonProps) => {
     <Styled.CommentsOpenButton>
       <span>댓글</span>
       <span style={{ display: 'flex' }} onClick={onClick} className="arrow-down-button">
-        {isDetailsOpen ? <img src={arrowUp} alt="up" /> : <img src={arrowDown} alt="down" />}
+        {isDetailsOpen ? (
+          <img style={{ marginTop: '5px' }} src={arrowUp} alt="up" />
+        ) : (
+          <img src={arrowDown} alt="down" />
+        )}
       </span>
     </Styled.CommentsOpenButton>
   );

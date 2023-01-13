@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const CommentsOpenButton = styled.summary`
+export const CommentsOpenButton = styled.div`
   list-style: none;
   font-family: NotoSansCJKKR;
   font-weight: 500;
@@ -8,9 +8,7 @@ export const CommentsOpenButton = styled.summary`
   margin-bottom: 10px;
   height: 25px;
   display: flex;
-  &::-webkit-details-marker {
-    display: none;
-  }
+
   img {
     align-self: center;
     width: 11px;
