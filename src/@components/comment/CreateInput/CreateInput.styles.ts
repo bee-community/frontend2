@@ -1,7 +1,7 @@
 import { css, Theme } from '@emotion/react';
 import styled from '@emotion/styled';
 
-export const ReplyPostInput = styled.div`
+export const PostInput = styled.div`
   padding: 12px 10px;
   display: flex;
   flex-direction: row;
