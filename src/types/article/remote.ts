@@ -45,6 +45,7 @@ export type ArticleDetailType = {
   summary: string;
   board_id: string;
   view_count: number;
+  comment_count: number;
   is_announcement: boolean;
   like_count: number;
   is_viewer_liked_article: boolean;
