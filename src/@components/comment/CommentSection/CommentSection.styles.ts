@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 export const CommentsContainer = styled.details<{ isDetailsOpen: boolean }>`
+  display: ${props => !props.isDetailsOpen && 'none'};
   background-color: #f4f4f4;
 
   padding: 10px 20px 20px 20px;
@@ -69,7 +70,6 @@ export const Reply = styled.div`
   & > .nickname-wrap {
     display: flex;
     flex-direction: row;
-    algin-items: flex-end;
     margin-right: 10px;
 
     img {
