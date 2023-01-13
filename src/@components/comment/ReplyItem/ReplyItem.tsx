@@ -15,7 +15,7 @@ const ReplyItem = (props: ReplyItemProps) => {
     <Styled.Reply>
       <div className="nickname-wrap">
         <img src={enter} alt="enter" />
-        <div>
+        <div className="nicknameContainer">
           <span className="nickname">{author}</span>
           <div className="date">{dayjs(createAt).format('YYYY.MM.DD HH:mm')}</div>
         </div>
