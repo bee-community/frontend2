@@ -1,3 +1,4 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 export const Reply = styled.div`
@@ -7,9 +8,22 @@ export const Reply = styled.div`
   padding: 10px 10px 10px 10px;
   border-bottom: solid 1px #ddd;
   word-break: break-all;
+
+  ${({ theme }) => css`
+    @media (max-width: ${theme.screenSize.mobileL}) {
+      flex-direction: column;
+    }
+  `}
+
+  .nicknameContainer {
+    ${({ theme }) => css`
+      @media (max-width: ${theme.screenSize.mobileL}) {
+        display: flex;
+      }
+    `}
+  }
   & > .nickname-wrap {
     display: flex;
-    flex-direction: row;
     margin-right: 10px;
 
     img {
@@ -21,7 +35,13 @@ export const Reply = styled.div`
 
     .nickname {
       font-family: NotoSansCJKKR;
-      font-weight: 500;
+      font-weight: bold;
+
+      ${({ theme }) => css`
+        @media (max-width: ${theme.screenSize.mobileL}) {
+          margin-top: 2px;
+        }
+      `}
     }
 
     .date {
@@ -30,6 +50,13 @@ export const Reply = styled.div`
       font-family: NotoSansCJKKR;
       font-size: ${props => props.theme.fontSize[12]};
       color: #777;
+
+      ${({ theme }) => css`
+        @media (max-width: ${theme.screenSize.mobileL}) {
+          margin-top: 3px;
+          margin-left: 10px;
+        }
+      `}
     }
   }
 
@@ -44,7 +71,7 @@ export const Reply = styled.div`
 
     .reply {
       margin-bottom: 13px;
-      font-size: 15px;
+      font-size: ${props => props.theme.fontSize[14]};
       color: black;
     }
     .reply-response {
