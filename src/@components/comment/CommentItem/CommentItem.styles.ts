@@ -19,6 +19,12 @@ export const Comment = styled.div`
       font-family: NotoSansCJKKR;
       font-size: ${props => props.theme.fontSize[14]};
       color: #777;
+
+      ${({ theme }) => css`
+        @media (max-width: ${theme.screenSize.mobileL}) {
+          font-size: ${theme.fontSize[12]};
+        }
+      `}
     }
   }
 
@@ -26,6 +32,7 @@ export const Comment = styled.div`
     font-family: NotoSansCJKKR;
     color: #111;
     margin-bottom: 8px;
+    font-size: ${props => props.theme.fontSize[14]};
   }
   .comment-response {
     display: flex;
@@ -55,5 +62,9 @@ export const ExtendedOutlineButton = (theme: Theme) => css`
     background-color: ${theme.palette.yellow[100]};
     color: black;
     outline: black;
+  }
+
+  @media (max-width: ${theme.screenSize.mobileL}) {
+    padding: 3px 10px 2px;
   }
 `;
