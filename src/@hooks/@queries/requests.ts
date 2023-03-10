@@ -7,13 +7,16 @@ import { BoardInfo } from 'context/Board/types';
 import { useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { useDispatch } from 'react-redux';
+import { setBoard } from 'redux/boards';
 import { getUser } from 'redux/userSlice';
+import { setUserInfo } from 'slice/userInfo';
 
 let REQUEST_URL = '';
 if (process.env.REACT_APP_MSW === 'development') {
   REQUEST_URL = 'http://localhost:3000';
 } else {
-  REQUEST_URL = 'http://honeybees.community';
+  // REQUEST_URL = 'http://honeybees.community';
+  REQUEST_URL = 'https://f06b58c2-1355-44bd-b659-f6f536b4b8fd.mock.pstmn.io';
 }
 
 export const useGetUserSelf = () => {
@@ -21,11 +24,17 @@ export const useGetUserSelf = () => {
   const { data: res } = useQuery(['userSelf'], () => client.get(`${REQUEST_URL}/users/self`));
   useEffect(() => {
     dispatch(getUser({ value: res?.data }));
+    dispatch(setUserInfo({ value: res?.data }));
   }, [res]);
 };
 
 export const useGetBoards = (): BoardInfo[] => {
+  const dispatch = useDispatch();
+
   const { data: res } = useQuery('boards', () => axios.get(`${REQUEST_URL}/boards`));
+
+  dispatch(setBoard({ value: res?.data }));
+
   return res?.data ?? [];
 };
 

@@ -28,7 +28,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* <BrowserRouter basename={process.env.PUBLIC_URL}> */}
-      <BrowserRouter>
+      <BrowserRouter basename="frontend2">
         <Routes>
           <Route path="/" element={<Template />}>
             <Route index element={<Main />} />

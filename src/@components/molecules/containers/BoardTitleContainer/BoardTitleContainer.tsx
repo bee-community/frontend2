@@ -3,7 +3,7 @@ import officeIcon from 'assets/images/icons/office.png';
 import { useBoardState } from 'context/Board';
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { setCategoryOpen } from 'redux/openStateSlice';
 import theme from 'styles/theme';
@@ -19,11 +19,17 @@ interface BoardTitleContainerProps {
   refreshBoardArticles?: (board_path: string) => void;
 }
 
+export type BoardInfo = {
+  id: string;
+  name: string;
+  path: string;
+};
+
 function BoardTitleContainer(props: BoardTitleContainerProps) {
   const [isOpen, setIsOpen] = useState(false);
   const boardActions = useBoardActions();
-  const boards = useBoardState();
-  const boardName = boards.filter(board => board.id === props.title)[0]?.name;
+  const boards = useSelector((store: any) => store.boards);
+  const boardName = boards?.filter((board: BoardInfo) => board.id === props.title)[0]?.name;
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [buttonWidth, setButtonWidth] = useState(() => {
@@ -31,7 +37,7 @@ function BoardTitleContainer(props: BoardTitleContainerProps) {
     return { width: '120px' };
   });
   useEffect(() => {
-    if (boards.length === 0) {
+    if (boards?.length === 0) {
       boardActions.getBoards();
     }
   }, [boardActions, boards]);
@@ -88,7 +94,7 @@ function BoardTitleContainer(props: BoardTitleContainerProps) {
             />
           </Button>
           <DropDownMenu isOpen={isOpen}>
-            {boards.slice(0, 9).map(board => (
+            {boards?.slice(0, 9).map((board: BoardInfo) => (
               <li key={board.id}>
                 <Button
                   buttonType="contained"
