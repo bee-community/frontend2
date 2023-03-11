@@ -12,10 +12,10 @@ import theme from 'styles/theme';
 import App from './App';
 import { store } from './store';
 
-if (process.env.REACT_APP_MSW === 'development') {
-  const { worker } = require('./mocks/browser');
-  worker.start();
-}
+// if (process.env.REACT_APP_MSW === 'development') {
+//   const { worker } = require('./mocks/browser');
+//   worker.start();
+// }
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>

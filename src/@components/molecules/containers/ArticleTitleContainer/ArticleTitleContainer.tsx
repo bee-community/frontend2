@@ -24,7 +24,7 @@ const ArticleTitleContainer: React.FC<PostsProps> = ({ article, articleId }) => 
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
   const { board_id: boardId } = article;
-  const boardName = boards.filter(board => board.id === boardId)[0]?.name;
+  const boardName = boards?.filter(board => board.id === boardId)[0]?.name;
   const commentCount = article.comments.length;
   const { articles } = useSelector((store: any) => store.user);
   const isMyArticle = articles.some((art: any) => art.id === articleId);

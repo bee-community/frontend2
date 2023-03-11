@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  logId: 0,
+  logId: 100,
 };
 
 const logIdSlice = createSlice({

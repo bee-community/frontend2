@@ -16,7 +16,7 @@ if (process.env.REACT_APP_MSW === 'development') {
   REQUEST_URL = 'http://localhost:3000';
 } else {
   // REQUEST_URL = 'http://honeybees.community';
-  REQUEST_URL = 'https://f06b58c2-1355-44bd-b659-f6f536b4b8fd.mock.pstmn.io';
+  REQUEST_URL = 'https://puzzled-cautious-radish.glitch.me';
 }
 
 export const useGetUserSelf = () => {
@@ -33,7 +33,9 @@ export const useGetBoards = (): BoardInfo[] => {
 
   const { data: res } = useQuery('boards', () => axios.get(`${REQUEST_URL}/boards`));
 
-  dispatch(setBoard({ value: res?.data }));
+  useEffect(() => {
+    dispatch(setBoard({ value: res?.data }));
+  }, [res]);
 
   return res?.data ?? [];
 };

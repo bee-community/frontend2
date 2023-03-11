@@ -7,7 +7,7 @@ let REQUEST_URL = '';
 if (process.env.REACT_APP_MSW === 'development') {
   REQUEST_URL = 'http://localhost:3000';
 } else {
-  REQUEST_URL = 'http://honeybees.community';
+  REQUEST_URL = 'https://puzzled-cautious-radish.glitch.me';
 }
 
 export const useGetArticleDetail = (articleId?: string): ArticleDetailType | undefined => {

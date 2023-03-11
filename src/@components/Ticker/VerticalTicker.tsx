@@ -64,7 +64,7 @@ export const VerticalTicker: React.FC<TickerProps> = ({
 
       const oneToZero = [{ transform: `translateY(${-18}px)` }, { transform: `translateY(${-36}px)` }];
 
-      const oneToZero2 = [{ transform: `translateY(${-36}px)` }, { transform: `translateY(${-54}px)` }];
+      const oneToZero2 = [{ transform: `translateY(${-36}px)` }, { transform: `translateY(${-55}px)` }];
 
       const minusOneToMinusTwo = [{ transform: `translateY(${-1 * 20}px)` }, { transform: `translateY(${-2 * 20}px)` }];
 

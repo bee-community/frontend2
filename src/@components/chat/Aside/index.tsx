@@ -52,7 +52,7 @@ function Aside() {
 
     setChatList([]);
     dispatcher(resetPublicChats());
-    dispatcher(setLogId({ value: 0 }));
+    dispatcher(setLogId({ value: 100 }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chatColor]);
   const [popularArticle] = useState([

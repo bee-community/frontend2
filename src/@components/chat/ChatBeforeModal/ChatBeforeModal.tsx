@@ -21,7 +21,8 @@ interface Props {
   show: boolean;
   onCloseModal: () => void;
 }
-const socketURL = 'http://honeybees.community:8080/ws-stomp';
+// const socketURL = 'http://honeybees.community:8080/ws-stomp';
+const socketURL = 'http://localhost:9999/echo';
 
 var stompClient: any = null;
 let avoid = false;
@@ -60,6 +61,7 @@ const ChatBeforeModal: VFC<Props> = ({ sendChannelInfo, show, onCloseModal }) =>
       const Sock = new SockJS(socketURL);
       stompClient = over(Sock);
       setClient(stompClient);
+      console.log('test');
       stompClient.connect(
         {
           jwt: JWTtoken,
@@ -75,8 +77,12 @@ const ChatBeforeModal: VFC<Props> = ({ sendChannelInfo, show, onCloseModal }) =>
   };
 
   const onConnected = () => {
-    setStompSubscribe(stompClient.subscribe('/sub/chat/room/' + sendChannelInfo.id, onMessageReceived));
-    userJoin();
+    try {
+      setStompSubscribe(stompClient.subscribe('/sub/chat/room/' + sendChannelInfo.id, onMessageReceived));
+      userJoin();
+    } catch (err) {
+      console.log('sibal', err);
+    }
   };
 
   const onMessageReceived = (payload: any) => {
