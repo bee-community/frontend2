@@ -23,6 +23,7 @@ function ArticleBox(props: { article: ArticleType }) {
     tags,
     comment_count,
   } = props.article;
+  console.log(comment_count);
   return (
     <StyledArticleBox>
       <Link to={`/article/${id}`}>

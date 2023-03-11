@@ -18,20 +18,20 @@ function NoticeBar() {
         {width && width > 350 ? (
           <>
             <div className="notice-contents">24일 후 베타버전이 출시됩니다.</div>
-            <div className="notice-contents">꿀벌 프로젝트 12월까지 완성예정</div>
+            <div className="notice-contents">꿀벌 프로젝트 완성예정</div>
             <div className="notice-contents">강수환 김동영 조정현 최정혜 이승민 김영동 류지환</div>
             <div className="notice-contents">24일 후 베타버전이 출시됩니다.</div>
-            <div className="notice-contents">꿀벌 프로젝트 12월까지 완성예정</div>
+            <div className="notice-contents">꿀벌 프로젝트 완성예정</div>
             <div className="notice-contents">강수환 김동영 조정현 최정혜 이승민 김영동 류지환</div>
             <div className="notice-contents">24일 후 베타버전이 출시됩니다.</div>
           </>
         ) : (
           <>
             <div className="notice-contents">베타버전 출시예정</div>
-            <div className="notice-contents">12월까지 완성예정</div>
+            <div className="notice-contents">완성까지 화이팅!</div>
             <div className="notice-contents">꿀벌 팀원 화이팅!!!</div>
             <div className="notice-contents">베타버전 출시예정</div>
-            <div className="notice-contents">12월까지 완성예정</div>
+            <div className="notice-contents">완성까지 화이팅!</div>
             <div className="notice-contents">꿀벌 팀원 화이팅!!!</div>
             <div className="notice-contents">베타버전 출시예정</div>
           </>

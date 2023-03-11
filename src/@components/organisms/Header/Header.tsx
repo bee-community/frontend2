@@ -22,18 +22,19 @@ function Header() {
       </Link>
       <NoticeBar />
       <Link to="./mypage">
-        {localStorage.getItem('access_token') ? (
-          <Bio>
-            <span>{userInfo.nickname}</span>
-            <img src={profile} alt="profile" />
-          </Bio>
+        <Bio>
+          <span>{userInfo.nickname}</span>
+          <img src={profile} alt="profile" />
+        </Bio>
+        {/* {localStorage.getItem('access_token') ? (
+    
         ) : (
           <Link to="/login">
             <Button buttonType="contained" color="black" radius="round">
               로그인
             </Button>
           </Link>
-        )}
+        )} */}
       </Link>
     </HeaderWrap>
   );

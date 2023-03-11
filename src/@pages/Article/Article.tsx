@@ -64,7 +64,7 @@ function Article() {
     },
   ]);
 
-  const recommendedTags = ['꿀팁1', '꿀팁2', '꿀팁3', '꿀팁4', '꿀팁5', '꿀팁6', '꿀팁7'];
+  const recommendedTags = ['응원합니다.', '화이팅입니다.', '사랑합니다.', '열심히하세요.', '중꺽마', '프론트엔드'];
 
   useEffect(() => {
     dispatch(setArticleToggle());
