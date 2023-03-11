@@ -3,12 +3,7 @@ import { createComment, createLikeRequest } from 'apis/article';
 import { useQuery, useQueryClient, useMutation } from 'react-query';
 import { ArticleDetailType } from 'types/article/remote';
 
-let REQUEST_URL = '';
-if (process.env.REACT_APP_MSW === 'development') {
-  REQUEST_URL = 'http://localhost:3000';
-} else {
-  REQUEST_URL = 'https://puzzled-cautious-radish.glitch.me';
-}
+const REQUEST_URL = 'https://puzzled-cautious-radish.glitch.me';
 
 export const useGetArticleDetail = (articleId?: string): ArticleDetailType | undefined => {
   const { data: res } = useQuery(

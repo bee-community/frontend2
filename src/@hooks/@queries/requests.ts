@@ -11,13 +11,8 @@ import { setBoard } from 'redux/boards';
 import { getUser } from 'redux/userSlice';
 import { setUserInfo } from 'slice/userInfo';
 
-let REQUEST_URL = '';
-if (process.env.REACT_APP_MSW === 'development') {
-  REQUEST_URL = 'http://localhost:3000';
-} else {
-  // REQUEST_URL = 'http://honeybees.community';
-  REQUEST_URL = 'https://puzzled-cautious-radish.glitch.me';
-}
+// REQUEST_URL = 'http://honeybees.community';
+const REQUEST_URL = 'https://puzzled-cautious-radish.glitch.me';
 
 export const useGetUserSelf = () => {
   const dispatch = useDispatch();
