@@ -64,7 +64,7 @@ function Article() {
     },
   ]);
 
-  const recommendedTags = ['응원합니다.', '화이팅입니다.', '사랑합니다.', '열심히하세요.', '중꺽마', '프론트엔드'];
+  const recommendedTags = ['응원합니다.', '화이팅입니다.', '중꺽마', '프론트엔드'];
 
   useEffect(() => {
     dispatch(setArticleToggle());
